@@ -1,5 +1,5 @@
 {
-    "name": "tomphp/scl-nominet-epp",
+    "name": "sclinternet/scl-nominet-epp",
     "description": "PHP library for communicating with Nominet's EPP interface",
     "type": "library",
     "license": "MIT",
