@@ -26,7 +26,7 @@ class DomainInfo extends AbstractInfo
         );
     }
 
-            /**
+    /**
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
      * @todo Unabstract this specifically for domainInfo.

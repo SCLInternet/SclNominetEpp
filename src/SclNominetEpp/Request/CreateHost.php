@@ -32,7 +32,7 @@ class CreateHost extends Request
     {
         $host = $this->nameserver;
 
-        if (null !== $host) {
+        if (!$host instanceof Nameserver) {
             $exception = sprintf('A valid Nameserver object was not passed to \Request\CreateHost, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
