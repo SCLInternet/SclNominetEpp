@@ -23,9 +23,6 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
         $this->request = new CreateDomain();
     }
 
-
-    /**
-     */
     public function testCreateDomain()
     {
         $xml = <<<EOX
@@ -66,7 +63,11 @@ EOX;
         $domain->setAutoBill('');
         $domain->setNextBill('');
         $domain->setRegStatus('Registered until expiry date.');
-        $domain->addNameserver(new Nameserver('ns1.caliban-scl.sch.uk.'));
+        $nameserver = new Nameserver();
+        $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
+        $domain->addNameserver($nameserver);
+        
+        var_dump($nameserver);
 
         $tech  = new Contact();
         $tech->setId('techy1');
@@ -80,6 +81,6 @@ EOX;
 
         $this->request->setDomain($domain);
 
-                $this->assertEquals($xml, (string)$this->request);
+                $this->assertEquals($xml, $this->request->getPacket());
     }
 }

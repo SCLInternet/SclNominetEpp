@@ -2,7 +2,9 @@
 
 namespace SclNominetEpp\Request;
 
+use SclNominetEpp\Contact;
 use SclNominetEpp\CreateContact as CreateContactResponse;
+use Exception;
 
 /**
  * This class build the XML for a Nominet EPP contact:create command.
@@ -20,19 +22,18 @@ class CreateContact extends Request
     protected $contact = null;
     protected $value;
 
-    public function __construct(Contact $contact)
+    public function __construct()
     {
         parent::__construct('create');
-        $this->contact = $contact;
     }
 
     public function addContent($xml)
     {
-        if (null !== $this->contact) {
+        if (!$this->contact instanceof Contact) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
-
+        
         $address = $this->contact->getAddress();
 
         $create = $xml->addChild("contact:create", '', self::CREATE_NAMESPACE);
@@ -59,5 +60,10 @@ class CreateContact extends Request
         //Mandatory for EPP but not used by nominet
         $authInfo = $create->addChild('authInfo');
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
+    }
+    
+    public function setContact(Contact $contact)
+    {
+        $this->contact = $contact;
     }
 }

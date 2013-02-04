@@ -2,7 +2,9 @@
 
 namespace SclNominetEpp\Request;
 
-use \Exception;
+use SclNominetEpp\Domain;
+
+use Exception;
 
 /**
  * This class build the XML for a Nominet EPP domain:create command.
@@ -28,9 +30,9 @@ class CreateDomain extends Request
 
     public function addContent($xml)
     {
-        if (null !== $this->domain) {
+        if (!$this->domain instanceof Domain) {
             $exception = sprintf('A valid Domain object was not passed to Request\CreateDomain, Ln:%d', __LINE__);
-            //throw new Exception($exception);
+            throw new Exception($exception);
         }
 
         //@todo the section below needs to be made domain specific, it's been pasted from CreateContact

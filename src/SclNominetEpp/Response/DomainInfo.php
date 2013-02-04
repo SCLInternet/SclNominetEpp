@@ -31,7 +31,9 @@ class DomainInfo extends Response
 
         $nschildren = $infData->ns->hostObj;
         foreach ($nschildren as $nschild) {
-            $this->domain->addNameserver(new Nameserver($nschild));
+            $nameserver = new Nameserver();
+            $nameserver->setHostName($nschild);
+            $this->domain->addNameserver($nameserver);
         }
 
         $this->domain->setName($infData->name);
