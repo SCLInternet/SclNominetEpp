@@ -59,7 +59,7 @@ class AbstractInfo extends Request
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
      */
-    protected function addContent($xml)
+    protected function addContent(\SimpleXMLElement $xml)
     {
         $info = $xml->addChild("{$this->type}:info", '', $this->infoNamespace);
 

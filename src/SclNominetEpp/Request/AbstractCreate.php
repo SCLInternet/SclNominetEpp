@@ -52,7 +52,7 @@ abstract class AbstractCreate extends Request
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
      */
-    protected function addContent($xml)
+    protected function addContent(\SimpleXMLElement $xml)
     {
         $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
 

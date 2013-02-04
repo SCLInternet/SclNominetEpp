@@ -22,7 +22,7 @@ class CreateHost extends Request
         $this->nameserver = $host;
     }
 
-    public function addContent($xml)
+    public function addContent(\SimpleXMLElement $xml)
     {
         $host = $this->nameserver;
 

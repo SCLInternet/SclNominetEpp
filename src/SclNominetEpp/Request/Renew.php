@@ -51,7 +51,7 @@ class Renew extends Request
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
      */
-    protected function addContent($xml)
+    protected function addContent(\SimpleXMLElement $xml)
     {
         $domainNS  = 'urn:ietf:params:xml:ns:domain-1.0';
         $domainXSI = $domainNS . ' domain-1.0.xsd';

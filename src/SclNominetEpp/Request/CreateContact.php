@@ -27,7 +27,7 @@ class CreateContact extends Request
         parent::__construct('create');
     }
 
-    public function addContent($xml)
+    public function addContent(\SimpleXMLElement $xml)
     {
         if (!$this->contact instanceof Contact) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
