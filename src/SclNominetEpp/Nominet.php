@@ -16,17 +16,13 @@ use SclNominetEpp\Address;
 
 use SclNominetEpp\Request;
 
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-
 /**
  * This class exposes all the actions of the Nominet EPP system in a nice PHP
  * class.
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class Nominet extends AbstractRequestResponse implements
-    ServiceLocatorAwareInterface
+class Nominet extends AbstractRequestResponse
 {
     const LIST_MONTH  = 1;
     const LIST_EXPIRY = 2;
@@ -39,13 +35,6 @@ class Nominet extends AbstractRequestResponse implements
     private $loggedIn = false;
 
     /**
-     * The Zend service locator.
-     *
-     * @var ServiceLocatorInterface
-     */
-    private $serviceLocator;
-
-    /**
      * Disconnect cleanly if we are still logged in.
      */
     public function __destruct()
@@ -53,28 +42,6 @@ class Nominet extends AbstractRequestResponse implements
         if ($this->loggedIn) {
             $this->logout();
         }
-    }
-
-    /**
-     * Set the service locator.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-
-        $this->setCommunicator($serviceLocator->get('SclNominetEpp\Communicator'));
-    }
-
-    /**
-     * Return the service locator.
-     *
-     * @return ServiceLocatorInterface
-     */
-    public function getServiceLocator()
-    {
-        return $this->serviceLocator;
     }
 
     /**
