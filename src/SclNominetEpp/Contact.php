@@ -210,9 +210,9 @@ class Contact
     }
 
     /**
-     * Set $addr
+     * Set $address
      *
-    * @param Address $addr
+    * @param Address $address
      */
     public function setAddress($address)
     {
@@ -220,7 +220,7 @@ class Contact
     }
 
     /**
-     * Get $addr
+     * Get $address
      *
      * @return Address
      */

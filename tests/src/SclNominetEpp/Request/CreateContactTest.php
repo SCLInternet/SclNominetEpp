@@ -2,6 +2,7 @@
 namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Contact;
+use SclNominetEpp\Address;
 use SclNominetEpp\Nameserver;
 use DateTime;
 
@@ -68,16 +69,12 @@ EOX;
         $contact->setCompanyNumber('NI65786');
         // The registered company number or the DfES UK school number of the registrant.
         $contact->setPhone('+44.3344555666');
-        $contact->setOrg('sclMerlyn');
+        $contact->setOrganisation('sclMerlyn');
         $contact->setFax('+443344555616');
         $contact->setOptOut('y');
-
-   
-        
-
         
         $this->request->setContact($contact);
 
-                $this->assertEquals($xml, (string)$this->request);
+        $this->assertEquals($xml, (string)$this->request);
     }
 }

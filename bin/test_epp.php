@@ -33,7 +33,7 @@ switch (strtolower($command)) {
         $domain->setName($argv[0]);
         $domain->setPeriod(2);
         $domain->addNameserver(new \SclNominetEpp\Nameserver('ns1.caliban-scl.sch.uk.'));
-        $domain->setRegistrant('559D2DD4B2862E89');
+        $domain->setRegistrant('sc2343');
         $techy = new \SclNominetEpp\Contact();
         $techy->setId('tech1');
         $domain->addContact('tech',$techy);

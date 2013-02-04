@@ -203,13 +203,19 @@ class Nominet extends AbstractRequestResponse
         * which comprises of the (addressLineOne, city, cc, addressLineTwo, addressLineThree, sp, pc);
         *
         */
-        $address = new Address('Bryn Seion Chapel', 'Cardigan', 'US', null, null, 'Ceredigion', 'SA43 2HB');
+        $address = new Address();
+        $address->setAddressLineOne('Bryn Seion Chapel');
+        $address->setCity('Cardigan');
+        $address->setCountryCode('US');
+        $address->setStateProvince('Ceredigion');
+        $address->setPostCode('SA43 2HB');
+        
         $contact->setAddress($address);
 
         $contact->setCompanyNumber('NI65786');
         // The registered company number or the DfES UK school number of the registrant.
         $contact->setPhone('+44.3344555666');
-        $contact->setOrg('sclMerlyn');
+        $contact->setOrganisation('sclMerlyn');
         $contact->setFax('+443344555616');
         $contact->setOptOut('y');
 
