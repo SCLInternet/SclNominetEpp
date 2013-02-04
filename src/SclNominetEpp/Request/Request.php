@@ -82,7 +82,7 @@ class Request implements RequestInterface
      *
      * @return string
      */
-    public function __toString()
+    public function getPacket()
     {
         if (null !== $this->output) {
             return $this->output;
