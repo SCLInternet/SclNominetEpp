@@ -92,7 +92,9 @@ EOX;
         $expected->setAutoBill('');
         $expected->setNextBill('');
         $expected->setRegStatus('Registered until expiry date.');
-        $expected->addNameserver(new Nameserver('ns1.caliban-scl.sch.uk.'));
+        $nameserver = new Nameserver();
+        $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
+        $expected->addNameserver($nameserver);
         // print_r($expected);
         $this->response->init($xml);
 

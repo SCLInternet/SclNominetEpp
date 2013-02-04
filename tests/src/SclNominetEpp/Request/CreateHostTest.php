@@ -23,7 +23,7 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
         $this->request = new CreateDomain();
     }
 
-    public function testCreateDomain()
+    public function testCreateHost()
     {
         $xml = <<<EOX
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>

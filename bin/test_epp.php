@@ -28,11 +28,32 @@ foreach ($argv as &$arg) {
 $argv = array_values($argv);
 
 switch (strtolower($command)) {
+    case 'createcontact':
+        $contact = new \SclNominetEpp\Contact();
+        $contact->setId('sc2343');
+        $contact->setName('name');
+        $contact->setEmail('example@email.com');
+        $address = new Address();
+        $address->setAddressLineOne('Bryn Seion Chapel');
+        $address->setCity('Cardigan');
+        $address->setCountryCode('US');
+        $address->setStateProvince('Ceredigion');
+        $address->setPostCode('SA43 2HB');
+        $contact->setAddress($address);
+        $contact->setCompanyNumber('NI65786');
+        $contact->setPhone('+44.3344555666');
+        $contact->setOrganisation('sclMerlyn');
+        $contact->setFax('+443344555616');
+        $contact->setOptOut('y');
+        $argv[0] = $contact;
+        break;
     case 'createdomain':
         $domain = new \SclNominetEpp\Domain();
         $domain->setName($argv[0]);
         $domain->setPeriod(2);
-        $domain->addNameserver(new \SclNominetEpp\Nameserver('ns1.caliban-scl.sch.uk.'));
+        $nameserver = new \SclNominetEpp\Nameserver();
+        $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
+        $domain->addNameserver($nameserver);
         $domain->setRegistrant('sc2343');
         $techy = new \SclNominetEpp\Contact();
         $techy->setId('tech1');
@@ -44,6 +65,16 @@ switch (strtolower($command)) {
 
 	$argv[0] = $domain;
         break;
+    case 'createhost':
+        $host = new \SclNominetEpp\Nameserver();
+        $host->setName('ns1.example.com.');
+        $host->setIpv4('192.0.2.2');
+        $host->setIpv6('1080:0:0:0:8:800:200C:417A');
+        $argv[0] = $host;
+        break;
+
+
+
 }
 
 var_dump(call_user_func_array(array($nominet, $command), $argv));
