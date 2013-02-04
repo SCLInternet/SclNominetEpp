@@ -1,0 +1,27 @@
+{
+    "name": "tomphp/scl-nominet-epp",
+    "description": "PHP library for communicating with Nominet's EPP interface",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/SCLInternet/SclNominetEpp",
+    "authors": [
+        {
+            "name": "Tom Oram",
+            "email": "tom@x2k.co.uk",
+            "homepage": "http://github.com/tomphp"
+        },
+        {
+            "name": "Merlyn Cooper",
+            "email": "merlyn.cooper@hotmail.co.uk",
+            "homepage": "http://github.com/Merlyn-Cooper"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "tomphp/requestresponse": "dev-master"
+    },
+    "require-dev": {
+        "phpmd/phpmd" : "1.4.0",
+        "squizlabs/php_codesniffer": "1.*"
+    }
+}
