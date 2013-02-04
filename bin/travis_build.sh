@@ -1,3 +1,5 @@
+#!/bin/bash
+
 phpunit
 PHPUNIT=$?
 
@@ -9,16 +11,16 @@ PHPMD=$?
 
 EXIT=0
 
-if [[ "$PHPUNIT" -ne "0" ]]; then
-    echo "Unit tests failed"
+if [ "$PHPUNIT" -ne "0" ]; then
+    echo "**** Unit tests failed"
     EXIT=1
 fi
-if [[ "$PHPCS" -ne "0" ]]; then
-    echo "Coding standards failed"
+if [ "$PHPCS" -ne "0" ]; then
+    echo "**** Coding standards failed"
     EXIT=1
 fi
-if [[ "$PHPCS" -ne "0" ]]; then
-    echo "Mess detection failed"
+if [ "$PHPCS" -ne "0" ]; then
+    echo "**** Mess detection failed"
     EXIT=1
 fi
 
