@@ -2,6 +2,8 @@
 
 namespace SclNominetEpp\Request;
 
+use SclNominetEpp\Nameserver;
+
 /**
  * This class build the XML for a Nominet EPP host:create command.
  *
@@ -16,12 +18,16 @@ class CreateHost extends Request
     protected $nameserver;
     protected $value;
 
-    public function __construct(Nameserver $host)
+    public function __construct()
     {
         parent::__construct('create');
-        $this->nameserver = $host;
     }
-
+    
+    /**
+     * 
+     * @param SimpleXMLElement $xml
+     * @throws Exception
+     */
     public function addContent($xml)
     {
         $host = $this->nameserver;
@@ -43,5 +49,13 @@ class CreateHost extends Request
             $ipv6 = $create->addChild('addr', $host->getIpv6());
             $ipv6->addAttribute('ip', 'v6');
         }
+    }
+    
+    /**
+     * 
+     * @param Nameserver $nameserver
+     */
+    public function setNameserver(Nameserver $nameserver){
+        $this->nameserver = $nameserver;
     }
 }

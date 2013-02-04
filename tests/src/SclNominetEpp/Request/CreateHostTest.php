@@ -1,9 +1,7 @@
 <?php
 namespace SclNominetEpp\Request;
 
-use SclNominetEpp\Contact;
 use SclNominetEpp\Nameserver;
-use DateTime;
 
 /**
  */
@@ -43,7 +41,7 @@ class CreateHostTest extends \PHPUnit_Framework_TestCase
 
 EOX;
 
-        $host = new \SclNominetEpp\Host();
+        $host = new Nameserver();
         $host->setName('ns1.example.com.');
         $host->setIpv4('192.0.2.2');
         $host->setIpv6('1080:0:0:0:8:800:200C:417A');

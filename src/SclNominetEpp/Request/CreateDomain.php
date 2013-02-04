@@ -19,7 +19,15 @@ class CreateDomain extends Request
     const DUMMY_PASSWORD = 'qwerty';
     const VALUE_NAME = 'name';
 
+    /**
+     *
+     * @var Domain 
+     */
     protected $domain = null;
+    /**
+     *
+     * @var string
+     */
     protected $value;
 
     public function __construct()
@@ -27,7 +35,11 @@ class CreateDomain extends Request
         parent::__construct('create');
     }
 
-
+    /**
+     * 
+     * @param SimpleXMLElement $xml
+     * @throws Exception
+     */
     public function addContent($xml)
     {
         if (!$this->domain instanceof Domain) {
@@ -55,6 +67,10 @@ class CreateDomain extends Request
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
 
+    /**
+     * 
+     * @param SimpleXMLElement $create
+     */
     public function createNameservers($create)
     {
         foreach ($this->domain->getNameservers() as $nameserver) {
@@ -62,6 +78,10 @@ class CreateDomain extends Request
         }
     }
 
+    /**
+     * 
+     * @param SimpleXMLElement $create
+     */
     public function createContacts($create)
     {
         foreach ($this->domain->getContacts() as $type => $value) {
@@ -70,7 +90,11 @@ class CreateDomain extends Request
         }
     }
 
-    public function setDomain($domain)
+    /**
+     * 
+     * @param Domain $domain
+     */
+    public function setDomain(Domain $domain)
     {
         $this->domain = $domain;
     }
