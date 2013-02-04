@@ -75,11 +75,8 @@ class Nameserver
      */
     private $ipv6 = null;
 
-    public function __construct($hostName, $ipv4 = null, $ipv6 = null)
+    public function __construct()
     {
-        $this->hostName = $hostName;
-        $this->ipv4 = $ipv4;
-        $this->ipv6 = $ipv6;
     }
 
     /**

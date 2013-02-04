@@ -189,34 +189,12 @@ class Nominet extends AbstractRequestResponse
      *
      * @param \SclNominetEpp\Domain $domain
      */
-    public function createContact()//Contact $contact)
+    public function createContact(Contact $contact)
     {
         $this->loginCheck();
-
-        $contact = new Contact();
-        $contact->setId('sc2343');
-        $contact->setName('name');
-        $contact->setEmail('example@email.com');
-
-        /*
-        * The contact address.
-        * which comprises of the (addressLineOne, city, cc, addressLineTwo, addressLineThree, sp, pc);
-        *
-        */
-        $addr = new Address('Bryn Seion Chapel', 'Cardigan', 'US', null, null, 'Ceredigion', 'SA43 2HB');
-        $contact->setAddr($addr);
-
-        $contact->setCompanyNumber('NI65786');
-        // The registered company number or the DfES UK school number of the registrant.
-        $contact->setPhone('+44.3344555666');
-        $contact->setOrg('sclMerlyn');
-        $contact->setFax('+443344555616');
-        $contact->setOptOut('y');
-
-
-        $request = new Request\CreateContact($contact);
-
-        //$request->lookup($hosts);
+        
+        $request = new Request\CreateContact();
+        $request->setContact($contact);
         $response = $this->processRequest($request);
 
 
@@ -241,16 +219,9 @@ class Nominet extends AbstractRequestResponse
         return $response->success();
     }
 
-    public function createHost()
+    public function createHost(Nameserver $host)
     {
         $this->loginCheck();
-
-        $name = 'ns1.example.com.';
-        $ipv4 = '192.0.2.2';
-        $ipv6 = '1080:0:0:0:8:800:200C:417A';
-
-        $host = new Nameserver($name, $ipv4, $ipv6);
-
         $request = new Request\CreateHost($host);
 
         $response = $this->processRequest($request);

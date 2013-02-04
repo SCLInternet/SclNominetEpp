@@ -38,7 +38,7 @@ class Domain
 
     /**
      *
-     * @var type
+     * @var array
      */
     private $contacts = array();
 
@@ -50,7 +50,7 @@ class Domain
 
     /**
      *
-     * @var type
+     * @var string
      */
     private $clientID;
 

@@ -19,11 +19,6 @@ class LoginTest extends \PHPUnit_Framework_TestCase
         $this->object = new Login();
     }
 
-
-    /**
-     * @covers SclNominetEpp\Request\Login::__toString
-     * @todo   Implement test__toString().
-     */
     public function testLogin()
     {
         $this->object;

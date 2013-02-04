@@ -114,6 +114,8 @@ class Request implements RequestInterface
 
         $this->output = $this->formatXml($this->output);
 
+        //echo $this->output;
+        
         return $this->output;
     }
 

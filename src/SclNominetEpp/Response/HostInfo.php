@@ -26,7 +26,8 @@ class HostInfo extends Response
 
         $infData = $response->resData->children($ns['host'])->infData;
 
-        $this->host = new Nameserver((string)$infData->name);
+        $this->host = new Nameserver();
+        $this->host->setHostName($infData->name);
         $this->statusArrPopulate($infData);
         $this->ipCheck($infData); // sets ipv4 and ipv6:- $this->host->setIpv4 and setIpv6
         $this->host->setClientID($infData->clID);
