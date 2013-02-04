@@ -21,8 +21,9 @@ unset($argv[0]);
 unset($argv[1]);
 
 foreach ($argv as &$arg) {
-    if (preg_match('/^\[\[(.+)\]\]$/', $arg, $match))
+    if (preg_match('/^\[\[(.+)\]\]$/', $arg, $match)) {
         $arg = explode(',', $match[1]);
+    }
 }
 
 $argv = array_values($argv);
@@ -57,13 +58,13 @@ switch (strtolower($command)) {
         $domain->setRegistrant('sc2343');
         $techy = new \SclNominetEpp\Contact();
         $techy->setId('tech1');
-        $domain->addContact('tech',$techy);
+        $domain->addContact('tech', $techy);
         $admin = new \SclNominetEpp\Contact();
         $admin->setId('admin1');
-        $domain->addContact('admin',$admin);
+        $domain->addContact('admin', $admin);
         //$domain->addPassword('qwerty');
 
-	$argv[0] = $domain;
+        $argv[0] = $domain;
         break;
     case 'createhost':
         $host = new \SclNominetEpp\Nameserver();

@@ -1,6 +1,7 @@
 <?php
 
 namespace SclNominetEpp\Request;
+
 use SclNominetEpp\Contact;
 use SclNominetEpp\CreateContact as CreateContactResponse;
 use \Exception;

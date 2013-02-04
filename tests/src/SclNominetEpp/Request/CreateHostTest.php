@@ -7,7 +7,7 @@ use DateTime;
 
 /**
  */
-class CreateDomainTest extends \PHPUnit_Framework_TestCase
+class CreateHostTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Request
@@ -20,7 +20,7 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->request = new CreateDomain();
+        $this->request = new CreateHost();
     }
 
     public function testCreateHost()
@@ -30,57 +30,25 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
 <epp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:ietf:params:xml:ns:epp-1.0" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.0 epp-1.0.xsd">
   <command>
     <create>
-      <domain:create xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
-        <domain:name>caliban-scl.sch.uk</domain:name>
-        <domain:period unit="y">2</domain:period>
-        <domain:ns>
-          <domain:hostObj>ns1.caliban-scl.sch.uk.</domain:hostObj>
-        </domain:ns>
-        <domain:registrant>559D2DD4B2862E89</domain:registrant>
-        <domain:contact type="tech">techy1</domain:contact>
-        <domain:contact type="admin">admin1</domain:contact>
-        <domain:authInfo>
-          <domain:pw>qwerty</domain:pw>
-        </domain:authInfo>
-      </domain:create>
+      <host:create
+       xmlns:host="urn:ietf:params:xml:ns:host-1.0">
+        <host:name>ns1.example.com.</host:name>
+        <host:addr ip="v4">192.0.2.2</host:addr>
+        <host:addr ip="v6">1080:0:0:0:8:800:200C:417A</host:addr>
+      </host:create>
     </create>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 
 EOX;
 
-        $domain = new \SclNominetEpp\Domain();
-        $domain->setName('caliban-scl.sch.uk');
-        $domain->setRegistrant('559D2DD4B2862E89');
-        $domain->setClientID('SCL');
-        $domain->setCreatorID('psamathe@nominet');
-        $domain->setCreated(new DateTime('2013-01-31T00:11:05'));
-        $domain->setExpired(new DateTime('2015-01-31T00:11:05'));
-        $domain->setUpID('');
-        $domain->setUpDate(new DateTime(''));
-        $domain->setFirstBill('th');
-        $domain->setRecurBill('th');
-        $domain->setAutoBill('');
-        $domain->setNextBill('');
-        $domain->setRegStatus('Registered until expiry date.');
-        $nameserver = new Nameserver();
-        $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
-        $domain->addNameserver($nameserver);
-        
-        var_dump($nameserver);
+        $host = new \SclNominetEpp\Host();
+        $host->setName('ns1.example.com.');
+        $host->setIpv4('192.0.2.2');
+        $host->setIpv6('1080:0:0:0:8:800:200C:417A');
+        $this->request->setHost($host);
 
-        $tech  = new Contact();
-        $tech->setId('techy1');
-        $admin = new Contact();
-        $admin->setId('admin1');
-
-        $domain->addContact('tech', $tech);
-        $domain->addContact('admin', $admin);
-
-
-
-        $this->request->setDomain($domain);
-
-                $this->assertEquals($xml, $this->request->getPacket());
+        $this->assertEquals($xml, $this->request->getPacket());
     }
 }
