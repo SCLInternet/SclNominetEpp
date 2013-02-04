@@ -66,7 +66,7 @@ EOX;
             'domain2.co.uk' => true,
         );
 
-        $this->response->init(new \SimpleXMLElement($xml));
+        $this->response->init($xml);
 
         $domains = $this->response->getDomains();
 

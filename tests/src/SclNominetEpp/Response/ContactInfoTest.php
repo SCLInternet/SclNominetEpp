@@ -107,7 +107,7 @@ EOX;
 
         $expected->setAddress($address);
 
-        $this->response->init(new \SimpleXMLElement($xml));
+        $this->response->init($xml);
 
         $contact = $this->response->getContact();
 

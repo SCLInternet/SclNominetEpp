@@ -18,7 +18,13 @@
     ],
     "require": {
         "php": ">=5.3.0",
+        "tomphp/basicsocket": "dev-master",
         "tomphp/requestresponse": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "SclNominetEpp\\": "src/"
+        }
     },
     "require-dev": {
         "phpmd/phpmd" : "1.4.0",

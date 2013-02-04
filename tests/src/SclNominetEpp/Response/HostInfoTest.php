@@ -71,7 +71,7 @@ EOX;
         $expected->setCreatorID('NOMINET');
         $expected->setCreated(new DateTime('2013-01-31T00:11:05'));
 
-        $this->response->init(new \SimpleXMLElement($xml));
+        $this->response->init($xml);
 
         $host = $this->response->getHost();
 

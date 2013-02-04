@@ -94,7 +94,7 @@ EOX;
         $expected->setRegStatus('Registered until expiry date.');
         $expected->addNameserver(new Nameserver('ns1.caliban-scl.sch.uk.'));
         // print_r($expected);
-        $this->response->init(new \SimpleXMLElement($xml));
+        $this->response->init($xml);
 
         $domain = $this->response->getDomain();
         // print_r($domain);

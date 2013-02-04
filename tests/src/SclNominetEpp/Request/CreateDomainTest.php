@@ -25,8 +25,6 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @covers SclNominetEpp\Request\CreateDomain::testCreateDomain
-     * @todo   Implement test__toString().
      */
     public function testCreateDomain()
     {
