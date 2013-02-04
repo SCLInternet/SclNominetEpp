@@ -30,7 +30,7 @@ class CreateDomain extends Request
     {
         if (null !== $this->domain) {
             $exception = sprintf('A valid Domain object was not passed to Request\CreateDomain, Ln:%d', __LINE__);
-            //throw new Exception($exception);
+            throw new Exception($exception);
         }
 
         //@todo the section below needs to be made domain specific, it's been pasted from CreateContact

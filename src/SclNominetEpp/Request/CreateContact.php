@@ -30,7 +30,7 @@ class CreateContact extends Request
     {
         if (null !== $this->contact) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
-            //throw new Exception($exception);
+            throw new Exception($exception);
         }
         
         $address = $this->contact->getAddress();
@@ -61,7 +61,7 @@ class CreateContact extends Request
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
     
-    public function setContact($contact)
+    public function setContact(Contact $contact)
     {
         $this->contact = $contact;
     }
