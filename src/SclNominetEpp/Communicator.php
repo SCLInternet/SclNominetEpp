@@ -7,7 +7,7 @@
 
 namespace SclNominetEpp;
 
-use BasicSocket\SocketInterface;
+use SclSocket\SocketInterface;
 use SclRequestResponse\Communicator\PersistentCommunicator;
 use SclNominetEpp\Request\RequestInterface;
 use SclNominetEpp\Response\ResponseInterface;
