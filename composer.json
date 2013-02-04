@@ -18,8 +18,8 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "tomphp/basicsocket": "dev-master",
-        "tomphp/requestresponse": "dev-master"
+        "sclinternet/scl-socket": "dev-master",
+        "sclinternet/scl-request-response": "dev-master"
     },
     "autoload": {
         "psr-0": {

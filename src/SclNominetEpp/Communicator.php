@@ -8,7 +8,7 @@
 namespace SclNominetEpp;
 
 use BasicSocket\SocketInterface;
-use RequestResponse\Communicator\PersistentCommunicator;
+use SclRequestResponse\Communicator\PersistentCommunicator;
 use SclNominetEpp\Request\RequestInterface;
 use SclNominetEpp\Response\ResponseInterface;
 use SimpleXMLElement;

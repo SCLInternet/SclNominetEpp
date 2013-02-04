@@ -3,8 +3,8 @@
 namespace SclNominetEpp\Request;
 
 use DOMDocument;
-use RequestResponse\RequestInterface;
-use RequestResponse\ResponseInterface;
+use SclRequestResponse\RequestInterface;
+use SclRequestResponse\ResponseInterface;
 use SimpleXMLElement;
 use SclNominetEpp\Response\Response;
 
@@ -114,8 +114,6 @@ class Request implements RequestInterface
 
         $this->output = $this->formatXml($this->output);
 
-        //echo $this->output;
-        
         return $this->output;
     }
 
