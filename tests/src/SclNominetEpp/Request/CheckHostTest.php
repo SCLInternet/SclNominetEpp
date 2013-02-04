@@ -19,11 +19,6 @@ class CheckHostTest extends \PHPUnit_Framework_TestCase
         //        $this->object = new CheckHost();
     }
 
-
-    /**
-     * @covers SclNominetEpp\Request\Login::__toString
-     * @todo   Implement test__toString().
-     */
     public function testLogin()
     {
         //$this->object->lookup('trevor');

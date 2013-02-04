@@ -19,12 +19,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->object = new Response();
     }
 
-
-    /**
-     * @covers SclNominetEpp\Request\Login::__toString
-     * @todo   Implement test__toString().
-     */
-    public function testLogin()
+    public function testPrintResponse()
     {
+        
     }
 }

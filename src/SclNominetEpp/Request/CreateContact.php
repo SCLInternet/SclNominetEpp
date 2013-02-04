@@ -28,7 +28,7 @@ class CreateContact extends Request
 
     public function addContent($xml)
     {
-        if (null !== $this->contact) {
+        if (!$this->contact instanceof Contact) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
             throw new Exception($exception);
         }

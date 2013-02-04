@@ -20,11 +20,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->object = new Request('test-action');
     }
 
-
-    /**
-     * @covers SclNominetEpp\Request\Request::__toString
-     * @todo   Implement test__toString().
-     */
     public function testRequestXML()
     {
 

@@ -23,9 +23,6 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
         $this->request = new CreateDomain();
     }
 
-
-    /**
-     */
     public function testCreateDomain()
     {
         $xml = <<<EOX
@@ -80,6 +77,6 @@ EOX;
 
         $this->request->setDomain($domain);
 
-                $this->assertEquals($xml, (string)$this->request);
+                $this->assertEquals($xml, $this->request->getPacket());
     }
 }

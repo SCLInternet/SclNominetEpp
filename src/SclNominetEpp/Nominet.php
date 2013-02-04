@@ -219,9 +219,9 @@ class Nominet extends AbstractRequestResponse
         $contact->setFax('+443344555616');
         $contact->setOptOut('y');
 
-
-        $request = new Request\CreateContact($contact);
-
+        
+        $request = new Request\CreateContact();
+        $request->setContact($contact);
         //$request->lookup($hosts);
         $response = $this->processRequest($request);
 

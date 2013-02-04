@@ -2,6 +2,8 @@
 
 namespace SclNominetEpp\Request;
 
+use SclNominetEpp\Domain;
+
 use \Exception;
 
 /**
@@ -28,7 +30,7 @@ class CreateDomain extends Request
 
     public function addContent($xml)
     {
-        if (null !== $this->domain) {
+        if (!$this->domain instanceof Domain) {
             $exception = sprintf('A valid Domain object was not passed to Request\CreateDomain, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
