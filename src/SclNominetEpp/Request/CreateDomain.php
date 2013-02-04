@@ -4,7 +4,7 @@ namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Domain;
 
-use \Exception;
+use Exception;
 
 /**
  * This class build the XML for a Nominet EPP domain:create command.

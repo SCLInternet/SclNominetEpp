@@ -189,13 +189,12 @@ class Nominet extends AbstractRequestResponse
      *
      * @param \SclNominetEpp\Domain $domain
      */
-    public function createContact(Contact $contact)//Contact $contact)
+    public function createContact(Contact $contact)
     {
         $this->loginCheck();
         
         $request = new Request\CreateContact();
         $request->setContact($contact);
-        //$request->lookup($hosts);
         $response = $this->processRequest($request);
 
 
