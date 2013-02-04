@@ -236,8 +236,8 @@ class Nominet extends AbstractRequestResponse implements
         * which comprises of the (addressLineOne, city, cc, addressLineTwo, addressLineThree, sp, pc);
         *
         */
-        $addr = new Address('Bryn Seion Chapel', 'Cardigan', 'US', null, null, 'Ceredigion', 'SA43 2HB');
-        $contact->setAddr($addr);
+        $address = new Address('Bryn Seion Chapel', 'Cardigan', 'US', null, null, 'Ceredigion', 'SA43 2HB');
+        $contact->setAddress($address);
 
         $contact->setCompanyNumber('NI65786');
         // The registered company number or the DfES UK school number of the registrant.
