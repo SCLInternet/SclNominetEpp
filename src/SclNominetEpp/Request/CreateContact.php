@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request;
 
+use SimpleXMLElement;
 use SclNominetEpp\Contact;
 use Exception;
 

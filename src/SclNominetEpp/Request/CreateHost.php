@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request;
 
+use SimpleXMLElement;
 use SclNominetEpp\Nameserver;
 
 /**
@@ -28,7 +29,7 @@ class CreateHost extends Request
      * @param SimpleXMLElement $xml
      * @throws Exception
      */
-    public function addContent(\SimpleXMLElement $xml)
+    public function addContent(SimpleXMLElement $xml)
     {
         $host = $this->nameserver;
 

@@ -3,7 +3,7 @@
 namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Domain;
-
+use SimpleXMLElement;
 use Exception;
 
 /**
