@@ -25,8 +25,8 @@ class CreateContact extends Response
         $response = $xml->response;
 
         $creData  = $response->resData->children($ns['contact'])->creData;
-        $this->domain->setId($creData->id);
-        $this->domain->setCreated(new DateTime($creData->crDate));
+        $this->contact->setId($creData->id);
+        $this->contact->setCreated(new DateTime($creData->crDate));
     }
 
     public function getContact()
