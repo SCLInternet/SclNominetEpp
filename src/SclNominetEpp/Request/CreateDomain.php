@@ -3,7 +3,7 @@
 namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Domain;
-
+use SimpleXMLElement;
 use Exception;
 
 /**
@@ -19,7 +19,16 @@ class CreateDomain extends Request
     const DUMMY_PASSWORD = 'qwerty';
     const VALUE_NAME = 'name';
 
+    /**
+     *
+     * @var Domain 
+     */
     protected $domain = null;
+    
+    /**
+     *
+     * @var string
+     */
     protected $value;
 
     public function __construct()
@@ -27,8 +36,12 @@ class CreateDomain extends Request
         parent::__construct('create');
     }
 
-
-    public function addContent(\SimpleXMLElement $xml)
+    /**
+     * 
+     * @param SimpleXMLElement $xml
+     * @throws Exception
+     */
+    public function addContent(SimpleXMLElement $xml)
     {
         if (!$this->domain instanceof Domain) {
             $exception = sprintf('A valid Domain object was not passed to Request\CreateDomain, Ln:%d', __LINE__);
@@ -55,14 +68,22 @@ class CreateDomain extends Request
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
 
-    public function createNameservers($create)
+    /**
+     * 
+     * @param SimpleXMLElement $create
+     */
+    protected function createNameservers(SimpleXMLElement $create)
     {
         foreach ($this->domain->getNameservers() as $nameserver) {
             $create->addChild('hostObj', $nameserver->getHostName());
         }
     }
 
-    public function createContacts($create)
+    /**
+     * 
+     * @param SimpleXMLElement $create
+     */
+    protected function createContacts(SimpleXMLElement $create)
     {
         foreach ($this->domain->getContacts() as $type => $value) {
             $contact = $create->addChild('contact', $value->getId());
@@ -70,7 +91,11 @@ class CreateDomain extends Request
         }
     }
 
-    public function setDomain($domain)
+    /**
+     * 
+     * @param Domain $domain
+     */
+    public function setDomain(Domain $domain)
     {
         $this->domain = $domain;
     }

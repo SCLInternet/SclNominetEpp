@@ -9,5 +9,27 @@ namespace SclNominetEpp\Response;
  */
 class CheckContact extends Response
 {
-    //put your code here
+    protected $contacts;
+    
+    protected function processData($data)
+    {
+        if (!isset($data->response->resData)) {
+            return;
+        }
+
+        $ns = $data->getNamespaces(true);
+
+        $contacts = $data->response->resData->children($ns['contact']);
+
+        $this->contacts = array();
+
+        foreach ($contacts->chkData->cd as $contact) {
+            $this->contacts[(string)$contact->id] = (boolean)(string)$contact->id->attributes()->avail;
+        }
+    }
+    
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
 }

@@ -2,8 +2,8 @@
 
 namespace SclNominetEpp\Request;
 
+use SimpleXMLElement;
 use SclNominetEpp\Contact;
-use SclNominetEpp\CreateContact as CreateContactResponse;
 use Exception;
 
 /**
@@ -18,16 +18,30 @@ class CreateContact extends Request
     const CREATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
     const VALUE_NAME = 'id';
     const DUMMY_PASSWORD = 'qwerty';
-
+    
+    /**
+     *
+     * @var Contact
+     */
     protected $contact = null;
+    
+    /**
+     *
+     * @var string
+     */
     protected $value;
 
     public function __construct()
     {
         parent::__construct('create');
     }
-
-    public function addContent(\SimpleXMLElement $xml)
+    
+    /**
+     * 
+     * @param SimpleXMLElement $xml
+     * @throws Exception
+     */
+    public function addContent(SimpleXMLElement $xml)
     {
         if (!$this->contact instanceof Contact) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
@@ -62,6 +76,10 @@ class CreateContact extends Request
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
     
+    /**
+     * 
+     * @param Contact $contact
+     */
     public function setContact(Contact $contact)
     {
         $this->contact = $contact;
