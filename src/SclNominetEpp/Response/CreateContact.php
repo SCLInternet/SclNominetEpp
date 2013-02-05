@@ -12,7 +12,7 @@ use SclNominetEpp\Contact;
  */
 class CreateContact extends Response
 {
-    protected $domain;
+    protected $contact;
     
     public function processData($xml)
     {
@@ -20,18 +20,17 @@ class CreateContact extends Response
             return;
         }
         $ns = $xml->getNamespaces(true);
-        $this->domain = new Contact();
+        $this->contact = new Contact();
         
         $response = $xml->response;
 
         $creData  = $response->resData->children($ns['contact'])->creData;
-        $this->domain->setName($creData->name);
+        $this->domain->setId($creData->id);
         $this->domain->setCreated(new DateTime($creData->crDate));
-        $this->domain->setExpired(new DateTime($creData->exDate));
     }
 
-    public function getDomain()
+    public function getContact()
     {
-        return $this->domain;
+        return $this->contact;
     }
 }

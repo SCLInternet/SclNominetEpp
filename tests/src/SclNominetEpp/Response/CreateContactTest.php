@@ -3,9 +3,7 @@ namespace SclNominetEpp\Response;
 
 use DateTime;
 
-/**
- */
-class CreateHostTest extends \PHPUnit_Framework_TestCase
+class CreateContactTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response
@@ -18,9 +16,8 @@ class CreateHostTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->response = new CreateHost();
+        $this->response = new CreateContact();
     }
-
 
     /**
      * @covers SclNominetEpp\Response\HostInfo::processData
@@ -49,18 +46,16 @@ class CreateHostTest extends \PHPUnit_Framework_TestCase
   </response>
 </epp>
 
-
 EOX;
 
-        $expected = new \SclNominetEpp\Nameserver();
+        $expected = new \SclNominetEpp\Contact();
         $expected->setId('sc2343');
         $expected->setCreated(new DateTime('2013-01-31T00:11:05'));
 
         $this->response->init($xml);
 
-        $host = $this->response->getHost();
+        $host = $this->response->getContact();
 
         $this->assertEquals($expected, $host);
-
     }
 }
