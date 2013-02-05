@@ -3,7 +3,7 @@ namespace SclNominetEpp\Response;
 
 /**
  */
-class CheckContactTest extends \PHPUnit_Framework_TestCase
+class CheckDomainTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response
@@ -16,12 +16,12 @@ class CheckContactTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->response = new CheckContact();
+        $this->response = new CheckDomain();
     }
 
 
     /**
-     * @covers SclNominetEpp\Response\CheckContact::processData
+     * @covers SclNominetEpp\Response\CheckDomain::processData
      *
      */
     public function testProcessData()
@@ -35,19 +35,19 @@ class CheckContactTest extends \PHPUnit_Framework_TestCase
       <msg>Command completed successfully</msg>
     </result>
     <resData>
-      <contact:chkData
-       xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
-        <contact:cd>
-          <contact:id avail="1">sc2343</contact:id>
-        </contact:cd>
-        <contact:cd>
-          <contact:id avail="0">sah8013</contact:id>
-          <contact:reason>In use</contact:reason>
-        </contact:cd>
-        <contact:cd>
-          <contact:id avail="1">8013sah</contact:id>
-        </contact:cd>
-      </contact:chkData>
+      <host:chkData
+       xmlns:host="urn:ietf:params:xml:ns:host-1.0">
+        <host:cd>
+          <host:name avail="1">ns1.example.com</host:name>
+        </host:cd>
+        <host:cd>
+          <host:name avail="0">ns2.example2.com</host:name>
+          <host:reason>In use</host:reason>
+        </host:cd>
+        <host:cd>
+          <host:name avail="1">ns3.example3.com</host:name>
+        </host:cd>
+      </host:chkData>
     </resData>
     <trID>
       <clTRID>ABC-12345</clTRID>
@@ -58,16 +58,16 @@ class CheckContactTest extends \PHPUnit_Framework_TestCase
 EOX;
 
         $expected = array(
-            'sc2343' => true, 
-            'sah8013' => false, 
-            '8013sah' => true
+            'ns1.example.com'  => true,
+            'ns2.example2.com' => false,
+            'ns3.example3.com' => true
         );
 
         $this->response->init($xml);
 
-        $contacts = $this->response->getContacts();
+        $hosts = $this->response->getHosts();
 
-        $this->assertEquals($expected, $contacts);
+        $this->assertEquals($expected, $hosts);
 
     }
 }
