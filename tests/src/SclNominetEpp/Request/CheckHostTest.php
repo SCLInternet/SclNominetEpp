@@ -19,7 +19,7 @@ class CheckHostTest extends \PHPUnit_Framework_TestCase
         //        $this->object = new CheckHost();
     }
 
-    public function testLogin()
+    public function testProcessData()
     {
         //$this->object->lookup('trevor');
         //        echo $this->object;
