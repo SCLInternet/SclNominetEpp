@@ -62,7 +62,7 @@ class CreateHostTest extends \PHPUnit_Framework_TestCase
 EOX;
 
 
-        $expected = new \SclNominetEpp\Nameserver('caliban-scl.sch.uk');
+        $expected = new \SclNominetEpp\Nameserver();
         $expected->setHostName('ns1.caliban-scl.sch.uk.');
         $expected->addStatus('ok');
         $expected->addStatus('linked');

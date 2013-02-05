@@ -24,26 +24,10 @@ class CreateDomain extends Response
         
         $response = $xml->response;
 
-        $infData  = $response->resData->children($ns['domain'])->infData;
-        $this->domain->setName($infData->name);
-//        $statai   = $infData->status;
-//        foreach ($statai as $status) {
-//            $this->host->addStatus($status);
-//        }
-//        $addresses = $infData->addr;
-//        foreach ($addresses as $type => $ip) {
-//            $attributes = $type->attributes();
-//            
-//            if ($attributes->ip == 'v4') {
-//                $this->host->setIpv4($ip);
-//            } else {
-//                $this->host->setIpv6($ip);
-//            }
-//        }
-        
-        $this->domain->setClientID($infData->clID);
-        $this->domain->setCreatorID($infData->crID);
-        $this->domain->setCreated(new DateTime($infData->crDate));
+        $creData  = $response->resData->children($ns['domain'])->creData;
+        $this->domain->setName($creData->name);
+        $this->domain->setCreated(new DateTime($creData->crDate));
+        $this->domain->setExpired(new DateTime($creData->exDate));
     }
 
     public function getDomain()

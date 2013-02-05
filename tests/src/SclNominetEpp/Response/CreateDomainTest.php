@@ -52,14 +52,15 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
 
 EOX;
 
-
         $expected = new \SclNominetEpp\Domain();
+        $expected->setName('example.com');
+        $expected->setCreated(new DateTime('1999-04-03T22:00:00.0Z'));
+        $expected->setExpired(new DateTime('2001-04-03T22:00:00.0Z'));
 
         $this->response->init($xml);
 
         $domain = $this->response->getDomain();
 
         $this->assertEquals($expected, $domain);
-
     }
 }

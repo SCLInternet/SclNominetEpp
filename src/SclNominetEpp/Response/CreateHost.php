@@ -26,11 +26,27 @@ class CreateHost extends Response
 
         $infData   = $response->resData->children($ns['host'])->infData;
         $this->host->setHostName($infData->name);
-        $statai = $infData->status;
+        $this->assignStataiToHost($infData->status);
+        $this->assignIpsToHost($infData->addr);
+        $this->host->setClientID($infData->clID);
+        $this->host->setCreatorID($infData->crID);
+        $this->host->setCreated(new DateTime($infData->crDate));
+    }
+    
+    public function assignStataiToHost($statai)
+    {
         foreach ($statai as $status) {
-            $this->host->addStatus($status);
+            $attributes = $status->attributes();
+            if (null == $attributes->s) {
+                $this->host->addStatus('ok');
+            } else {
+                $this->host->addStatus($attributes->s);
+            }
         }
-        $addresses = $infData->addr;
+    }
+    
+    public function assignIpsToHost($addresses)
+    {
         foreach ($addresses as $ip) {
             $attributes = $ip->attributes();
             
@@ -40,10 +56,6 @@ class CreateHost extends Response
                 $this->host->setIpv6($ip);
             }
         }
-        
-        $this->host->setClientID($infData->clID);
-        $this->host->setCreatorID($infData->crID);
-        $this->host->setCreated(new DateTime($infData->crDate));
     }
 
     public function getHost()
