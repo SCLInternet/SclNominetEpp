@@ -44,7 +44,7 @@ class ListDomains extends Request
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
      */
-    protected function addContent($xml)
+    protected function addContent(\SimpleXMLElement $xml)
     {
 
         $lNS     = 'http://www.nominet.org.uk/epp/xml/std-list-1.0';

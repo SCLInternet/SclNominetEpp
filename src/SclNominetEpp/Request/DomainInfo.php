@@ -31,7 +31,7 @@ class DomainInfo extends AbstractInfo
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
      * @todo Unabstract this specifically for domainInfo.
      */
-    protected function addContent($xml)
+    protected function addContent(\SimpleXMLElement $xml)
     {
         $info = $xml->addChild("{$this->type}:info", '', $this->infoNamespace);
 

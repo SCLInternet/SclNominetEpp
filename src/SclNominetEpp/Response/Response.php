@@ -3,8 +3,8 @@
 namespace SclNominetEpp\Response;
 
 use SimpleXMLElement;
-use RequestResponse\Exception\InvalidResponsePacketException;
-use RequestResponse\ResponseInterface;
+use SclRequestResponse\Exception\InvalidResponsePacketException;
+use SclRequestResponse\ResponseInterface;
 
 class Response implements ResponseInterface
 {
@@ -57,7 +57,6 @@ class Response implements ResponseInterface
      */
     public function init($xml)
     {
-        //echo $xml;
         $data = new SimpleXMLElement($xml);
 
         if (!isset($data->response)) {

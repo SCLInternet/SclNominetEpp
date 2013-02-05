@@ -40,7 +40,7 @@ class CreateDomain extends Request
      * @param SimpleXMLElement $xml
      * @throws Exception
      */
-    public function addContent($xml)
+    public function addContent(\SimpleXMLElement $xml)
     {
         if (!$this->domain instanceof Domain) {
             $exception = sprintf('A valid Domain object was not passed to Request\CreateDomain, Ln:%d', __LINE__);

@@ -75,7 +75,7 @@ abstract class AbstractCheck extends Request
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
      */
-    protected function addContent($xml)
+    protected function addContent(\SimpleXMLElement $xml)
     {
         $check = $xml->addChild("{$this->type}:check", '', $this->checkNamespace);
 

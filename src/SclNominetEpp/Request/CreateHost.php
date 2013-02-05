@@ -28,7 +28,7 @@ class CreateHost extends Request
      * @param SimpleXMLElement $xml
      * @throws Exception
      */
-    public function addContent($xml)
+    public function addContent(\SimpleXMLElement $xml)
     {
         $host = $this->nameserver;
 

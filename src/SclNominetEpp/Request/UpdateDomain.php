@@ -26,7 +26,7 @@ class UpdateDomain extends Request
         $this->domain = $domain;
     }
 
-    public function addContent($updateXML)
+    public function addContent(\SimpleXMLElement $updateXML)
     {
         $domainNS  = self::UPDATE_NAMESPACE;
         $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
