@@ -23,6 +23,7 @@ class CreateContact extends Request
      * @var Contact
      */
     protected $contact = null;
+    
     /**
      *
      * @var string
@@ -39,7 +40,7 @@ class CreateContact extends Request
      * @param SimpleXMLElement $xml
      * @throws Exception
      */
-    public function addContent(\SimpleXMLElement $xml)
+    public function addContent(SimpleXMLElement $xml)
 
     {
         if (!$this->contact instanceof Contact) {

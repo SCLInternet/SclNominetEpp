@@ -24,6 +24,7 @@ class CreateDomain extends Request
      * @var Domain 
      */
     protected $domain = null;
+    
     /**
      *
      * @var string
@@ -40,7 +41,7 @@ class CreateDomain extends Request
      * @param SimpleXMLElement $xml
      * @throws Exception
      */
-    public function addContent(\SimpleXMLElement $xml)
+    public function addContent(SimpleXMLElement $xml)
     {
         if (!$this->domain instanceof Domain) {
             $exception = sprintf('A valid Domain object was not passed to Request\CreateDomain, Ln:%d', __LINE__);
@@ -71,7 +72,7 @@ class CreateDomain extends Request
      * 
      * @param SimpleXMLElement $create
      */
-    public function createNameservers($create)
+    protected function createNameservers(SimpleXMLElement $create)
     {
         foreach ($this->domain->getNameservers() as $nameserver) {
             $create->addChild('hostObj', $nameserver->getHostName());
@@ -82,7 +83,7 @@ class CreateDomain extends Request
      * 
      * @param SimpleXMLElement $create
      */
-    public function createContacts($create)
+    protected function createContacts(SimpleXMLElement $create)
     {
         foreach ($this->domain->getContacts() as $type => $value) {
             $contact = $create->addChild('contact', $value->getId());
