@@ -27,7 +27,7 @@ class CreateContactTest extends \PHPUnit_Framework_TestCase
 
     /**
      */
-    public function testCreateDomain()
+    public function testCreateContact()
     {
         $xml = <<<EOX
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
