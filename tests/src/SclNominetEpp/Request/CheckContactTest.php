@@ -3,7 +3,7 @@ namespace SclNominetEpp\Request;
 
 /**
  */
-class CheckHostTest extends \PHPUnit_Framework_TestCase
+class CheckContactTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Request
@@ -21,21 +21,21 @@ class CheckHostTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessData()
     {
-                $xml = <<<EOX
+        $xml = <<<EOX
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
   <command>
     <check>
-      <host:check
-       xmlns:host="urn:ietf:params:xml:ns:host-1.0">
-        <host:name>ns1.example.com</host:name>
-        <host:name>ns2.example.com</host:name>
-        <host:name>ns3.example.com</host:name>
-      </host:check>
+      <contact:check xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
+        <contact:id>sc2343</contact:id>
+        <contact:id>sah8013</contact:id>
+        <contact:id>8013sah</contact:id>
+      </contact:check>
     </check>
     <clTRID>ABC-12345</clTRID>
   </command>
-</epp>
+</epp>>
+
 EOX;
     }
 }
