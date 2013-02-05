@@ -3,7 +3,7 @@ namespace SclNominetEpp\Response;
 
 /**
  */
-class CheckDomainTest extends \PHPUnit_Framework_TestCase
+class CheckHostTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response
@@ -16,7 +16,7 @@ class CheckDomainTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->response = new CheckDomain();
+        $this->response = new CheckHost();
     }
 
 
