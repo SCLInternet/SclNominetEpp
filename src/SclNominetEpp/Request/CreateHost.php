@@ -55,7 +55,8 @@ class CreateHost extends Request
      * 
      * @param Nameserver $nameserver
      */
-    public function setNameserver(Nameserver $nameserver){
+    public function setNameserver(Nameserver $nameserver)
+    {
         $this->nameserver = $nameserver;
     }
 }
