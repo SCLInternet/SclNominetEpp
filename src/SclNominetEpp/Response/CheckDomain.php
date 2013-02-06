@@ -7,29 +7,15 @@ namespace SclNominetEpp\Response;
  *
  * @author tom
  */
-class CheckDomain extends Response
-{
-    protected $domains;
-
-    protected function processData($data)
+class CheckDomain extends AbstractCheck
+{   
+    const TYPE = 'domain';
+    const VALUE_NAME = 'name';
+    
+    public function __construct($data = null)
     {
-        if (!isset($data->response->resData)) {
-            return;
-        }
-
-        $ns = $data->getNamespaces(true);
-
-        $domains = $data->response->resData->children($ns['domain']);
-
-        $this->domains = array();
-
-        foreach ($domains->chkData->cd as $domain) {
-            $this->domains[(string)$domain->name] = (boolean)(string)$domain->name->attributes()->avail;
-        }
-    }
-
-    public function getDomains()
-    {
-        return $this->domains;
+        parent::__construct(null);
+        parent::setType(self::TYPE);
+        parent::setValueName(self::VALUE_NAME);
     }
 }

@@ -3,11 +3,11 @@
 namespace SclNominetEpp\Response;
 
 /**
- * DocBlock: Description of UpdateDomain
+ * DocBlock: Description of UpdateContact
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateDomain extends Response
+class UpdateContact extends Response
 {
-    
+   
 }

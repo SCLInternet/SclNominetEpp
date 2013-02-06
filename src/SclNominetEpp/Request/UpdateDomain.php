@@ -66,7 +66,7 @@ class UpdateDomain extends Request
 
     }
 
-    public function setDomain()
+    public function setDomain($domain)
     {
         $this->domain = $domain;
     }

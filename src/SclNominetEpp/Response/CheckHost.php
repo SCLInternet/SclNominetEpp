@@ -7,29 +7,15 @@ namespace SclNominetEpp\Response;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CheckHost extends Response
+class CheckHost extends AbstractCheck
 {
-    protected $hosts;
+    const TYPE = 'host';
+    const VALUE_NAME = 'name';
     
-    protected function processData($data)
+    public function __construct($data = null)
     {
-        if (!isset($data->response->resData)) {
-            return;
-        }
-
-        $ns = $data->getNamespaces(true);
-
-        $hosts = $data->response->resData->children($ns['host']);
-
-        $this->hosts = array();
-
-        foreach ($hosts->chkData->cd as $host) {
-            $this->hosts[(string)$host->name] = (boolean)(string)$host->name->attributes()->avail;
-        }
-    }
-    
-    public function getHosts()
-    {
-        return $this->hosts;
+        parent::__construct(null);
+        parent::setType(self::TYPE);
+        parent::setValueName(self::VALUE_NAME);
     }
 }

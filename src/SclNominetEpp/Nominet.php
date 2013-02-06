@@ -135,7 +135,7 @@ class Nominet extends AbstractRequestResponse
 
         $response = $this->processRequest($request);
 
-        return $response->getDomains();
+        return $response->getValues();
     }
 
     /**
