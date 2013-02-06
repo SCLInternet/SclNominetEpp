@@ -37,21 +37,14 @@ class UpdateHost
         $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
 
         $add = $update->addChild('add');
-            $status = $add->addChild('status');
+            $address = $add->addChild('addr');
+            $address->addAttribute('ip',$ipv);
+            $status  = $add->addChild('status');
             $status->addAttribute('s', $s);
         $remove = $update->addChild('rem');
-           
+            $address = $add->addChild('addr');
+            $address->addAttribute('ip',$ipv);
         $change = $update->addChild('chg');
-            $postalInfo = $change->addChild('postalInfo');
-            $postalInfo->addAttribute('type', $type);
-                $postalInfo->addChild('name');
-                $addr = $postalInfo->addChild('addr');
-                    $addr->addChild('street');
-                    $addr->addChild('city');
-                    $addr->addChild('sp');
-                    $addr->addChild('pc');
-                    $addr->addChild('cc');
-
 
     }
 
