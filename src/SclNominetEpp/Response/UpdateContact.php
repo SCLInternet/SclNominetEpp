@@ -9,5 +9,4 @@ namespace SclNominetEpp\Response;
  */
 class UpdateContact extends Response
 {
-   
 }

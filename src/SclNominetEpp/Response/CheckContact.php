@@ -8,7 +8,7 @@ namespace SclNominetEpp\Response;
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class CheckContact extends AbstractCheck
-{   
+{
     const TYPE = 'contact';
     const VALUE_NAME = 'id';
     

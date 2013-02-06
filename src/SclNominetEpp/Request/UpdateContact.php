@@ -10,7 +10,8 @@ use SclNominetEpp\Response\UpdateContact as UpdateContactResponse;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateContact {
+class UpdateContact
+{
     const TYPE = 'contact'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
     const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/contact-nom-ext-1.1';

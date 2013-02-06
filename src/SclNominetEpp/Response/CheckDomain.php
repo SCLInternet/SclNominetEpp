@@ -8,7 +8,7 @@ namespace SclNominetEpp\Response;
  * @author tom
  */
 class CheckDomain extends AbstractCheck
-{   
+{
     const TYPE = 'domain';
     const VALUE_NAME = 'name';
     

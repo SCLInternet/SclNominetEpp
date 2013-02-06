@@ -9,5 +9,4 @@ namespace SclNominetEpp\Response;
  */
 class UpdateDomain extends Response
 {
-    
 }
