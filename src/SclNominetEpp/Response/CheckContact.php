@@ -12,6 +12,10 @@ class CheckContact extends AbstractCheck
     const TYPE = 'contact';
     const VALUE_NAME = 'id';
     
+    /**
+     * 
+     * @param type $data
+     */
     public function __construct($data = null)
     {
         parent::__construct(null);

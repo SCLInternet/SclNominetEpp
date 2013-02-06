@@ -12,6 +12,10 @@ class CheckHost extends AbstractCheck
     const TYPE = 'host';
     const VALUE_NAME = 'name';
     
+    /**
+     * 
+     * @param type $data
+     */
     public function __construct($data = null)
     {
         parent::__construct(null);

@@ -39,7 +39,8 @@ class UpdateContact {
         $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
 
         $add = $update->addChild('add');
-
+            $status = $add->addChild('status');
+            $status->addAttribute('s', $s);
         $remove = $update->addChild('rem');
            
         $change = $update->addChild('chg');

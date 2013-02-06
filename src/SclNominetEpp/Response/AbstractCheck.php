@@ -45,10 +45,10 @@ class AbstractCheck extends Response
 
         $ns = $data->getNamespaces(true);
 
-        $this->values = $data->response->resData->children($ns[$this->type]);
+        $xmlValues = $data->response->resData->children($ns[$this->type]);
 
         $valueName = $this->valueName;
-        foreach ($this->values->chkData->cd as $value) {
+        foreach ($xmlValues->chkData->cd as $value) {
             $avail = (string)$value->{$valueName}->attributes()->avail;
             echo $avail;
             $this->values[(string)$value->$valueName] = (boolean)$avail;
