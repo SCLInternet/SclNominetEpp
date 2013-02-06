@@ -9,7 +9,7 @@ namespace SclNominetEpp\Response;
  */
 class CheckDomain extends Response
 {
-    protected $domains = array();
+    protected $domains;
 
     protected function processData($data)
     {
