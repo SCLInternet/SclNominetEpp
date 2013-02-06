@@ -17,7 +17,7 @@ class UpdateContact
 
     const VALUE_NAME = 'id';
 
-    protected $contact = null;
+    protected $newContactID = null;
     protected $value;
 
     public function __construct($newContactID)
@@ -36,7 +36,7 @@ class UpdateContact
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
         $update->addChild(self::VALUE_NAME, $this->contactID, self::UPDATE_NAMESPACE);
         $change = $update->addChild('chg');
-        $change->addChild(self::VALUE_NAME,$this->contactID);
+        $change->addChild(self::VALUE_NAME, $this->newContactID);
     }
 
     public function setContactID($contactID)

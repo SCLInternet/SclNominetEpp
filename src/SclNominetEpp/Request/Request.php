@@ -98,9 +98,8 @@ class Request implements RequestInterface
 
         $command = $this->xml->addChild('command');
 
-
         // TODO Does this need to be split for namespaces?
-        $action = $command->addChild($this->action);
+        $action  = $command->addChild($this->action);
 
         $this->addContent($action);
 
