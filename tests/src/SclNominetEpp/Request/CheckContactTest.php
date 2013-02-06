@@ -1,6 +1,8 @@
 <?php
 namespace SclNominetEpp\Request;
 
+use SclNominetEpp\Contact;
+
 /**
  */
 class CheckContactTest extends \PHPUnit_Framework_TestCase
@@ -34,7 +36,7 @@ class CheckContactTest extends \PHPUnit_Framework_TestCase
     </check>
     <clTRID>ABC-12345</clTRID>
   </command>
-</epp>>
+</epp>
 
 EOX;
     }

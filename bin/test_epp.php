@@ -1,4 +1,5 @@
 <?php
+use \BasicSocket\Socket;
 
 include __DIR__ . '/../vendor/autoload.php';
 

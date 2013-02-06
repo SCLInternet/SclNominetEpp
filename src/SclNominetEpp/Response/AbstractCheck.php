@@ -49,8 +49,7 @@ class AbstractCheck extends Response
         $this->values = $data->response->resData->children($ns[$this->type]);
 
         foreach ($this->values->chkData->cd as $value) {
-            echo 'This is the id or name' . $value->$valueName;
-            $this->values[(string)$value->$valueName] = (boolean)(string)$value->$valueName->attributes()->avail;
+            $this->values[(string)$value->valueName] = (boolean)(string)$value->valueName->attributes()->avail;
         }
     }
 

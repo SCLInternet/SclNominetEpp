@@ -1,6 +1,8 @@
 <?php
 namespace SclNominetEpp\Request;
 
+use SclNominetEpp\Nameserver;
+
 /**
  */
 class CheckHostTest extends \PHPUnit_Framework_TestCase
