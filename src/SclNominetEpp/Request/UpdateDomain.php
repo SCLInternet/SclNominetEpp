@@ -11,7 +11,7 @@ use SclNominetEpp\Response\UpdateDomain as UpdateDomainResponse;
  */
 class UpdateDomain extends Request
 {
-    const TYPE = 'domain'; //For Abstracting later
+    const TYPE = 'domain'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:domain-1.0';
     const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.1';
 

@@ -32,10 +32,9 @@ class AbstractCheck extends Response
      */
     private $values = array();
     
-    public function __construct($type, $valueName)
+    public function __construct($data = null)
     {
-        $this->type = $type;
-        $this->valueName = $valueName;
+        parent::__construct($data);
     }
     
     public function processData($data)
@@ -48,9 +47,57 @@ class AbstractCheck extends Response
 
         $this->values = $data->response->resData->children($ns[$this->type]);
 
+        $valueName = $this->valueName;
         foreach ($this->values->chkData->cd as $value) {
-            $this->values[(string)$value->valueName] = (boolean)(string)$value->valueName->attributes()->avail;
+            $this->values[(string)$value->$valueName] = (boolean)(string)$value->$valueName->attributes()->avail;
         }
+        
+    }
+    
+    /**
+     * Get $this->values
+     * 
+     * @return array
+     */
+    public function getValues()
+    {
+        return $this->values;
     }
 
+    /**
+     * Set $this->type
+     *
+     * @param string $type
+     */
+    protected function setType($type) {
+        $this->type = $type;
+    }
+
+    /**
+     * Get $this->type
+     *
+     * @return string
+     */
+    protected function getType() {
+        return $this->type;
+    }
+    
+    /**
+     * Set $this->valueName
+     *
+     * @param string $valueName
+     */
+    public function setValueName($valueName) {
+        $this->valueName = $valueName;
+    }
+
+    /**
+     * Get $this->valueName
+     *
+     * @return string
+     */
+    public function getValueName() {
+        return $this->valueName;
+    }
+    
 }
