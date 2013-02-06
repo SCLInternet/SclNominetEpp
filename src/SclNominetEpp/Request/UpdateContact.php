@@ -43,7 +43,15 @@ class UpdateContact {
         $remove = $update->addChild('rem');
            
         $change = $update->addChild('chg');
-
+            $postalInfo = $change->addChild('postalInfo');
+            $postalInfo->addAttribute('type', $type);
+                $postalInfo->addChild('name');
+                $addr = $postalInfo->addChild('addr');
+                    $addr->addChild('street');
+                    $addr->addChild('city');
+                    $addr->addChild('sp');
+                    $addr->addChild('pc');
+                    $addr->addChild('cc');
         $extensionXML = $this->xml->command->addChild('extension');
         $extension = $extensionXML->addChild('contact-nom-ext:update', '', $extensionNS);
         $extension->addAttribute('xsi:schemaLocation', $extensionXSI);
