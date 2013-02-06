@@ -49,8 +49,6 @@ class ContactInfo extends Response
 
         //EXTENSION DATA
 
-
-
         $this->contact->setCompanyNumber($extension->{'co-no'});
         $optOut     = strtolower((string)$extension->{'opt-out'});
         if ('n' === $optOut) {

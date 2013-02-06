@@ -6,6 +6,7 @@
  */
 
 namespace SclNominetEpp\Response;
+
 /**
  * This class interprets XML for a Nominet EPP check command response.
  * 
@@ -69,7 +70,8 @@ class AbstractCheck extends Response
      *
      * @param string $type
      */
-    protected function setType($type) {
+    protected function setType($type)
+    {
         $this->type = $type;
     }
 
@@ -78,7 +80,8 @@ class AbstractCheck extends Response
      *
      * @return string
      */
-    protected function getType() {
+    protected function getType()
+    {
         return $this->type;
     }
     
@@ -87,7 +90,8 @@ class AbstractCheck extends Response
      *
      * @param string $valueName
      */
-    public function setValueName($valueName) {
+    public function setValueName($valueName)
+    {
         $this->valueName = $valueName;
     }
 
@@ -96,8 +100,8 @@ class AbstractCheck extends Response
      *
      * @return string
      */
-    public function getValueName() {
+    public function getValueName()
+    {
         return $this->valueName;
     }
-    
 }

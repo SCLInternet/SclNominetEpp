@@ -66,7 +66,7 @@ class UpdateContact {
 
     }
 
-    public function setContact()
+    public function setContact($contact)
     {
         $this->contact = $contact;
     }
