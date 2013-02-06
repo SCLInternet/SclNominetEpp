@@ -2,7 +2,7 @@
 /**
  * Contains the nominet AbstractCheck response class definition.
  *
- * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
 namespace SclNominetEpp\Response;
@@ -49,9 +49,7 @@ class AbstractCheck extends Response
 
         $valueName = $this->valueName;
         foreach ($xmlValues->chkData->cd as $value) {
-            $avail = (string)$value->{$valueName}->attributes()->avail;
-            echo $avail;
-            $this->values[(string)$value->$valueName] = (boolean)$avail;
+            $this->values[(string)$value->$valueName] = (boolean)(string)$value->$valueName->attributes()->avail;
         }
         
     }
