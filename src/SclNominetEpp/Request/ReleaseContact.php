@@ -2,26 +2,26 @@
 
 namespace SclNominetEpp\Request;
 
-use SclNominetEpp\Response\ReleaseDomain as ReleaseDomainResponse;
+use SclNominetEpp\Response\ReleaseContact as ReleaseContactResponse;
 
 /**
  * This class build the XML for a Nominet EPP r:release command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class ReleaseDomain
+class ReleaseContact
 {
-    const TYPE = 'domain'; //For possible Abstracting later
+    const TYPE = 'contact'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:release-1.0';
-    const VALUE_NAME = 'domainName';
+    const VALUE_NAME = 'registrant';
 
-    protected $domain = '';
+    protected $registrant = '';
     protected $value;
     
-    public function __construct($domain)
+    public function __construct($registrant)
     {
-        parent::__construct('update', new ReleaseDomainResponse());
-        $this->domain = $domain;
+        parent::__construct('update', new ReleaseContactResponse());
+        $this->registrant = $registrant;
     }
 
     public function addContent(SimpleXMLElement $updateXML)
@@ -32,7 +32,7 @@ class ReleaseDomain
 
         $update = $updateXML->addChild('r:release', '', $releaseNS);
         $update->addAttribute('xsi:schemaLocation', $releaseXSI);
-        $update->addChild(self::VALUE_NAME, $this->domain, self::UPDATE_NAMESPACE);
+        $update->addChild(self::VALUE_NAME, $this->registrant, self::UPDATE_NAMESPACE);
         $update->addChild('registrarTag', $releasedTo);
     }
 }
