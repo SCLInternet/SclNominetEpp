@@ -58,8 +58,8 @@ class CheckContactTest extends \PHPUnit_Framework_TestCase
 EOX;
 
         $expected = array(
-            'sc2343' => true, 
-            'sah8013' => false, 
+            'sc2343' => true,
+            'sah8013' => false,
             '8013sah' => true
         );
 

@@ -25,17 +25,13 @@ class CheckDomainTest extends \PHPUnit_Framework_TestCase
     {
         $xml = <<<EOX
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+<epp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:ietf:params:xml:ns:epp-1.0" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.0 epp-1.0.xsd">
   <command>
     <check>
-      <domain:check
-       xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
-        <domain:name>example.com</domain:name>
-        <domain:name>example.net</domain:name>
-        <domain:name>example.org</domain:name>
+      <domain:check xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
+        <domain:name>caliban-scl.sch.uk</domain:name>
       </domain:check>
     </check>
-    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 
