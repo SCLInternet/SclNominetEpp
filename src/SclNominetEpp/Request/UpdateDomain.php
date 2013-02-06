@@ -28,10 +28,10 @@ class UpdateDomain extends Request
 
     public function addContent(\SimpleXMLElement $updateXML)
     {
-        $domainNS  = self::UPDATE_NAMESPACE;
+        $domainNS    = self::UPDATE_NAMESPACE;
         $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
 
-        $domainXSI    =    $domainNS . ' ' . ' domain-1.0.xsd';
+        $domainXSI    =    $domainNS . ' ' . 'domain-1.0.xsd';
         $extensionXSI = $extensionNS . ' ' . 'domain-nom-ext-1.1.xsd';
 
         $update = $updateXML->addChild('domain:update', '', $domainNS);

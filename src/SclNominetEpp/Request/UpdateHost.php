@@ -3,20 +3,19 @@
 
 namespace SclNominetEpp\Request;
 
-use SclNominetEpp\Response\UpdateContact as UpdateContactResponse;
+use SclNominetEpp\Response\UpdateHost as UpdateHostResponse;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateContact
+class UpdateHost
 {
-    const TYPE = 'contact'; //For possible Abstracting later
-    const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
-    const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/contact-nom-ext-1.1';
+    const TYPE = 'host'; //For possible Abstracting later
+    const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:host-1.0';
 
-    const VALUE_NAME = 'id';
+    const VALUE_NAME = 'name';
 
     protected $contact = null;
     protected $value;
@@ -30,12 +29,10 @@ class UpdateContact
     public function addContent(\SimpleXMLElement $updateXML)
     {
         $contactNS   = self::UPDATE_NAMESPACE;
-        $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
 
-        $contactXSI   =   $contactNS . ' ' . 'contact-1.0.xsd';
-        $extensionXSI = $extensionNS . ' ' . 'contact-nom-ext-1.1.xsd';
+        $contactXSI   =   $contactNS . ' ' . 'host-1.0.xsd';
 
-        $update = $updateXML->addChild('contact:update', '', $contactNS);
+        $update = $updateXML->addChild('host:update', '', $contactNS);
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
         $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
 
@@ -54,15 +51,6 @@ class UpdateContact
                     $addr->addChild('sp');
                     $addr->addChild('pc');
                     $addr->addChild('cc');
-        $extensionXML = $this->xml->command->addChild('extension');
-        $extension = $extensionXML->addChild('contact-nom-ext:update', '', $extensionNS);
-        $extension->addAttribute('xsi:schemaLocation', $extensionXSI);
-
-        $extension->addChild('trad-name');
-        $extension->addChild('type');
-        $extension->addChild('co-no');
-        $extension->addChild('opt-out');
-        //@todo implement all variables, also, fix the extension data.
 
 
     }
