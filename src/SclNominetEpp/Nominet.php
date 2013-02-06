@@ -291,6 +291,17 @@ class Nominet extends AbstractRequestResponse
     public function updateContactID()
     {
         $this->loginCheck();
+        
+        $request = new Request\UpdateContactID();
+
+        $response = $this->processRequest($request);
+
+        return $response;
+    }
+    
+    public function updateHost()
+    {
+        $this->loginCheck();
     }
 
     /**

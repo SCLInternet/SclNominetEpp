@@ -20,13 +20,13 @@ class UpdateContact
     protected $contact = null;
     protected $value;
 
-    public function __construct(Contact $contact)
+    public function __construct($newContactID)
     {
         parent::__construct('update', new UpdateContactResponse());
-        $this->contact = $contact;
+        $this->newContactID = $newContactID;
     }
 
-    public function addContent(\SimpleXMLElement $updateXML)
+    public function addContent(SimpleXMLElement $updateXML)
     {
         $contactNS   = self::UPDATE_NAMESPACE;
 
@@ -34,30 +34,13 @@ class UpdateContact
 
         $update = $updateXML->addChild('contact-id:update', '', $contactNS);
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
-        $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
-
-        $add = $update->addChild('add');
-            $status = $add->addChild('status');
-            $status->addAttribute('s', $s);
-        $remove = $update->addChild('rem');
-           
+        $update->addChild(self::VALUE_NAME, $this->contactID, self::UPDATE_NAMESPACE);
         $change = $update->addChild('chg');
-            $postalInfo = $change->addChild('postalInfo');
-            $postalInfo->addAttribute('type', $type);
-                $postalInfo->addChild('name');
-                $addr = $postalInfo->addChild('addr');
-                    $addr->addChild('street');
-                    $addr->addChild('city');
-                    $addr->addChild('sp');
-                    $addr->addChild('pc');
-                    $addr->addChild('cc');
-        //@todo implement all variables, also, fix the extension data.
-
-
+        $change->addChild(self::VALUE_NAME,$this->contactID);
     }
 
-    public function setContact($contact)
+    public function setContactID($contactID)
     {
-        $this->contact = $contact;
+        $this->contactID = $contactID;
     }
 }
