@@ -8,7 +8,7 @@ if (sizeof($argv) < 2) {
 
 $config = include __DIR__ . '/test_epp.config.php';
 
-$communicator = new \SclNominetEpp\Communicator(new \BasicSocket\Socket);
+$communicator = new \SclNominetEpp\Communicator(new \SclSocket\Socket);
 $communicator->connect($config['live']);
 
 $nominet = new \SclNominetEpp\Nominet();
