@@ -11,7 +11,7 @@ use SclNominetEpp\Domain as DomainObject;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CreateDomain extends Response
+class Domain extends Response
 {
     protected $domain;
     

@@ -1,9 +1,12 @@
 <?php
 namespace SclNominetEpp\Response;
 
+use SclNominetEpp\Nameserver;
 use DateTime;
+use SclNominetEpp\Response\Info\Host as HostInfo;
 
 /**
+ * host:info response test
  */
 class HostTest extends \PHPUnit_Framework_TestCase
 {
@@ -62,7 +65,7 @@ class HostTest extends \PHPUnit_Framework_TestCase
 EOX;
 
 
-        $expected = new \SclNominetEpp\Nameserver('caliban-scl.sch.uk');
+        $expected = new Nameserver('caliban-scl.sch.uk');
         $expected->setHostName('ns1.caliban-scl.sch.uk.');
         $expected->addStatus('ok');
         $expected->addStatus('linked');

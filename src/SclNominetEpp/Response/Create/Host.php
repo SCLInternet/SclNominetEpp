@@ -11,7 +11,7 @@ use SclNominetEpp\Nameserver;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CreateHost extends Response
+class Host extends Response
 {
     protected $host;
     

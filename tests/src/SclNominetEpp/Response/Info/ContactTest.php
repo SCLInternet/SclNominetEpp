@@ -2,8 +2,10 @@
 namespace SclNominetEpp\Response;
 
 use DateTime;
+use SclNominetEpp\Response\Info\Contact as ContactInfo;
 
 /**
+ * contain:info response test
  */
 class ContactTest extends \PHPUnit_Framework_TestCase
 {

@@ -3,8 +3,10 @@ namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Nameserver;
 use DateTime;
+use SclNominetEpp\Response\Info\Domain as DomainInfo;
 
 /**
+ * domain:info response test
  */
 class DomainTest extends \PHPUnit_Framework_TestCase
 {

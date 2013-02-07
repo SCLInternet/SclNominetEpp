@@ -1,6 +1,6 @@
 <?php
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Update;
 
 use SclNominetEpp\Response;
 /**

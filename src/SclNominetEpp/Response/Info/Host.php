@@ -1,6 +1,6 @@
 <?php
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Info;
 
 use SclNominetEpp\Response;
 use SclNominetEpp\Nameserver;
