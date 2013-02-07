@@ -3,14 +3,14 @@
 
 namespace SclNominetEpp\Request;
 
-use SclNominetEpp\Response\UpdateContact as UpdateContactResponse;
-
+use SclNominetEpp\Response\Update\UpdateContactID as UpdateContactIDResponse;
+use SclNominetEpp\Request;
 /**
  * This class build the XML for a Nominet EPP contact:update command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateContact
+class ContactID extends Request
 {
     const TYPE = 'contact'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
@@ -22,7 +22,7 @@ class UpdateContact
 
     public function __construct($newContactID)
     {
-        parent::__construct('update', new UpdateContactResponse());
+        parent::__construct('update', new UpdateContactIDResponse());
         $this->newContactID = $newContactID;
     }
 

@@ -3,18 +3,20 @@
  * Contains the nominet CheckHost request class definition.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Check;
 
-use SclNominetEpp\Response\CheckHost as CheckHostResponse;
+use SclNominetEpp\Response\Check\Host as CheckHostResponse;
 
 /**
  * This class build the XML for a Nominet EPP host:check command.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CheckHost extends AbstractCheck
+class Host extends AbstractCheck
 {
     const TYPE = 'host';
     const CHECK_NAMESPACE = 'urn:ietf:params:xml:ns:host-1.0';

@@ -1,9 +1,10 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Create;
 
 use SimpleXMLElement;
-use SclNominetEpp\Contact;
+use SclNominetEpp\Request;
+use SclNominetEpp\Contact as ContactObject;
 use Exception;
 
 /**
@@ -11,7 +12,7 @@ use Exception;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CreateContact extends Request
+class Contact extends Request
 {
 
     const TYPE = 'contact';
@@ -21,7 +22,7 @@ class CreateContact extends Request
     
     /**
      *
-     * @var Contact
+     * @var ContactObject
      */
     protected $contact = null;
     
@@ -43,7 +44,7 @@ class CreateContact extends Request
      */
     public function addContent(SimpleXMLElement $xml)
     {
-        if (!$this->contact instanceof Contact) {
+        if (!$this->contact instanceof ContactObject) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
@@ -80,7 +81,7 @@ class CreateContact extends Request
      * 
      * @param Contact $contact
      */
-    public function setContact(Contact $contact)
+    public function setContact(ContactObject $contact)
     {
         $this->contact = $contact;
     }

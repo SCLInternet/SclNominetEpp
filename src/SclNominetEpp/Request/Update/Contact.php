@@ -1,16 +1,15 @@
 <?php
 
+namespace SclNominetEpp\Request\Update;
 
-namespace SclNominetEpp\Request;
-
-use SclNominetEpp\Response\UpdateContact as UpdateContactResponse;
-
+use SclNominetEpp\Response\Update\Contact as UpdateContactResponse;
+use SclNominetEpp\Request;
 /**
  * This class build the XML for a Nominet EPP contact:update command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateContact
+class Contact extends Request
 {
     const TYPE = 'contact'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';

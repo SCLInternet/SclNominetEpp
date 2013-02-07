@@ -3,14 +3,18 @@
  * Contains the nominet AbstractCheck request class definition.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Create;
+
+use SclNominetEpp\Request;
 
 /**
  * This class build the XML for a Nominet EPP check command.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 abstract class AbstractCheck extends Request
 {

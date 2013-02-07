@@ -1,15 +1,15 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Release;
 
-use SclNominetEpp\Response\ReleaseContact as ReleaseContactResponse;
-
+use SclNominetEpp\Response\Release\Contact as ReleaseContactResponse;
+use SclNominetEpp\Request;
 /**
  * This class build the XML for a Nominet EPP r:release command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class ReleaseContact
+class Contact extends Request
 {
     const TYPE = 'contact'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:release-1.0';

@@ -1,15 +1,15 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Info;
 
-use SclNominetEpp\Response\DomainInfo as DomainInfoResponse;
+use SclNominetEpp\Response\Info\Domain as DomainInfoResponse;
 
 /**
  * This class build the XML for a Nominet EPP domain:info command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class DomainInfo extends AbstractInfo
+class Domain extends AbstractInfo
 {
     const TYPE = 'domain';
     const INFO_NAMESPACE = "urn:ietf:params:xml:ns:domain-1.0";

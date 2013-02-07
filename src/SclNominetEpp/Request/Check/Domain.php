@@ -3,18 +3,20 @@
  * Contains the nominet CheckDomain request class definition.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Check;
 
-use SclNominetEpp\Response\CheckDomain as CheckDomainResponse;
+use SclNominetEpp\Response\Check\Domain as CheckDomainResponse;
 
 /**
  * This class build the XML for a Nominet EPP domain:check command.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CheckDomain extends AbstractCheck
+class Domain extends AbstractCheck
 {
     const TYPE = 'domain';
     const CHECK_NAMESPACE = 'urn:ietf:params:xml:ns:domain-1.0';

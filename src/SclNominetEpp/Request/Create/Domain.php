@@ -1,8 +1,9 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Create;
 
-use SclNominetEpp\Domain;
+use SclNominetEpp\Domain as DomainObject;
+use SclNominetEpp\Request;
 use SimpleXMLElement;
 use Exception;
 
@@ -11,7 +12,7 @@ use Exception;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CreateDomain extends Request
+class Domain extends Request
 {
 
     const TYPE = 'domain';
@@ -43,8 +44,8 @@ class CreateDomain extends Request
      */
     public function addContent(SimpleXMLElement $xml)
     {
-        if (!$this->domain instanceof Domain) {
-            $exception = sprintf('A valid Domain object was not passed to Request\CreateDomain, Ln:%d', __LINE__);
+        if (!$this->domain instanceof DomainObject) {
+            $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
 
@@ -95,7 +96,7 @@ class CreateDomain extends Request
      * 
      * @param Domain $domain
      */
-    public function setDomain(Domain $domain)
+    public function setDomain(DomainObject $domain)
     {
         $this->domain = $domain;
     }

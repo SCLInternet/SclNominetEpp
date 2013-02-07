@@ -3,18 +3,19 @@
  * Contains the nominet CheckContact request class definition.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Check;
 
-use SclNominetEpp\Response\CheckContact as CheckContactResponse;
+use SclNominetEpp\Response\Check\Contact as CheckContactResponse;
 
 /**
  * This class build the XML for a Nominet EPP contact:check command.
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class CheckContact extends AbstractCheck
+class Contact extends AbstractCheck
 {
     const TYPE = 'contact';
     const CHECK_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';

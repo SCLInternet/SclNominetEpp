@@ -1,15 +1,15 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Update;
 
-use SclNominetEpp\Response\UpdateDomain as UpdateDomainResponse;
-
+use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
+use SclNominetEpp\Request;
 /**
  * This class build the XML for a Nominet EPP domain:update command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateDomain extends Request
+class Domain extends Request
 {
     const TYPE = 'domain'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:domain-1.0';

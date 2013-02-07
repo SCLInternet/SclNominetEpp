@@ -5,8 +5,9 @@
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Info;
 
+use SclNominetEpp\Request;
 /**
  * This class build the XML for a Nominet EPP info command.
  *

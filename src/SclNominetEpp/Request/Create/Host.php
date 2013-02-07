@@ -1,8 +1,9 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Create;
 
 use SimpleXMLElement;
+use SclNominetEpp\Request;
 use SclNominetEpp\Nameserver;
 
 /**
@@ -10,7 +11,7 @@ use SclNominetEpp\Nameserver;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CreateHost extends Request
+class Host extends Request
 {
     const TYPE = 'host';
     const CREATE_NAMESPACE = 'urn:ietf:params:xml:ns:host-1.0';

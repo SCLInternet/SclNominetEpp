@@ -129,7 +129,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\CheckDomain();
+        $request = new Request\Check\Domain();
 
         $request->lookup($domains);
 
@@ -151,7 +151,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\CheckContact();
+        $request = new Request\Check\Contact();
 
         $request->lookup($contactIds);
 
@@ -173,7 +173,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\CheckHost();
+        $request = new Request\Check\Host();
 
         $request->lookup($hosts);
 
@@ -192,7 +192,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
         
-        $request = new Request\CreateContact();
+        $request = new Request\Create\Contact();
         $request->setContact($contact);
         $response = $this->processRequest($request);
 
@@ -210,7 +210,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\CreateDomain();
+        $request = new Request\Create\Domain();
         $request->setDomain($domain);
 
         $response = $this->processRequest($request);
@@ -221,7 +221,7 @@ class Nominet extends AbstractRequestResponse
     public function createHost(Nameserver $host)
     {
         $this->loginCheck();
-        $request = new Request\CreateHost($host);
+        $request = new Request\Create\Host($host);
 
         $response = $this->processRequest($request);
 
@@ -273,7 +273,7 @@ class Nominet extends AbstractRequestResponse
     public function updateDomain()
     {
         $this->loginCheck();
-        $request = new Request\UpdateDomain();
+        $request = new Request\Update\Domain();
 
         $response = $this->processRequest($request);
 
@@ -292,7 +292,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
         
-        $request = new Request\UpdateContactID();
+        $request = new Request\Update\ContactID();
 
         $response = $this->processRequest($request);
 
@@ -317,7 +317,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\DomainInfo();
+        $request = new Request\Info\Domain();
 
         $request->lookup($domainName);
 
@@ -341,7 +341,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\ContactInfo();
+        $request = new Request\Info\Contact();
 
         $request->lookup($contactID);
 
@@ -364,7 +364,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\HostInfo();
+        $request = new Request\Info\Host();
 
         $request->lookup($hostName);
 

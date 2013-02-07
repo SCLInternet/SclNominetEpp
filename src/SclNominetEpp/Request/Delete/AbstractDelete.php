@@ -1,6 +1,8 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Delete;
+
+use SclNominetEpp\Request;
 
 /**
  * This class build the XML for a Nominet EPP delete command.

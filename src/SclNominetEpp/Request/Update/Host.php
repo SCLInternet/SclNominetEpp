@@ -1,16 +1,16 @@
 <?php
 
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Update;
 
-use SclNominetEpp\Response\UpdateHost as UpdateHostResponse;
-
+use SclNominetEpp\Response\Update\Host as UpdateHostResponse;
+use SclNominetEpp\Request;
 /**
  * This class build the XML for a Nominet EPP contact:update command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateHost
+class Host extends Request
 {
     const TYPE = 'host'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:host-1.0';
@@ -22,7 +22,7 @@ class UpdateHost
 
     public function __construct(Contact $contact)
     {
-        parent::__construct('update', new UpdateContactResponse());
+        parent::__construct('update', new UpdateHostResponse());
         $this->contact = $contact;
     }
 

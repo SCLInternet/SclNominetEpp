@@ -1,15 +1,15 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Release;
 
-use SclNominetEpp\Response\ReleaseDomain as ReleaseDomainResponse;
-
+use SclNominetEpp\Response\Release\Domain as ReleaseDomainResponse;
+use SclNominetEpp\Request;
 /**
  * This class build the XML for a Nominet EPP r:release command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class ReleaseDomain
+class Domain extends Request
 {
     const TYPE = 'domain'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:release-1.0';

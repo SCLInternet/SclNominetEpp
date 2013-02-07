@@ -1,15 +1,15 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Info;
 
-use SclNominetEpp\Response\HostInfo as HostInfoResponse;
+use SclNominetEpp\Response\Info\Host as HostInfoResponse;
 
 /**
  * This class build the XML for a Nominet EPP host:info command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class HostInfo extends AbstractInfo
+class Host extends AbstractInfo
 {
     const TYPE = 'host';
     const INFO_NAMESPACE = "urn:ietf:params:xml:ns:host-1.0";

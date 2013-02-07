@@ -1,8 +1,8 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Info;
 
-use SclNominetEpp\Response\ContactInfo as ContactInfoResponse;
+use SclNominetEpp\Response\Info\Contact as ContactInfoResponse;
 
 /**
  * Page-Level DocBlock
