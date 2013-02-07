@@ -5,7 +5,7 @@ use DateTime;
 
 /**
  */
-class CreateHostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response
@@ -28,7 +28,6 @@ class CreateHostTest extends \PHPUnit_Framework_TestCase
      */
     public function testProcessData()
     {
-
         $xml = <<<EOX
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <epp xmlns="urn:ietf:params:xml:ns:epp-1.0">

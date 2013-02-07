@@ -2,7 +2,7 @@
 namespace SclNominetEpp\Response\Create;
 
 use DateTime;
-
+use SclNominetEpp\Contact;
 use SclNominetEpp\Response\Create\Contact as CreateContact;
 
 /**
@@ -53,7 +53,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
 
 EOX;
 
-        $expected = new \SclNominetEpp\Contact();
+        $expected = new Contact();
         $expected->setId('sc2343');
         $expected->setCreated(new DateTime('2013-01-31T00:11:05'));
 

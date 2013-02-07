@@ -6,7 +6,7 @@ use DateTime;
 
 /**
  */
-class DomainInfoTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response

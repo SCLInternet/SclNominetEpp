@@ -5,7 +5,7 @@ use DateTime;
 
 /**
  */
-class ContactInfoTest extends \PHPUnit_Framework_TestCase
+class ContactTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response
