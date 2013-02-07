@@ -3,7 +3,8 @@
 namespace SclNominetEpp\Response;
 
 use DateTime;
-use SclNominetEpp\Domain;
+use SclNominetEpp\Response;
+use SclNominetEpp\Domain as DomainObject;
 
 /**
  * This class interprets XML for a Nominet EPP host:create command response.
@@ -20,7 +21,7 @@ class CreateDomain extends Response
             return;
         }
         $ns = $xml->getNamespaces(true);
-        $this->domain = new Domain();
+        $this->domain = new DomainObject();
         
         $response = $xml->response;
 

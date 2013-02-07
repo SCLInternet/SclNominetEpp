@@ -1,8 +1,8 @@
 <?php
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Create;
 
 use DateTime;
-
+use SclNominetEpp\Domain;
 use SclNominetEpp\Response\Create\Domain as CreateDomain;
 
 /**
@@ -55,7 +55,7 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
 
 EOX;
 
-        $expected = new \SclNominetEpp\Domain();
+        $expected = new Domain();
         $expected->setName('example.com');
         $expected->setCreated(new DateTime('1999-04-03T22:00:00.0Z'));
         $expected->setExpired(new DateTime('2001-04-03T22:00:00.0Z'));

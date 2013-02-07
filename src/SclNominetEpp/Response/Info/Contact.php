@@ -3,7 +3,7 @@
 namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
-use SclNominetEpp\Contact;
+use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Address;
 use DateTime;
 
@@ -12,7 +12,7 @@ use DateTime;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class ContactInfo extends Response
+class Contact extends Response
 {
     protected $contact;
     //put your code here
@@ -23,7 +23,7 @@ class ContactInfo extends Response
         }
         
         $ns = $xml->getNamespaces(true);
-        $this->contact = new Contact();
+        $this->contact = new ContactObject();
 
         $response  = $xml->response;
 

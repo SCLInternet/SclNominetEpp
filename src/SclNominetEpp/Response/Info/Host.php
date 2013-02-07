@@ -12,7 +12,7 @@ use DateTime;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class HostInfo extends Response
+class Host extends Response
 {
     protected $host;
 

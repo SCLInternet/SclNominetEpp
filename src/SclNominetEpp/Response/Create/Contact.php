@@ -3,7 +3,8 @@
 namespace SclNominetEpp\Response\Create;
 
 use DateTime;
-use SclNominetEpp\Contact;
+use SclNominetEpp\Response;
+use SclNominetEpp\Contact as ContactObject;
 
 /**
  * This class interprets XML for a Nominet EPP host:create command response.
@@ -20,7 +21,7 @@ class Contact extends Response
             return;
         }
         $ns = $xml->getNamespaces(true);
-        $this->contact = new Contact();
+        $this->contact = new ContactObject();
         
         $response = $xml->response;
 

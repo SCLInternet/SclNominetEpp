@@ -4,7 +4,7 @@ namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
 use DateTime;
-use SclNominetEpp\Domain;
+use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Nameserver;
 
 /**
@@ -12,7 +12,7 @@ use SclNominetEpp\Nameserver;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class DomainInfo extends Response
+class Domain extends Response
 {
     protected $domain;
 
@@ -23,7 +23,7 @@ class DomainInfo extends Response
         }
 
         $ns = $xml->getNamespaces(true);
-        $this->domain = new Domain();
+        $this->domain = new DomainObject();
         $response = $xml->response;
 
         $infData = $response->resData->children($ns['domain'])->infData;

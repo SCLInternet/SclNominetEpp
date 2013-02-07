@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Create;
 
 use DateTime;
 

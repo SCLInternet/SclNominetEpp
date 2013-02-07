@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Response;
 
 use DateTime;
+use SclNominetEpp\Response;
 use SclNominetEpp\Nameserver;
 
 /**
