@@ -1,13 +1,13 @@
 <?php
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Check;
 
 /**
  * This class interprets XML for a Nominet EPP contact:check command response.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CheckContact extends AbstractCheck
+class Contact extends AbstractCheck
 {
     const TYPE = 'contact';
     const VALUE_NAME = 'id';

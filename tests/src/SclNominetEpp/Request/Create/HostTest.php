@@ -2,7 +2,7 @@
 namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Nameserver;
-
+use SclNominetEpp\Request\Create\Host as CreateHost;
 /**
  */
 class CreateHostTest extends \PHPUnit_Framework_TestCase

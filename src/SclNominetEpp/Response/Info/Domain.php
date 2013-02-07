@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Response;
 
+use SclNominetEpp\Response;
 use DateTime;
 use SclNominetEpp\Domain;
 use SclNominetEpp\Nameserver;

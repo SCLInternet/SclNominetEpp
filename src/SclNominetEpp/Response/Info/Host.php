@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Response;
 
+use SclNominetEpp\Response;
 use SclNominetEpp\Nameserver;
 use SimpleXMLElement;
 use DateTime;

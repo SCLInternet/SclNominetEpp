@@ -5,7 +5,9 @@
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Check;
+
+use SclNominetEpp\Response;
 
 /**
  * This class interprets XML for a Nominet EPP check command response.

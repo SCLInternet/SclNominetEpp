@@ -1,11 +1,13 @@
 <?php
 namespace SclNominetEpp\Request;
 
+use SclNominetEpp\Request\Check\Host as CheckHost;
 use SclNominetEpp\Nameserver;
 
 /**
+ * host:check test
  */
-class CheckHostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Request
@@ -18,7 +20,7 @@ class CheckHostTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        //        $this->object = new CheckHost();
+        $this->object = new CheckHost();
     }
 
     public function testProcessData()

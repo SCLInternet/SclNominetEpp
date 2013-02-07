@@ -2,10 +2,11 @@
 namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Contact;
-
+use SclNominetEpp\Request\Check\Host as CheckHost;
 /**
+ * contact:check test
  */
-class CheckContactTest extends \PHPUnit_Framework_TestCase
+class ContactTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Request
@@ -18,7 +19,7 @@ class CheckContactTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        //        $this->object = new CheckHost();
+        $this->object = new CheckHost();
     }
 
     public function testProcessData()

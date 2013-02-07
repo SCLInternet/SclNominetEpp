@@ -1,11 +1,12 @@
 <?php
 namespace SclNominetEpp\Request;
 
-use SclNominetEpp\Response\CheckDomain as CheckDomainResponse;
+use SclNominetEpp\Request\Check\Domain as CheckDomain;
 
 /**
+ * domain:contact test
  */
-class CheckDomainTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Request
@@ -18,7 +19,7 @@ class CheckDomainTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->request = new AbstractCheck('domain', new CheckDomainResponse(), 'urn:ietf:params:xml:ns:domain-1.0', 'name');
+        $this->request = new CheckDomain();
     }
 
     public function testProcessData()
@@ -36,14 +37,14 @@ class CheckDomainTest extends \PHPUnit_Framework_TestCase
 </epp>
 
 EOX;
+//        
+//        $check = $xml->addChild("domain:check", '', $this->checkNamespace);
+//
+//        foreach ($this->values as $value) {
+//            $check->addChild($this->valueName, $value, $this->checkNamespace);
+//        }
         
-        $check = $xml->addChild("{$this->type}:check", '', $this->checkNamespace);
-
-        foreach ($this->values as $value) {
-            $check->addChild($this->valueName, $value, $this->checkNamespace);
-        }
-        
-        $this->request->setDomains($domains);
+//        $this->request->setDomains($domains);
 
         $this->assertEquals($xml, $this->request->getPacket());
     }

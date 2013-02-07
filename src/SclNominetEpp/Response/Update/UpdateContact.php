@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Response;
 
+use SclNominetEpp\Response;
 /**
  * DocBlock: Description of UpdateContact
  *

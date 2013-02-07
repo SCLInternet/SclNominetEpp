@@ -1,6 +1,6 @@
 <?php
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp;
 
 use SimpleXMLElement;
 use SclRequestResponse\Exception\InvalidResponsePacketException;

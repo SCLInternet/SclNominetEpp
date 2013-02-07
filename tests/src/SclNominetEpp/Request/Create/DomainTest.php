@@ -1,13 +1,16 @@
 <?php
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Contact;
 use SclNominetEpp\Nameserver;
+use SclNominetEpp\Domain;
+use SclNominetEpp\Request\Create\Domain as CreateDomain;
 use DateTime;
 
 /**
+ * domain:create test
  */
-class CreateDomainTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Request
@@ -49,7 +52,7 @@ class CreateDomainTest extends \PHPUnit_Framework_TestCase
 
 EOX;
 
-        $domain = new \SclNominetEpp\Domain();
+        $domain = new Domain();
         $domain->setName('caliban-scl.sch.uk');
         $domain->setRegistrant('559D2DD4B2862E89');
         $domain->setClientID('SCL');

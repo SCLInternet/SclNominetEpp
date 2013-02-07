@@ -1,14 +1,14 @@
 <?php
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Contact;
 use SclNominetEpp\Address;
-use SclNominetEpp\Nameserver;
-use DateTime;
+use SclNominetEpp\Request\Create\Contact as CreateContact;
 
 /**
+ * contact:create test
  */
-class CreateContactTest extends \PHPUnit_Framework_TestCase
+class ContactTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Request
@@ -24,8 +24,8 @@ class CreateContactTest extends \PHPUnit_Framework_TestCase
         $this->request = new CreateContact();
     }
 
-
     /**
+     * 
      */
     public function testCreateContact()
     {
@@ -61,7 +61,7 @@ class CreateContactTest extends \PHPUnit_Framework_TestCase
 
 EOX;
 
-        $contact = new \SclNominetEpp\Contact();
+        $contact = new Contact();
         $contact->setId('sc2343');
         $contact->setName('name');
         $contact->setEmail('example@email.com');

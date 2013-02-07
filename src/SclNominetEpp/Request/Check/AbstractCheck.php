@@ -6,7 +6,7 @@
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
-namespace SclNominetEpp\Request\Create;
+namespace SclNominetEpp\Request\Check;
 
 use SclNominetEpp\Request;
 

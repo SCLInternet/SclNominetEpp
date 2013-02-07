@@ -1,6 +1,6 @@
 <?php
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Create;
 
 use DateTime;
 use SclNominetEpp\Contact;
@@ -10,7 +10,7 @@ use SclNominetEpp\Contact;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class CreateContact extends Response
+class Contact extends Response
 {
     protected $contact;
     

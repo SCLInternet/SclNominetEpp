@@ -1,12 +1,12 @@
 <?php
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp;
 
 use DOMDocument;
 use SclRequestResponse\RequestInterface;
 use SclRequestResponse\ResponseInterface;
 use SimpleXMLElement;
-use SclNominetEpp\Response\Response;
+use SclNominetEpp\Response;
 
 class Request implements RequestInterface
 {

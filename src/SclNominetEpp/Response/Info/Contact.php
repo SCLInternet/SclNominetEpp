@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Response;
 
+use SclNominetEpp\Response;
 use SclNominetEpp\Contact;
 use SclNominetEpp\Address;
 use DateTime;

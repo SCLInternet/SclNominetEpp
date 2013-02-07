@@ -1,13 +1,13 @@
 <?php
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Check;
 
 /**
  * This class interprets XML for a Nominet EPP domain:check command response.
  *
  * @author tom
  */
-class CheckDomain extends AbstractCheck
+class Domain extends AbstractCheck
 {
     const TYPE = 'domain';
     const VALUE_NAME = 'name';
