@@ -3,7 +3,10 @@ namespace SclNominetEpp\Response;
 
 use DateTime;
 
+use SclNominetEpp\Response\Create\Domain as CreateDomain;
+
 /**
+ * domain:create response test
  */
 class CreateDomainTest extends \PHPUnit_Framework_TestCase
 {

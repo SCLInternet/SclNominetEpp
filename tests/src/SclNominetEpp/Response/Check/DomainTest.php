@@ -1,9 +1,12 @@
 <?php
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Check;
+
+use SclNominetEpp\Response\Check\Domain as CheckDomain;
 
 /**
+ * domain:check response test
  */
-class CheckDomainTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response
@@ -68,7 +71,7 @@ EOX;
 
         $this->response->init($xml);
 
-        $domains = $this->response->getDomains();
+        $domains = $this->response->getValues();
 
         $this->assertEquals($expected, $domains);
 

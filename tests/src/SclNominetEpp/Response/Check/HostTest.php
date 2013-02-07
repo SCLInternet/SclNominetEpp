@@ -1,9 +1,12 @@
 <?php
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Check;
+
+use SclNominetEpp\Response\Check\Host as CheckHost;
 
 /**
+ * host:check response test
  */
-class CheckHostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Response
@@ -65,7 +68,7 @@ EOX;
 
         $this->response->init($xml);
 
-        $hosts = $this->response->getHosts();
+        $hosts = $this->response->getValues();
 
         $this->assertEquals($expected, $hosts);
 
