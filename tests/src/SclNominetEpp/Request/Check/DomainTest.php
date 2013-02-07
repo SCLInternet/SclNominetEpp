@@ -1,6 +1,6 @@
 <?php
 namespace SclNominetEpp\Request;
-
+use SclNominetEpp\Domain;
 use SclNominetEpp\Request\Check\Domain as CheckDomain;
 
 /**
@@ -37,14 +37,11 @@ class DomainTest extends \PHPUnit_Framework_TestCase
 </epp>
 
 EOX;
-//        
-//        $check = $xml->addChild("domain:check", '', $this->checkNamespace);
-//
-//        foreach ($this->values as $value) {
-//            $check->addChild($this->valueName, $value, $this->checkNamespace);
-//        }
-        
-//        $this->request->setDomains($domains);
+
+        $domain = new Domain();
+        $domain->setName('caliban-scl.sch.uk');
+        $domains = array($domain);
+        $this->request->lookup($domains);
 
         $this->assertEquals($xml, $this->request->getPacket());
     }

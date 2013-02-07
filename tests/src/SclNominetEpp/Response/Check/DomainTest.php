@@ -24,7 +24,7 @@ class DomainTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @covers SclNominetEpp\Response\CheckDomain::processData
+     * 
      *
      */
     public function testProcessData()

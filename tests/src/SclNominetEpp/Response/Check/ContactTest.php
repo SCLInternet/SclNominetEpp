@@ -24,7 +24,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @covers SclNominetEpp\Response\CheckContact::processData
+     * 
      *
      */
     public function testProcessData()

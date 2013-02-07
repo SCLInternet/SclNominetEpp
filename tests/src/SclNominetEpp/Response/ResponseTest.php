@@ -1,6 +1,7 @@
 <?php
 namespace SclNominetEpp\Response;
 
+use SclNominetEpp\Response;
 /**
  */
 class ResponseTest extends \PHPUnit_Framework_TestCase

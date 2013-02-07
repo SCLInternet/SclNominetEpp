@@ -15,7 +15,7 @@ use DateTime;
 class Contact extends Response
 {
     protected $contact;
-    //put your code here
+    
     public function processData($xml)
     {
         if (!isset($xml->response->resData)) {

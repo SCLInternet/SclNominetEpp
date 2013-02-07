@@ -26,7 +26,7 @@ class HostTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @covers SclNominetEpp\Response\HostInfo::processData
+     * 
      *
      */
     public function testProcessData()
