@@ -12,7 +12,7 @@ namespace SclNominetEpp\Response;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class AbstractCheck extends Response
+abstract class AbstractCheck extends Response
 {
     /**
      * The type of check this is.
