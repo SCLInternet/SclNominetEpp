@@ -38,12 +38,12 @@ class UpdateHost
 
         $add = $update->addChild('add');
             $address = $add->addChild('addr');
-            $address->addAttribute('ip',$ipv);
+            $address->addAttribute('ip', $ipv);
             $status  = $add->addChild('status');
             $status->addAttribute('s', $s);
         $remove = $update->addChild('rem');
             $address = $add->addChild('addr');
-            $address->addAttribute('ip',$ipv);
+            $address->addAttribute('ip', $ipv);
         $change = $update->addChild('chg');
 
     }

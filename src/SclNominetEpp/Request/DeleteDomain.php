@@ -9,7 +9,8 @@ use SclNominetEpp\Response\DeleteDomain as DeleteDomainResponse;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class DeleteDomain extends Request{
+class DeleteDomain extends Request
+{
     const TYPE = 'domain'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:delete-1.0';
     const VALUE_NAME = 'name';

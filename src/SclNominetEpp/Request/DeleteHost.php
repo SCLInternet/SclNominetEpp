@@ -9,7 +9,8 @@ use SclNominetEpp\Response\DeleteHost as DeleteHostResponse;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class DeleteHost extends Request{
+class DeleteHost extends Request
+{
     const TYPE = 'host'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:delete-1.0';
     const VALUE_NAME = 'name';

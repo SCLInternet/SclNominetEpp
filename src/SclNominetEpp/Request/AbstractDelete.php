@@ -7,7 +7,8 @@ namespace SclNominetEpp\Request;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class AbstractDelete extends Request{
+class AbstractDelete extends Request
+{
     const TYPE = 'contact'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:delete-1.0';
     const VALUE_NAME = 'id';
