@@ -17,7 +17,8 @@ class UpdateHostAddress implements UpdateFieldInterface
         $this->version  = $version;
     }
     
-    public function addFieldXml(\SimpleXMLElement $xml, $namespace) {
+    public function addFieldXml(\SimpleXMLElement $xml, $namespace)
+    {
         $address = $xml->addChild('addr', $this->address, $namespace);
         $address->addAttribute('ip', $this->version);
     }

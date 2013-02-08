@@ -17,7 +17,8 @@ class UpdateStatus implements UpdateFieldInterface
         $this->status  = $status;
     }
     
-    public function addFieldXml(\SimpleXMLElement $xml, $namespace) {
+    public function addFieldXml(\SimpleXMLElement $xml, $namespace)
+    {
         $status = $xml->addChild('status', $this->message, $namespace);
         $status->addAttribute('s', $this->status);
     }

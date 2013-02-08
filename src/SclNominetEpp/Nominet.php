@@ -274,7 +274,7 @@ class Nominet extends AbstractRequestResponse
         $request = new Request\Update\Domain();
 
         $request->add(new UpdateDomainNameserver('ns1.example.com'));
-        $request->add(new UpdateDomainContact('mak21','tech'));
+        $request->add(new UpdateDomainContact('mak21', 'tech'));
         $request->add(new UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
         $response = $this->processRequest($request);
 

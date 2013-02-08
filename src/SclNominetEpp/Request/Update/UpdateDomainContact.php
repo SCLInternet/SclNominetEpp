@@ -17,7 +17,8 @@ class UpdateDomainContact implements UpdateFieldInterface
         $this->type  = $type;
     }
     
-    public function addFieldXml(\SimpleXMLElement $xml, $namespace) {
+    public function addFieldXml(\SimpleXMLElement $xml, $namespace)
+    {
         $status = $xml->addChild('contact', $this->message, $namespace);
         $status->addAttribute('type', $this->type);
     }

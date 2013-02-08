@@ -58,10 +58,10 @@ class Domain extends Request
             $field->addFieldXml($addBlock, $domainNS);
         }
         
-//        $add = $update->addChild('add');
-//            $add->addChild('ns');
-//            $add->addChild('contact');
-//            $add->addChild('status');
+        //$add = $update->addChild('add');
+        //$add->addChild('ns');
+        //$add->addChild('contact');
+        //$add->addChild('status');
         $remove = $update->addChild('rem');
             $remove->addChild('ns');
             $remove->addChild('contact');
