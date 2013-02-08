@@ -7,7 +7,9 @@
 
 namespace SclNominetEpp;
 
-use RequestResponse\AbstractRequestResponse;
+use SclRequestResponse\AbstractRequestResponse;
+use SclRequestResponse\RequestInterface;
+use SclRequestResponse\ResponseInterface;
 
 use SclNominetEpp\Exception\LoginRequiredException;
 use SclNominetEpp\Address;

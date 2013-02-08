@@ -1,9 +1,7 @@
 <?php
 namespace SclNominetEpp\Request;
 
-use SclNominetEpp\Contact;
 use SclNominetEpp\Nameserver;
-use DateTime;
 
 /**
  */
@@ -30,24 +28,22 @@ class CreateHostTest extends \PHPUnit_Framework_TestCase
 <epp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:ietf:params:xml:ns:epp-1.0" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.0 epp-1.0.xsd">
   <command>
     <create>
-      <host:create
-       xmlns:host="urn:ietf:params:xml:ns:host-1.0">
+      <host:create xmlns:host="urn:ietf:params:xml:ns:host-1.0">
         <host:name>ns1.example.com.</host:name>
         <host:addr ip="v4">192.0.2.2</host:addr>
         <host:addr ip="v6">1080:0:0:0:8:800:200C:417A</host:addr>
       </host:create>
     </create>
-    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 
 EOX;
 
-        $host = new \SclNominetEpp\Host();
-        $host->setName('ns1.example.com.');
+        $host = new Nameserver();
+        $host->setHostName('ns1.example.com.');
         $host->setIpv4('192.0.2.2');
         $host->setIpv6('1080:0:0:0:8:800:200C:417A');
-        $this->request->setHost($host);
+        $this->request->setNameserver($host);
 
         $this->assertEquals($xml, $this->request->getPacket());
     }
