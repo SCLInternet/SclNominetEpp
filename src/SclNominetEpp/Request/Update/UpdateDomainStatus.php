@@ -17,10 +17,5 @@ class UpdateDomainStatus implements UpdateFieldInterface
     public function addFieldXml(\SimpleXMLElement $xml, $namespace) {
         $status = $xml->addChild('status', $this->message, $namespace);
         $status->addAttribute('s', $status);
-        
-//        $add = $update->addChild('add');
-//            $add->addChild('ns');
-//            $add->addChild('contact');
-//            $add->addChild('status');
     }
 }

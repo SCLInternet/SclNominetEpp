@@ -53,10 +53,15 @@ class Domain extends Request
         $update->addChild(self::VALUE_NAME, $this->domain, self::UPDATE_NAMESPACE);
 
         $addBlock = $updateXML->addChild('add', '', $domainNS);
+        
         foreach ($this->add as $field) {
             $field->addFieldXml($addBlock, $domainNS);
         }
-
+        
+//        $add = $update->addChild('add');
+//            $add->addChild('ns');
+//            $add->addChild('contact');
+//            $add->addChild('status');
         $remove = $update->addChild('rem');
             $remove->addChild('ns');
             $remove->addChild('contact');

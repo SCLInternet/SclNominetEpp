@@ -272,6 +272,8 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
         $request = new Request\Update\Domain();
 
+        $request->add(new UpdateDomainStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new UpdateDomainStatus('Payment Overdue', STATUS_CLIENT_HOLD));
         $response = $this->processRequest($request);
 
         return $response;
