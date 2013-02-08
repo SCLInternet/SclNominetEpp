@@ -8,11 +8,8 @@
 namespace SclNominetEpp;
 
 use SclRequestResponse\AbstractRequestResponse;
-use SclRequestResponse\RequestInterface;
-use SclRequestResponse\ResponseInterface;
 
 use SclNominetEpp\Exception\LoginRequiredException;
-use SclNominetEpp\Address;
 
 use SclNominetEpp\Request;
 
