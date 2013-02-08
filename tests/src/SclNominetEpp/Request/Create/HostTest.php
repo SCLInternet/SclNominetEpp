@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Nameserver;
 use SclNominetEpp\Request\Create\Host as CreateHost;
