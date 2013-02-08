@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
 use SclNominetEpp\Request;
+
 /**
  * This class build the XML for a Nominet EPP domain:update command.
  *

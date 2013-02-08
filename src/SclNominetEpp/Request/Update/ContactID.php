@@ -5,6 +5,7 @@ namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Response\Update\UpdateContactID as UpdateContactIDResponse;
 use SclNominetEpp\Request;
+
 /**
  * This class build the XML for a Nominet EPP contact:update command.
  *

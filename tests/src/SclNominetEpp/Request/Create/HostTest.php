@@ -3,9 +3,11 @@ namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Nameserver;
 use SclNominetEpp\Request\Create\Host as CreateHost;
+
 /**
+ * host:create test
  */
-class CreateHostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Request

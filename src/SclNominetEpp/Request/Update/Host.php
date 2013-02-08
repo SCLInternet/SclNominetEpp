@@ -5,6 +5,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\Host as UpdateHostResponse;
 use SclNominetEpp\Request;
+
 /**
  * This class build the XML for a Nominet EPP contact:update command.
  *

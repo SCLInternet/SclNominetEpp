@@ -4,7 +4,9 @@ namespace SclNominetEpp\Response\Create;
 use DateTime;
 
 use SclNominetEpp\Response\Create\Host as CreateHost;
+
 /**
+ * host:create response test
  */
 class HostTest extends \PHPUnit_Framework_TestCase
 {

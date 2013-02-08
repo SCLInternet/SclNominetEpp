@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Release;
 
 use SclNominetEpp\Response\Release\Domain as ReleaseDomainResponse;
 use SclNominetEpp\Request;
+
 /**
  * This class build the XML for a Nominet EPP r:release command.
  *

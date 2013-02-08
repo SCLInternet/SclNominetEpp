@@ -2,7 +2,9 @@
 namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
+
 /**
+ * response epp command test.
  */
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
