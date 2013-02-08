@@ -10,4 +10,6 @@ namespace SclNominetEpp\Request\Update;
 interface UpdateFieldInterface
 {
     public function addFieldXml(\SimpleXMLElement $xml, $namespace);
+    
+    public function remFieldXml();
 }

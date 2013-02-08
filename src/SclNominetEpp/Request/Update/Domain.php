@@ -58,6 +58,12 @@ class Domain extends Request
             $field->addFieldXml($addBlock, $domainNS);
         }
         
+        $remBlock = $updateXML->addChild('rem', '', $domainNS);
+        
+        foreach ($this->remove as $field) {
+            $field->addFieldXml($remBlock, $domainNS);
+        }
+        
         //$add = $update->addChild('add');
         //$add->addChild('ns');
         //$add->addChild('contact');
