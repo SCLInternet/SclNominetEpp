@@ -17,23 +17,23 @@ class Host extends Request
 
     const VALUE_NAME = 'name';
 
-    protected $contact = null;
+    protected $host = null;
     protected $value;
 
-    public function __construct(Contact $contact)
+    public function __construct(Host $host)
     {
         parent::__construct('update', new UpdateHostResponse());
-        $this->contact = $contact;
+        $this->host = $host;
     }
 
     public function addContent(\SimpleXMLElement $updateXML)
     {
-        $contactNS   = self::UPDATE_NAMESPACE;
+        $hostNS  = self::UPDATE_NAMESPACE;
 
-        $contactXSI   =   $contactNS . ' ' . 'host-1.0.xsd';
+        $hostXSI = $hostNS . ' ' . 'host-1.0.xsd';
 
-        $update = $updateXML->addChild('host:update', '', $contactNS);
-        $update->addAttribute('xsi:schemaLocation', $contactXSI);
+        $update = $updateXML->addChild('host:update', '', $hostNS);
+        $update->addAttribute('xsi:schemaLocation', $hostXSI);
         $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
 
         $add = $update->addChild('add');

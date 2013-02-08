@@ -12,6 +12,7 @@ use SclRequestResponse\AbstractRequestResponse;
 use SclNominetEpp\Exception\LoginRequiredException;
 
 use SclNominetEpp\Request;
+use SclNominetEpp\Request\Update\UpdateStatus;
 
 /**
  * This class exposes all the actions of the Nominet EPP system in a nice PHP
@@ -272,7 +273,7 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
         $request = new Request\Update\Domain();
 
-        $request->add(new UpdateDomainNameserver(,));
+        $request->add(new UpdateDomainNameserver('ns1.example.com'));
         $request->add(new UpdateDomainContact('mak21','tech'));
         $request->add(new UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
         $response = $this->processRequest($request);
@@ -286,6 +287,14 @@ class Nominet extends AbstractRequestResponse
     public function updateContact()
     {
         $this->loginCheck();
+        
+        $request = new Request\Update\Contact();
+        
+        $request->add(new UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        
+        $response = $this->processRequest($request);
+        
+        return $response;
     }
 
     public function updateContactID()
@@ -304,6 +313,12 @@ class Nominet extends AbstractRequestResponse
     public function updateHost()
     {
         $this->loginCheck();
+        
+        $request = new Request\Update\Host();
+        
+        $response = $this->processRequest($request);
+        
+        return $response;
     }
 
     /**
