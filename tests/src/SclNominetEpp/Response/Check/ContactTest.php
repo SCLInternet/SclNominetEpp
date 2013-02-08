@@ -22,9 +22,8 @@ class ContactTest extends \PHPUnit_Framework_TestCase
         $this->response = new CheckContact();
     }
 
-
     /**
-     * 
+     *
      *
      */
     public function testProcessData()

@@ -76,8 +76,6 @@ switch (strtolower($command)) {
         $argv[0] = $host;
         break;
 
-
-
 }
 
 var_dump(call_user_func_array(array($nominet, $command), $argv));

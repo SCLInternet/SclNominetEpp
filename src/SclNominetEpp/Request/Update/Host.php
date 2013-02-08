@@ -1,6 +1,5 @@
 <?php
 
-
 namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\Host as UpdateHostResponse;

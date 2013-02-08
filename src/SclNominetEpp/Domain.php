@@ -15,7 +15,6 @@ class Domain
 
     const BILL_CUSTOMER  = 'bc';
 
-
     /**
      * Domain name
      *
@@ -149,7 +148,7 @@ class Domain
     /**
      * Set the value of period
      *
-     * @param integer $period Must be 2
+     * @param  integer $period Must be 2
      * @return Domain
      */
     public function setPeriod($period)
@@ -158,6 +157,7 @@ class Domain
             throw new \Exception("Invalid period $period.");
         }
         $this->period = $period;
+
         return $this;
     }
 
@@ -168,7 +168,7 @@ class Domain
      */
     public function setName($name)
     {
-        $this->name = (string)$name;
+        $this->name = (string) $name;
     }
 
     /**
@@ -188,7 +188,7 @@ class Domain
      */
     public function setRegistrant($registrant)
     {
-        $this->registrant = (string)$registrant;
+        $this->registrant = (string) $registrant;
     }
 
     /**
@@ -205,7 +205,7 @@ class Domain
      * Set $this->contacts
      *
      * @param string $type
-     * @param array $contacts
+     * @param array  $contacts
      */
     public function addContact($type, Contact $contact)
     {
@@ -248,7 +248,7 @@ class Domain
      */
     public function setClientID($clientID)
     {
-        $this->clientID = (string)$clientID;
+        $this->clientID = (string) $clientID;
     }
 
     /**
@@ -267,7 +267,7 @@ class Domain
      */
     public function setCreatorID($creatorID)
     {
-        $this->creatorID = (string)$creatorID;
+        $this->creatorID = (string) $creatorID;
     }
 
     /**
@@ -326,7 +326,7 @@ class Domain
      */
     public function setUpID($upID)
     {
-        $this->upID = (string)$upID;
+        $this->upID = (string) $upID;
     }
 
     /**
@@ -366,7 +366,7 @@ class Domain
      */
     public function setFirstBill($firstBill)
     {
-        $this->firstBill = (string)$firstBill;
+        $this->firstBill = (string) $firstBill;
     }
 
     /**
@@ -386,7 +386,7 @@ class Domain
      */
     public function setRecurBill($recurBill)
     {
-        $this->recurBill = (string)$recurBill;
+        $this->recurBill = (string) $recurBill;
     }
 
     /**
@@ -406,7 +406,7 @@ class Domain
      */
     public function setAutoBill($autoBill)
     {
-        $this->autoBill = (string)$autoBill;
+        $this->autoBill = (string) $autoBill;
     }
 
     /**
@@ -426,7 +426,7 @@ class Domain
      */
     public function setNextBill($nextBill)
     {
-        $this->nextBill = (string)$nextBill;
+        $this->nextBill = (string) $nextBill;
     }
 
     /**
@@ -445,7 +445,7 @@ class Domain
      */
     public function setRegStatus($regStatus)
     {
-        $this->regStatus = (string)$regStatus;
+        $this->regStatus = (string) $regStatus;
     }
 
     /**
@@ -495,6 +495,6 @@ class Domain
      */
     public function setPassword($password)
     {
-        $this->password = (string)$password;
+        $this->password = (string) $password;
     }
 }

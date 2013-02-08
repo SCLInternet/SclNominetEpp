@@ -66,7 +66,7 @@ class Response implements ResponseInterface
 
         // TODO verify all these element exist
 
-        $this->code = (int)$data->response->result->attributes()->code;
+        $this->code = (int) $data->response->result->attributes()->code;
         $this->message = $data->response->result->msg;
 
         $this->data = array();
@@ -74,7 +74,6 @@ class Response implements ResponseInterface
         $this->processData($data);
 
         // TODO save transactions
-
         return $this;
     }
 

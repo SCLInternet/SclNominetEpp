@@ -47,7 +47,7 @@ class AbstractInfo extends Request
     /**
      * The value to lookup.
      *
-     * @param string $value
+     * @param  string $value
      * @return Info
      */
     public function lookup($value)

@@ -18,7 +18,7 @@ class Domain extends Request
 
     protected $domain = '';
     protected $value;
-    
+
     public function __construct($domain)
     {
         parent::__construct('update', new ReleaseDomainResponse());

@@ -50,8 +50,8 @@ class Login extends Request
     /**
      * Sets the login details for this.
      *
-     * @param string $tag
-     * @param string $password
+     * @param  string $tag
+     * @param  string $password
      * @return Login
      */
     public function setCredentials($tag, $password)
@@ -70,6 +70,7 @@ class Login extends Request
     public function changePassword($newPassword)
     {
         $this->newPassword = $newPassword;
+
         return $this;
     }
 

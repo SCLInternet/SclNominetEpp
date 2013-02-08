@@ -39,7 +39,6 @@ class ListDomains extends Request
         return $this;
     }
 
-
     /**
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()

@@ -19,13 +19,13 @@ class Contact extends Request
     const CREATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
     const VALUE_NAME = 'id';
     const DUMMY_PASSWORD = 'qwerty';
-    
+
     /**
      *
      * @var ContactObject
      */
     protected $contact = null;
-    
+
     /**
      *
      * @var string
@@ -36,10 +36,10 @@ class Contact extends Request
     {
         parent::__construct('create');
     }
-    
+
     /**
-     * 
-     * @param SimpleXMLElement $xml
+     *
+     * @param  SimpleXMLElement $xml
      * @throws Exception
      */
     public function addContent(SimpleXMLElement $xml)
@@ -48,7 +48,7 @@ class Contact extends Request
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
-        
+
         $address = $this->contact->getAddress();
 
         $create = $xml->addChild("contact:create", '', self::CREATE_NAMESPACE);
@@ -76,9 +76,9 @@ class Contact extends Request
         $authInfo = $create->addChild('authInfo');
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
-    
+
     /**
-     * 
+     *
      * @param Contact $contact
      */
     public function setContact(ContactObject $contact)

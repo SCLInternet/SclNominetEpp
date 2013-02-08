@@ -22,10 +22,10 @@ class Domain extends Request
 
     /**
      *
-     * @var Domain 
+     * @var Domain
      */
     protected $domain = null;
-    
+
     /**
      *
      * @var string
@@ -38,8 +38,8 @@ class Domain extends Request
     }
 
     /**
-     * 
-     * @param SimpleXMLElement $xml
+     *
+     * @param  SimpleXMLElement $xml
      * @throws Exception
      */
     public function addContent(SimpleXMLElement $xml)
@@ -70,7 +70,7 @@ class Domain extends Request
     }
 
     /**
-     * 
+     *
      * @param SimpleXMLElement $create
      */
     protected function createNameservers(SimpleXMLElement $create)
@@ -81,7 +81,7 @@ class Domain extends Request
     }
 
     /**
-     * 
+     *
      * @param SimpleXMLElement $create
      */
     protected function createContacts(SimpleXMLElement $create)
@@ -93,7 +93,7 @@ class Domain extends Request
     }
 
     /**
-     * 
+     *
      * @param Domain $domain
      */
     public function setDomain(DomainObject $domain)

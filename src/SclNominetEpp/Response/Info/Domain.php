@@ -29,7 +29,6 @@ class Domain extends Response
         $infData = $response->resData->children($ns['domain'])->infData;
         $extension = $response->extension->children($ns['domain-nom-ext'])->infData;
 
-
         $nschildren = $infData->ns->hostObj;
         foreach ($nschildren as $nschild) {
             $nameserver = new Nameserver();
@@ -42,10 +41,10 @@ class Domain extends Response
 
         $this->domain->setClientID($infData->clID);
         $this->domain->setCreatorID($infData->crID);
-        $this->domain->setCreated(new DateTime((string)$infData->crDate));
-        $this->domain->setExpired(new DateTime((string)$infData->exDate));
+        $this->domain->setCreated(new DateTime((string) $infData->crDate));
+        $this->domain->setExpired(new DateTime((string) $infData->exDate));
         $this->domain->setUpID($infData->upID);
-        $this->domain->setUpDate(new DateTime((string)$infData->upDate));
+        $this->domain->setUpDate(new DateTime((string) $infData->upDate));
 
         $this->domain->setRegStatus($extension->{'reg-status'});
         $this->domain->setFirstBill($extension->{'first-bill'});

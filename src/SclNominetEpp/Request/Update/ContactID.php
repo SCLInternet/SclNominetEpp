@@ -1,7 +1,6 @@
 <?php
 
-
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\UpdateContactID as UpdateContactIDResponse;
 use SclNominetEpp\Request;

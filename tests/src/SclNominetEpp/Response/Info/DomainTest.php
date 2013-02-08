@@ -25,7 +25,7 @@ class DomainTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * 
+     *
      *
      */
     public function testProcessData()
@@ -78,7 +78,6 @@ class DomainTest extends \PHPUnit_Framework_TestCase
 </epp>
 
 EOX;
-
 
         $expected = new \SclNominetEpp\Domain();
         $expected->setName('caliban-scl.sch.uk');

@@ -18,7 +18,7 @@ class Contact extends Request
 
     protected $registrant = '';
     protected $value;
-    
+
     public function __construct($registrant)
     {
         parent::__construct('update', new ReleaseContactResponse());

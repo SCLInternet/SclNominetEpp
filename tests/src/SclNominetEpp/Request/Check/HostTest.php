@@ -2,7 +2,6 @@
 namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Request\Check\Host as CheckHost;
-use SclNominetEpp\Nameserver;
 
 /**
  * host:check test

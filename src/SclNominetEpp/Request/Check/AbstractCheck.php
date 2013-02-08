@@ -46,7 +46,7 @@ abstract class AbstractCheck extends Request
     /**
      * Tells the parent class what the action of this request is.
      *
-     * @param string $type
+     * @param  string     $type
      * @throws \Exception
      */
     public function __construct($type, $response, $checkNamespace, $valueName)
@@ -61,7 +61,7 @@ abstract class AbstractCheck extends Request
     /**
      * The values to lookup.
      *
-     * @param array|string $values
+     * @param  array|string $values
      * @return Check
      */
     public function lookup($values)

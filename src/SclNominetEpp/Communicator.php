@@ -9,9 +9,6 @@ namespace SclNominetEpp;
 
 use SclSocket\SocketInterface;
 use SclRequestResponse\Communicator\PersistentCommunicator;
-use SclNominetEpp\Request\RequestInterface;
-use SclNominetEpp\Response\ResponseInterface;
-use SimpleXMLElement;
 
 /**
  * Sets up communication with the Nominet EPP server and sends requests and

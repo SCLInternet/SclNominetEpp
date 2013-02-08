@@ -33,17 +33,16 @@ class Host extends Response
         $this->ipCheck($infData); // sets ipv4 and ipv6:- $this->host->setIpv4 and setIpv6
         $this->host->setClientID($infData->clID);
         $this->host->setCreatorID($infData->crID);
-        $this->host->setCreated(new DateTime((string)$infData->crDate));
+        $this->host->setCreated(new DateTime((string) $infData->crDate));
         $this->host->setUpID($infData->upID);
         if (isset($infData->upDate)) {
-            $this->host->setUpDate(new DateTime((string)$infData->upDate));
+            $this->host->setUpDate(new DateTime((string) $infData->upDate));
         }
     }
 
-
     /**
      *
-     * @param SimpleXMLElement $infData
+     * @param  SimpleXMLElement $infData
      * @return string
      */
     public function statusArrPopulate(SimpleXMLElement $infData)
