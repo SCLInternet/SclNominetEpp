@@ -8,6 +8,7 @@
 namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Response\Renew as RenewResponse;
+use SclNominetEpp\Request;
 
 /**
  * This class build the XML for a Nominet EPP renew command.

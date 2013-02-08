@@ -8,6 +8,7 @@
 namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Response\Login as LoginResponse;
+use SclNominetEpp\Request;
 use SimpleXMLElement;
 
 /**
