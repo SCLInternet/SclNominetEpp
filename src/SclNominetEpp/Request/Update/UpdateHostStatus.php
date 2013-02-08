@@ -2,11 +2,11 @@
 namespace SclNominetEpp\Request\Update;
 
 /**
- * UpdateDomain "add" and "remove" both use "status" as a field
+ * UpdateHost "add" and "remove" both use "status" as a field
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateDomainStatus implements UpdateFieldInterface
+class UpdateHostStatus implements UpdateFieldInterface
 {
     public function __construct($message, $status)
     {
