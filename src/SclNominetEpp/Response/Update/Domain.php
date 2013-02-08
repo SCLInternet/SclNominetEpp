@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Response\Update;
 
 use SclNominetEpp\Response;
+
 /**
  * DocBlock: Description of UpdateDomain
  *
