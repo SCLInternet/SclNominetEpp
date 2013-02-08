@@ -20,6 +20,9 @@ class Domain extends Request
 
     protected $domain = null;
     protected $value;
+    
+    private $add = array();
+    private $remove = array();
 
     public function __construct(Domain $domain)
     {
@@ -27,6 +30,16 @@ class Domain extends Request
         $this->domain = $domain;
     }
 
+    public function add(UpdateFieldInterface $field)
+    {
+        $this->add[] = $field;
+    }
+
+    public function remove(UpdateFieldInterface $field)
+    {
+        $this->remove[] = $field;
+    }
+    
     public function addContent(\SimpleXMLElement $updateXML)
     {
         $domainNS    = self::UPDATE_NAMESPACE;
@@ -39,10 +52,10 @@ class Domain extends Request
         $update->addAttribute('xsi:schemaLocation', $domainXSI);
         $update->addChild(self::VALUE_NAME, $this->domain, self::UPDATE_NAMESPACE);
 
-        $add = $update->addChild('add');
-            $add->addChild('ns');
-            $add->addChild('contact');
-            $add->addChild('status');
+        $addBlock = $updateXML->addChild('add', '', $domainNS);
+        foreach ($this->add as $field) {
+            $field->addFieldXml($addBlock, $domainNS);
+        }
 
         $remove = $update->addChild('rem');
             $remove->addChild('ns');
