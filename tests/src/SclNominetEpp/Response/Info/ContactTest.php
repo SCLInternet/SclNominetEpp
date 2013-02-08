@@ -23,9 +23,8 @@ class ContactTest extends \PHPUnit_Framework_TestCase
         $this->response = new ContactInfo();
     }
 
-
     /**
-     * 
+     *
      *
      */
     public function testProcessData()
@@ -84,7 +83,6 @@ class ContactTest extends \PHPUnit_Framework_TestCase
 </epp>
 
 EOX;
-
 
         $expected = new \SclNominetEpp\Contact;
 

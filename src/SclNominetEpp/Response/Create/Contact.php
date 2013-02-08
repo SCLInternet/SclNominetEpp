@@ -8,13 +8,13 @@ use SclNominetEpp\Contact as ContactObject;
 
 /**
  * This class interprets XML for a Nominet EPP host:create command response.
- * 
+ *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Contact extends Response
 {
     protected $contact;
-    
+
     public function processData($xml)
     {
         if (!isset($xml->response->resData)) {
@@ -22,7 +22,7 @@ class Contact extends Response
         }
         $ns = $xml->getNamespaces(true);
         $this->contact = new ContactObject();
-        
+
         $response = $xml->response;
 
         $creData  = $response->resData->children($ns['contact'])->creData;

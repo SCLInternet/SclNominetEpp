@@ -25,7 +25,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testCreateContact()
     {
@@ -85,7 +85,7 @@ EOX;
         $contact->setOrganisation('sclMerlyn');
         $contact->setFax('+443344555616');
         $contact->setOptOut('y');
-        
+
         $this->request->setContact($contact);
 
         $this->assertEquals($xml, $this->request->getPacket());

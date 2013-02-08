@@ -64,7 +64,6 @@ class Domain extends Request
         $extension->addChild('notes');
         //@todo implement all variables, also, fix the extension data.
 
-
     }
 
     public function setDomain($domain)

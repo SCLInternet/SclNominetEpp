@@ -47,7 +47,6 @@ class Renew extends Request
         return $this;
     }
 
-
     /**
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
@@ -59,7 +58,6 @@ class Renew extends Request
 
         //$domainNS  = 'urn:ietf:params:xml:ns:domain-1.0';
         //$domainXSI = 'urn:ietf:params:xml:ns:domain-1.0 domain-1.0.xsd';
-
 
         $domainRenew = $xml->addChild('domain:renew', '', $domainNS);
         $domainRenew->addAttribute('xsi:schemaLocation', $domainXSI, self::XSI_NAMESPACE);

@@ -24,9 +24,8 @@ class HostTest extends \PHPUnit_Framework_TestCase
         $this->response = new CreateHost();
     }
 
-
     /**
-     * 
+     *
      *
      */
     public function testProcessData()
@@ -53,7 +52,6 @@ class HostTest extends \PHPUnit_Framework_TestCase
 </epp>
 
 EOX;
-
 
         $expected = new \SclNominetEpp\Nameserver();
         $expected->setHostName('ns1.caliban-scl.sch.uk.');

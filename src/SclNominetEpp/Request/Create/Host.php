@@ -24,10 +24,10 @@ class Host extends Request
     {
         parent::__construct('create');
     }
-    
+
     /**
-     * 
-     * @param SimpleXMLElement $xml
+     *
+     * @param  SimpleXMLElement $xml
      * @throws Exception
      */
     public function addContent(SimpleXMLElement $xml)
@@ -52,9 +52,9 @@ class Host extends Request
             $ipv6->addAttribute('ip', 'v6');
         }
     }
-    
+
     /**
-     * 
+     *
      * @param Nameserver $nameserver
      */
     public function setNameserver(Nameserver $nameserver)

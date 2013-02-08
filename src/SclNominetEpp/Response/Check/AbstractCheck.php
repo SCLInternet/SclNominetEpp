@@ -11,7 +11,7 @@ use SclNominetEpp\Response;
 
 /**
  * This class interprets XML for a Nominet EPP check command response.
- * 
+ *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 abstract class AbstractCheck extends Response
@@ -34,12 +34,12 @@ abstract class AbstractCheck extends Response
      * @var array
      */
     private $values = array();
-    
+
     public function __construct($data = null)
     {
         parent::__construct($data);
     }
-    
+
     public function processData($data)
     {
         if (!isset($data->response->resData)) {
@@ -52,20 +52,20 @@ abstract class AbstractCheck extends Response
 
         $valueName = $this->valueName;
         foreach ($xmlValues->chkData->cd as $value) {
-            $this->values[(string)$value->$valueName] = (boolean)(string)$value->$valueName->attributes()->avail;
+            $this->values[(string) $value->$valueName] = (boolean) (string) $value->$valueName->attributes()->avail;
         }
     }
-    
+
     /**
      * Get $this->values
-     * 
+     *
      * @return array
      */
     public function getValues()
     {
         return $this->values;
     }
-    
+
     /**
      * Set $this->type
      *
@@ -85,7 +85,7 @@ abstract class AbstractCheck extends Response
     {
         return $this->type;
     }
-    
+
     /**
      * Set $this->valueName
      *

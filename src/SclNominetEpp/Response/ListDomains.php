@@ -26,7 +26,7 @@ class ListDomains extends Response
         $this->domains = array();
 
         foreach ($domains->domainName as $domain) {
-            $this->domains[] = (string)$domain;
+            $this->domains[] = (string) $domain;
         }
     }
 

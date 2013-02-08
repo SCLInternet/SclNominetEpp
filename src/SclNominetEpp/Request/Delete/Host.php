@@ -9,7 +9,7 @@ use SclNominetEpp\Response\Delete\Host as DeleteHostResponse;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class DeleteHost extends AbstractDelete
+class Host extends AbstractDelete
 {
     const TYPE = 'host'; //For possible Abstracting later
     const DELETE_NAMESPACE = 'urn:ietf:params:xml:ns:host-1.0';
@@ -17,7 +17,7 @@ class DeleteHost extends AbstractDelete
 
     protected $host = '';
     protected $value;
-    
+
     public function __construct()
     {
         parent::__construct(

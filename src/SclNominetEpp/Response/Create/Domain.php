@@ -8,13 +8,13 @@ use SclNominetEpp\Domain as DomainObject;
 
 /**
  * This class interprets XML for a Nominet EPP host:create command response.
- * 
+ *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Domain extends Response
 {
     protected $domain;
-    
+
     public function processData($xml)
     {
         if (!isset($xml->response->resData)) {
@@ -22,7 +22,7 @@ class Domain extends Response
         }
         $ns = $xml->getNamespaces(true);
         $this->domain = new DomainObject();
-        
+
         $response = $xml->response;
 
         $creData  = $response->resData->children($ns['domain'])->creData;

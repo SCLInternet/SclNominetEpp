@@ -17,7 +17,7 @@ class Domain extends AbstractDelete
 
     protected $domain = '';
     protected $value;
-    
+
     public function __construct()
     {
         parent::__construct(

@@ -43,7 +43,7 @@ class Request implements RequestInterface
     /**
      * Prepares the common XML wrapper for all requests.
      *
-     * @param string $action
+     * @param string            $action
      * @param ResponseInterface $response
      */
     public function __construct($action, $response = null)
@@ -74,6 +74,7 @@ class Request implements RequestInterface
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
         $dom->loadXML($xml);
+
         return $dom->saveXML();
     }
 

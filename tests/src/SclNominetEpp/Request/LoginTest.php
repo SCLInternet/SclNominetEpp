@@ -64,7 +64,7 @@ class LoginTest extends \PHPUnit_Framework_TestCase
 
 EOF;
 
-        //$this->assertEquals($xml, (string)$this->object);
+        //$this->assertEquals($xml, (string) $this->object);
 
     }
 }

@@ -39,7 +39,7 @@ class AbstractDelete extends Request
     /**
      * Tells the parent class what the action of this request is.
      *
-     * @param string $type
+     * @param  string     $type
      * @throws \Exception
      */
     public function __construct($type, $response, $deleteNamespace, $valueName)
@@ -50,8 +50,7 @@ class AbstractDelete extends Request
         $this->deleteNamespace = $deleteNamespace;
         $this->valueName       = $valueName;
     }
-    
-    
+
     /**
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()

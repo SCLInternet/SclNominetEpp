@@ -37,7 +37,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 EOF;
 
-        //$this->assertEquals($xml, (string)$this->object);
+        //$this->assertEquals($xml, (string) $this->object);
 
     }
 }

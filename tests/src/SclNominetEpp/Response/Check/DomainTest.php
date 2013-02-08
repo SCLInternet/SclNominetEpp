@@ -22,9 +22,8 @@ class DomainTest extends \PHPUnit_Framework_TestCase
         $this->response = new CheckDomain();
     }
 
-
     /**
-     * 
+     *
      *
      */
     public function testProcessData()

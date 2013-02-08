@@ -15,13 +15,13 @@ use DateTime;
 class Contact extends Response
 {
     protected $contact;
-    
+
     public function processData($xml)
     {
         if (!isset($xml->response->resData)) {
             return;
         }
-        
+
         $ns = $xml->getNamespaces(true);
         $this->contact = new ContactObject();
 
@@ -51,7 +51,7 @@ class Contact extends Response
         //EXTENSION DATA
 
         $this->contact->setCompanyNumber($extension->{'co-no'});
-        $optOut     = strtolower((string)$extension->{'opt-out'});
+        $optOut     = strtolower((string) $extension->{'opt-out'});
         if ('n' === $optOut) {
             $optOut = false;
         } else {
@@ -69,8 +69,8 @@ class Contact extends Response
         $this->contact->setPhone($infData->voice); //optional
 
             //Dates
-        $this->contact->setCreated(new DateTime((string)$infData->crDate));
-        $this->contact->setUpDate(new DateTime((string)$infData->upDate));
+        $this->contact->setCreated(new DateTime((string) $infData->crDate));
+        $this->contact->setUpDate(new DateTime((string) $infData->upDate));
             //Postal Info
         $this->contact->setName($postalInfo->name); //Postal Info
         $this->contact->setOrganisation($postalInfo->org);

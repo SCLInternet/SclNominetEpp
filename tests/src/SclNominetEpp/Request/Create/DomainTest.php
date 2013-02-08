@@ -69,7 +69,7 @@ EOX;
         $nameserver = new Nameserver();
         $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
         $domain->addNameserver($nameserver);
-        
+
         var_dump($nameserver);
 
         $tech  = new Contact();
@@ -79,8 +79,6 @@ EOX;
 
         $domain->addContact('tech', $tech);
         $domain->addContact('admin', $admin);
-
-
 
         $this->request->setDomain($domain);
 

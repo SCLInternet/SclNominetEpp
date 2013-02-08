@@ -43,7 +43,7 @@ class Contact extends Request
             $status = $add->addChild('status');
             $status->addAttribute('s', $s);
         $remove = $update->addChild('rem');
-           
+
         $change = $update->addChild('chg');
             $postalInfo = $change->addChild('postalInfo');
             $postalInfo->addAttribute('type', $type);
@@ -63,7 +63,6 @@ class Contact extends Request
         $extension->addChild('co-no');
         $extension->addChild('opt-out');
         //@todo implement all variables, also, fix the extension data.
-
 
     }
 

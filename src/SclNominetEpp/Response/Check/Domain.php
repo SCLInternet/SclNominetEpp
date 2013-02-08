@@ -11,9 +11,9 @@ class Domain extends AbstractCheck
 {
     const TYPE = 'domain';
     const VALUE_NAME = 'name';
-    
+
     /**
-     * 
+     *
      * @param type $data
      */
     public function __construct($data = null)

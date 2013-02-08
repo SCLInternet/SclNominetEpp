@@ -22,9 +22,8 @@ class HostTest extends \PHPUnit_Framework_TestCase
         $this->response = new CheckHost();
     }
 
-
     /**
-     * 
+     *
      *
      */
     public function testProcessData()

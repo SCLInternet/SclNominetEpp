@@ -86,7 +86,7 @@ class Nameserver
      */
     public function setHostName($hostName)
     {
-        $this->hostName = (string)$hostName;
+        $this->hostName = (string) $hostName;
     }
 
     /**
@@ -106,7 +106,7 @@ class Nameserver
      */
     public function addStatus($status)
     {
-        $this->status[] = (string)$status;
+        $this->status[] = (string) $status;
     }
 
     /**
@@ -146,7 +146,7 @@ class Nameserver
      */
     public function setCreatorID($creatorID)
     {
-        $this->creatorID = (string)$creatorID;
+        $this->creatorID = (string) $creatorID;
     }
 
     /**
@@ -166,7 +166,7 @@ class Nameserver
      */
     public function setClientID($clientID)
     {
-        $this->clientID = (string)$clientID;
+        $this->clientID = (string) $clientID;
     }
 
     /**
@@ -179,7 +179,6 @@ class Nameserver
         return $this->clientID;
     }
 
-
     /**
      * Set $this->upID
      *
@@ -187,7 +186,7 @@ class Nameserver
      */
     public function setUpID($upID)
     {
-        $this->upID = (string)$upID;
+        $this->upID = (string) $upID;
     }
 
     /**
@@ -227,7 +226,7 @@ class Nameserver
      */
     public function setIpv4($ipv4)
     {
-        $this->ipv4 = (string)$ipv4;
+        $this->ipv4 = (string) $ipv4;
     }
 
     /**
@@ -247,7 +246,7 @@ class Nameserver
      */
     public function setIpv6($ipv6)
     {
-        $this->ipv6 = (string)$ipv6;
+        $this->ipv6 = (string) $ipv6;
     }
 
     /**

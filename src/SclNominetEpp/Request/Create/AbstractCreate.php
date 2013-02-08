@@ -38,7 +38,7 @@ abstract class AbstractCreate extends Request
     /**
      * Tells the parent class what the action of this request is.
      *
-     * @param string $type
+     * @param  string     $type
      * @throws \Exception
      */
     public function __construct($type, $response, $createNamespace, $valueName)

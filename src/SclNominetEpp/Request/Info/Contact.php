@@ -15,7 +15,7 @@ use SclNominetEpp\Response\Info\Contact as ContactInfoResponse;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class ContactInfo extends AbstractInfo
+class Contact extends AbstractInfo
 {
     const TYPE = 'contact';
     const INFO_NAMESPACE = "urn:ietf:params:xml:ns:contact-1.0";

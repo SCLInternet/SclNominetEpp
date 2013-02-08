@@ -9,6 +9,6 @@ use SclNominetEpp\Response;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateContact extends Response
+class Contact extends Response
 {
 }

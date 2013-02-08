@@ -60,7 +60,7 @@ class Address
      */
     public function setAddressLineOne($addressLineOne)
     {
-        $this->addressLineOne = (string)$addressLineOne;
+        $this->addressLineOne = (string) $addressLineOne;
     }
 
     /**
@@ -80,7 +80,7 @@ class Address
      */
     public function setAddressLineTwo($addressLineTwo)
     {
-        $this->addressLineTwo = (string)$addressLineTwo;
+        $this->addressLineTwo = (string) $addressLineTwo;
     }
 
     /**
@@ -100,7 +100,7 @@ class Address
      */
     public function setAddressLineThree($addressLineThree)
     {
-        $this->addressLineThree = (string)$addressLineThree;
+        $this->addressLineThree = (string) $addressLineThree;
     }
 
     /**
@@ -120,7 +120,7 @@ class Address
      */
     public function setCity($city)
     {
-        $this->city = (string)$city;
+        $this->city = (string) $city;
     }
 
     /**
@@ -160,7 +160,7 @@ class Address
      */
     public function setPostCode($postCode)
     {
-        $this->postCode = (string)$postCode;
+        $this->postCode = (string) $postCode;
     }
 
     /**
@@ -180,7 +180,7 @@ class Address
      */
     public function setCountryCode($countryCode)
     {
-        $this->countryCode = (string)$countryCode;
+        $this->countryCode = (string) $countryCode;
     }
 
     /**
