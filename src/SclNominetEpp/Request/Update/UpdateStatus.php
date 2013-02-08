@@ -6,8 +6,11 @@ namespace SclNominetEpp\Request\Update;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateDomainStatus implements UpdateFieldInterface
+class UpdateStatus implements UpdateFieldInterface
 {
+    private $message;
+    private $status;
+    
     public function __construct($message, $status)
     {
         $this->message = $message;

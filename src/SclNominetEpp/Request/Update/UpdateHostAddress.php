@@ -8,6 +8,9 @@ namespace SclNominetEpp\Request\Update;
  */
 class UpdateHostAddress implements UpdateFieldInterface
 {
+    private $address;
+    private $version;
+    
     public function __construct($address, $version)
     {
         $this->address = $address;
@@ -15,7 +18,7 @@ class UpdateHostAddress implements UpdateFieldInterface
     }
     
     public function addFieldXml(\SimpleXMLElement $xml, $namespace) {
-        $status = $xml->addChild('addr', $this->address, $namespace);
-        $status->addAttribute('ip', $this->version);
+        $address = $xml->addChild('addr', $this->address, $namespace);
+        $address->addAttribute('ip', $this->version);
     }
 }

@@ -272,8 +272,9 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
         $request = new Request\Update\Domain();
 
-        $request->add(new UpdateDomainStatus('Payment Overdue', STATUS_CLIENT_HOLD));
-        $request->add(new UpdateDomainStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new UpdateDomainNameserver(,));
+        $request->add(new UpdateDomainContact('mak21','tech'));
+        $request->add(new UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
         $response = $this->processRequest($request);
 
         return $response;
@@ -292,7 +293,9 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
 
         $request = new Request\Update\ContactID();
-
+        
+        $request->add(new UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        
         $response = $this->processRequest($request);
 
         return $response;
