@@ -140,7 +140,6 @@ class Contact
      */
     private $type = self::TYPE_UNKNOWN;
 
-
     /*
      * Constructor
      */
@@ -156,7 +155,7 @@ class Contact
      */
     public function setId($id)
     {
-        $this->id = (string)$id;
+        $this->id = (string) $id;
     }
 
     /**
@@ -176,7 +175,7 @@ class Contact
      */
     public function setName($name)
     {
-        $this->name = (string)$name;
+        $this->name = (string) $name;
     }
 
     /**
@@ -196,7 +195,7 @@ class Contact
      */
     public function setEmail($email)
     {
-        $this->email = (string)$email;
+        $this->email = (string) $email;
     }
 
     /**
@@ -236,7 +235,7 @@ class Contact
      */
     public function setCompanyNumber($companyNumber)
     {
-        $this->companyNumber = (string)$companyNumber;
+        $this->companyNumber = (string) $companyNumber;
     }
 
     /**
@@ -256,7 +255,7 @@ class Contact
      */
     public function setPhone($phone)
     {
-        $this->phone = (string)$phone;
+        $this->phone = (string) $phone;
     }
 
     /**
@@ -276,7 +275,7 @@ class Contact
      */
     public function setOrganisation($organisation)
     {
-        $this->organisation = (string)$organisation;
+        $this->organisation = (string) $organisation;
     }
 
     /**
@@ -296,7 +295,7 @@ class Contact
      */
     public function setFax($fax)
     {
-        $this->fax = (string)$fax;
+        $this->fax = (string) $fax;
     }
 
     /**
@@ -376,7 +375,7 @@ class Contact
      */
     public function setTradeName($tradeName)
     {
-        $this->tradeName = (string)$tradeName;
+        $this->tradeName = (string) $tradeName;
     }
 
     /**
@@ -396,10 +395,10 @@ class Contact
      */
     public function setType($type)
     {
-        if (!in_array((string)$type, self::$types)) {
+        if (!in_array((string) $type, self::$types)) {
             throw new \Exception("Invald organisation type: $type");
         }
-        $this->type = (string)$type;
+        $this->type = (string) $type;
     }
 
     /**

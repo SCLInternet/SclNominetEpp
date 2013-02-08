@@ -2,6 +2,7 @@
 namespace SclNominetEpp\Request;
 
 /**
+ * login epp command test
  */
 class LoginTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,7 +64,7 @@ class LoginTest extends \PHPUnit_Framework_TestCase
 
 EOF;
 
-        //$this->assertEquals($xml, (string)$this->object);
+        //$this->assertEquals($xml, (string) $this->object);
 
     }
 }

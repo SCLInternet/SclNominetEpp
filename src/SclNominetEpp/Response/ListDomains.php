@@ -2,6 +2,8 @@
 
 namespace SclNominetEpp\Response;
 
+use SclNominetEpp\Response;
+
 /**
  * This class interprets XML for a Nominet EPP list command response.
  *
@@ -24,7 +26,7 @@ class ListDomains extends Response
         $this->domains = array();
 
         foreach ($domains->domainName as $domain) {
-            $this->domains[] = (string)$domain;
+            $this->domains[] = (string) $domain;
         }
     }
 

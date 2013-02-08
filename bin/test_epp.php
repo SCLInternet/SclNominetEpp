@@ -1,5 +1,7 @@
 <?php
 
+use \SclNominetEpp\Address;
+
 include __DIR__ . '/../vendor/autoload.php';
 
 if (sizeof($argv) < 2) {
@@ -73,8 +75,6 @@ switch (strtolower($command)) {
         $host->setIpv6('1080:0:0:0:8:800:200C:417A');
         $argv[0] = $host;
         break;
-
-
 
 }
 

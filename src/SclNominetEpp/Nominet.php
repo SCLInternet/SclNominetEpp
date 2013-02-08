@@ -8,11 +8,8 @@
 namespace SclNominetEpp;
 
 use SclRequestResponse\AbstractRequestResponse;
-use SclRequestResponse\RequestInterface;
-use SclRequestResponse\ResponseInterface;
 
 use SclNominetEpp\Exception\LoginRequiredException;
-use SclNominetEpp\Address;
 
 use SclNominetEpp\Request;
 
@@ -62,9 +59,9 @@ class Nominet extends AbstractRequestResponse
      * other EPP command and identifies and authenticates the tag to be used
      * by the session. An EPP session is terminated by a logout command.
      *
-     * @param string $tag
-     * @param string $password
-     * @param string $newPassword If specified with change the password.
+     * @param  string  $tag
+     * @param  string  $password
+     * @param  string  $newPassword If specified with change the password.
      * @return boolean True if the login was successful.
      */
     public function login($tag, $password, $newPassword = null)
@@ -130,13 +127,13 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\CheckDomain();
+        $request = new Request\Check\Domain();
 
         $request->lookup($domains);
 
         $response = $this->processRequest($request);
 
-        return $response->getDomains();
+        return $response->getValues();
     }
 
     /**
@@ -152,7 +149,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\CheckContact();
+        $request = new Request\Check\Contact();
 
         $request->lookup($contactIds);
 
@@ -174,7 +171,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\CheckHost();
+        $request = new Request\Check\Host();
 
         $request->lookup($hosts);
 
@@ -192,11 +189,10 @@ class Nominet extends AbstractRequestResponse
     public function createContact(Contact $contact)
     {
         $this->loginCheck();
-        
-        $request = new Request\CreateContact();
+
+        $request = new Request\Create\Contact();
         $request->setContact($contact);
         $response = $this->processRequest($request);
-
 
         return $response->success();
     }
@@ -211,7 +207,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\CreateDomain();
+        $request = new Request\Create\Domain();
         $request->setDomain($domain);
 
         $response = $this->processRequest($request);
@@ -222,7 +218,7 @@ class Nominet extends AbstractRequestResponse
     public function createHost(Nameserver $host)
     {
         $this->loginCheck();
-        $request = new Request\CreateHost($host);
+        $request = new Request\Create\Host($host);
 
         $response = $this->processRequest($request);
 
@@ -274,7 +270,7 @@ class Nominet extends AbstractRequestResponse
     public function updateDomain()
     {
         $this->loginCheck();
-        $request = new Request\UpdateDomain();
+        $request = new Request\Update\Domain();
 
         $response = $this->processRequest($request);
 
@@ -292,14 +288,25 @@ class Nominet extends AbstractRequestResponse
     public function updateContactID()
     {
         $this->loginCheck();
+
+        $request = new Request\Update\ContactID();
+
+        $response = $this->processRequest($request);
+
+        return $response;
+    }
+
+    public function updateHost()
+    {
+        $this->loginCheck();
     }
 
     /**
      * The EPP <info> command is used to retrieve information associated with
      * an object.
      *
-     * @param string $domainName
-     * @param boolean $recursive If false only the domain info is fetch, if
+     * @param string  $domainName
+     * @param boolean $recursive  If false only the domain info is fetch, if
      *     true the attached accounts and host info should be returned also.
      * @return Domain
      */
@@ -307,7 +314,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\DomainInfo();
+        $request = new Request\Info\Domain();
 
         $request->lookup($domainName);
 
@@ -324,14 +331,14 @@ class Nominet extends AbstractRequestResponse
      * The EPP <info> command is used to retrieve information associated with
      * an object. ($contactID is the $registrant from domainInfo)
      *
-     * @param string $contactID
+     * @param  string  $contactID
      * @return boolean
      */
     public function contactInfo($contactID)
     {
         $this->loginCheck();
 
-        $request = new Request\ContactInfo();
+        $request = new Request\Info\Contact();
 
         $request->lookup($contactID);
 
@@ -340,6 +347,7 @@ class Nominet extends AbstractRequestResponse
             return false;
         }
         $contact = $response->getContact();
+
         return $contact;
     }
 
@@ -347,19 +355,20 @@ class Nominet extends AbstractRequestResponse
      * The EPP <info> command is used to retrieve information associated with
      * an object.
      *
-     * @param string $hostName
+     * @param  string $hostName
      * @return type
      */
     public function hostInfo($hostName)
     {
         $this->loginCheck();
 
-        $request = new Request\HostInfo();
+        $request = new Request\Info\Host();
 
         $request->lookup($hostName);
 
         $response = $this->processRequest($request);
         $host = $response->getHost();
+
         return $host;
     }
 
@@ -429,9 +438,9 @@ class Nominet extends AbstractRequestResponse
      * Retrieves a domain list.
      * NOTE: This method is called domainList as list is a resevered word :-(
      *
-     * @param integer $year
-     * @param integer $month
-     * @param integer $type
+     * @param  integer    $year
+     * @param  integer    $month
+     * @param  integer    $type
      * @return array|NULL The list of the domains or null on failure.
      */
     public function listDomains($year, $month, $type = self::LIST_MONTH)
