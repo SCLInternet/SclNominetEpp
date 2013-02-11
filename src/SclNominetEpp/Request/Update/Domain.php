@@ -25,10 +25,10 @@ class Domain extends Request
     private $add = array();
     private $remove = array();
 
-    public function __construct(Domain $domain)
+    public function __construct($value)
     {
         parent::__construct('update', new UpdateDomainResponse());
-        $this->domain = $domain;
+        $this->value = $value;
     }
 
     public function add(UpdateFieldInterface $field)
@@ -51,28 +51,20 @@ class Domain extends Request
 
         $update = $updateXML->addChild('domain:update', '', $domainNS);
         $update->addAttribute('xsi:schemaLocation', $domainXSI);
-        $update->addChild(self::VALUE_NAME, $this->domain, $domainNS);
+        $update->addChild(self::VALUE_NAME, $this->value, $domainNS);
 
         $addBlock = $updateXML->addChild('add', '', $domainNS);
         
         foreach ($this->add as $field) {
-            $field->addFieldXml($addBlock, $domainNS);
+            $field->fieldXml($addBlock, $domainNS);
         }
         
         $remBlock = $updateXML->addChild('rem', '', $domainNS);
         
         foreach ($this->remove as $field) {
-            $field->addFieldXml($remBlock, $domainNS);
+            $field->fieldXml($remBlock, $domainNS);
         }
         
-        //$add = $update->addChild('add');
-        //$add->addChild('ns');
-        //$add->addChild('contact');
-        //$add->addChild('status');
-        $remove = $update->addChild('rem');
-            $remove->addChild('ns');
-            $remove->addChild('contact');
-            $remove->addChild('status');
         $change = $update->addChild('chg');
             $change->addChild('registrant');
             $authInfo = $change->addChild('authInfo');

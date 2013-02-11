@@ -24,10 +24,10 @@ class ContactID extends Request
     private $add = array();
     private $remove = array();
 
-    public function __construct($newContactID)
+    public function __construct($value)
     {
         parent::__construct('update', new UpdateContactIDResponse());
-        $this->newContactID = $newContactID;
+        $this->value = $value;
     }
 
     public function add(UpdateFieldInterface $field)
@@ -50,7 +50,7 @@ class ContactID extends Request
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
         $update->addChild(self::VALUE_NAME, $this->contactID, self::UPDATE_NAMESPACE);
         $change = $update->addChild('chg');
-        $change->addChild(self::VALUE_NAME, $this->newContactID);
+        $change->addChild(self::VALUE_NAME, $this->value);
     }
 
     public function setContactID($contactID)

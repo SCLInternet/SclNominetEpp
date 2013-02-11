@@ -52,12 +52,20 @@ class Contact extends Request
 
         $update = $updateXML->addChild('contact:update', '', $contactNS);
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
-        $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
+        $update->addChild(self::VALUE_NAME, $this->contact, $contactNS);
 
-        $add = $update->addChild('add');
-            $status = $add->addChild('status');
-            $status->addAttribute('s', $s);
-        $remove = $update->addChild('rem');
+        
+        $addBlock = $updateXML->addChild('add', '', $contactNS);
+        
+        foreach ($this->add as $field) {
+            $field->fieldXml($addBlock, $contactNS);
+        }
+        
+        $remBlock = $updateXML->addChild('rem', '', $contactNS);
+        
+        foreach ($this->remove as $field) {
+            $field->fieldXml($remBlock, $contactNS);
+        }
 
         $change = $update->addChild('chg');
             $postalInfo = $change->addChild('postalInfo');

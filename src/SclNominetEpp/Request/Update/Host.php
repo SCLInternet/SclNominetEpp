@@ -24,10 +24,10 @@ class Host extends Request
     private $add = array();
     private $remove = array();
 
-    public function __construct(\SclNominetEpp\Nameserver $host)
+    public function __construct($value)
     {
         parent::__construct('update', new UpdateHostResponse());
-        $this->host = $host;
+        $this->value = $value;
     }
 
     public function add(UpdateFieldInterface $field)
@@ -48,18 +48,18 @@ class Host extends Request
 
         $update = $updateXML->addChild('host:update', '', $hostNS);
         $update->addAttribute('xsi:schemaLocation', $hostXSI);
-        $update->addChild(self::VALUE_NAME, $this->contact, $hostNS);
+        $update->addChild(self::VALUE_NAME, $this->value, $hostNS);
 
         $addBlock = $updateXML->addChild('add', '', $hostNS);
         
         foreach ($this->add as $field) {
-            $field->addFieldXml($addBlock, $hostNS);
+            $field->fieldXml($addBlock, $hostNS);
         }
         
         $remBlock = $updateXML->addChild('rem', '', $hostNS);
         
         foreach ($this->remove as $field) {
-            $field->addFieldXml($remBlock, $hostNS);
+            $field->fieldXml($remBlock, $hostNS);
         }
 //        $add = $update->addChild('add');
 //            $address = $add->addChild('addr');
@@ -73,8 +73,8 @@ class Host extends Request
 
     }
 
-    public function setContact($contact)
+    public function setContact($host)
     {
-        $this->contact = $contact;
+        $this->host = $host;
     }
 }
