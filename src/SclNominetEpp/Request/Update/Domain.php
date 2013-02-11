@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
 use SclNominetEpp\Request;
+use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**
  * This class build the XML for a Nominet EPP domain:update command.
@@ -50,7 +51,7 @@ class Domain extends Request
 
         $update = $updateXML->addChild('domain:update', '', $domainNS);
         $update->addAttribute('xsi:schemaLocation', $domainXSI);
-        $update->addChild(self::VALUE_NAME, $this->domain, self::UPDATE_NAMESPACE);
+        $update->addChild(self::VALUE_NAME, $this->domain, $domainNS);
 
         $addBlock = $updateXML->addChild('add', '', $domainNS);
         

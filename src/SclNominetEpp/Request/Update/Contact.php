@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\Contact as UpdateContactResponse;
 use SclNominetEpp\Request;
+use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.
@@ -20,6 +21,9 @@ class Contact extends Request
 
     protected $contact = null;
     protected $value;
+        
+    private $add = array();
+    private $remove = array();
 
     public function __construct(Contact $contact)
     {
@@ -27,6 +31,17 @@ class Contact extends Request
         $this->contact = $contact;
     }
 
+    
+    public function add(UpdateFieldInterface $field)
+    {
+        $this->add[] = $field;
+    }
+
+    public function remove(UpdateFieldInterface $field)
+    {
+        $this->remove[] = $field;
+    }
+    
     public function addContent(\SimpleXMLElement $updateXML)
     {
         $contactNS   = self::UPDATE_NAMESPACE;

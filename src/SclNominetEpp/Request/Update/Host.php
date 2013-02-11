@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\Host as UpdateHostResponse;
 use SclNominetEpp\Request;
+use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.
@@ -19,13 +20,26 @@ class Host extends Request
 
     protected $host = null;
     protected $value;
+    
+    private $add = array();
+    private $remove = array();
 
-    public function __construct(Host $host)
+    public function __construct(\SclNominetEpp\Nameserver $host)
     {
         parent::__construct('update', new UpdateHostResponse());
         $this->host = $host;
     }
 
+    public function add(UpdateFieldInterface $field)
+    {
+        $this->add[] = $field;
+    }
+
+    public function remove(UpdateFieldInterface $field)
+    {
+        $this->remove[] = $field;
+    }
+    
     public function addContent(\SimpleXMLElement $updateXML)
     {
         $hostNS  = self::UPDATE_NAMESPACE;
@@ -34,17 +48,28 @@ class Host extends Request
 
         $update = $updateXML->addChild('host:update', '', $hostNS);
         $update->addAttribute('xsi:schemaLocation', $hostXSI);
-        $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
+        $update->addChild(self::VALUE_NAME, $this->contact, $hostNS);
 
-        $add = $update->addChild('add');
-            $address = $add->addChild('addr');
-            $address->addAttribute('ip', $ipv);
-            $status  = $add->addChild('status');
-            $status->addAttribute('s', $s);
-        $remove = $update->addChild('rem');
-            $address = $add->addChild('addr');
-            $address->addAttribute('ip', $ipv);
-        $change = $update->addChild('chg');
+        $addBlock = $updateXML->addChild('add', '', $hostNS);
+        
+        foreach ($this->add as $field) {
+            $field->addFieldXml($addBlock, $hostNS);
+        }
+        
+        $remBlock = $updateXML->addChild('rem', '', $hostNS);
+        
+        foreach ($this->remove as $field) {
+            $field->addFieldXml($remBlock, $hostNS);
+        }
+//        $add = $update->addChild('add');
+//            $address = $add->addChild('addr');
+//            $address->addAttribute('ip', $ipv);
+//            $status  = $add->addChild('status');
+//            $status->addAttribute('s', $s);
+//        $remove = $update->addChild('rem');
+//            $address = $add->addChild('addr');
+//            $address->addAttribute('ip', $ipv);
+//        $change = $update->addChild('chg');
 
     }
 

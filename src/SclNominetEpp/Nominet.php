@@ -24,6 +24,9 @@ class Nominet extends AbstractRequestResponse
 {
     const LIST_MONTH  = 1;
     const LIST_EXPIRY = 2;
+    const STATUS_CLIENT_HOLD = 'clientHold';
+    const STATUS_CLIENT_UPDATE_PROHIBITED = 'clientUpdateProhibited';
+    const STATUS_CLIENT_DELETE_PROHIBITED = 'clientDeleteProhibited';
 
     /**
      * Flag that states whether we are logged into Nominet or not.
@@ -276,7 +279,7 @@ class Nominet extends AbstractRequestResponse
         $oldDomain = $this->domainInfo($domain->name); //used to input data into the system.
         $request->add(new Update\Field\UpdateDomainNameserver('ns2.example.com'));
         $request->add(new Update\Field\UpdateDomainContact('mak21', 'tech'));
-        $request->add(new Update\Field\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\UpdateStatus('Payment Overdue', self::STATUS_CLIENT_HOLD));
         
         $request->remove(new Update\Field\UpdateDomainNameserver('ns1.example.com'));
         $request->remove(new Update\Field\UpdateDomainContact('mak32', 'tech'));
@@ -295,7 +298,7 @@ class Nominet extends AbstractRequestResponse
         
         $request = new Request\Update\Contact();
         
-        $request->add(new Update\Field\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\UpdateStatus('', self::STATUS_CLIENT_DELETE_PROHIBITED));
         
         $response = $this->processRequest($request);
         
@@ -308,7 +311,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Update\ContactID();
         
-        $request->add(new Update\Field\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\UpdateStatus('', self::STATUS_CLIENT_HOLD));
         
         $response = $this->processRequest($request);
 
@@ -319,11 +322,11 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
         
-        $request = new Request\Update\Host();
+        $request = new Request\Update\Host(new \SclNominetEpp\Nameserver());
         
-        $request->add(new Update\Field\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\UpdateStatus('', self::STATUS_CLIENT_UPDATE_PROHIBITED));
         
-        $request->change(new Update\Field\UpdateHostName('ns2.example.com'));
+        $request->add(new Update\Field\UpdateHostName('ns2.example.com'));
         
         $response = $this->processRequest($request);
         
