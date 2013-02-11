@@ -22,4 +22,10 @@ class UpdateHostAddress implements UpdateFieldInterface
         $address = $xml->addChild('addr', $this->address, $namespace);
         $address->addAttribute('ip', $this->version);
     }
+    
+    public function removeFieldXml(\SimpleXMLElement $xml, $namespace)
+    {
+        $address = $xml->addChild('addr', $this->address, $namespace);
+        $address->addAttribute('ip', $this->version);
+    }
 }

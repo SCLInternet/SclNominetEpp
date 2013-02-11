@@ -22,4 +22,10 @@ class UpdateDomainContact implements UpdateFieldInterface
         $status = $xml->addChild('contact', $this->message, $namespace);
         $status->addAttribute('type', $this->type);
     }
+    
+    public function removeFieldXml(\SimpleXMLElement $xml, $namespace)
+    {
+        $status = $xml->addChild('contact', $this->message, $namespace);
+        $status->addAttribute('type', $this->type);
+    }
 }

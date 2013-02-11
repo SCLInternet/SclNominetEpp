@@ -11,5 +11,5 @@ interface UpdateFieldInterface
 {
     public function addFieldXml(\SimpleXMLElement $xml, $namespace);
     
-    public function remFieldXml();
+    public function removeFieldXml(\SimpleXMLElement $xml, $namespace);
 }

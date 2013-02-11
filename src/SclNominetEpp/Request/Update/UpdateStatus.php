@@ -22,4 +22,9 @@ class UpdateStatus implements UpdateFieldInterface
         $status = $xml->addChild('status', $this->message, $namespace);
         $status->addAttribute('s', $this->status);
     }
+    
+    public function removeFieldXml(\SimpleXMLElement $xml, $namespace) {
+        $status = $xml->addChild('status', $this->message, $namespace);
+        $status->addAttribute('s', $this->status);
+    }
 }
