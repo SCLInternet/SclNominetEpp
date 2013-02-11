@@ -13,6 +13,7 @@ use SclNominetEpp\Exception\LoginRequiredException;
 
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update;
+use SclNominetEpp\Request\Update\Helper;
 
 /**
  * This class exposes all the actions of the Nominet EPP system in a nice PHP
@@ -24,10 +25,39 @@ class Nominet extends AbstractRequestResponse
 {
     const LIST_MONTH  = 1;
     const LIST_EXPIRY = 2;
-    const STATUS_CLIENT_HOLD = 'clientHold';
-    const STATUS_CLIENT_UPDATE_PROHIBITED = 'clientUpdateProhibited';
-    const STATUS_CLIENT_DELETE_PROHIBITED = 'clientDeleteProhibited';
 
+    // A client MUST NOT alter status values set by the server.
+    // A server MAY alter or override status values set by a client, subject to local server policies.
+    // Status values that can be added or removed by a client are prefixed with "client".
+    const STATUS_CLIENT_DELETE_PROHIBITED   = 'clientDeleteProhibited';
+    const STATUS_CLIENT_HOLD                = 'clientHold';
+    const STATUS_CLIENT_RENEW               = 'clientRenewProhibited';
+    const STATUS_CLIENT_TRANSFER_PROHIBITED = 'clientTransferProhibited';
+    const STATUS_CLIENT_UPDATE_PROHIBITED   = 'clientUpdateProhibited';
+    
+    // Corresponding status values that can be added or removed by a server are prefixed with "server".
+    const STATUS_SERVER_DELETE_PROHIBITED   = 'serverDeleteProhibited';
+    const STATUS_SERVER_HOLD                = 'serverHold';
+    const STATUS_SERVER_RENEW               = 'serverRenewProhibited';
+    const STATUS_SERVER_TRANSFER_PROHIBITED = 'serverTransferProhibited';
+    const STATUS_SERVER_UPDATE_PROHIBITED   = 'serverUpdateProhibited';
+
+    // pending[action]" status MUST NOT be combined 
+    // with either:-
+    // "client[action]Prohibited" or 
+    // "server[action]Prohibited" status or
+    // other "pending[action]" status.
+    const STATUS_PENDING_CREATE   = 'pendingCreate';
+    const STATUS_PENDING_DELETE   = 'pendingDelete';
+    const STATUS_PENDING_RENEW    = 'pendingRenew'; 
+    const STATUS_PENDING_TRANSFER = 'pendingTransfer';
+    const STATUS_PENDING_UPDATE   = 'pendingUpdate';
+    
+    const STATUS_INACTIVE = 'inactive';
+    
+    //"ok" status MUST NOT be combined with any other status.
+    const STATUS_OKAY = 'ok';
+    
     /**
      * Flag that states whether we are logged into Nominet or not.
      *
@@ -276,10 +306,43 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
         $request = new Request\Update\Domain();
         
-        $oldDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
-        $request->add(new Update\Field\DomainNameserver('ns2.example.com'));
-        $request->add(new Update\Field\DomainContact('mak21', 'tech'));
+        $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
+        $currentNameservers = $currentDomain->getNameservers();
+        $currentContacts    = $currentDomain->getContacts();
+        $newNameservers     = $domain->getNameservers();
+        $newContacts        = $domain->getContact();
+        
+        $addContacts       = array_diff_assoc($newContacts, $currentContacts);
+        $removeContacts    = array_diff_assoc($currentContacts, $newContacts);
+        $addNameservers    = array_diff($newNameservers, $currentNameservers);
+        $removeNameservers = array_diff($currentNameservers, $newNameservers);
+        
+        //$requestBuildHelper = new RequestBuildHelper;
+        
+        if(!empty($addNameservers)){
+            foreach($addNameservers as $nameserver){
+                $request->add(new Update\Field\DomainNameserver($nameserver->getHostName()));
+            }
+        }
+        
+        if(!empty($addContacts)){
+            foreach($addContacts as $type => $contact){
+                $request->add(new Update\Field\DomainContact($contact->getId(), $type));
+            }
+        }   
+        
         $request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
+           
+        if(!empty($removeNameservers)){
+            foreach($removeNameservers as $nameserver){
+                $request->remove(new Update\Field\DomainNameserver($nameserver->getHostName()));
+            }
+        }
+        if(!empty($removeContacts)){
+            foreach($removeContacts as $type => $contact){
+                $request->remove(new Update\Field\DomainContact($contact->getId(), $type));
+            }
+        }  
         
         $request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
         $request->remove(new Update\Field\DomainContact('mak32', 'tech'));

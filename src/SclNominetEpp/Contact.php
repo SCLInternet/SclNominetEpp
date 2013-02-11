@@ -31,7 +31,7 @@ class Contact
 
     const TYPE_UNKNOWN = 'UNKNOWN';
 
-    private static $types = array(
+    private static $organisationTypes = array(
         self::TYPE_UK_LTD,
         self::TYPE_UK_PLC,
         self::TYPE_UK_PARTNERSHIP,
@@ -138,8 +138,14 @@ class Contact
      *
      * @var type
      */
-    private $type = self::TYPE_UNKNOWN;
+    private $organisationType = self::TYPE_UNKNOWN;
 
+    /**
+     *
+     * @var type 
+     */
+    private $type;
+    
     /*
      * Constructor
      */
@@ -389,21 +395,41 @@ class Contact
     }
 
     /**
-     * Set $this->type
+     * Set $this->organisationType
      *
+     * @param string $organisationType
+     */
+    public function setOrganisationType($organisationType)
+    {
+        if (!in_array((string) $organisationType, self::$organisationTypes)) {
+            throw new \Exception("Invald organisation type: $organisationType");
+        }
+        $this->organisationType = (string) $organisationType;
+    }
+
+    /**
+     * Get $this->organisationType
+     *
+     * @return string
+     */
+    public function getOrganisationType()
+    {
+        return $this->organisationType;
+    }
+    
+    /**
+     * Set $this->type
+     * 
      * @param string $type
      */
     public function setType($type)
     {
-        if (!in_array((string) $type, self::$types)) {
-            throw new \Exception("Invald organisation type: $type");
-        }
-        $this->type = (string) $type;
+        $this->type = $type;
     }
-
+    
     /**
      * Get $this->type
-     *
+     * 
      * @return string
      */
     public function getType()

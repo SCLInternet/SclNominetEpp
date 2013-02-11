@@ -207,9 +207,9 @@ class Domain
      * @param string $type
      * @param array  $contacts
      */
-    public function addContact($type, Contact $contact)
+    public function addContact(Contact $contact)
     {
-        $this->contacts[$type] = $contact;
+        $this->contacts[] = $contact;
     }
 
     /**
@@ -220,6 +220,12 @@ class Domain
     public function getContacts()
     {
         return $this->contacts;
+    }
+    
+    public function removeContact(Contact $contact)
+    {
+       $arrayKey =  array_search($contact, $this->contacts);
+       unset($this->contacts[$arrayKey]);
     }
 
     /**
@@ -242,6 +248,11 @@ class Domain
         return $this->nameservers;
     }
 
+    public function removeNameserver(Nameserver $nameserver)
+    {
+       $arrayKey =  array_search($nameserver, $this->nameservers);
+       unset($this->nameservers[$arrayKey]);
+    }
     /**
      *
      * @param string $clientID
