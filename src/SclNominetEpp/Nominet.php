@@ -318,15 +318,15 @@ class Nominet extends AbstractRequestResponse
         return $response;
     }
 
-    public function updateHost()
+    public function updateHost($host)
     {
         $this->loginCheck();
         
-        $request = new Request\Update\Host(new \SclNominetEpp\Nameserver());
+        $request = new Request\Update\Host($host);
         
         $request->add(new Update\Field\UpdateStatus('', self::STATUS_CLIENT_UPDATE_PROHIBITED));
         
-        $request->add(new Update\Field\UpdateHostName('ns2.example.com'));
+        $request->add(new Update\Field\UpdateHostAddress('192.0.2.2', 'v4'));
         
         $response = $this->processRequest($request);
         

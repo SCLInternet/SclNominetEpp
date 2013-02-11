@@ -38,9 +38,8 @@ class DomainTest extends \PHPUnit_Framework_TestCase
 </epp>
 
 EOX;
-
-        $domain = new Domain();
-        $domain->setName('caliban-scl.sch.uk');
+        
+        $domain = 'caliban-scl.sch.uk';
         $domains = array($domain);
         $this->request->lookup($domains);
 

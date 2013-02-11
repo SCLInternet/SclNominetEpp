@@ -8,8 +8,7 @@ namespace SclNominetEpp\Request\Update\Field;
  */
 class UpdateDomainNameserver implements UpdateFieldInterface
 {
-    private $contact;
-    private $type;
+    private $nameserver;
     
     public function __construct($nameserver)
     {
