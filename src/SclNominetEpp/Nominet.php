@@ -276,7 +276,7 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
         $request = new Request\Update\Domain();
         
-        $oldDomain = $this->domainInfo($domain->name); //used to input data into the system.
+        $oldDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
         $request->add(new Update\Field\DomainNameserver('ns2.example.com'));
         $request->add(new Update\Field\DomainContact('mak21', 'tech'));
         $request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
@@ -292,7 +292,7 @@ class Nominet extends AbstractRequestResponse
     /**
      * The update operation allows the attributes of an object to be updated.
      */
-    public function updateContact()
+    public function updateContact(Contact $contact)
     {
         $this->loginCheck();
         
@@ -318,11 +318,11 @@ class Nominet extends AbstractRequestResponse
         return $response;
     }
 
-    public function updateHost($host)
+    public function updateHost(Nameserver $host)
     {
         $this->loginCheck();
         
-        $request = new Request\Update\Host($host);
+        $request = new Request\Update\Host($host->getHostName());
         
         $request->add(new Update\Field\Status('', self::STATUS_CLIENT_UPDATE_PROHIBITED));
         
