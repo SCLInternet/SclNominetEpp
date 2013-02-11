@@ -6,7 +6,7 @@ namespace SclNominetEpp\Request\Update\Field;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateStatus implements UpdateFieldInterface
+class Status implements UpdateFieldInterface
 {
     private $message;
     private $status;

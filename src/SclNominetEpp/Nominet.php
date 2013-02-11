@@ -277,12 +277,12 @@ class Nominet extends AbstractRequestResponse
         $request = new Request\Update\Domain();
         
         $oldDomain = $this->domainInfo($domain->name); //used to input data into the system.
-        $request->add(new Update\Field\UpdateDomainNameserver('ns2.example.com'));
-        $request->add(new Update\Field\UpdateDomainContact('mak21', 'tech'));
-        $request->add(new Update\Field\UpdateStatus('Payment Overdue', self::STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\DomainNameserver('ns2.example.com'));
+        $request->add(new Update\Field\DomainContact('mak21', 'tech'));
+        $request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
         
-        $request->remove(new Update\Field\UpdateDomainNameserver('ns1.example.com'));
-        $request->remove(new Update\Field\UpdateDomainContact('mak32', 'tech'));
+        $request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
+        $request->remove(new Update\Field\DomainContact('mak32', 'tech'));
         
         $response = $this->processRequest($request);
 
@@ -298,7 +298,7 @@ class Nominet extends AbstractRequestResponse
         
         $request = new Request\Update\Contact();
         
-        $request->add(new Update\Field\UpdateStatus('', self::STATUS_CLIENT_DELETE_PROHIBITED));
+        $request->add(new Update\Field\Status('', self::STATUS_CLIENT_DELETE_PROHIBITED));
         
         $response = $this->processRequest($request);
         
@@ -311,7 +311,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Update\ContactID();
         
-        $request->add(new Update\Field\UpdateStatus('', self::STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\Status('', self::STATUS_CLIENT_HOLD));
         
         $response = $this->processRequest($request);
 
@@ -324,9 +324,9 @@ class Nominet extends AbstractRequestResponse
         
         $request = new Request\Update\Host($host);
         
-        $request->add(new Update\Field\UpdateStatus('', self::STATUS_CLIENT_UPDATE_PROHIBITED));
+        $request->add(new Update\Field\Status('', self::STATUS_CLIENT_UPDATE_PROHIBITED));
         
-        $request->add(new Update\Field\UpdateHostAddress('192.0.2.2', 'v4'));
+        $request->add(new Update\Field\HostAddress('192.0.2.2', 'v4'));
         
         $response = $this->processRequest($request);
         

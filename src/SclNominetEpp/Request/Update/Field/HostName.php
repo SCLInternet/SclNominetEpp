@@ -6,7 +6,7 @@ namespace SclNominetEpp\Request\Update\Field;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateHostName implements UpdateFieldInterface
+class HostName implements UpdateFieldInterface
 {
     private $nameserver;
     

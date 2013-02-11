@@ -6,7 +6,7 @@ namespace SclNominetEpp\Request\Update\Field;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateDomainRegistrant implements UpdateFieldInterface
+class DomainRegistrant implements UpdateFieldInterface
 {
     private $contact;
     private $passwd;
