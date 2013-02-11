@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request\Update;
+namespace SclNominetEpp\Request\Update\Field;
 
 /**
  * UpdateDomain "add" and "remove" both use "status" as a field
@@ -17,13 +17,8 @@ class UpdateStatus implements UpdateFieldInterface
         $this->status  = $status;
     }
     
-    public function addFieldXml(\SimpleXMLElement $xml, $namespace)
+    public function fieldXml(\SimpleXMLElement $xml, $namespace)
     {
-        $status = $xml->addChild('status', $this->message, $namespace);
-        $status->addAttribute('s', $this->status);
-    }
-    
-    public function removeFieldXml(\SimpleXMLElement $xml, $namespace) {
         $status = $xml->addChild('status', $this->message, $namespace);
         $status->addAttribute('s', $this->status);
     }

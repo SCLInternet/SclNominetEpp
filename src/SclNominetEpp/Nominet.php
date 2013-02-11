@@ -274,12 +274,12 @@ class Nominet extends AbstractRequestResponse
         $request = new Request\Update\Domain();
         
         $oldDomain = $this->domainInfo($domain->name); //used to input data into the system.
-        $request->add(new Update\UpdateDomainNameserver('ns2.example.com'));
-        $request->add(new Update\UpdateDomainContact('mak21', 'tech'));
-        $request->add(new Update\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\UpdateDomainNameserver('ns2.example.com'));
+        $request->add(new Update\Field\UpdateDomainContact('mak21', 'tech'));
+        $request->add(new Update\Field\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
         
-        $request->remove(new Update\UpdateDomainNameserver('ns1.example.com'));
-        $request->remove(new Update\UpdateDomainContact('mak32', 'tech'));
+        $request->remove(new Update\Field\UpdateDomainNameserver('ns1.example.com'));
+        $request->remove(new Update\Field\UpdateDomainContact('mak32', 'tech'));
         
         $response = $this->processRequest($request);
 
@@ -295,7 +295,7 @@ class Nominet extends AbstractRequestResponse
         
         $request = new Request\Update\Contact();
         
-        $request->add(new UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
         
         $response = $this->processRequest($request);
         
@@ -308,7 +308,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Update\ContactID();
         
-        $request->add(new UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        $request->add(new Update\Field\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
         
         $response = $this->processRequest($request);
 
@@ -320,6 +320,10 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
         
         $request = new Request\Update\Host();
+        
+        $request->add(new Update\Field\UpdateStatus('Payment Overdue', STATUS_CLIENT_HOLD));
+        
+        $request->change(new Update\Field\UpdateHostName('ns2.example.com'));
         
         $response = $this->processRequest($request);
         

@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request\Update;
+namespace SclNominetEpp\Request\Update\Field;
 
 /**
  * UpdateDomain "add" and "remove" both use "status" as a field
@@ -17,13 +17,7 @@ class UpdateHostAddress implements UpdateFieldInterface
         $this->version  = $version;
     }
     
-    public function addFieldXml(\SimpleXMLElement $xml, $namespace)
-    {
-        $address = $xml->addChild('addr', $this->address, $namespace);
-        $address->addAttribute('ip', $this->version);
-    }
-    
-    public function removeFieldXml(\SimpleXMLElement $xml, $namespace)
+    public function fieldXml(\SimpleXMLElement $xml, $namespace)
     {
         $address = $xml->addChild('addr', $this->address, $namespace);
         $address->addAttribute('ip', $this->version);
