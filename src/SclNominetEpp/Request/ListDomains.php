@@ -9,6 +9,7 @@ namespace SclNominetEpp\Request;
 
 use SclNominetEpp\Response\ListDomains as ListDomainsResponse;
 
+use SclNominetEpp\Request;
 /**
  * This class build the XML for a Nominet EPP list command.
  *
