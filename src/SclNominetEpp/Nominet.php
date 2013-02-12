@@ -320,7 +320,7 @@ class Nominet extends AbstractRequestResponse
         $newNameservers     = $domain->getNameservers();
         $newContacts        = $domain->getContacts();
 
-        $addContacts       = array_uintersect($newContacts, $currentContacts, array('DomainCompareHelper','compare'));                    
+        $addContacts       = array_uintersect($newContacts, $currentContacts, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));                    
         $removeContacts    = array_uintersect($currentContacts, $newContacts, array('DomainCompareHelper','compare'));
         $addNameservers    = array_uintersect($newNameservers, $currentNameservers, array('DomainCompareHelper','compare'));
         $removeNameservers = array_uintersect($currentNameservers, $newNameservers, array('DomainCompareHelper','compare'));
