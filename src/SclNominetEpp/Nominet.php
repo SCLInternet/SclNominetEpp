@@ -3,6 +3,7 @@
  * Contains the Nominet class definition.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
 namespace SclNominetEpp;
@@ -10,7 +11,6 @@ namespace SclNominetEpp;
 use SclRequestResponse\AbstractRequestResponse;
 
 use SclNominetEpp\Exception\LoginRequiredException;
-
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update;
 
@@ -19,6 +19,7 @@ use SclNominetEpp\Request\Update;
  * class.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Nominet extends AbstractRequestResponse
 {
@@ -321,9 +322,9 @@ class Nominet extends AbstractRequestResponse
         $newContacts        = $domain->getContacts();
 
         $addContacts       = array_uintersect($newContacts, $currentContacts, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));                    
-        $removeContacts    = array_uintersect($currentContacts, $newContacts, array('DomainCompareHelper','compare'));
-        $addNameservers    = array_uintersect($newNameservers, $currentNameservers, array('DomainCompareHelper','compare'));
-        $removeNameservers = array_uintersect($currentNameservers, $newNameservers, array('DomainCompareHelper','compare'));
+        $removeContacts    = array_uintersect($currentContacts, $newContacts, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));
+        $addNameservers    = array_uintersect($newNameservers, $currentNameservers, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));
+        $removeNameservers = array_uintersect($currentNameservers, $newNameservers, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));
         
         if(!empty($addNameservers)){
             foreach($addNameservers as $nameserver){
@@ -350,8 +351,8 @@ class Nominet extends AbstractRequestResponse
             }
         }  
         
-        $request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
-        $request->remove(new Update\Field\DomainContact('mak32', 'tech'));
+//        $request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
+//        $request->remove(new Update\Field\DomainContact('mak32', 'tech'));
         
         $response = $this->processRequest($request);
 
