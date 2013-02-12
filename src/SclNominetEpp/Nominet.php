@@ -13,7 +13,6 @@ use SclNominetEpp\Exception\LoginRequiredException;
 
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update;
-use SclNominetEpp\Request\Update\Helper;
 
 /**
  * This class exposes all the actions of the Nominet EPP system in a nice PHP
@@ -321,22 +320,10 @@ class Nominet extends AbstractRequestResponse
         $newNameservers     = $domain->getNameservers();
         $newContacts        = $domain->getContacts();
 
-        $addContacts = array_uintersect($newContacts, $currentContacts, array('DomainCompareHelper','compare'));
-        
-        
-        
-//        $aVarsArray = get_object_vars($a);
-//        $bVarsArray = get_object_vars($b);
-//
-//        $addContacts = array_diff_assoc($aVarsArray, $bVarsArray);
-                    
-                    
-                    
+        $addContacts       = array_uintersect($newContacts, $currentContacts, array('DomainCompareHelper','compare'));                    
         $removeContacts    = array_uintersect($currentContacts, $newContacts, array('DomainCompareHelper','compare'));
         $addNameservers    = array_uintersect($newNameservers, $currentNameservers, array('DomainCompareHelper','compare'));
         $removeNameservers = array_uintersect($currentNameservers, $newNameservers, array('DomainCompareHelper','compare'));
-        
-        //$requestBuildHelper = new RequestBuildHelper;
         
         if(!empty($addNameservers)){
             foreach($addNameservers as $nameserver){

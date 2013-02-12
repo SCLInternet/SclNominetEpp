@@ -6,7 +6,7 @@ namespace SclNominetEpp\Request\Update\Field;
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class UpdateDomainContact implements UpdateFieldInterface
+class DomainContact implements UpdateFieldInterface
 {
     private $contact;
     private $type;
@@ -19,7 +19,7 @@ class UpdateDomainContact implements UpdateFieldInterface
     
     public function fieldXml(\SimpleXMLElement $xml, $namespace)
     {
-        $status = $xml->addChild('contact', $this->message, $namespace);
-        $status->addAttribute('type', $this->type);
+        $contact = $xml->addChild('contact', $this->contact, $namespace);
+        $contact->addAttribute('type', $this->type);
     }
 }

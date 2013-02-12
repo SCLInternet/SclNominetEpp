@@ -53,13 +53,13 @@ class Domain extends Request
         $update->addAttribute('xsi:schemaLocation', $domainXSI);
         $update->addChild(self::VALUE_NAME, $this->value, $domainNS);
 
-        $addBlock = $updateXML->addChild('add', '', $domainNS);
+        $addBlock = $update->addChild('add', '', $domainNS);
         
         foreach ($this->add as $field) {
             $field->fieldXml($addBlock, $domainNS);
         }
         
-        $remBlock = $updateXML->addChild('rem', '', $domainNS);
+        $remBlock = $update->addChild('rem', '', $domainNS);
         
         foreach ($this->remove as $field) {
             $field->fieldXml($remBlock, $domainNS);
