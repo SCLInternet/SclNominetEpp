@@ -215,10 +215,10 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The create command allows you to register a domain name or to create an
-     * account or nameserver object to link to domain names.
+     * The create command allows you to create a contact
+     * account.
      *
-     * @param \SclNominetEpp\Domain $domain
+     * @param \SclNominetEpp\Contact $contact
      */
     public function createContact(Contact $contact)
     {
@@ -249,6 +249,11 @@ class Nominet extends AbstractRequestResponse
         return $response->success();
     }
 
+    /**
+     * The create command allows you to create a nameserver object to link to domain names.
+     *
+     * @param \SclNominetEpp\Nameserver $host
+     */
     public function createHost(Nameserver $host)
     {
         $this->loginCheck();
@@ -304,18 +309,32 @@ class Nominet extends AbstractRequestResponse
     public function updateDomain(Domain $domain)
     {
         $this->loginCheck();
-        $request = new Request\Update\Domain();
+        $request = new Request\Update\Domain($domain->getName());
+        $request->setDomain($domain);
         
         $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
+        if (!$currentDomain instanceof Domain){
+            throw new Exception("The domain requested for updating is unregistered.");
+        }
         $currentNameservers = $currentDomain->getNameservers();
         $currentContacts    = $currentDomain->getContacts();
         $newNameservers     = $domain->getNameservers();
-        $newContacts        = $domain->getContact();
+        $newContacts        = $domain->getContacts();
+
+        $addContacts = array_uintersect($newContacts, $currentContacts, array('DomainCompareHelper','compare'));
         
-        $addContacts       = array_diff_assoc($newContacts, $currentContacts);
-        $removeContacts    = array_diff_assoc($currentContacts, $newContacts);
-        $addNameservers    = array_diff($newNameservers, $currentNameservers);
-        $removeNameservers = array_diff($currentNameservers, $newNameservers);
+        
+        
+//        $aVarsArray = get_object_vars($a);
+//        $bVarsArray = get_object_vars($b);
+//
+//        $addContacts = array_diff_assoc($aVarsArray, $bVarsArray);
+                    
+                    
+                    
+        $removeContacts    = array_uintersect($currentContacts, $newContacts, array('DomainCompareHelper','compare'));
+        $addNameservers    = array_uintersect($newNameservers, $currentNameservers, array('DomainCompareHelper','compare'));
+        $removeNameservers = array_uintersect($currentNameservers, $newNameservers, array('DomainCompareHelper','compare'));
         
         //$requestBuildHelper = new RequestBuildHelper;
         
@@ -418,7 +437,6 @@ class Nominet extends AbstractRequestResponse
             return false;
         }
         $domain = $response->getDomain();
-
         return $domain;
     }
 
@@ -451,7 +469,7 @@ class Nominet extends AbstractRequestResponse
      * an object.
      *
      * @param  string $hostName
-     * @return type
+     * @return Nameserver|mixed
      */
     public function hostInfo($hostName)
     {
@@ -535,8 +553,7 @@ class Nominet extends AbstractRequestResponse
      *
      * @param  integer    $year
      * @param  integer    $month
-     * @param  integer    $type
-     * @return array|NULL The list of the domains or null on failure.
+     * @param  integer|null    $type
      */
     public function listDomains($year, $month, $type = self::LIST_MONTH)
     {

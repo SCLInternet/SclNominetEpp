@@ -100,6 +100,8 @@ switch (strtolower($command)) {
         $admin2->setId('admin2');
         $admin2->setType('admin');
         $domain->addContact($admin2);
+        $argv[0] = $domain;
+        break;
 }
 
 var_dump(call_user_func_array(array($nominet, $command), $argv));
