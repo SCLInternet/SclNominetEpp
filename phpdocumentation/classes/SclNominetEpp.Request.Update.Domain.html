@@ -35,10 +35,10 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">349</span></a></li>
+                <span class="label label-info">337</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
-                <span class="label label-info">13</span>
+                <span class="label label-info">14</span>
 </li></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
                 <span class="label label-info">0</span></a></li>
@@ -63,13 +63,17 @@
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct :: Prepares the common XML wrapper for all requests."><span class="description">Prepares the common XML wrapper for all requests.</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_add" title="add :: "><span class="description">add()
-        </span><pre>add()</pre></a></li>
+<li class="method public "><a href="#method_add" title='add :: The &lt;b&gt;add()&lt;/b&gt; function assigns a Field object as an element of the add array
+for including specific fields in the update request "domain:add" tag.'><span class="description">The &lt;b&gt;add()&lt;/b&gt; function assigns a Field object as an element of the add array
+for including specific fields in the update request "domain:add" tag.</span><pre>add()</pre></a></li>
 <li class="method public "><a href="#method_addContent" title="addContent :: This method should be over to provide the content of the request."><span class="description">This method should be over to provide the content of the request.</span><pre>addContent()</pre></a></li>
 <li class="method public inherited"><a href="#method_getPacket" title="getPacket :: Returns the XML of the request."><span class="description">Returns the XML of the request.</span><pre>getPacket()</pre></a></li>
 <li class="method public inherited"><a href="#method_getResponse" title="getResponse :: Return the response."><span class="description">Return the response.</span><pre>getResponse()</pre></a></li>
-<li class="method public "><a href="#method_remove" title="remove :: "><span class="description">remove()
-        </span><pre>remove()</pre></a></li>
+<li class="method public "><a href="#method_remove" title='remove :: /**
+The &lt;b&gt;remove()&lt;/b&gt; function assigns a Field object as an element of the remove array
+for including specific fields in the update request "domain:remove" tag.'><span class="description">/**
+The &lt;b&gt;remove()&lt;/b&gt; function assigns a Field object as an element of the remove array
+for including specific fields in the update request "domain:remove" tag.</span><pre>remove()</pre></a></li>
 <li class="method public "><a href="#method_setDomain" title="setDomain :: "><span class="description">setDomain()
         </span><pre>setDomain()</pre></a></li>
 </ul>
@@ -94,8 +98,8 @@
 </li>
 <li class="nav-header private">» Private
                     <ul>
-<li class="property private "><a href="#property_add" title="$add :: "><span class="description"></span><pre>$add</pre></a></li>
-<li class="property private "><a href="#property_remove" title="$remove :: "><span class="description"></span><pre>$remove</pre></a></li>
+<li class="property private "><a href="#property_add" title="$add :: An array of elements that will be added during the update command."><span class="description"></span><pre>$add</pre></a></li>
+<li class="property private "><a href="#property_remove" title="$remove :: An array of elements that will be removed during the update command."><span class="description"></span><pre>$remove</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -147,14 +151,17 @@
 </div></div>
 </div>
 <a id="method_add"></a><div class="element clickable method public method_add" data-toggle="collapse" data-target=".method_add .collapse">
-<h2>add()
-        </h2>
+<h2>The &lt;b&gt;add()&lt;/b&gt; function assigns a Field object as an element of the add array
+for including specific fields in the update request "domain:add" tag.</h2>
 <pre>add(\SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$field</h4></div>
+<div class="subelement argument">
+<h4>$field</h4>
+<code><a href="../classes/SclNominetEpp.Request.Update.Field.UpdateFieldInterface.html">\SclNominetEpp\Request\Update\Field\UpdateFieldInterface</a></code>
+</div>
 </div></div>
 </div>
 <a id="method_addContent"></a><div class="element clickable method public method_addContent" data-toggle="collapse" data-target=".method_addContent .collapse">
@@ -196,14 +203,18 @@
 </div></div>
 </div>
 <a id="method_remove"></a><div class="element clickable method public method_remove" data-toggle="collapse" data-target=".method_remove .collapse">
-<h2>remove()
-        </h2>
+<h2>/**
+The &lt;b&gt;remove()&lt;/b&gt; function assigns a Field object as an element of the remove array
+for including specific fields in the update request "domain:remove" tag.</h2>
 <pre>remove(\SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$field</h4></div>
+<div class="subelement argument">
+<h4>$field</h4>
+<code><a href="../classes/SclNominetEpp.Request.Update.Field.UpdateFieldInterface.html">\SclNominetEpp\Request\Update\Field\UpdateFieldInterface</a></code>
+</div>
 </div></div>
 </div>
 <a id="method_setDomain"></a><div class="element clickable method public method_setDomain" data-toggle="collapse" data-target=".method_setDomain .collapse">
@@ -296,13 +307,13 @@
 </div>
 <a id="property_add"> </a><div class="element clickable property private property_add" data-toggle="collapse" data-target=".property_add .collapse">
 <h2></h2>
-<pre>$add </pre>
+<pre>$add : array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="property_remove"> </a><div class="element clickable property private property_remove" data-toggle="collapse" data-target=".property_remove .collapse">
 <h2></h2>
-<pre>$remove </pre>
+<pre>$remove : array</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
@@ -351,7 +362,7 @@
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-02-13T15:43:02Z.<br></footer></div>
+            generated on 2013-02-13T16:43:19Z.<br></footer></div>
 </div>
 </body>
 </html>

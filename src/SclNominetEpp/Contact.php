@@ -2,7 +2,8 @@
 namespace SclNominetEpp;
 
 /**
- *
+ * A contact record
+ * 
  * @author Tom Oram <tom@scl.co.uk>
  */
 class Contact

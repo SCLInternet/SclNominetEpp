@@ -5,7 +5,8 @@ namespace SclNominetEpp;
 use DateTime;
 
 /**
- *
+ * A domain record
+ * 
  * @author Tom Oram <tom@scl.co.uk>
  */
 class Domain
@@ -30,19 +31,22 @@ class Domain
     private $period = 2;
 
     /**
+     * The Person, Company or Entity who owns or holds a domain name.
      *
      * @var string
      */
     private $registrant;
 
     /**
-     *
+     * All the contacts of the registered domain.
+     * 
      * @var array
      */
     private $contacts = array();
 
     /**
-     *
+     * All the nameservers of the registered domain.
+     * 
      * @var array
      */
     private $nameservers = array();
@@ -54,7 +58,7 @@ class Domain
     private $clientID;
 
     /**
-     *
+     * 
      * @var string
      */
     private $creatorID;
@@ -126,7 +130,8 @@ class Domain
     private $nextBill;
 
     /**
-     *
+     * Domain's current registration status
+     * 
      * @var string
      */
     private $regStatus;
@@ -202,10 +207,9 @@ class Domain
     }
 
     /**
-     * Set $this->contacts
-     *
-     * @param string $type
-     * @param array  $contacts
+     * Set add $contact to array of contacts
+     * 
+     * @param \SclNominetEpp\Contact $contact
      */
     public function addContact(Contact $contact)
     {
@@ -222,6 +226,11 @@ class Domain
         return $this->contacts;
     }
     
+    /**
+     * Remove $contact from the array of contacts if it already exists.
+     * 
+     * @param \SclNominetEpp\Contact $contact
+     */
     public function removeContact(Contact $contact)
     {
         $arrayKey =  array_search($contact, $this->contacts);
@@ -229,7 +238,7 @@ class Domain
     }
 
     /**
-     * Add $nameserver to $this->nameservers
+     * Add $nameserver to the array of nameservers
      *
      * @param Nameserver $nameserver
      */
@@ -239,15 +248,20 @@ class Domain
     }
 
     /**
-     * Get $this->nameservers
-     * @todo (type)
-     * @return mixed
+     * Get the array $this->nameservers
+     * 
+     * @return array
      */
     public function getNameservers()
     {
         return $this->nameservers;
     }
 
+    /**
+     * Remove $namserver from the array of namservers if it already exists.
+     * 
+     * @param \SclNominetEpp\Nameserver $nameserver
+     */
     public function removeNameserver(Nameserver $nameserver)
     {
         $arrayKey =  array_search($nameserver, $this->nameservers);
@@ -412,7 +426,7 @@ class Domain
 
     /**
      * Set $this->autoBill
-     *
+     * @todo the "settype" of autoBill
      * @param settype $autoBill
      */
     public function setAutoBill($autoBill)
@@ -422,7 +436,7 @@ class Domain
 
     /**
      * Get $this->autoBill
-     *
+     * @todo the "gettype" of autoBill
      * @return gettype
      */
     public function getAutoBill()
