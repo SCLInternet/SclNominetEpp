@@ -2838,124 +2838,224 @@ processes the responses.</description>
       <todo line="76">Parse and verify the greeting.</todo>
     </markers>
   </file>
-  <file path="src/SclNominetEpp/Request/Release/Domain.php" hash="c64b314f75cdc8fda3b13c95c3ab51dc" package="Default">
-    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Release" line="13" package="Default">
-      <extends>\SclNominetEpp\Request</extends>
+  <file path="src/SclNominetEpp/Request/Release/Domain.php" hash="ba2e710d9d09ff403e83da0c2c84ee12" package="Default">
+    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Release" line="12" package="Default">
+      <extends>\SclNominetEpp\Request\Release\AbstractRelease</extends>
       <name>Domain</name>
       <full_name>\SclNominetEpp\Request\Release\Domain</full_name>
-      <docblock line="8">
+      <docblock line="7">
         <description>This class build the XML for a Nominet EPP r:release command.</description>
         <long-description/>
-        <tag line="8" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
+        <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
-      <constant namespace="SclNominetEpp\Request\Release" line="15" package="Default">
+      <constant namespace="SclNominetEpp\Request\Release" line="14" package="Default">
         <name>TYPE</name>
         <full_name>TYPE</full_name>
         <value>'domain'</value>
       </constant>
-      <constant namespace="SclNominetEpp\Request\Release" line="16" package="Default">
+      <constant namespace="SclNominetEpp\Request\Release" line="15" package="Default">
         <name>UPDATE_NAMESPACE</name>
         <full_name>UPDATE_NAMESPACE</full_name>
         <value>'urn:ietf:params:xml:ns:release-1.0'</value>
       </constant>
-      <constant namespace="SclNominetEpp\Request\Release" line="17" package="Default">
+      <constant namespace="SclNominetEpp\Request\Release" line="16" package="Default">
         <name>VALUE_NAME</name>
         <full_name>VALUE_NAME</full_name>
         <value>'domainName'</value>
       </constant>
-      <property final="false" static="false" visibility="protected" line="19" namespace="SclNominetEpp\Request\Release" package="Default">
+      <property final="false" static="false" visibility="protected" line="18" namespace="SclNominetEpp\Request\Release" package="Default">
         <name>$domain</name>
         <default>''</default>
       </property>
-      <property final="false" static="false" visibility="protected" line="20" namespace="SclNominetEpp\Request\Release" package="Default">
+      <property final="false" static="false" visibility="protected" line="19" namespace="SclNominetEpp\Request\Release" package="Default">
         <name>$value</name>
         <default/>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="22" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="21" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <argument line="22">
-          <name>$domain</name>
-          <default/>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="28" package="Default">
-        <name>addContent</name>
-        <full_name>addContent</full_name>
-        <argument line="28">
-          <name>$updateXML</name>
-          <default/>
-          <type>\SclNominetEpp\Request\Release\SimpleXMLElement</type>
-        </argument>
       </method>
     </class>
     <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Request/Release/Domain.php</error>
-      <error line="19" code="50018">No DocBlock was found for property $domain</error>
-      <error line="20" code="50018">No DocBlock was found for property $value</error>
-      <error line="22" code="50010">No DocBlock was found for method __construct()</error>
-      <error line="28" code="50010">No DocBlock was found for method addContent()</error>
+      <error line="18" code="50018">No DocBlock was found for property $domain</error>
+      <error line="19" code="50018">No DocBlock was found for property $value</error>
+      <error line="21" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
-  <file path="src/SclNominetEpp/Request/Release/Contact.php" hash="2a1c3ac99ef2932125091ba3ee0c1d0b" package="Default">
-    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Release" line="13" package="Default">
+  <file path="src/SclNominetEpp/Request/Release/AbstractRelease.php" hash="73ce5fd97534fa4631b306775848ba75" package="Default">
+    <class final="false" abstract="true" namespace="SclNominetEpp\Request\Release" line="12" package="Default">
       <extends>\SclNominetEpp\Request</extends>
-      <name>Contact</name>
-      <full_name>\SclNominetEpp\Request\Release\Contact</full_name>
-      <docblock line="8">
+      <name>AbstractRelease</name>
+      <full_name>\SclNominetEpp\Request\Release\AbstractRelease</full_name>
+      <docblock line="7">
         <description>This class build the XML for a Nominet EPP r:release command.</description>
         <long-description/>
-        <tag line="8" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
+        <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
-      <constant namespace="SclNominetEpp\Request\Release" line="15" package="Default">
-        <name>TYPE</name>
-        <full_name>TYPE</full_name>
-        <value>'contact'</value>
-      </constant>
-      <constant namespace="SclNominetEpp\Request\Release" line="16" package="Default">
-        <name>UPDATE_NAMESPACE</name>
-        <full_name>UPDATE_NAMESPACE</full_name>
-        <value>'urn:ietf:params:xml:ns:release-1.0'</value>
-      </constant>
-      <constant namespace="SclNominetEpp\Request\Release" line="17" package="Default">
-        <name>VALUE_NAME</name>
-        <full_name>VALUE_NAME</full_name>
-        <value>'registrant'</value>
-      </constant>
-      <property final="false" static="false" visibility="protected" line="19" namespace="SclNominetEpp\Request\Release" package="Default">
-        <name>$registrant</name>
-        <default>''</default>
-      </property>
-      <property final="false" static="false" visibility="protected" line="20" namespace="SclNominetEpp\Request\Release" package="Default">
+      <property final="false" static="false" visibility="protected" line="18" namespace="SclNominetEpp\Request\Release" package="Default">
         <name>$value</name>
-        <default/>
+        <default>''</default>
+        <docblock line="14">
+          <description/>
+          <long-description/>
+          <tag line="14" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="22" package="Default">
+      <property final="false" static="false" visibility="private" line="25" namespace="SclNominetEpp\Request\Release" package="Default">
+        <name>$type</name>
+        <default/>
+        <docblock line="20">
+          <description>The type of check this is.</description>
+          <long-description/>
+          <tag line="20" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="31" namespace="SclNominetEpp\Request\Release" package="Default">
+        <name>$updateNamespace</name>
+        <default/>
+        <docblock line="27">
+          <description/>
+          <long-description/>
+          <tag line="27" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="37" namespace="SclNominetEpp\Request\Release" package="Default">
+        <name>$valueName</name>
+        <default/>
+        <docblock line="33">
+          <description/>
+          <long-description/>
+          <tag line="33" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="39" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <argument line="22">
-          <name>$registrant</name>
+        <argument line="39">
+          <name>$type</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$response</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$updateNamespace</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$valueName</name>
           <default/>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="28" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="52" package="Default">
+        <name>setValue</name>
+        <full_name>setValue</full_name>
+        <docblock line="47">
+          <description>SetValue</description>
+          <long-description/>
+          <tag line="47" name="param" description="" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="52">
+          <name>$value</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="57" package="Default">
+        <name>setRegistrarTag</name>
+        <full_name>setRegistrarTag</full_name>
+        <argument line="57">
+          <name>$registrarTag</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="66" package="Default">
         <name>addContent</name>
         <full_name>addContent</full_name>
-        <argument line="28">
+        <docblock line="62">
+          <description/>
+          <long-description/>
+          <tag line="62" name="param" description="" type="\SimpleXMLElement" variable="$updateXML">
+            <type by_reference="false">\SimpleXMLElement</type>
+          </tag>
+        </docblock>
+        <argument line="66">
           <name>$updateXML</name>
           <default/>
-          <type>\SclNominetEpp\Request\Release\SimpleXMLElement</type>
+          <type>\SimpleXMLElement</type>
         </argument>
       </method>
     </class>
     <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Request/Release/AbstractRelease.php</error>
+      <critical line="14" code="50019">No short description for property $value</critical>
+      <critical line="27" code="50019">No short description for property $updateNamespace</critical>
+      <critical line="33" code="50019">No short description for property $valueName</critical>
+      <error line="39" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="57" code="50010">No DocBlock was found for method setRegistrarTag()</error>
+      <error line="62" code="50012">No short description for method addContent()</error>
+    </parse_markers>
+  </file>
+  <file path="src/SclNominetEpp/Request/Release/Contact.php" hash="8de3bb2c692d528b1a7b373dcaceaef9" package="Default">
+    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Release" line="12" package="Default">
+      <extends>\SclNominetEpp\Request\Release\AbstractRelease</extends>
+      <name>Contact</name>
+      <full_name>\SclNominetEpp\Request\Release\Contact</full_name>
+      <docblock line="7">
+        <description>This class build the XML for a Nominet EPP r:release command.</description>
+        <long-description/>
+        <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
+      </docblock>
+      <constant namespace="SclNominetEpp\Request\Release" line="14" package="Default">
+        <name>TYPE</name>
+        <full_name>TYPE</full_name>
+        <value>'contact'</value>
+      </constant>
+      <constant namespace="SclNominetEpp\Request\Release" line="15" package="Default">
+        <name>UPDATE_NAMESPACE</name>
+        <full_name>UPDATE_NAMESPACE</full_name>
+        <value>'urn:ietf:params:xml:ns:release-1.0'</value>
+      </constant>
+      <constant namespace="SclNominetEpp\Request\Release" line="16" package="Default">
+        <name>VALUE_NAME</name>
+        <full_name>VALUE_NAME</full_name>
+        <value>'registrant'</value>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="18" namespace="SclNominetEpp\Request\Release" package="Default">
+        <name>$registrant</name>
+        <default>''</default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="19" namespace="SclNominetEpp\Request\Release" package="Default">
+        <name>$value</name>
+        <default/>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Release" line="21" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+      </method>
+    </class>
+    <parse_markers>
       <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Request/Release/Contact.php</error>
-      <error line="19" code="50018">No DocBlock was found for property $registrant</error>
-      <error line="20" code="50018">No DocBlock was found for property $value</error>
-      <error line="22" code="50010">No DocBlock was found for method __construct()</error>
-      <error line="28" code="50010">No DocBlock was found for method addContent()</error>
+      <error line="18" code="50018">No DocBlock was found for property $registrant</error>
+      <error line="19" code="50018">No DocBlock was found for property $value</error>
+      <error line="21" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
   <file path="src/SclNominetEpp/Request/Create/Domain.php" hash="5f236b267ae20de2e3925b456dc99687" package="Default">
@@ -3474,8 +3574,8 @@ processes the responses.</description>
       <error line="21" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
-  <file path="src/SclNominetEpp/Request/Delete/AbstractDelete.php" hash="2ae1b7a4e7814192f462fd37c5441add" package="Default">
-    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Delete" line="12" package="Default">
+  <file path="src/SclNominetEpp/Request/Delete/AbstractDelete.php" hash="14045f27b5ac5518a356c8f0d096bfcd" package="Default">
+    <class final="false" abstract="true" namespace="SclNominetEpp\Request\Delete" line="12" package="Default">
       <extends>\SclNominetEpp\Request</extends>
       <name>AbstractDelete</name>
       <full_name>\SclNominetEpp\Request\Delete\AbstractDelete</full_name>
@@ -3633,13 +3733,13 @@ processes the responses.</description>
       <error line="21" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
-  <file path="src/SclNominetEpp/Request/Info/AbstractInfo.php" hash="ef85eab011c0776b53582adc6a5aa4a3" package="Default">
+  <file path="src/SclNominetEpp/Request/Info/AbstractInfo.php" hash="dc8009a32b38f6a587c0e964a2721409" package="Default">
     <docblock line="2">
       <description>Contains the nominet AbstractInfo request class definition.</description>
       <long-description/>
       <tag line="2" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
     </docblock>
-    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Info" line="17" package="Default">
+    <class final="false" abstract="true" namespace="SclNominetEpp\Request\Info" line="17" package="Default">
       <extends>\SclNominetEpp\Request</extends>
       <name>AbstractInfo</name>
       <full_name>\SclNominetEpp\Request\Info\AbstractInfo</full_name>
@@ -5331,6 +5431,57 @@ processes the responses.</description>
       <error line="34" code="50010">No DocBlock was found for method getDomain()</error>
     </parse_markers>
   </file>
+  <file path="src/SclNominetEpp/Response/Create/AbstractCreate.php" hash="0876e4c151cab6faf3867bd3c2b6c591" package="Default">
+    <class final="false" abstract="true" namespace="SclNominetEpp\Response\Create" line="14" package="Default">
+      <extends>\SclNominetEpp\Response</extends>
+      <name>AbstractCreate</name>
+      <full_name>\SclNominetEpp\Response\Create\AbstractCreate</full_name>
+      <docblock line="9">
+        <description>This class interprets XML for a Nominet EPP &lt;create&gt; command response.</description>
+        <long-description/>
+        <tag line="9" name="todo" description="finishing abstraction of create!"/>
+        <tag line="9" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="16" namespace="SclNominetEpp\Response\Create" package="Default">
+        <name>$object</name>
+        <default/>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Response\Create" line="18" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="18">
+          <name>$type</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="18">
+          <name>$valueName</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Response\Create" line="24" package="Default">
+        <name>processData</name>
+        <full_name>processData</full_name>
+        <argument line="24">
+          <name>$xml</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Response\Create" line="39" package="Default">
+        <name>getHost</name>
+        <full_name>getHost</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Response/Create/AbstractCreate.php</error>
+      <error line="16" code="50018">No DocBlock was found for property $object</error>
+      <error line="18" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="24" code="50010">No DocBlock was found for method processData()</error>
+      <error line="39" code="50010">No DocBlock was found for method getHost()</error>
+    </parse_markers>
+  </file>
   <file path="src/SclNominetEpp/Response/Create/Host.php" hash="ac9db576d1b40775146e2d8f2a7e0d89" package="Default">
     <class final="false" abstract="false" namespace="SclNominetEpp\Response\Create" line="14" package="Default">
       <extends>\SclNominetEpp\Response</extends>
@@ -5575,14 +5726,14 @@ If there is no "ip" attribute it defaults to "v4".</description>
       <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Response/Renew.php</error>
     </parse_markers>
   </file>
-  <file path="src/SclNominetEpp/Response/Update/Domain.php" hash="13fd831ac6866ceaf2567455be2eb043" package="Default">
+  <file path="src/SclNominetEpp/Response/Update/Domain.php" hash="f0b40c0f892f0b78a8a09791bf857093" package="Default">
     <class final="false" abstract="false" namespace="SclNominetEpp\Response\Update" line="12" package="Default">
-      <extends>\SclNominetEpp\Response</extends>
+      <extends>\SclNominetEpp\Response\Update\AbstractUpdate</extends>
       <name>Domain</name>
       <full_name>\SclNominetEpp\Response\Update\Domain</full_name>
       <docblock line="7">
         <description>DocBlock: Description of UpdateDomain</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
     </class>
@@ -5590,14 +5741,29 @@ If there is no "ip" attribute it defaults to "v4".</description>
       <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Response/Update/Domain.php</error>
     </parse_markers>
   </file>
-  <file path="src/SclNominetEpp/Response/Update/ContactID.php" hash="08a62e6afd4f15c5921096655d4805a0" package="Default">
-    <class final="false" abstract="false" namespace="SclNominetEpp\Response\Update" line="12" package="Default">
+  <file path="src/SclNominetEpp/Response/Update/AbstractUpdate.php" hash="e4a9e175b7d9093dd39c0d53e676ae72" package="Default">
+    <class final="false" abstract="true" namespace="SclNominetEpp\Response\Update" line="12" package="Default">
       <extends>\SclNominetEpp\Response</extends>
+      <name>AbstractUpdate</name>
+      <full_name>\SclNominetEpp\Response\Update\AbstractUpdate</full_name>
+      <docblock line="7">
+        <description>DocBlock: Description of AbstractUpdate</description>
+        <long-description></long-description>
+        <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
+      </docblock>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Response/Update/AbstractUpdate.php</error>
+    </parse_markers>
+  </file>
+  <file path="src/SclNominetEpp/Response/Update/ContactID.php" hash="b9f0bf951e495bf394b7f08c247c05ae" package="Default">
+    <class final="false" abstract="false" namespace="SclNominetEpp\Response\Update" line="12" package="Default">
+      <extends>\SclNominetEpp\Response\Update\AbstractUpdate</extends>
       <name>ContactID</name>
       <full_name>\SclNominetEpp\Response\Update\ContactID</full_name>
       <docblock line="7">
         <description>DocBlock: Description of UpdateContact</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
     </class>
@@ -5605,14 +5771,14 @@ If there is no "ip" attribute it defaults to "v4".</description>
       <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Response/Update/ContactID.php</error>
     </parse_markers>
   </file>
-  <file path="src/SclNominetEpp/Response/Update/Host.php" hash="2db10626141828fa1c4a147f5aa1c919" package="Default">
+  <file path="src/SclNominetEpp/Response/Update/Host.php" hash="ab25392c03541ef3cce72d98b74579a0" package="Default">
     <class final="false" abstract="false" namespace="SclNominetEpp\Response\Update" line="12" package="Default">
-      <extends>\SclNominetEpp\Response</extends>
+      <extends>\SclNominetEpp\Response\Update\AbstractUpdate</extends>
       <name>Host</name>
       <full_name>\SclNominetEpp\Response\Update\Host</full_name>
       <docblock line="7">
         <description>DocBlock: Description of UpdateContact</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
     </class>
@@ -5620,14 +5786,14 @@ If there is no "ip" attribute it defaults to "v4".</description>
       <error line="0" code="50007">No page-level DocBlock was found in file src/SclNominetEpp/Response/Update/Host.php</error>
     </parse_markers>
   </file>
-  <file path="src/SclNominetEpp/Response/Update/Contact.php" hash="4379625c7fabd62747b31683b9c6102e" package="Default">
+  <file path="src/SclNominetEpp/Response/Update/Contact.php" hash="1f139cff65940df047454587e9eb0412" package="Default">
     <class final="false" abstract="false" namespace="SclNominetEpp\Response\Update" line="12" package="Default">
-      <extends>\SclNominetEpp\Response</extends>
+      <extends>\SclNominetEpp\Response\Update\AbstractUpdate</extends>
       <name>Contact</name>
       <full_name>\SclNominetEpp\Response\Update\Contact</full_name>
       <docblock line="7">
         <description>DocBlock: Description of UpdateContact</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
     </class>
@@ -7691,27 +7857,27 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
       <error line="25" code="50010">No DocBlock was found for method testRequestXML()</error>
     </parse_markers>
   </file>
-  <file path="tests/src/SclNominetEpp/Request/Check/HostTest.php" hash="ca136e321c06704a60002152dc6f830f" package="Default">
-    <class final="false" abstract="false" namespace="SclNominetEpp\Request" line="9" package="Default">
+  <file path="tests/src/SclNominetEpp/Request/Check/HostTest.php" hash="a46e0caf9f45862e9b1d54e01149cec5" package="Default">
+    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Check" line="9" package="Default">
       <extends>\PHPUnit_Framework_TestCase</extends>
       <name>HostTest</name>
-      <full_name>\SclNominetEpp\Request\HostTest</full_name>
+      <full_name>\SclNominetEpp\Request\Check\HostTest</full_name>
       <docblock line="6">
         <description>host:check test</description>
         <long-description/>
       </docblock>
-      <property final="false" static="false" visibility="protected" line="14" namespace="SclNominetEpp\Request" package="Default">
+      <property final="false" static="false" visibility="protected" line="14" namespace="SclNominetEpp\Request\Check" package="Default">
         <name>$object</name>
         <default/>
         <docblock line="11">
           <description/>
           <long-description/>
-          <tag line="11" name="var" description="" type="\SclNominetEpp\Request\Request">
-            <type by_reference="false">\SclNominetEpp\Request\Request</type>
+          <tag line="11" name="var" description="" type="\SclNominetEpp\Request\Check\Request">
+            <type by_reference="false">\SclNominetEpp\Request\Check\Request</type>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="SclNominetEpp\Request" line="20" package="Default">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SclNominetEpp\Request\Check" line="20" package="Default">
         <name>setUp</name>
         <full_name>setUp</full_name>
         <docblock line="16">
@@ -7719,7 +7885,7 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
           <long-description>&lt;p&gt;This method is called before a test is executed.&lt;/p&gt;</long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request" line="25" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Check" line="25" package="Default">
         <name>testProcessData</name>
         <full_name>testProcessData</full_name>
       </method>
@@ -7730,27 +7896,27 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
       <error line="25" code="50010">No DocBlock was found for method testProcessData()</error>
     </parse_markers>
   </file>
-  <file path="tests/src/SclNominetEpp/Request/Check/DomainTest.php" hash="3114d7d4ada4d24505c3afe3e08fa7d7" package="Default">
-    <class final="false" abstract="false" namespace="SclNominetEpp\Request" line="10" package="Default">
+  <file path="tests/src/SclNominetEpp/Request/Check/DomainTest.php" hash="005dfcc40fbdf2325c3c273fb2dd58aa" package="Default">
+    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Check" line="10" package="Default">
       <extends>\PHPUnit_Framework_TestCase</extends>
       <name>DomainTest</name>
-      <full_name>\SclNominetEpp\Request\DomainTest</full_name>
+      <full_name>\SclNominetEpp\Request\Check\DomainTest</full_name>
       <docblock line="7">
         <description>domain:contact test</description>
         <long-description/>
       </docblock>
-      <property final="false" static="false" visibility="protected" line="15" namespace="SclNominetEpp\Request" package="Default">
+      <property final="false" static="false" visibility="protected" line="15" namespace="SclNominetEpp\Request\Check" package="Default">
         <name>$request</name>
         <default/>
         <docblock line="12">
           <description/>
           <long-description/>
-          <tag line="12" name="var" description="" type="\SclNominetEpp\Request\Request">
-            <type by_reference="false">\SclNominetEpp\Request\Request</type>
+          <tag line="12" name="var" description="" type="\SclNominetEpp\Request\Check\Request">
+            <type by_reference="false">\SclNominetEpp\Request\Check\Request</type>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="SclNominetEpp\Request" line="21" package="Default">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SclNominetEpp\Request\Check" line="21" package="Default">
         <name>setUp</name>
         <full_name>setUp</full_name>
         <docblock line="17">
@@ -7758,7 +7924,7 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
           <long-description>&lt;p&gt;This method is called before a test is executed.&lt;/p&gt;</long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request" line="26" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Check" line="26" package="Default">
         <name>testProcessData</name>
         <full_name>testProcessData</full_name>
       </method>
@@ -7769,27 +7935,27 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
       <error line="26" code="50010">No DocBlock was found for method testProcessData()</error>
     </parse_markers>
   </file>
-  <file path="tests/src/SclNominetEpp/Request/Check/ContactTest.php" hash="e758ba42a9d4bb3b5ff6ce0d5c7d6a41" package="Default">
-    <class final="false" abstract="false" namespace="SclNominetEpp\Request" line="10" package="Default">
+  <file path="tests/src/SclNominetEpp/Request/Check/ContactTest.php" hash="902cf6aafc2fa541ca4f89211bfd772a" package="Default">
+    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Check" line="10" package="Default">
       <extends>\PHPUnit_Framework_TestCase</extends>
       <name>ContactTest</name>
-      <full_name>\SclNominetEpp\Request\ContactTest</full_name>
+      <full_name>\SclNominetEpp\Request\Check\ContactTest</full_name>
       <docblock line="7">
         <description>contact:check test</description>
         <long-description/>
       </docblock>
-      <property final="false" static="false" visibility="protected" line="15" namespace="SclNominetEpp\Request" package="Default">
+      <property final="false" static="false" visibility="protected" line="15" namespace="SclNominetEpp\Request\Check" package="Default">
         <name>$object</name>
         <default/>
         <docblock line="12">
           <description/>
           <long-description/>
-          <tag line="12" name="var" description="" type="\SclNominetEpp\Request\Request">
-            <type by_reference="false">\SclNominetEpp\Request\Request</type>
+          <tag line="12" name="var" description="" type="\SclNominetEpp\Request\Check\Request">
+            <type by_reference="false">\SclNominetEpp\Request\Check\Request</type>
           </tag>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="SclNominetEpp\Request" line="21" package="Default">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="SclNominetEpp\Request\Check" line="21" package="Default">
         <name>setUp</name>
         <full_name>setUp</full_name>
         <docblock line="17">
@@ -7797,7 +7963,7 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
           <long-description>&lt;p&gt;This method is called before a test is executed.&lt;/p&gt;</long-description>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request" line="26" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Check" line="26" package="Default">
         <name>testProcessData</name>
         <full_name>testProcessData</full_name>
       </method>
@@ -7944,14 +8110,14 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
       <full_name>\SclNominetEpp\Response\Info\HostTest</full_name>
       <docblock line="8">
         <description>host:info response test</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="16" namespace="SclNominetEpp\Response\Info" package="Default">
         <name>$response</name>
-        <default></default>
+        <default/>
         <docblock line="13">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="13" name="var" description="" type="\SclNominetEpp\Response\Info\Response">
             <type by_reference="false">\SclNominetEpp\Response\Info\Response</type>
           </tag>
@@ -7969,8 +8135,8 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
         <name>testProcessData</name>
         <full_name>testProcessData</full_name>
         <docblock line="27">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
         </docblock>
       </method>
     </class>
@@ -7987,14 +8153,14 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
       <full_name>\SclNominetEpp\Response\Info\DomainTest</full_name>
       <docblock line="8">
         <description>domain:info response test</description>
-        <long-description></long-description>
+        <long-description/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="16" namespace="SclNominetEpp\Response\Info" package="Default">
         <name>$response</name>
-        <default></default>
+        <default/>
         <docblock line="13">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="13" name="var" description="" type="\SclNominetEpp\Response\Info\Response">
             <type by_reference="false">\SclNominetEpp\Response\Info\Response</type>
           </tag>
@@ -8012,8 +8178,8 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
         <name>testProcessData</name>
         <full_name>testProcessData</full_name>
         <docblock line="27">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
         </docblock>
       </method>
     </class>
@@ -8272,7 +8438,7 @@ Converted to true (y),  false (n).&lt;/p&gt;</long-description>
   </namespace>
   <namespace name="SclSocket" full_name="SclSocket"/>
   <namespace name="global" full_name="global"/>
-  <marker count="12">todo</marker>
+  <marker count="13">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

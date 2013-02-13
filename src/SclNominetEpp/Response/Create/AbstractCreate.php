@@ -11,10 +11,16 @@ use SclNominetEpp\Nameserver;
  * @todo finishing abstraction of create!
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class AbstractCreate extends Response
+abstract class AbstractCreate extends Response
 {
     protected $object;
 
+    public function __construct($type, $valueName)
+    {
+        $this->type = $type;
+        $this->valueName = $valueName;
+    }
+    
     public function processData($xml)
     {
         if (!isset($xml->response->resData)) {
@@ -25,7 +31,7 @@ class AbstractCreate extends Response
 
         $response  = $xml->response;
 
-        $creData   = $response->resData->children($ns['host'])->creData;
+        $creData   = $response->resData->children($ns["{$this->type}"])->creData;
         $this->object->setHostName($creData->name);
         $this->object->setCreated(new DateTime($creData->crDate));
     }
