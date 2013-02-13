@@ -61,4 +61,9 @@ class Host extends Request
     {
         $this->nameserver = $nameserver;
     }
+    
+    public function addSpecificContent()
+    {
+        
+    }
 }

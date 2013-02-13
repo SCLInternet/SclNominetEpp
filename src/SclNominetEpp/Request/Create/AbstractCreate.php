@@ -57,6 +57,13 @@ abstract class AbstractCreate extends Request
     protected function addContent(\SimpleXMLElement $xml)
     {
         $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
+        
+        $this->addSpecificContent();
 
+    }
+    
+    public function addSpecificContent()
+    {
+        
     }
 }
