@@ -88,8 +88,8 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The login command is used to establish and authenticate a session with
-     * the EPP server. The login command must be sent to the server before any
+     * The <login> command is used to establish and authenticate a session with
+     * the EPP server. The <login> command must be sent to the server before any
      * other EPP command and identifies and authenticates the tag to be used
      * by the session. An EPP session is terminated by a logout command.
      *
@@ -115,9 +115,9 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The hello command is used to obtain a greeting element from our server
+     * The <hello> command is used to obtain a greeting element from our server
      * and may be used to keep your connection with our EPP server open.
-     * Sending an EPP hello command every 59 minutes will keep your connection
+     * Sending an EPP <hello> command every 59 minutes will keep your connection
      * with our EPP server open.
      */
     public function hello()
@@ -132,7 +132,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * A logout command is used to end a session with an EPP server. On receipt
+     * A <logout> command is used to end a session with an EPP server. On receipt
      * the EPP server responds and then closes the connection with the client.
      */
     public function logout()
@@ -151,8 +151,8 @@ class Nominet extends AbstractRequestResponse
     /**
      * Checks if a domain or set of domains are available.
      *
-     * The check command is used to determine if the domain name is currently
-     * registered and provides a hint about whether a <create> command would be
+     * The <check> command is used to determine if the domain name is currently
+     * registered and provides a hint about whether a <check> command would be
      * successful.
      *
      * @param string|array $domains
@@ -174,7 +174,7 @@ class Nominet extends AbstractRequestResponse
      * Checks if a contact or set of contacts are available.
      *
      * The check command is used to determine if the domain name is currently
-     * registered and provides a hint about whether a <create> command would be
+     * registered and provides a hint about whether a <check> command would be
      * successful.
      *
      * @param string|array $contactIds
@@ -195,8 +195,8 @@ class Nominet extends AbstractRequestResponse
     /**
      * Checks if a host or set of hosts are available.
      *
-     * The check command is used to determine if the domain name is currently
-     * registered and provides a hint about whether a <create> command would be
+     * The <check> command is used to determine if the domain name is currently
+     * registered and provides a hint about whether a <check> command would be
      * successful.
      *
      * @param string|array $hosts
@@ -215,7 +215,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The create command allows you to create a contact
+     * The <create> command allows you to create a contact
      * account.
      *
      * @param \SclNominetEpp\Contact $contact
@@ -232,7 +232,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The create command allows you to register a domain name or to create an
+     * The <create> command allows you to register a domain name or to create an
      * account or nameserver object to link to domain names.
      *
      * @param \SclNominetEpp\Domain $domain
@@ -250,7 +250,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The create command allows you to create a nameserver object to link to domain names.
+     * The <create> command allows you to create a nameserver object to link to domain names.
      *
      * @param \SclNominetEpp\Nameserver $host
      */
@@ -265,7 +265,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The EPP delete command allows the registrar to delete a domain name.
+     * The EPP <delete> command allows the registrar to delete a domain name.
      * Further details of this are available in RFC 5731 The delete command may
      * not be used to delete nameservers and accounts.
      */
@@ -275,7 +275,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The renew command only applies to domain names. It has no meaning for
+     * The <renew> command only applies to domain names. It has no meaning for
      * other object types.
      *
      * @param string $domain The domain to be renewed
@@ -294,7 +294,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The unrenew operation is used to reverse a renewal request made for a
+     * The <unrenew> operation is used to reverse a renewal request made for a
      * domain name. The renew command only applies to domain names. It has no
      * meaning for other object types.
      */
@@ -304,7 +304,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The update operation allows the attributes of an object to be updated.
+     * The <update> operation allows the attributes of an object to be updated.
      */
     public function updateDomain(Domain $domain)
     {
@@ -321,6 +321,10 @@ class Nominet extends AbstractRequestResponse
         $newNameservers     = $domain->getNameservers();
         $newContacts        = $domain->getContacts();
 
+        echo "\n#########################\n";
+        var_dump($currentDomain);
+        echo "\n#########################\n";
+        
         $addContacts       = array_uintersect(
             $newContacts,
             $currentContacts,
@@ -361,6 +365,9 @@ class Nominet extends AbstractRequestResponse
                 $request->remove(new Update\Field\DomainNameserver($nameserver->getHostName()));
             }
         }
+        echo "##################";
+        var_dump($removeContacts);
+        echo "##################";
         if (!empty($removeContacts)) {
             foreach ($removeContacts as $type => $contact) {
                 $request->remove(new Update\Field\DomainContact($contact->getId(), $type));
@@ -376,7 +383,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The update operation allows the attributes of an object to be updated.
+     * The <update> operation allows the attributes of an object to be updated.
      */
     public function updateContact(Contact $contact)
     {
@@ -390,7 +397,10 @@ class Nominet extends AbstractRequestResponse
         
         return $response;
     }
-
+    
+    /**
+     * The <update> operation allows the attributes of an object to be updated.
+     */
     public function updateContactID()
     {
         $this->loginCheck();
@@ -404,6 +414,9 @@ class Nominet extends AbstractRequestResponse
         return $response;
     }
 
+    /**
+     * The <update> operation allows the attributes of an object to be updated.
+     */
     public function updateHost(Nameserver $host)
     {
         $this->loginCheck();
@@ -506,7 +519,7 @@ class Nominet extends AbstractRequestResponse
      * message has been received. Then that message is dequeued and the next
      * message in the queue becomes available for retrieval.
      *
-     * NOTE: To use the poll command you must have activated this notification
+     * NOTE: To use the <poll> command you must have activated this notification
      * option for your account in the Online Service. In addition, version 1.1
      * or subsequent schemas must be used if polling via Nominet EPP.
      */
@@ -525,7 +538,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The handshake operation allows a registrar to accept or reject a
+     * The <handshake> operation allows a registrar to accept or reject a
      * registrar change/registrant transfer authorisation request.
      */
     public function handshake()
@@ -534,7 +547,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The release operation allows a registrar to move a domain name, or
+     * The <release> operation allows a registrar to move a domain name, or
      * account onto another tag.
      */
     public function release()
@@ -543,7 +556,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The fork command allows a number of domain names on a registrant contact
+     * The <fork> command allows a number of domain names on a registrant contact
      * to be moved to a copy of that contact.
      */
     public function fork()
@@ -576,7 +589,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The investigation lock command can be used to lock down a domain name,
+     * The investigation <lock> command can be used to lock down a domain name,
      * preventing a number of operations upon it.
      */
     public function lock()

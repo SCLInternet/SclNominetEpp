@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Info;
 
 use SclNominetEpp\Nameserver;
 use DateTime;

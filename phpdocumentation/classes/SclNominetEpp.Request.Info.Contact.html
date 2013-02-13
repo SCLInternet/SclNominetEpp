@@ -1,0 +1,394 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>SclNominetEpp » \SclNominetEpp\Request\Info\Contact</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">SclNominetEpp</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Composer.html"><i class="icon-th"></i> Composer</a></li>
+<li><a href="../namespaces/SclNominetEpp.html"><i class="icon-th"></i> SclNominetEpp</a></li>
+<li><a href="../namespaces/SclRequestResponse.html"><i class="icon-th"></i> SclRequestResponse</a></li>
+<li><a href="../namespaces/SclSocket.html"><i class="icon-th"></i> SclSocket</a></li>
+<li><a href="../namespaces/global.html"><i class="icon-th"></i> global</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">338</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">12</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Prepares the common XML wrapper for all requests."><span class="description">Prepares the common XML wrapper for all requests.</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method_getPacket" title="getPacket :: Returns the XML of the request."><span class="description">Returns the XML of the request.</span><pre>getPacket()</pre></a></li>
+<li class="method public inherited"><a href="#method_getResponse" title="getResponse :: Return the response."><span class="description">Return the response.</span><pre>getResponse()</pre></a></li>
+<li class="method public inherited"><a href="#method_lookup" title="lookup :: The value to lookup."><span class="description">The value to lookup.</span><pre>lookup()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="method protected inherited"><a href="#method_addContent" title="addContent :: (non-PHPdoc)"><span class="description">(non-PHPdoc)</span><pre>addContent()</pre></a></li></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private inherited"><a href="#method_formatXml" title="formatXml :: "><span class="description">formatXml()
+        </span><pre>formatXml()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected inherited"><a href="#property_action" title="$action :: The action this request will perform"><span class="description"></span><pre>$action</pre></a></li>
+<li class="property protected inherited"><a href="#property_infoNamespace" title="$infoNamespace :: "><span class="description"></span><pre>$infoNamespace</pre></a></li>
+<li class="property protected inherited"><a href="#property_output" title="$output :: The XML output."><span class="description"></span><pre>$output</pre></a></li>
+<li class="property protected inherited"><a href="#property_response" title="$response :: The type of response this request will return."><span class="description"></span><pre>$response</pre></a></li>
+<li class="property protected inherited"><a href="#property_value" title="$value :: "><span class="description"></span><pre>$value</pre></a></li>
+<li class="property protected inherited"><a href="#property_valueName" title="$valueName :: "><span class="description"></span><pre>$valueName</pre></a></li>
+<li class="property protected inherited"><a href="#property_xml" title="$xml :: The PHP XMLWriter object which will be used to build the XML."><span class="description"></span><pre>$xml</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_INFO_NAMESPACE" title="INFO_NAMESPACE :: "><span class="description">INFO_NAMESPACE</span><pre>INFO_NAMESPACE</pre></a></li>
+<li class="constant  "><a href="#constant_TYPE" title="TYPE :: "><span class="description">TYPE</span><pre>TYPE</pre></a></li>
+<li class="constant  "><a href="#constant_VALUE_NAME" title="VALUE_NAME :: "><span class="description">VALUE_NAME</span><pre>VALUE_NAME</pre></a></li>
+<li class="constant  inherited"><a href="#constant_XSI_NAMESPACE" title="XSI_NAMESPACE :: "><span class="description">XSI_NAMESPACE</span><pre>XSI_NAMESPACE</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\SclNominetEpp\Request\Info\Contact"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/SclNominetEpp.html">SclNominetEpp</a></li>
+<li>
+<span class="divider">\</span><a href="../namespaces/SclNominetEpp.Request.html">Request</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../namespaces/SclNominetEpp.Request.Info.html">Info</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/SclNominetEpp.Request.Info.Contact.html">Contact</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">This class build the XML for a Nominet EPP contact:info command.</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>author</th>
+<td><a href="mailto:merlyn.cooper@hotmail.co.uk">Merlyn Cooper</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Prepares the common XML wrapper for all requests.</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getPacket"></a><div class="element clickable method public method_getPacket" data-toggle="collapse" data-target=".method_getPacket .collapse">
+<h2>Returns the XML of the request.</h2>
+<pre>getPacket() : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request::getPacket()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::getPacket()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_getResponse"></a><div class="element clickable method public method_getResponse" data-toggle="collapse" data-target=".method_getResponse .collapse">
+<h2>Return the response.</h2>
+<pre>getResponse() : <a href="../classes/SclRequestResponse.ResponseInterface.html">\SclRequestResponse\ResponseInterface</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request::getResponse()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::getResponse()</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="../classes/SclRequestResponse.ResponseInterface.html">\SclRequestResponse\ResponseInterface</a></code></div>
+</div></div>
+</div>
+<a id="method_lookup"></a><div class="element clickable method public method_lookup" data-toggle="collapse" data-target=".method_lookup .collapse">
+<h2>The value to lookup.</h2>
+<pre>lookup(string $value) : \SclNominetEpp\Request\Info\Info</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::lookup()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\SclNominetEpp\Request\Info\Info</code></div>
+</div></div>
+</div>
+<a id="method_addContent"></a><div class="element clickable method protected method_addContent" data-toggle="collapse" data-target=".method_addContent .collapse">
+<h2>(non-PHPdoc)</h2>
+<pre>addContent(\SimpleXMLElement $xml) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>see</th>
+<td><a href="">\SclNominetEpp\Request.AbstractRequest::addContent()</a></td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::addContent()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$xml</h4></div>
+</div></div>
+</div>
+<a id="method_formatXml"></a><div class="element clickable method private method_formatXml" data-toggle="collapse" data-target=".method_formatXml .collapse">
+<h2>formatXml()
+        </h2>
+<pre>formatXml($xml) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request::formatXml()</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::formatXml()</td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$xml</h4></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_action"> </a><div class="element clickable property protected property_action" data-toggle="collapse" data-target=".property_action .collapse">
+<h2></h2>
+<pre>$action : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request::$$action</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::$$action</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_infoNamespace"> </a><div class="element clickable property protected property_infoNamespace" data-toggle="collapse" data-target=".property_infoNamespace .collapse">
+<h2></h2>
+<pre>$infoNamespace : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::$$infoNamespace</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_output"> </a><div class="element clickable property protected property_output" data-toggle="collapse" data-target=".property_output .collapse">
+<h2></h2>
+<pre>$output : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request::$$output</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::$$output</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_response"> </a><div class="element clickable property protected property_response" data-toggle="collapse" data-target=".property_response .collapse">
+<h2></h2>
+<pre>$response : <a href="../classes/SclRequestResponse.ResponseInterface.html">\SclRequestResponse\ResponseInterface</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request::$$response</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::$$response</td>
+</tr>
+</table>
+</div></div>
+</div>
+<a id="property_value"> </a><div class="element clickable property protected property_value" data-toggle="collapse" data-target=".property_value .collapse">
+<h2></h2>
+<pre>$value : \SclNominetEpp\Request\Info\type</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::$$value</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_valueName"> </a><div class="element clickable property protected property_valueName" data-toggle="collapse" data-target=".property_valueName .collapse">
+<h2></h2>
+<pre>$valueName : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::$$valueName</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_xml"> </a><div class="element clickable property protected property_xml" data-toggle="collapse" data-target=".property_xml .collapse">
+<h2></h2>
+<pre>$xml : \SclNominetEpp\XMLWriter</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request::$$xml</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::$$xml</td>
+</tr>
+</table>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_INFO_NAMESPACE"> </a><div class="element clickable constant  constant_INFO_NAMESPACE" data-toggle="collapse" data-target=".constant_INFO_NAMESPACE .collapse">
+<h2>INFO_NAMESPACE</h2>
+<pre>INFO_NAMESPACE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_TYPE"> </a><div class="element clickable constant  constant_TYPE" data-toggle="collapse" data-target=".constant_TYPE .collapse">
+<h2>TYPE</h2>
+<pre>TYPE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_VALUE_NAME"> </a><div class="element clickable constant  constant_VALUE_NAME" data-toggle="collapse" data-target=".constant_VALUE_NAME .collapse">
+<h2>VALUE_NAME</h2>
+<pre>VALUE_NAME </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_XSI_NAMESPACE"> </a><div class="element clickable constant  constant_XSI_NAMESPACE" data-toggle="collapse" data-target=".constant_XSI_NAMESPACE .collapse">
+<h2>XSI_NAMESPACE</h2>
+<pre>XSI_NAMESPACE </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request::XSI_NAMESPACE</td>
+</tr>
+<tr>
+<th>inherited_from</th>
+<td>\SclNominetEpp\Request\Info\AbstractInfo::XSI_NAMESPACE</td>
+</tr>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-02-13T13:07:06Z.<br></footer></div>
+</div>
+</body>
+</html>

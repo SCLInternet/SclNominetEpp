@@ -1,0 +1,2992 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>SclNominetEpp</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="css/template.css" rel="stylesheet" media="all">
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="js/bootstrap.js" type="text/javascript"></script><script src="js/template.js" type="text/javascript"></script><script src="js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="img/favicon.ico">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="index.html">SclNominetEpp</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="namespaces/Composer.html"><i class="icon-th"></i> Composer</a></li>
+<li><a href="namespaces/SclNominetEpp.html"><i class="icon-th"></i> SclNominetEpp</a></li>
+<li><a href="namespaces/SclRequestResponse.html"><i class="icon-th"></i> SclRequestResponse</a></li>
+<li><a href="namespaces/SclSocket.html"><i class="icon-th"></i> SclSocket</a></li>
+<li><a href="namespaces/global.html"><i class="icon-th"></i> global</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">338</span></a></li>
+<li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">12</span>
+</li></ul></a></li>
+<li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4"><ul class="side-nav nav nav-list">
+<li class="nav-header">Filter type</li>
+<li><div class="btn-group type-filter" data-toggle="buttons-checkbox">
+<button class="btn critical">Critical</button><button class="btn error">Error</button><button class="btn notice">Notice</button>
+</div></li>
+<li class="nav-header">Navigation</li>
+<li><a href="#vendor/sclinternet/scl-request-response/tests/src/SclRequestResponse/Communicator/PersistentCommunicatorTest.php"><i class="icon-file"></i>vendor/sclinternet/scl-request-response/tests/src/SclRequestResponse/Communicator/PersistentCommunicatorTest.php</a></li>
+<li><a href="#vendor/autoload.php"><i class="icon-file"></i>vendor/autoload.php</a></li>
+<li><a href="#vendor/composer/autoload_real.php"><i class="icon-file"></i>vendor/composer/autoload_real.php</a></li>
+<li><a href="#vendor/composer/ClassLoader.php"><i class="icon-file"></i>vendor/composer/ClassLoader.php</a></li>
+<li><a href="#vendor/composer/autoload_namespaces.php"><i class="icon-file"></i>vendor/composer/autoload_namespaces.php</a></li>
+<li><a href="#vendor/composer/autoload_classmap.php"><i class="icon-file"></i>vendor/composer/autoload_classmap.php</a></li>
+<li><a href="#bin/test_epp.php"><i class="icon-file"></i>bin/test_epp.php</a></li>
+<li><a href="#bin/test_epp.config.php"><i class="icon-file"></i>bin/test_epp.config.php</a></li>
+<li><a href="#src/SclNominetEpp/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Nominet.php"><i class="icon-file"></i>src/SclNominetEpp/Nominet.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Release/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Release/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Release/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Release/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Create/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Create/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Create/AbstractCreate.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Create/AbstractCreate.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Create/Host.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Create/Host.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Create/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Create/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Delete/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Delete/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Delete/Host.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Delete/Host.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Delete/AbstractDelete.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Delete/AbstractDelete.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Delete/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Delete/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Info/AbstractInfo.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Info/AbstractInfo.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Info/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Info/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Info/Host.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Info/Host.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Info/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Info/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Login.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Login.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Renew.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Renew.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Helper/DomainCompareHelper.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Helper/DomainCompareHelper.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/ContactID.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/ContactID.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Field/DomainContact.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/DomainContact.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Field/UpdateFieldInterface.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/UpdateFieldInterface.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Field/HostName.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/HostName.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Field/DomainRegistrant.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/DomainRegistrant.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Field/DomainNameserver.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/DomainNameserver.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Field/Status.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/Status.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Field/ContactAddress.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/ContactAddress.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Field/HostAddress.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/HostAddress.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Host.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Host.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Update/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Update/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/Check/AbstractCheck.php"><i class="icon-file"></i>src/SclNominetEpp/Request/Check/AbstractCheck.php</a></li>
+<li><a href="#src/SclNominetEpp/Request/ListDomains.php"><i class="icon-file"></i>src/SclNominetEpp/Request/ListDomains.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Create/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Create/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Create/Host.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Create/Host.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Create/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Create/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Info/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Info/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Info/Host.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Info/Host.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Info/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Info/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Login.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Login.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Renew.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Renew.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Update/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Update/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Update/ContactID.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Update/ContactID.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Update/Host.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Update/Host.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Update/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Update/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Check/Domain.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Check/Domain.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Check/AbstractCheck.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Check/AbstractCheck.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Check/Host.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Check/Host.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/Check/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Response/Check/Contact.php</a></li>
+<li><a href="#src/SclNominetEpp/Response/ListDomains.php"><i class="icon-file"></i>src/SclNominetEpp/Response/ListDomains.php</a></li>
+<li><a href="#src/SclNominetEpp/Address.php"><i class="icon-file"></i>src/SclNominetEpp/Address.php</a></li>
+<li><a href="#src/SclNominetEpp/Request.php"><i class="icon-file"></i>src/SclNominetEpp/Request.php</a></li>
+<li><a href="#src/SclNominetEpp/Response.php"><i class="icon-file"></i>src/SclNominetEpp/Response.php</a></li>
+<li><a href="#src/SclNominetEpp/Nameserver.php"><i class="icon-file"></i>src/SclNominetEpp/Nameserver.php</a></li>
+<li><a href="#src/SclNominetEpp/Contact.php"><i class="icon-file"></i>src/SclNominetEpp/Contact.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Request/LoginTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Request/LoginTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Request/Create/HostTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Request/Create/HostTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Request/Create/DomainTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Request/Create/DomainTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Request/Create/ContactTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Request/Create/ContactTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Request/RequestTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Request/RequestTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Request/Check/HostTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Request/Check/HostTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Request/Check/DomainTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Request/Check/DomainTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Request/Check/ContactTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Request/Check/ContactTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Create/HostTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Create/HostTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Create/DomainTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Create/DomainTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Create/ContactTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Create/ContactTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Info/HostTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Info/HostTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Info/DomainTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Info/DomainTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Info/ContactTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Info/ContactTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Check/HostTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Check/HostTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Check/DomainTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Check/DomainTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/Check/ContactTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/Check/ContactTest.php</a></li>
+<li><a href="#tests/src/SclNominetEpp/Response/ResponseTest.php"><i class="icon-file"></i>tests/src/SclNominetEpp/Response/ResponseTest.php</a></li>
+<li><a href="#tests/Bootstrap.php"><i class="icon-file"></i>tests/Bootstrap.php</a></li>
+</ul></div>
+<div class="span8">
+<ul class="breadcrumb">
+<li>
+<a href=""><i class="icon-remove-sign"></i></a><span class="divider">\</span>
+</li>
+<li>Compilation Errors</li>
+</ul>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents">
+<a name="vendor/sclinternet/scl-request-response/tests/src/SclRequestResponse/Communicator/PersistentCommunicatorTest.php" id="vendor/sclinternet/scl-request-response/tests/src/SclRequestResponse/Communicator/PersistentCommunicatorTest.php"></a><h3>
+<i class="icon-file"></i>vendor/sclinternet/scl-request-response/tests/src/SclRequestResponse/Communicator/PersistentCommunicatorTest.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="critical">
+<td>critical</td>
+<td>20</td>
+<td>No short description for property $communicator</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>25</td>
+<td>No short description for property $socket</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for method setUp()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No short description for method testConnect()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>58</td>
+<td>No short description for method testFailedConnect()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>75</td>
+<td>No short description for method testGetResponse()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents">
+<a name="vendor/autoload.php" id="vendor/autoload.php"></a><h3>
+<i class="icon-file"></i>vendor/autoload.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file vendor/autoload.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="vendor/composer/autoload_real.php" id="vendor/composer/autoload_real.php"></a><h3>
+<i class="icon-file"></i>vendor/composer/autoload_real.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file vendor/composer/autoload_real.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>5</td>
+<td>No DocBlock was found for \ComposerAutoloaderInit6608f18bc8a8529b5dfe19b32eec2d44</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>7</td>
+<td>No DocBlock was found for property $loader</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for method loadClassLoader()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method getLoader()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="vendor/composer/ClassLoader.php" id="vendor/composer/ClassLoader.php"></a><h3>
+<i class="icon-file"></i>vendor/composer/ClassLoader.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file vendor/composer/ClassLoader.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for property $prefixes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No DocBlock was found for property $fallbackDirs</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for property $useIncludePath</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No DocBlock was found for property $classMap</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>50</td>
+<td>No DocBlock was found for method getPrefixes()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No DocBlock was found for method getFallbackDirs()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>60</td>
+<td>No DocBlock was found for method getClassMap()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>No short description for method addClassMap()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="vendor/composer/autoload_namespaces.php" id="vendor/composer/autoload_namespaces.php"></a><h3>
+<i class="icon-file"></i>vendor/composer/autoload_namespaces.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file vendor/composer/autoload_namespaces.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="vendor/composer/autoload_classmap.php" id="vendor/composer/autoload_classmap.php"></a><h3>
+<i class="icon-file"></i>vendor/composer/autoload_classmap.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file vendor/composer/autoload_classmap.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="bin/test_epp.php" id="bin/test_epp.php"></a><h3>
+<i class="icon-file"></i>bin/test_epp.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file bin/test_epp.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="bin/test_epp.config.php" id="bin/test_epp.config.php"></a><h3>
+<i class="icon-file"></i>bin/test_epp.config.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file bin/test_epp.config.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Domain.php" id="src/SclNominetEpp/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Domain.php<small style="float: right;padding-right: 10px;">18</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Domain.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>7</td>
+<td>No short description for class \SclNominetEpp\Domain</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>32</td>
+<td>No short description for property $registrant</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>38</td>
+<td>No short description for property $contacts</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>44</td>
+<td>No short description for property $nameservers</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>50</td>
+<td>No short description for property $clientID</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>56</td>
+<td>No short description for property $creatorID</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>76</td>
+<td>No short description for property $upID</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>82</td>
+<td>No short description for property $upDate</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>128</td>
+<td>No short description for property $regStatus</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>204</td>
+<td>Name of argument $contact does not match with the DocBlock's name $type in addContact()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>204</td>
+<td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $contact in addContact()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>204</td>
+<td>Parameter $type could not be found in addContact()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>204</td>
+<td>Parameter $contacts could not be found in addContact()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>225</td>
+<td>No DocBlock was found for method removeContact()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>251</td>
+<td>No DocBlock was found for method removeNameserver()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>256</td>
+<td>No short description for method setClientID()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>265</td>
+<td>No short description for method getClientID()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Nominet.php" id="src/SclNominetEpp/Nominet.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Nominet.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>306</td>
+<td>Argument $domain is missing from the Docblock of updateDomain()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>385</td>
+<td>Argument $contact is missing from the Docblock of updateContact()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>417</td>
+<td>Argument $host is missing from the Docblock of updateHost()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents"></div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Release/Domain.php" id="src/SclNominetEpp/Request/Release/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Release/Domain.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Release/Domain.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $domain</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for method addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Release/Contact.php" id="src/SclNominetEpp/Request/Release/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Release/Contact.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Release/Contact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $registrant</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for method addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Create/Domain.php" id="src/SclNominetEpp/Request/Create/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Create/Domain.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Create/Domain.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>23</td>
+<td>No short description for property $domain</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>29</td>
+<td>No short description for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No short description for method addContent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>72</td>
+<td>No short description for method createNameservers()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>83</td>
+<td>No short description for method createContacts()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>95</td>
+<td>No short description for method setDomain()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>95</td>
+<td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $domain in setDomain()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Create/AbstractCreate.php" id="src/SclNominetEpp/Request/Create/AbstractCreate.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Create/AbstractCreate.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="critical">
+<td>critical</td>
+<td>26</td>
+<td>No short description for property $createNamespace</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>32</td>
+<td>No short description for property $valueName</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>Argument $response is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>Argument $createNamespace is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>Argument $valueName is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>53</td>
+<td>Argument $xml is missing from the Docblock of addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Create/Host.php" id="src/SclNominetEpp/Request/Create/Host.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Create/Host.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Create/Host.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for property $nameserver</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No short description for method addContent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No short description for method setNameserver()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Create/Contact.php" id="src/SclNominetEpp/Request/Create/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Create/Contact.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Create/Contact.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>23</td>
+<td>No short description for property $contact</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>29</td>
+<td>No short description for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No short description for method addContent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>80</td>
+<td>No short description for method setContact()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>80</td>
+<td>The type hint of the argument is incorrect for the type definition of the @param tag with argument $contact in setContact()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Delete/Domain.php" id="src/SclNominetEpp/Request/Delete/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Delete/Domain.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Delete/Domain.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $domain</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Delete/Host.php" id="src/SclNominetEpp/Request/Delete/Host.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Delete/Host.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Delete/Host.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $host</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Delete/AbstractDelete.php" id="src/SclNominetEpp/Request/Delete/AbstractDelete.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Delete/AbstractDelete.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Delete/AbstractDelete.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>21</td>
+<td>No short description for property $deleteNamespace</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>27</td>
+<td>No short description for property $valueName</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>33</td>
+<td>No short description for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Argument $response is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Argument $deleteNamespace is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>Argument $valueName is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>Argument $deleteXML is missing from the Docblock of addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Delete/Contact.php" id="src/SclNominetEpp/Request/Delete/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Delete/Contact.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Delete/Contact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $contact</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Info/AbstractInfo.php" id="src/SclNominetEpp/Request/Info/AbstractInfo.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Info/AbstractInfo.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="critical">
+<td>critical</td>
+<td>20</td>
+<td>No short description for property $infoNamespace</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>26</td>
+<td>No short description for property $valueName</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>32</td>
+<td>No short description for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>60</td>
+<td>Argument $xml is missing from the Docblock of addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Info/Domain.php" id="src/SclNominetEpp/Request/Info/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Info/Domain.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Info/Domain.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>Argument $xml is missing from the Docblock of addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Info/Host.php" id="src/SclNominetEpp/Request/Info/Host.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Info/Host.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Info/Host.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Info/Contact.php" id="src/SclNominetEpp/Request/Info/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Info/Contact.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Info/Contact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Login.php" id="src/SclNominetEpp/Request/Login.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Login.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>77</td>
+<td>No short description for method addObjUri()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>No short description for method addSvcExtension()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>98</td>
+<td>Argument $xml is missing from the Docblock of addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Renew.php" id="src/SclNominetEpp/Request/Renew.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Renew.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No DocBlock was found for method setDomain()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>50</td>
+<td>Argument $xml is missing from the Docblock of addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Helper/DomainCompareHelper.php" id="src/SclNominetEpp/Request/Update/Helper/DomainCompareHelper.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Helper/DomainCompareHelper.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Helper/DomainCompareHelper.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for method compare()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Domain.php" id="src/SclNominetEpp/Request/Update/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Domain.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Domain.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $domain</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $add</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $remove</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for method add()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>39</td>
+<td>No DocBlock was found for method remove()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No DocBlock was found for method addContent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>No DocBlock was found for method setDomain()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/ContactID.php" id="src/SclNominetEpp/Request/Update/ContactID.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/ContactID.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/ContactID.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $newContactID</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $add</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $remove</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for method add()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for method remove()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No DocBlock was found for method addContent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No DocBlock was found for method setContactID()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Field/DomainContact.php" id="src/SclNominetEpp/Request/Update/Field/DomainContact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/DomainContact.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Field/DomainContact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $contact</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $type</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for method fieldXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Field/UpdateFieldInterface.php" id="src/SclNominetEpp/Request/Update/Field/UpdateFieldInterface.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/UpdateFieldInterface.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Field/UpdateFieldInterface.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for method fieldXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Field/HostName.php" id="src/SclNominetEpp/Request/Update/Field/HostName.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/HostName.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Field/HostName.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $nameserver</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method fieldXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Field/DomainRegistrant.php" id="src/SclNominetEpp/Request/Update/Field/DomainRegistrant.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/DomainRegistrant.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Field/DomainRegistrant.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $contact</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $passwd</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for method fieldXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Field/DomainNameserver.php" id="src/SclNominetEpp/Request/Update/Field/DomainNameserver.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/DomainNameserver.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Field/DomainNameserver.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $nameserver</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method fieldXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Field/Status.php" id="src/SclNominetEpp/Request/Update/Field/Status.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/Status.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Field/Status.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $message</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $status</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for method fieldXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Field/ContactAddress.php" id="src/SclNominetEpp/Request/Update/Field/ContactAddress.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/ContactAddress.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Field/ContactAddress.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $contact</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $type</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for method fieldXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Field/HostAddress.php" id="src/SclNominetEpp/Request/Update/Field/HostAddress.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Field/HostAddress.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Field/HostAddress.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $address</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $version</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for method fieldXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Host.php" id="src/SclNominetEpp/Request/Update/Host.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Host.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Host.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for property $host</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $add</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $remove</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for method add()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for method remove()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No DocBlock was found for method addContent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>69</td>
+<td>No DocBlock was found for method setContact()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Update/Contact.php" id="src/SclNominetEpp/Request/Update/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Update/Contact.php<small style="float: right;padding-right: 10px;">10</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request/Update/Contact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $contact</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $add</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $remove</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for method add()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No DocBlock was found for method remove()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for method addContent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>92</td>
+<td>No DocBlock was found for method setContact()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents"></div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/Check/AbstractCheck.php" id="src/SclNominetEpp/Request/Check/AbstractCheck.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/Check/AbstractCheck.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="critical">
+<td>critical</td>
+<td>28</td>
+<td>No short description for property $checkNamespace</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>34</td>
+<td>No short description for property $valueName</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>40</td>
+<td>No short description for property $values</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>Argument $response is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>Argument $checkNamespace is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>Argument $valueName is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>Argument $xml is missing from the Docblock of addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents"></div>
+<div class="package-contents"></div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request/ListDomains.php" id="src/SclNominetEpp/Request/ListDomains.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request/ListDomains.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for method setDate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>Argument $xml is missing from the Docblock of addContent()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Create/Domain.php" id="src/SclNominetEpp/Response/Create/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Create/Domain.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Create/Domain.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $domain</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for method getDomain()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Create/Host.php" id="src/SclNominetEpp/Response/Create/Host.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Create/Host.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Create/Host.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $host</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for method getHost()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Create/Contact.php" id="src/SclNominetEpp/Response/Create/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Create/Contact.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Create/Contact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $contact</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for method getContact()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Info/Domain.php" id="src/SclNominetEpp/Response/Info/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Info/Domain.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Info/Domain.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $domain</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>56</td>
+<td>No DocBlock was found for method getDomain()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Info/Host.php" id="src/SclNominetEpp/Response/Info/Host.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Info/Host.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Info/Host.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $host</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No short description for method statusArrPopulate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No DocBlock was found for method getHost()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Info/Contact.php" id="src/SclNominetEpp/Response/Info/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Info/Contact.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Info/Contact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $contact</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>80</td>
+<td>No DocBlock was found for method getContact()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Login.php" id="src/SclNominetEpp/Response/Login.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Login.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Login.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Renew.php" id="src/SclNominetEpp/Response/Renew.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Renew.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Renew.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Update/Domain.php" id="src/SclNominetEpp/Response/Update/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Update/Domain.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Update/Domain.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Update/ContactID.php" id="src/SclNominetEpp/Response/Update/ContactID.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Update/ContactID.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Update/ContactID.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Update/Host.php" id="src/SclNominetEpp/Response/Update/Host.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Update/Host.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Update/Host.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Update/Contact.php" id="src/SclNominetEpp/Response/Update/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Update/Contact.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Update/Contact.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Check/Domain.php" id="src/SclNominetEpp/Response/Check/Domain.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Check/Domain.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Check/Domain.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No short description for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Check/AbstractCheck.php" id="src/SclNominetEpp/Response/Check/AbstractCheck.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Check/AbstractCheck.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="critical">
+<td>critical</td>
+<td>26</td>
+<td>No short description for property $valueName</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>32</td>
+<td>No short description for property $values</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Check/Host.php" id="src/SclNominetEpp/Response/Check/Host.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Check/Host.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Check/Host.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No short description for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/Check/Contact.php" id="src/SclNominetEpp/Response/Check/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/Check/Contact.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/Check/Contact.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No short description for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response/ListDomains.php" id="src/SclNominetEpp/Response/ListDomains.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response/ListDomains.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response/ListDomains.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $domains</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>33</td>
+<td>No DocBlock was found for method getDomains()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Address.php" id="src/SclNominetEpp/Address.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Address.php<small style="float: right;padding-right: 10px;">6</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Address.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>12</td>
+<td>No short description for property $addressLineOne</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>17</td>
+<td>No short description for property $addressLineTwo</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>22</td>
+<td>No short description for property $addressLineThree</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>27</td>
+<td>No short description for property $city</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Request.php" id="src/SclNominetEpp/Request.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Request.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Request.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for \SclNominetEpp\Request</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>Argument $action is missing from the Docblock of addContent()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>No DocBlock was found for method formatXml()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Response.php" id="src/SclNominetEpp/Response.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Response.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Response.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>9</td>
+<td>No DocBlock was found for \SclNominetEpp\Response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No DocBlock was found for method processData()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>49</td>
+<td>Name of argument $xml does not match with the DocBlock's name $data in init()</td>
+</tr>
+<tr class="notice">
+<td>notice</td>
+<td>49</td>
+<td>Parameter $data could not be found in init()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>80</td>
+<td>No DocBlock was found for method success()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>85</td>
+<td>No DocBlock was found for method code()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>90</td>
+<td>No DocBlock was found for method message()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>95</td>
+<td>No DocBlock was found for method data()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Nameserver.php" id="src/SclNominetEpp/Nameserver.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Nameserver.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Nameserver.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>21</td>
+<td>No short description for property $status</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="src/SclNominetEpp/Contact.php" id="src/SclNominetEpp/Contact.php"></a><h3>
+<i class="icon-file"></i>src/SclNominetEpp/Contact.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file src/SclNominetEpp/Contact.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>4</td>
+<td>No short description for class \SclNominetEpp\Contact</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $organisationTypes</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No DocBlock was found for property $id</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>131</td>
+<td>No short description for property $tradeName</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>137</td>
+<td>No short description for property $organisationType</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>143</td>
+<td>No short description for property $type</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>152</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Request/LoginTest.php" id="tests/src/SclNominetEpp/Request/LoginTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Request/LoginTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Request/LoginTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>9</td>
+<td>No short description for property $object</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for method testLogin()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Request/Create/HostTest.php" id="tests/src/SclNominetEpp/Request/Create/HostTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Request/Create/HostTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Request/Create/HostTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>12</td>
+<td>No short description for property $request</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method testCreateHost()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Request/Create/DomainTest.php" id="tests/src/SclNominetEpp/Request/Create/DomainTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Request/Create/DomainTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Request/Create/DomainTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>15</td>
+<td>No short description for property $request</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for method testCreateDomain()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Request/Create/ContactTest.php" id="tests/src/SclNominetEpp/Request/Create/ContactTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Request/Create/ContactTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Request/Create/ContactTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>13</td>
+<td>No short description for property $request</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No short description for method testCreateContact()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Request/RequestTest.php" id="tests/src/SclNominetEpp/Request/RequestTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Request/RequestTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Request/RequestTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>11</td>
+<td>No short description for property $object</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for method testRequestXML()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Request/Check/HostTest.php" id="tests/src/SclNominetEpp/Request/Check/HostTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Request/Check/HostTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Request/Check/HostTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>11</td>
+<td>No short description for property $object</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Request/Check/DomainTest.php" id="tests/src/SclNominetEpp/Request/Check/DomainTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Request/Check/DomainTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Request/Check/DomainTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>12</td>
+<td>No short description for property $request</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Request/Check/ContactTest.php" id="tests/src/SclNominetEpp/Request/Check/ContactTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Request/Check/ContactTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Request/Check/ContactTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>12</td>
+<td>No short description for property $object</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Create/HostTest.php" id="tests/src/SclNominetEpp/Response/Create/HostTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Create/HostTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Create/HostTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>13</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Create/DomainTest.php" id="tests/src/SclNominetEpp/Response/Create/DomainTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Create/DomainTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Create/DomainTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>13</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Create/ContactTest.php" id="tests/src/SclNominetEpp/Response/Create/ContactTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Create/ContactTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Create/ContactTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>13</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Info/HostTest.php" id="tests/src/SclNominetEpp/Response/Info/HostTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Info/HostTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Info/HostTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>13</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Info/DomainTest.php" id="tests/src/SclNominetEpp/Response/Info/DomainTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Info/DomainTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Info/DomainTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>13</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Info/ContactTest.php" id="tests/src/SclNominetEpp/Response/Info/ContactTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Info/ContactTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Info/ContactTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>12</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Check/HostTest.php" id="tests/src/SclNominetEpp/Response/Check/HostTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Check/HostTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Check/HostTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>11</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Check/DomainTest.php" id="tests/src/SclNominetEpp/Response/Check/DomainTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Check/DomainTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Check/DomainTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>11</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/Check/ContactTest.php" id="tests/src/SclNominetEpp/Response/Check/ContactTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/Check/ContactTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/Check/ContactTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>11</td>
+<td>No short description for property $response</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No short description for method testProcessData()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/src/SclNominetEpp/Response/ResponseTest.php" id="tests/src/SclNominetEpp/Response/ResponseTest.php"></a><h3>
+<i class="icon-file"></i>tests/src/SclNominetEpp/Response/ResponseTest.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/src/SclNominetEpp/Response/ResponseTest.php</td>
+</tr>
+<tr class="critical">
+<td>critical</td>
+<td>11</td>
+<td>No short description for property $object</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for method testPrintResponse()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="tests/Bootstrap.php" id="tests/Bootstrap.php"></a><h3>
+<i class="icon-file"></i>tests/Bootstrap.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file tests/Bootstrap.php</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-02-13T13:07:07Z.<br></footer></div>
+</div>
+</body>
+</html>

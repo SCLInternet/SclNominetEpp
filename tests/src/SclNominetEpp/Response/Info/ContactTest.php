@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Info;
 
 use DateTime;
 use SclNominetEpp\Response\Info\Contact as ContactInfo;
