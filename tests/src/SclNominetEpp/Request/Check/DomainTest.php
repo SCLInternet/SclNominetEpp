@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Check;
 
 use SclNominetEpp\Domain;
 use SclNominetEpp\Request\Check\Domain as CheckDomain;

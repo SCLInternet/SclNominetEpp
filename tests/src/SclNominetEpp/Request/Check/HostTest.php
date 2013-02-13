@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Check;
 
 use SclNominetEpp\Request\Check\Host as CheckHost;
 
