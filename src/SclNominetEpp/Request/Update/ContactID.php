@@ -19,7 +19,7 @@ class ContactID extends Request
     const VALUE_NAME = 'id';
 
     protected $newContactID = null;
-    protected $value;  
+    protected $value;
     
     private $add = array();
     private $remove = array();

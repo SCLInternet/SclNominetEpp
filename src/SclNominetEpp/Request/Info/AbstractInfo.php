@@ -67,6 +67,4 @@ class AbstractInfo extends Request
 
         $info->addChild($this->valueName, $this->value, $this->infoNamespace);
     }
-    
-    
 }

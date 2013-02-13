@@ -7,17 +7,15 @@ namespace SclNominetEpp\Request\Update\Helper;
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class DomainCompareHelper
-{   
-    public function __construct() {
+{
+    public function __construct()
+    {
     }
     
     public static function compare($a, $b)
     {
-        if($a === $b)
-        {
+        if ($a === $b) {
             return 0;
-        }
-            return 1;
+        } return 1;
     }
 }
-        

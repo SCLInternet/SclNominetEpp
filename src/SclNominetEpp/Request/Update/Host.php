@@ -50,16 +50,14 @@ class Host extends Request
         $update->addAttribute('xsi:schemaLocation', $hostXSI);
         $update->addChild(self::VALUE_NAME, $this->value, $hostNS);
 
-        if(!empty($this->add))
-        {
+        if (!empty($this->add)) {
             $addBlock = $update->addChild('add', '', $hostNS);
             foreach ($this->add as $field) {
                 $field->fieldXml($addBlock, $hostNS);
             }
         }
        
-        if(!empty($this->remove))
-        {
+        if (!empty($this->remove)) {
             $remBlock = $updateXML->addChild('rem', '', $hostNS);
             foreach ($this->remove as $field) {
                 $field->fieldXml($remBlock, $hostNS);

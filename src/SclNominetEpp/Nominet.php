@@ -42,14 +42,14 @@ class Nominet extends AbstractRequestResponse
     const STATUS_SERVER_TRANSFER_PROHIBITED = 'serverTransferProhibited';
     const STATUS_SERVER_UPDATE_PROHIBITED   = 'serverUpdateProhibited';
 
-    // pending[action]" status MUST NOT be combined 
-    // with either:-
-    // "client[action]Prohibited" or 
-    // "server[action]Prohibited" status or
-    // other "pending[action]" status.
+    //pending[action]" status MUST NOT be combined
+    //with either:-
+    //"client[action]Prohibited" or
+    //"server[action]Prohibited" status or
+    //other "pending[action]" status.
     const STATUS_PENDING_CREATE   = 'pendingCreate';
     const STATUS_PENDING_DELETE   = 'pendingDelete';
-    const STATUS_PENDING_RENEW    = 'pendingRenew'; 
+    const STATUS_PENDING_RENEW    = 'pendingRenew';
     const STATUS_PENDING_TRANSFER = 'pendingTransfer';
     const STATUS_PENDING_UPDATE   = 'pendingUpdate';
     
@@ -313,7 +313,7 @@ class Nominet extends AbstractRequestResponse
         $request->setDomain($domain);
         
         $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
-        if (!$currentDomain instanceof Domain){
+        if (!$currentDomain instanceof Domain) {
             throw new Exception("The domain requested for updating is unregistered.");
         }
         $currentNameservers = $currentDomain->getNameservers();
@@ -321,38 +321,54 @@ class Nominet extends AbstractRequestResponse
         $newNameservers     = $domain->getNameservers();
         $newContacts        = $domain->getContacts();
 
-        $addContacts       = array_uintersect($newContacts, $currentContacts, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));                    
-        $removeContacts    = array_uintersect($currentContacts, $newContacts, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));
-        $addNameservers    = array_uintersect($newNameservers, $currentNameservers, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));
-        $removeNameservers = array_uintersect($currentNameservers, $newNameservers, array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper','compare'));
+        $addContacts       = array_uintersect(
+            $newContacts,
+            $currentContacts,
+            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+        );
+        $removeContacts    = array_uintersect(
+            $currentContacts,
+            $newContacts,
+            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+        );
+        $addNameservers    = array_uintersect(
+            $newNameservers,
+            $currentNameservers,
+            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+        );
+        $removeNameservers = array_uintersect(
+            $currentNameservers,
+            $newNameservers,
+            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+        );
         
-        if(!empty($addNameservers)){
-            foreach($addNameservers as $nameserver){
+        if (!empty($addNameservers)) {
+            foreach ($addNameservers as $nameserver) {
                 $request->add(new Update\Field\DomainNameserver($nameserver->getHostName()));
             }
         }
         
-        if(!empty($addContacts)){
-            foreach($addContacts as $type => $contact){
+        if (!empty($addContacts)) {
+            foreach ($addContacts as $type => $contact) {
                 $request->add(new Update\Field\DomainContact($contact->getId(), $type));
             }
-        }   
+        }
         
         $request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
            
-        if(!empty($removeNameservers)){
-            foreach($removeNameservers as $nameserver){
+        if (!empty($removeNameservers)) {
+            foreach ($removeNameservers as $nameserver) {
                 $request->remove(new Update\Field\DomainNameserver($nameserver->getHostName()));
             }
         }
-        if(!empty($removeContacts)){
-            foreach($removeContacts as $type => $contact){
+        if (!empty($removeContacts)) {
+            foreach ($removeContacts as $type => $contact) {
                 $request->remove(new Update\Field\DomainContact($contact->getId(), $type));
             }
-        }  
+        }
         
-//        $request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
-//        $request->remove(new Update\Field\DomainContact('mak32', 'tech'));
+        //$request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
+        //$request->remove(new Update\Field\DomainContact('mak32', 'tech'));
         
         $response = $this->processRequest($request);
 

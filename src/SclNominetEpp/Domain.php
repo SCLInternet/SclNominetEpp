@@ -224,8 +224,8 @@ class Domain
     
     public function removeContact(Contact $contact)
     {
-       $arrayKey =  array_search($contact, $this->contacts);
-       unset($this->contacts[$arrayKey]);
+        $arrayKey =  array_search($contact, $this->contacts);
+        unset($this->contacts[$arrayKey]);
     }
 
     /**
@@ -250,8 +250,8 @@ class Domain
 
     public function removeNameserver(Nameserver $nameserver)
     {
-       $arrayKey =  array_search($nameserver, $this->nameservers);
-       unset($this->nameservers[$arrayKey]);
+        $arrayKey =  array_search($nameserver, $this->nameservers);
+        unset($this->nameservers[$arrayKey]);
     }
     /**
      *
