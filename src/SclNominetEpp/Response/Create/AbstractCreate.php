@@ -14,6 +14,8 @@ use SclNominetEpp\Nameserver;
 abstract class AbstractCreate extends Response
 {
     protected $object;
+    
+    protected $valueName;
 
     public function __construct($type, $valueName)
     {

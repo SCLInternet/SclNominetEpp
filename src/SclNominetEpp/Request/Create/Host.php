@@ -48,15 +48,6 @@ class Host extends Request
             $ipv6->addAttribute('ip', 'v6');
         }
     }
-
-    /**
-     *
-     * @param Nameserver $nameserver
-     */
-    public function setNameserver(Nameserver $nameserver)
-    {
-        $this->nameserver = $nameserver;
-    }
     
     public function addSpecificContent()
     {
@@ -69,5 +60,14 @@ class Host extends Request
             $exception = sprintf('A valid Nameserver object was not passed to \Request\CreateHost, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
+    }
+    
+    /**
+     *
+     * @param Nameserver $nameserver
+     */
+    public function setNameserver(Nameserver $nameserver)
+    {
+        $this->nameserver = $nameserver;
     }
 }

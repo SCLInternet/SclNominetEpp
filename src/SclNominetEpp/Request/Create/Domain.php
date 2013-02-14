@@ -22,7 +22,7 @@ class Domain extends Request
 
     /**
      *
-     * @var Domain
+     * @var DomainObject
      */
     protected $domain = null;
 
@@ -34,6 +34,7 @@ class Domain extends Request
 
     public function __construct()
     {
+        $this->value = $this->domain->getName();
         parent::__construct('create');
     }
 

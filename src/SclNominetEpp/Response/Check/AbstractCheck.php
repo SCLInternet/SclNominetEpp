@@ -38,6 +38,9 @@ abstract class AbstractCheck extends Response
     public function __construct($type, $response, $updateNamespace, $valueName)
     {
         parent::__construct('check', $response);
+        $this->type = $type;
+        $this->updateNamespace = $updateNamespace;
+        $this->valueName = $valueName;
     }
 
     public function processData($data)

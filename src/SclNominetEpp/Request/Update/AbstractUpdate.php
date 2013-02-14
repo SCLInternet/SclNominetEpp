@@ -12,8 +12,19 @@ use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
  */
 abstract class AbstractUpdate extends Request{
     
-    public function __construct($type, $response, $updateNamespace, $valueName) {
+    protected $type;
+    
+    protected $updateNamespace;
+    
+    protected $valueName;
+    
+    public function __construct($type, $response, $updateNamespace, $valueName)
+    {
         parent::__construct('update', $response);
+        
+        $this->type            = $type;
+        $this->updateNamespace = $updateNamespace;
+        $this->valueName       = $valueName;
     }
     
     abstract protected function add(UpdateFieldInterface $field);

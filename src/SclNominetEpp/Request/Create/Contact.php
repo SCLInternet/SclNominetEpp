@@ -72,7 +72,14 @@ class Contact extends Request
         $authInfo = $create->addChild('authInfo');
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
-
+    
+    public function objectValidate(){
+        if (!$this->contact instanceof ContactObject) {
+            $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
+            throw new Exception($exception);
+        }
+    }
+    
     /**
      *
      * @param Contact $contact
@@ -80,12 +87,5 @@ class Contact extends Request
     public function setContact(ContactObject $contact)
     {
         $this->contact = $contact;
-    }
-    
-    public function objectValidate(){
-        if (!$this->contact instanceof ContactObject) {
-            $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
-            throw new Exception($exception);
-        }
     }
 }

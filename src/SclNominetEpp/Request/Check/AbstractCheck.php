@@ -53,9 +53,9 @@ abstract class AbstractCheck extends Request
     {
         parent::__construct('check', $response);
 
-        $this->type = $type;
+        $this->type           = $type;
         $this->checkNamespace = $checkNamespace;
-        $this->valueName = $valueName;
+        $this->valueName      = $valueName;
     }
 
     /**
