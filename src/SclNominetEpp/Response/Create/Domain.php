@@ -23,28 +23,13 @@ class Domain extends AbstractCreate
         parent::setType(self::TYPE);
         parent::setObjectType(self::OBJECT_TYPE);
     }
-    public function processData($xml)
+        
+    public function setValue($name)
     {
-        if($this->xmlInvalid($xml)){
-            return;
-        }
-        $ns = $xml->getNamespaces(true);
-        $this->domain = new DomainObject();
-
-        $response = $xml->response;
-
-        $creData  = $response->resData->children($ns['domain'])->creData;
-        $this->domain->setName($creData->name);
-        $this->domain->setCreated(new DateTime($creData->crDate));
-
-    }
-    
-    public function getDomain()
-    {
-        return $this->domain;
+        $this->host->setName($name);
     }
 
-    protected function addSpecificData($creData) {
+    protected function addSpecificData(\SimpleXMLElement $creData) {
         
         $this->domain->setExpired(new DateTime($creData->exDate));
     }

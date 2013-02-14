@@ -39,7 +39,7 @@ abstract class AbstractCreate extends Response
         $response  = $xml->response;
 
         $creData   = $response->resData->children($ns["{$this->type}"])->creData;
-        $this->object->setHostName($creData->$name);
+        $this->object->setValue($creData->$name);
         $this->object->setCreated(new DateTime($creData->crDate));
         $this->addSpecificData($creData);
     }
@@ -51,13 +51,20 @@ abstract class AbstractCreate extends Response
         }
     }
     
-    abstract protected function addSpecificData();
+    /**
+     * Set $this->type
+     *
+     * @param string $type
+     */
+    abstract protected function setValue(\SimpleXMLElement $xml);
     
-    public function getHost()
+    abstract protected function addSpecificData(\SimpleXMLElement $xml);
+    
+    public function getObject()
     {
         return $this->object;
     }
-
+    
     /**
      * Set $this->type
      *

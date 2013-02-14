@@ -13,7 +13,7 @@ use SclNominetEpp\Nameserver;
 class Host extends AbstractCreate
 {
     const TYPE = 'host';
-    const OBJECT_TYPE = 'Nameserver';
+    const OBJECT_TYPE = '\SclNominetEpp\Nameserver';
     
     protected $host;
 
@@ -24,27 +24,10 @@ class Host extends AbstractCreate
         parent::setObjectType(self::OBJECT_TYPE);
     }
     
-    public function processData($xml)
+    public function setValue($name)
     {
-        if ($this->xmlInvalid($xml)) {
-            return;
-        }
-        $ns = $xml->getNamespaces(true);
-        $this->host = new Nameserver();
-
-        $response  = $xml->response;
-
-        $creData   = $response->resData->children($ns['host'])->creData;
-        $this->host->setHostName($creData->name);
-        $this->host->setCreated(new DateTime($creData->crDate));
+        $this->host->setHostName($name);
     }
 
-    public function getHost()
-    {
-        return $this->host;
-    }
-
-    protected function addSpecificData() {
-        
-    }
+    protected function addSpecificData(\SimpleXMLElement $xml) {}
 }

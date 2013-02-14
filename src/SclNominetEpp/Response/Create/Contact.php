@@ -14,7 +14,7 @@ use SclNominetEpp\Contact as ContactObject;
 class Contact extends AbstractCreate
 {
     const TYPE = 'contact';
-    const OBJECT_TYPE = 'ContactObject';
+    const OBJECT_TYPE = '\SclNominetEpp\Contact';
     
     protected $contact;
 
@@ -25,29 +25,10 @@ class Contact extends AbstractCreate
         parent::setObjectType(self::OBJECT_TYPE);
     }
     
-    public function processData($xml)
+    public function setValue($name)
     {
-        if($this->xmlInvalid($xml)){
-            return;
-        }
-        
-        $ns = $xml->getNamespaces(true);
-        $this->contact = new ContactObject();
-
-        $response = $xml->response;
-
-        $creData  = $response->resData->children($ns['contact'])->creData;
-        $this->contact->setId($creData->id);
-        $this->contact->setCreated(new DateTime($creData->crDate));
+        $this->host->setId($name);
     }
 
-
-    public function getContact()
-    {
-        return $this->contact;
-    }
-
-    protected function addSpecificData() {
-        
-    }
+    protected function addSpecificData(\SimpleXMLElement $xml) {}
 }
