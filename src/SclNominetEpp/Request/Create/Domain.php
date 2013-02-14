@@ -3,7 +3,6 @@
 namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Domain as DomainObject;
-use SclNominetEpp\Request;
 use SimpleXMLElement;
 use Exception;
 
@@ -12,7 +11,7 @@ use Exception;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Domain extends Request
+class Domain extends AbstractCreate
 {
 
     const TYPE = 'domain';
@@ -35,22 +34,17 @@ class Domain extends Request
     public function __construct()
     {
         $this->value = $this->domain->getName();
-        parent::__construct('create');
+        parent::__construct(
+            self::TYPE,
+            new CheckContactResponse(),
+            self::CREATE_NAMESPACE,
+            self::VALUE_NAME,
+            $this->value
+        );
     }
-
-    /**
-     *
-     * @param  SimpleXMLElement $xml
-     * @throws Exception
-     */
-    public function addContent(SimpleXMLElement $xml)
+        
+    public function addSpecificContent($create)
     {
-        $this->objectValidate();
-        //@todo the section below needs to be made domain specific, it's been pasted from CreateContact
-
-        $create = $xml->addChild("domain:create", '', self::CREATE_NAMESPACE);
-
-        $create->addChild(self::VALUE_NAME, $this->domain->getName(), self::CREATE_NAMESPACE);
         $period = $create->addChild('period', 2);
         $period->addAttribute('unit', 'y');
 
@@ -65,7 +59,7 @@ class Domain extends Request
         $authInfo = $create->addChild('authInfo');
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
-
+    
     /**
      *
      * @param SimpleXMLElement $create

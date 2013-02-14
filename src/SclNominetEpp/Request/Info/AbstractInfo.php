@@ -14,7 +14,7 @@ use SclNominetEpp\Request;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class AbstractInfo extends Request
+class Info extends Request
 {
 
     /**

@@ -12,7 +12,7 @@ use Exception;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Contact extends Request
+class Contact extends AbstractCreate
 {
 
     const TYPE = 'contact';
@@ -34,23 +34,20 @@ class Contact extends Request
 
     public function __construct()
     {
-        parent::__construct('create');
+        $this->value = $this->contact->getId();
+        parent::__construct(
+            self::TYPE,
+            new CheckContactResponse(),
+            self::CREATE_NAMESPACE,
+            self::VALUE_NAME,
+            $this->value
+        );
     }
-
-    /**
-     *
-     * @param  SimpleXMLElement $xml
-     * @throws Exception
-     */
-    public function addContent(SimpleXMLElement $xml)
+    
+    public function addSpecificContent($create)
     {
-        $this->objectValidate();
         $address = $this->contact->getAddress();
-
-        $create = $xml->addChild("contact:create", '', self::CREATE_NAMESPACE);
-
-        $create->addChild(self::VALUE_NAME, $this->contact->getId(), self::CREATE_NAMESPACE);
-
+        
         $postalInfo = $create->addChild('postalInfo');
         $postalInfo->addAttribute('type', 'int');
         $postalInfo->addChild('name', $this->contact->getName());

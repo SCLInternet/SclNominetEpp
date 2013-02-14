@@ -9,7 +9,7 @@ use SclNominetEpp\Request;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class AbstractDelete extends Request
+class Delete extends Request
 {
     /**
      * The type of check this is.

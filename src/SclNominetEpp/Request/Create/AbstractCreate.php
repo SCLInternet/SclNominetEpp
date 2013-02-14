@@ -14,7 +14,7 @@ use SclNominetEpp\Request;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class AbstractCreate extends Request
+class Create extends Request
 {
     /**
      * The type of check this is.
@@ -47,13 +47,14 @@ abstract class AbstractCreate extends Request
      * @param  string     $type
      * @throws \Exception
      */
-    public function __construct($type, $response, $createNamespace, $valueName)
+    public function __construct($type, $response, $createNamespace, $valueName, $value)
     {
         parent::__construct('create', $response);
 
         $this->type = $type;
         $this->createNamespace = $createNamespace;
         $this->valueName = $valueName;
+        $this->value = $value;
     }
 
     /**
@@ -62,15 +63,12 @@ abstract class AbstractCreate extends Request
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
-        if (!$this->contact instanceof ContactObject) {
-            $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
-            throw new Exception($exception);
-        }
+        $this->objectValidate();
         
         $createNS  = $this->createNamespace;
 
         $createXSI = $createNS . ' ' . "{$this->type}-1.0.xsd";
-
+        
         $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
         $create->addAttribute('xsi:schemaLocation', $createXSI);
         $create->addChild($this->valueName, $this->value, $createXSI);
@@ -88,10 +86,6 @@ abstract class AbstractCreate extends Request
         $this->value = $value;
     }
     
-    public function addSpecificContent()
-    {
-        
-    }
-    
-    
+    abstract public function objectValidate();
+    abstract public function addSpecificContent();
 }

@@ -16,7 +16,7 @@ use SclNominetEpp\Request;
  * @author Tom Oram <tom@scl.co.uk>
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class AbstractCheck extends Request
+class Check extends Request
 {
     /**
      * The type of check this is.
