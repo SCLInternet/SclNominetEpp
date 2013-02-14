@@ -17,9 +17,9 @@ class Host extends AbstractCreate
     
     protected $host;
 
-    public function __construct()
+    public function __construct($data = null)
     {
-        parent::__construct(null);
+        parent::__construct($data);
         parent::setType(self::TYPE);
         parent::setObjectType(self::OBJECT_TYPE);
     }
@@ -28,6 +28,4 @@ class Host extends AbstractCreate
     {
         $this->host->setHostName($name);
     }
-
-    protected function addSpecificData(\SimpleXMLElement $xml) {}
 }

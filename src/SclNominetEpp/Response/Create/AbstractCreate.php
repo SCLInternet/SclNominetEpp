@@ -20,12 +20,12 @@ abstract class AbstractCreate extends Response
 
     public function __construct($type, $objectType, $valueName)
     {
-        $this->type = $type;
+        $this->type = (string) $type;
         $this->objectType = $objectType;
         $this->valueName = $valueName;
     }
     
-    public function processData($xml)
+    protected function processData($xml)
     {
         $name = $this->valueName;
         
@@ -36,19 +36,17 @@ abstract class AbstractCreate extends Response
         $objectType = $this->objectType;
         $this->object = new $objectType();
 
-        $response  = $xml->response;
+        $response = $xml->response;
 
-        $creData   = $response->resData->children($ns["{$this->type}"])->creData;
+        $creData  = $response->resData->children($ns[$this->type])->creData;
         $this->object->setValue($creData->$name);
         $this->object->setCreated(new DateTime($creData->crDate));
-        $this->addSpecificData($creData);
+        //$this->addSpecificData($creData);
     }
 
-    public function xmlInvalid($xml)
-    {
-        if (!isset($xml->response->resData)) {
-            return true;
-        }
+    protected function xmlInvalid($xml)
+    {   
+        return !isset($xml->response->resData);
     }
     
     /**
@@ -58,7 +56,9 @@ abstract class AbstractCreate extends Response
      */
     abstract protected function setValue(\SimpleXMLElement $xml);
     
-    abstract protected function addSpecificData(\SimpleXMLElement $xml);
+//    protected function addSpecificData(\SimpleXMLElement $xml)
+//    {
+//    }
     
     public function getObject()
     {

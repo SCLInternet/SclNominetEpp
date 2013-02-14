@@ -17,13 +17,21 @@ class Domain extends AbstractCreate
     
     protected $domain;
 
-    public function __construct()
+    public function __construct($data = null)
     {
-        parent::__construct(null);
+        parent::__construct($data);
         parent::setType(self::TYPE);
         parent::setObjectType(self::OBJECT_TYPE);
     }
         
+    protected function processData($xml) {
+        parent::processData($xml);
+        
+        $response  = $xml->response;
+        $creData   = $response->resData->children($ns[$this->type])->creData;
+        $this->domain->setExpired(new DateTime($creData->exDate));
+    }
+    
     public function setValue($name)
     {
         $this->host->setName($name);

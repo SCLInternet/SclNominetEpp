@@ -18,7 +18,7 @@ class Contact extends AbstractCheck
      */
     public function __construct($data = null)
     {
-        parent::__construct(null);
+        parent::__construct($data);
         parent::setType(self::TYPE);
         parent::setValueName(self::VALUE_NAME);
     }

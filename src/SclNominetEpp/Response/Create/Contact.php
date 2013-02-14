@@ -18,9 +18,9 @@ class Contact extends AbstractCreate
     
     protected $contact;
 
-    public function __construct()
+    public function __construct($data = null)
     {
-        parent::__construct(null);
+        parent::__construct($data);
         parent::setType(self::TYPE);
         parent::setObjectType(self::OBJECT_TYPE);
     }
@@ -29,6 +29,4 @@ class Contact extends AbstractCreate
     {
         $this->host->setId($name);
     }
-
-    protected function addSpecificData(\SimpleXMLElement $xml) {}
 }
