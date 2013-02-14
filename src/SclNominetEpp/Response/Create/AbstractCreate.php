@@ -25,7 +25,12 @@ abstract class AbstractCreate extends Response
         $this->valueName = $valueName;
     }
     
-    protected function processData($xml)
+    /**
+     * 
+     * @param SimpleXMLElement $xml
+     * @return type
+     */
+    protected function processData(\SimpleXMLElement $xml)
     {
         $name = $this->valueName;
         
@@ -44,7 +49,12 @@ abstract class AbstractCreate extends Response
         //$this->addSpecificData($creData);
     }
 
-    protected function xmlInvalid($xml)
+    /**
+     * 
+     * @param SimpleXMLElement $xml
+     * @return boolean
+     */
+    protected function xmlInvalid(\SimpleXMLElement $xml)
     {   
         return !isset($xml->response->resData);
     }
@@ -64,44 +74,5 @@ abstract class AbstractCreate extends Response
     {
         return $this->object;
     }
-    
-    /**
-     * Set $this->type
-     *
-     * @param string $type
-     */
-    protected function setType($type)
-    {
-        $this->type = $type;
-    }
 
-    /**
-     * Get $this->type
-     *
-     * @return string
-     */
-    protected function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set $this->valueName
-     *
-     * @param string $valueName
-     */
-    public function setValueName($valueName)
-    {
-        $this->valueName = $valueName;
-    }
-
-    /**
-     * Get $this->valueName
-     *
-     * @return string
-     */
-    public function getValueName()
-    {
-        return $this->valueName;
-    }
 }

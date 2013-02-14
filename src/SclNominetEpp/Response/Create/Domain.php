@@ -6,27 +6,30 @@ use DateTime;
 use SclNominetEpp\Domain as DomainObject;
 
 /**
- * This class interprets XML for a Nominet EPP host:create command response.
+ * This class gives AbstractCreate information to interpret XML 
+ * for a Nominet EPP host:create command response.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Domain extends AbstractCreate
 {
     const TYPE = 'domain';
-    const OBJECT_TYPE = '\SclNominetEpp\Domain';
+    const VALUE_NAME = 'name';
     
     protected $domain;
 
-    public function __construct($data = null)
+    public function __construct()
     {
-        parent::__construct($data);
-        parent::setType(self::TYPE);
-        parent::setObjectType(self::OBJECT_TYPE);
+         parent::__construct(
+            self::TYPE,
+            new DomainObject(),
+            self::VALUE_NAME
+        );
     }
         
     protected function processData($xml) {
         parent::processData($xml);
-        
+        $ns = $xml->getNamespaces(true);
         $response  = $xml->response;
         $creData   = $response->resData->children($ns[$this->type])->creData;
         $this->domain->setExpired(new DateTime($creData->exDate));

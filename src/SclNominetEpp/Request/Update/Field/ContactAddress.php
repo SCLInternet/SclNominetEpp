@@ -8,15 +8,29 @@ namespace SclNominetEpp\Request\Update\Field;
  */
 class ContactAddress implements UpdateFieldInterface
 {
+    /**
+     *
+     * @var type 
+     */
     private $contact;
     private $type;
     
+    /**
+     * 
+     * @param type $contact
+     * @param type $type
+     */
     public function __construct($contact, $type)
     {
         $this->contact = $contact;
         $this->type  = $type;
     }
     
+    /**
+     * 
+     * @param SimpleXMLElement $xml
+     * @param type $namespace
+     */
     public function fieldXml(\SimpleXMLElement $xml, $namespace)
     {
         $postalInfo = $xml->addChild('postalInfo', '', $namespace);
