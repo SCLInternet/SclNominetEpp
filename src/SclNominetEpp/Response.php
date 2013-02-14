@@ -30,18 +30,12 @@ class Response implements ResponseInterface
     protected $data;
 
     /**
-     * If $data is provided then it is passed to an init() call.
+     * Custom processing of the XML response.
      *
-     * @param string|null $data
+     * @param SimpleXMLElement $xml
+     * @return void
      */
-    public function __construct($data = null)
-    {
-        if (null !== $data) {
-            $this->init($data);
-        }
-    }
-
-    protected function processData($xml)
+    protected function processData(SimpleXMLElement $xml)
     {
         // Nothing to see here
     }
