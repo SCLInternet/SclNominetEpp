@@ -12,26 +12,29 @@ use SclNominetEpp\Request;
 abstract class AbstractDelete extends Request
 {
     /**
-     * The type of check this is.
+     * The type of delete this is.
      *
      * @var string
      */
     private $type;
 
     /**
-     *
+     * The Namespace of the delete
+     * 
      * @var string
      */
     private $deleteNamespace;
 
     /**
-     *
+     * The valuename of the specific object for deletion
+     * 
      * @var string
      */
     private $valueName;
 
     /**
-     *
+     * The value of the specific object for deletion
+     * 
      * @var string
      */
     private $value;

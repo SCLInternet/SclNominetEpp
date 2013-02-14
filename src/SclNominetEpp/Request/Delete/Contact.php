@@ -18,6 +18,9 @@ class Contact extends AbstractDelete
     protected $contact = '';
     protected $value;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(

@@ -18,6 +18,9 @@ class Host extends AbstractDelete
     protected $host = '';
     protected $value;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(

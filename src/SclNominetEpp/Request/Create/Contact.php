@@ -42,7 +42,13 @@ class Contact extends AbstractCreate
         );
     }
     
-    public function addSpecificContent($create)
+    /**
+     * This function is used to add Object specific content 
+     * to the Abstract class' implementation of addContent
+     * 
+     * @param SimpleXMLElement $create
+     */
+    public function addSpecificContent(\SimpleXMLElement $create)
     {
         $address = $this->contact->getAddress();
         
@@ -68,6 +74,11 @@ class Contact extends AbstractCreate
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
     
+    /**
+     * An Exception is thrown if the object is not of it's expected type.
+     * 
+     * @throws Exception
+     */
     public function objectValidate(){
         if (!$this->contact instanceof ContactObject) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
@@ -76,7 +87,8 @@ class Contact extends AbstractCreate
     }
     
     /**
-     *
+     * Set Contact to the passed ContactObject file.
+     * 
      * @param Contact $contact
      */
     public function setContact(ContactObject $contact)

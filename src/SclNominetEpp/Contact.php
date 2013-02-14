@@ -8,7 +8,124 @@ namespace SclNominetEpp;
  */
 class Contact
 {
+    private $countryCodes = array(
+        'AD', 'AE', 'AF', 'AG', 'AI', 'AL', 'AM', 'AO', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AW', 'AX', 'AZ',
+        'BA', 'BB', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BL', 'BM', 'BN', 'BO', 'BQ', 'BR', 'BS',
+        'BT', 'BV', 'BW', 'BY', 'BZ',
+        'CA', 'CC', 'CD', 'CF', 'CG', 'CH', 'CI', 'CK', 'CL', 'CM', 'CN', 'CO', 'CR', 'CU', 'CV', 'CW',
+        'CX', 'CY', 'CZ',
+        'DE', 'DJ', 'DK', 'DM', 'DO', 'DZ',
+        'EC', 'EE', 'EG', 'EH', 'ER', 'ES', 'ET', 
+        'FI', 'FJ', 'FK', 'FM', 'FO', 'FR',
+        'GA', 'GB', 'GD', 'GE', 'GF', 'GG', 'GH', 'GI', 'GL', 'GM', 'GN', 'GP', 'GQ', 'GR', 'GS', 'GT',
+        'GU', 'GW', 'GY',
+        'HK', 'HM', 'HN', 'HR', 'HT', 'HU',
+        'ID', 'IE', 'IL', 'IM', 'IN', 'IO', 'IQ', 'IR', 'IS', 'IT',
+        'JE', 'JM', 'JO', 'JP',
+        'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KP', 'KR', 'KW', 'KY', 'KZ',
+        'LA', 'LB', 'LC', 'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV', 'LY',
+        'MA', 'MC', 'MD', 'ME', 'MF', 'MG', 'MH', 'MK', 'ML', 'MM', 'MN', 'MO', 'MP', 'MQ', 'MR', 'MS',
+        'MT');
 
+/*
+
+MU	MAURITIUS
+MV	MALDIVES
+MW	MALAWI
+MX	MEXICO
+MY	MALAYSIA
+MZ	MOZAMBIQUE
+NA	NAMIBIA
+NC	NEW CALEDONIA
+NE	NIGER
+NF	NORFOLK ISLAND
+NG	NIGERIA
+NI	NICARAGUA
+NL	NETHERLANDS
+NO	NORWAY
+NP	NEPAL
+NR	NAURU
+NU	NIUE
+NZ	NEW ZEALAND
+OM	OMAN
+PA	PANAMA
+PE	PERU
+PF	FRENCH POLYNESIA
+PG	PAPUA NEW GUINEA
+PH	PHILIPPINES
+PK	PAKISTAN
+PL	POLAND
+PM	SAINT PIERRE AND MIQUELON
+PN	PITCAIRN
+PR	PUERTO RICO
+PS	PALESTINE, STATE OF
+PT	PORTUGAL
+PW	PALAU
+PY	PARAGUAY
+QA	QATAR
+RE	RÉUNION
+RO	ROMANIA
+RS	SERBIA
+RU	RUSSIAN FEDERATION
+RW	RWANDA
+SA	SAUDI ARABIA
+SB	SOLOMON ISLANDS
+SC	SEYCHELLES
+SD	SUDAN
+SE	SWEDEN
+SG	SINGAPORE
+SH	SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA
+SI	SLOVENIA
+SJ	SVALBARD AND JAN MAYEN
+SK	SLOVAKIA
+SL	SIERRA LEONE
+SM	SAN MARINO
+SN	SENEGAL
+SO	SOMALIA
+SR	SURINAME
+SS	SOUTH SUDAN
+ST	SAO TOME AND PRINCIPE
+SV	EL SALVADOR
+SX	SINT MAARTEN (DUTCH PART)
+SY	SYRIAN ARAB REPUBLIC
+SZ	SWAZILAND
+TC	TURKS AND CAICOS ISLANDS
+TD	CHAD
+TF	FRENCH SOUTHERN TERRITORIES
+TG	TOGO
+TH	THAILAND
+TJ	TAJIKISTAN
+TK	TOKELAU
+TL	TIMOR-LESTE
+TM	TURKMENISTAN
+TN	TUNISIA
+TO	TONGA
+TR	TURKEY
+TT	TRINIDAD AND TOBAGO
+TV	TUVALU
+TW	TAIWAN, PROVINCE OF CHINA
+TZ	TANZANIA, UNITED REPUBLIC OF
+UA	UKRAINE
+UG	UGANDA
+UM	UNITED STATES MINOR OUTLYING ISLANDS
+US	UNITED STATES
+UY	URUGUAY
+UZ	UZBEKISTAN
+VA	HOLY SEE (VATICAN CITY STATE)
+VC	SAINT VINCENT AND THE GRENADINES
+VE	VENEZUELA, BOLIVARIAN REPUBLIC OF
+VG	VIRGIN ISLANDS, BRITISH
+VI	VIRGIN ISLANDS, U.S.
+VN	VIET NAM
+VU	VANUATU
+WF	WALLIS AND FUTUNA
+WS	SAMOA
+YE	YEMEN
+YT	MAYOTTE
+ZA	SOUTH AFRICA
+ZM	ZAMBIA
+ZW	ZIMBABWE
+    */
         //TYPE
     const TYPE_UK_LTD                   = 'LTD';
     const TYPE_UK_PLC                   = 'PLC';
@@ -130,24 +247,26 @@ class Contact
     private $upDate;
 
     /**
-     *
-     * @var type
+     * Trading name of the organisation
+     * 
+     * @var string
      */
     private $tradeName;
 
     /**
+     * The type of organisation (from the array defined in the Contact class) default "UNKNOWN".
      *
-     * @var type
+     * @var string
      */
     private $organisationType = self::TYPE_UNKNOWN;
 
     /**
-     *
+     * 
      * @var type 
      */
     private $type;
     
-    /*
+    /**
      * Constructor
      */
     public function __construct()

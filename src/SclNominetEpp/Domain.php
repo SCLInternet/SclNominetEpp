@@ -52,40 +52,45 @@ class Domain
     private $nameservers = array();
 
     /**
-     *
+     * specified in the Nominet EPP as "clID"
+     * 
      * @var string
      */
     private $clientID;
 
     /**
+     * specified in the Nominet EPP as "crID"
      * 
      * @var string
      */
     private $creatorID;
 
     /**
-     * createdDate
+     * CreatedDate specified in the Nominet EPP as "crDate"
      *
      * @var DateTime
      */
     private $created;
 
     /**
-     * expiredDate
+     * ExpiredDate specified in the Nominet EPP as "exDate"
      *
      * @var DateTime
      */
     private $expired;
 
     /**
-     *
-     * @var type
+     * The date the domain name was last changed, formatted as: YYYYMMDD
+     * 
+     * @var DateTime
      */
     private $upID;
 
     /**
-     *
-     * @var type
+     * The user that last changed the domain name.
+     * (could be a name and email address or the value submitted from the <clTRID> element if created by EPP)
+     * 
+     * @var string
      */
     private $upDate;
 
