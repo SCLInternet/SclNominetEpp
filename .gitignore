@@ -3,6 +3,7 @@ composer.lock
 vendor
 clover.xml
 nbproject
+phpdocumentation
 php-cs-fixer.phar
 .buildpath
 .project
