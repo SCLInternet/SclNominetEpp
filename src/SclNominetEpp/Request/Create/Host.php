@@ -33,11 +33,7 @@ class Host extends Request
     public function addContent(SimpleXMLElement $xml)
     {
         $host = $this->nameserver;
-
-        if (!$host instanceof Nameserver) {
-            $exception = sprintf('A valid Nameserver object was not passed to \Request\CreateHost, Ln:%d', __LINE__);
-            throw new Exception($exception);
-        }
+        $this->objectValidate();
 
         $create = $xml->addChild("host:create", '', self::CREATE_NAMESPACE);
 
@@ -65,5 +61,13 @@ class Host extends Request
     public function addSpecificContent()
     {
         
+    }
+    
+    public function objectValidate()
+    {
+        if (!$this->nameserver instanceof Nameserver) {
+            $exception = sprintf('A valid Nameserver object was not passed to \Request\CreateHost, Ln:%d', __LINE__);
+            throw new Exception($exception);
+        }
     }
 }

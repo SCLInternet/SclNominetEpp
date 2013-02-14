@@ -44,11 +44,7 @@ class Contact extends Request
      */
     public function addContent(SimpleXMLElement $xml)
     {
-        if (!$this->contact instanceof ContactObject) {
-            $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
-            throw new Exception($exception);
-        }
-
+        $this->objectValidate();
         $address = $this->contact->getAddress();
 
         $create = $xml->addChild("contact:create", '', self::CREATE_NAMESPACE);
@@ -84,5 +80,12 @@ class Contact extends Request
     public function setContact(ContactObject $contact)
     {
         $this->contact = $contact;
+    }
+    
+    public function objectValidate(){
+        if (!$this->contact instanceof ContactObject) {
+            $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
+            throw new Exception($exception);
+        }
     }
 }

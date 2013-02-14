@@ -44,11 +44,7 @@ class Domain extends Request
      */
     public function addContent(SimpleXMLElement $xml)
     {
-        if (!$this->domain instanceof DomainObject) {
-            $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
-            throw new Exception($exception);
-        }
-
+        $this->objectValidate();
         //@todo the section below needs to be made domain specific, it's been pasted from CreateContact
 
         $create = $xml->addChild("domain:create", '', self::CREATE_NAMESPACE);
@@ -92,6 +88,14 @@ class Domain extends Request
         }
     }
 
+    public function objectValidate()
+    {
+        if (!$this->domain instanceof DomainObject) {
+            $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
+            throw new Exception($exception);
+        }
+    }
+    
     /**
      *
      * @param Domain $domain

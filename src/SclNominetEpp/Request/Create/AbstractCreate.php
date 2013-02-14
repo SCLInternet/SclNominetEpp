@@ -36,6 +36,12 @@ abstract class AbstractCreate extends Request
     private $valueName;
 
     /**
+     *
+     * @var string
+     */
+    private $value;
+    
+    /**
      * Tells the parent class what the action of this request is.
      *
      * @param  string     $type
@@ -56,14 +62,36 @@ abstract class AbstractCreate extends Request
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
+        if (!$this->contact instanceof ContactObject) {
+            $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
+            throw new Exception($exception);
+        }
+        
+        $createNS  = $this->createNamespace;
+
+        $createXSI = $createNS . ' ' . "{$this->type}-1.0.xsd";
+
         $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
+        $create->addAttribute('xsi:schemaLocation', $createXSI);
+        $create->addChild($this->valueName, $this->value, $createXSI);
         
         $this->addSpecificContent();
-
+    }
+    
+    /**
+     * SetValue
+     *
+     * @param  string $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
     
     public function addSpecificContent()
     {
         
     }
+    
+    
 }
