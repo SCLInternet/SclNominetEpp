@@ -86,6 +86,6 @@ abstract class AbstractCreate extends Request
         $this->value = $value;
     }
     
-    abstract public function objectValidate();
-    abstract public function addSpecificContent();
+    abstract protected function objectValidate();
+    abstract protected function addSpecificContent();
 }

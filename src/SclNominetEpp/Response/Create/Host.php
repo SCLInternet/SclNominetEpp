@@ -17,7 +17,7 @@ class Host extends Response
 
     public function processData($xml)
     {
-        if (!isset($xml->response->resData)) {
+        if ($this->xmlInvalid($xml)) {
             return;
         }
         $ns = $xml->getNamespaces(true);

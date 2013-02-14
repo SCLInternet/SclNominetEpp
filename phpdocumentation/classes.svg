@@ -98,15 +98,15 @@
 <text text-anchor="middle" x="1057" y="-3864.86" font-family="Times Roman,serif" font-size="11.00" fill="gray">Delete</text>
 </g>
 <g id="graph10" class="cluster"><title>cluster_SclNominetEpp\Request\Info</title>
-<polyline fill="none" stroke="gray" points="809,-3154.76 1311,-3154.76 "/>
+<polyline fill="none" stroke="gray" points="810,-3154.76 1311,-3154.76 "/>
 <path fill="none" stroke="gray" d="M1311,-3154.76C1317,-3154.76 1323,-3160.76 1323,-3166.76"/>
 <polyline fill="none" stroke="gray" points="1323,-3166.76 1323,-3324.76 "/>
 <path fill="none" stroke="gray" d="M1323,-3324.76C1323,-3330.76 1317,-3336.76 1311,-3336.76"/>
-<polyline fill="none" stroke="gray" points="1311,-3336.76 809,-3336.76 "/>
-<path fill="none" stroke="gray" d="M809,-3336.76C803,-3336.76 797,-3330.76 797,-3324.76"/>
-<polyline fill="none" stroke="gray" points="797,-3324.76 797,-3166.76 "/>
-<path fill="none" stroke="gray" d="M797,-3166.76C797,-3160.76 803,-3154.76 809,-3154.76"/>
-<text text-anchor="middle" x="1060" y="-3322.86" font-family="Times Roman,serif" font-size="11.00" fill="gray">Info</text>
+<polyline fill="none" stroke="gray" points="1311,-3336.76 810,-3336.76 "/>
+<path fill="none" stroke="gray" d="M810,-3336.76C804,-3336.76 798,-3330.76 798,-3324.76"/>
+<polyline fill="none" stroke="gray" points="798,-3324.76 798,-3166.76 "/>
+<path fill="none" stroke="gray" d="M798,-3166.76C798,-3160.76 804,-3154.76 810,-3154.76"/>
+<text text-anchor="middle" x="1060.5" y="-3322.86" font-family="Times Roman,serif" font-size="11.00" fill="gray">Info</text>
 </g>
 <g id="graph11" class="cluster"><title>cluster_SclNominetEpp\Request\Release</title>
 <polyline fill="none" stroke="gray" points="799,-3886.76 1311,-3886.76 "/>
@@ -531,15 +531,14 @@
 </g>
 <!-- \\SclNominetEpp\\Request\\Info\\AbstractInfo -->
 <g id="node31" class="node"><title>\\SclNominetEpp\\Request\\Info\\AbstractInfo</title>
-<a xlink:href="src.SclNominetEpp.Request.Info.AbstractInfo.html" xlink:title="«abstract»&lt;br/&gt;AbstractInfo" target="_parent">
+<a xlink:href="src.SclNominetEpp.Request.Info.AbstractInfo.html" xlink:title="AbstractInfo" target="_parent">
 <polygon fill="none" stroke="black" points="904,-3279.76 806,-3279.76 806,-3243.76 904,-3243.76 904,-3279.76"/>
-<text text-anchor="start" x="821" y="-3267.19" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="814" y="-3253.99" font-family="Courier,monospace" font-size="11.00">AbstractInfo</text>
+<text text-anchor="middle" x="855" y="-3258.86" font-family="Courier,monospace" font-size="11.00">AbstractInfo</text>
 </a>
 </g>
 <!-- \\SclNominetEpp\\Request\\Info\\AbstractInfo&#45;&gt;\\SclNominetEpp\\Request -->
 <g id="edge71" class="edge"><title>\\SclNominetEpp\\Request\\Info\\AbstractInfo&#45;&gt;\\SclNominetEpp\\Request</title>
-<path fill="none" stroke="black" d="M805.497,-3273.95C768.795,-3285.42 720.105,-3306.12 690,-3340.76 608.554,-3434.47 588.451,-3589.8 583.552,-3653.34"/>
+<path fill="none" stroke="black" d="M805.877,-3273.83C769.132,-3285.27 720.21,-3306 690,-3340.76 608.554,-3434.47 588.451,-3589.8 583.552,-3653.34"/>
 <polygon fill="none" stroke="black" points="580.053,-3653.2 582.845,-3663.42 587.036,-3653.69 580.053,-3653.2"/>
 </g>
 <!-- \\SclNominetEpp\\Request\\Info\\Domain -->
@@ -551,8 +550,8 @@
 </g>
 <!-- \\SclNominetEpp\\Request\\Info\\Domain&#45;&gt;\\SclNominetEpp\\Request\\Info\\AbstractInfo -->
 <g id="edge73" class="edge"><title>\\SclNominetEpp\\Request\\Info\\Domain&#45;&gt;\\SclNominetEpp\\Request\\Info\\AbstractInfo</title>
-<path fill="none" stroke="black" d="M1254.25,-3286.95C1185.06,-3282.58 1008.09,-3271.42 914.729,-3265.53"/>
-<polygon fill="none" stroke="black" points="914.793,-3262.03 904.592,-3264.89 914.352,-3269.01 914.793,-3262.03"/>
+<path fill="none" stroke="black" d="M1254.25,-3286.95C1184.97,-3282.58 1007.63,-3271.39 914.364,-3265.51"/>
+<polygon fill="none" stroke="black" points="914.44,-3262 904.24,-3264.87 914,-3268.99 914.44,-3262"/>
 </g>
 <!-- \\SclNominetEpp\\Request\\Info\\Host -->
 <g id="node33" class="node"><title>\\SclNominetEpp\\Request\\Info\\Host</title>
@@ -563,8 +562,8 @@
 </g>
 <!-- \\SclNominetEpp\\Request\\Info\\Host&#45;&gt;\\SclNominetEpp\\Request\\Info\\AbstractInfo -->
 <g id="edge75" class="edge"><title>\\SclNominetEpp\\Request\\Info\\Host&#45;&gt;\\SclNominetEpp\\Request\\Info\\AbstractInfo</title>
-<path fill="none" stroke="black" d="M1255.9,-3236.47C1187.98,-3240.76 1009.17,-3252.04 914.99,-3257.98"/>
-<polygon fill="none" stroke="black" points="914.525,-3254.5 904.765,-3258.62 914.966,-3261.49 914.525,-3254.5"/>
+<path fill="none" stroke="black" d="M1255.9,-3236.47C1187.8,-3240.77 1008.24,-3252.09 914.255,-3258.02"/>
+<polygon fill="none" stroke="black" points="913.816,-3254.54 904.057,-3258.67 914.257,-3261.53 913.816,-3254.54"/>
 </g>
 <!-- \\SclNominetEpp\\Request\\Info\\Contact -->
 <g id="node34" class="node"><title>\\SclNominetEpp\\Request\\Info\\Contact</title>
@@ -575,8 +574,8 @@
 </g>
 <!-- \\SclNominetEpp\\Request\\Info\\Contact&#45;&gt;\\SclNominetEpp\\Request\\Info\\AbstractInfo -->
 <g id="edge77" class="edge"><title>\\SclNominetEpp\\Request\\Info\\Contact&#45;&gt;\\SclNominetEpp\\Request\\Info\\AbstractInfo</title>
-<path fill="none" stroke="black" d="M1250.79,-3184.16C1211.31,-3188.55 1142.45,-3196.93 1084,-3207.76 1026,-3218.51 960.57,-3234.31 914.546,-3246.05"/>
-<polygon fill="none" stroke="black" points="913.556,-3242.69 904.739,-3248.56 915.294,-3249.47 913.556,-3242.69"/>
+<path fill="none" stroke="black" d="M1250.79,-3184.16C1211.31,-3188.55 1142.45,-3196.93 1084,-3207.76 1025.81,-3218.54 960.148,-3234.42 914.101,-3246.16"/>
+<polygon fill="none" stroke="black" points="913.109,-3242.8 904.292,-3248.68 914.848,-3249.59 913.109,-3242.8"/>
 </g>
 <!-- \\SclNominetEpp\\Request\\Release\\Domain -->
 <g id="node36" class="node"><title>\\SclNominetEpp\\Request\\Release\\Domain</title>

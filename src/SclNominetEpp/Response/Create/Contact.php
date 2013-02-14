@@ -17,9 +17,10 @@ class Contact extends Response
 
     public function processData($xml)
     {
-        if (!isset($xml->response->resData)) {
+        if($this->xmlInvalid($xml)){
             return;
         }
+        
         $ns = $xml->getNamespaces(true);
         $this->contact = new ContactObject();
 
@@ -29,6 +30,7 @@ class Contact extends Response
         $this->contact->setId($creData->id);
         $this->contact->setCreated(new DateTime($creData->crDate));
     }
+
 
     public function getContact()
     {

@@ -3066,7 +3066,7 @@ processes the responses.</description>
       <full_name>\SclNominetEpp\Request\Create\Domain</full_name>
       <docblock line="9">
         <description>This class build the XML for a Nominet EPP domain:create command.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="9" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <constant namespace="SclNominetEpp\Request\Create" line="17" package="Default">
@@ -3093,8 +3093,8 @@ processes the responses.</description>
         <name>$domain</name>
         <default>null</default>
         <docblock line="22">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="22" name="var" description="" type="\SclNominetEpp\Domain">
             <type by_reference="false">\SclNominetEpp\Domain</type>
           </tag>
@@ -3102,10 +3102,10 @@ processes the responses.</description>
       </property>
       <property final="false" static="false" visibility="protected" line="32" namespace="SclNominetEpp\Request\Create" package="Default">
         <name>$value</name>
-        <default></default>
+        <default/>
         <docblock line="28">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="28" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -3120,7 +3120,7 @@ processes the responses.</description>
         <full_name>addSpecificContent</full_name>
         <argument line="46">
           <name>$create</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -3128,15 +3128,15 @@ processes the responses.</description>
         <name>createNameservers</name>
         <full_name>createNameservers</full_name>
         <docblock line="63">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="63" name="param" description="" type="\SimpleXMLElement" variable="$create">
             <type by_reference="false">\SimpleXMLElement</type>
           </tag>
         </docblock>
         <argument line="67">
           <name>$create</name>
-          <default></default>
+          <default/>
           <type>\SimpleXMLElement</type>
         </argument>
       </method>
@@ -3144,15 +3144,15 @@ processes the responses.</description>
         <name>createContacts</name>
         <full_name>createContacts</full_name>
         <docblock line="74">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="74" name="param" description="" type="\SimpleXMLElement" variable="$create">
             <type by_reference="false">\SimpleXMLElement</type>
           </tag>
         </docblock>
         <argument line="78">
           <name>$create</name>
-          <default></default>
+          <default/>
           <type>\SimpleXMLElement</type>
         </argument>
       </method>
@@ -3164,15 +3164,15 @@ processes the responses.</description>
         <name>setDomain</name>
         <full_name>setDomain</full_name>
         <docblock line="94">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="94" name="param" description="" type="\SclNominetEpp\Request\Create\Domain" variable="$domain">
             <type by_reference="false">\SclNominetEpp\Request\Create\Domain</type>
           </tag>
         </docblock>
         <argument line="98">
           <name>$domain</name>
-          <default></default>
+          <default/>
           <type>\SclNominetEpp\Domain</type>
         </argument>
       </method>
@@ -3193,7 +3193,7 @@ processes the responses.</description>
   <file path="src/SclNominetEpp/Request/Create/AbstractCreate.php" hash="86944d5be961aa95bb63a225d8d76070" package="Default">
     <docblock line="3">
       <description>Contains the nominet AbstractCheck request class definition.</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="3" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
     </docblock>
     <class final="false" abstract="true" namespace="SclNominetEpp\Request\Create" line="17" package="Default">
@@ -3202,15 +3202,15 @@ processes the responses.</description>
       <full_name>\SclNominetEpp\Request\Create\AbstractCreate</full_name>
       <docblock line="12">
         <description>This class build the XML for a Nominet EPP create command.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="12" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <property final="false" static="false" visibility="private" line="24" namespace="SclNominetEpp\Request\Create" package="Default">
         <name>$type</name>
-        <default></default>
+        <default/>
         <docblock line="19">
           <description>The type of check this is.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="19" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -3218,10 +3218,10 @@ processes the responses.</description>
       </property>
       <property final="false" static="false" visibility="private" line="30" namespace="SclNominetEpp\Request\Create" package="Default">
         <name>$createNamespace</name>
-        <default></default>
+        <default/>
         <docblock line="26">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="26" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -3229,10 +3229,10 @@ processes the responses.</description>
       </property>
       <property final="false" static="false" visibility="private" line="36" namespace="SclNominetEpp\Request\Create" package="Default">
         <name>$valueName</name>
-        <default></default>
+        <default/>
         <docblock line="32">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="32" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -3240,10 +3240,10 @@ processes the responses.</description>
       </property>
       <property final="false" static="false" visibility="private" line="42" namespace="SclNominetEpp\Request\Create" package="Default">
         <name>$value</name>
-        <default></default>
+        <default/>
         <docblock line="38">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="38" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -3254,7 +3254,7 @@ processes the responses.</description>
         <full_name>__construct</full_name>
         <docblock line="44">
           <description>Tells the parent class what the action of this request is.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="44" name="param" description="" type="string" variable="$type">
             <type by_reference="false">string</type>
           </tag>
@@ -3264,27 +3264,27 @@ processes the responses.</description>
         </docblock>
         <argument line="50">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="50">
           <name>$response</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="50">
           <name>$createNamespace</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="50">
           <name>$valueName</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="50">
           <name>$value</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -3293,12 +3293,12 @@ processes the responses.</description>
         <full_name>addContent</full_name>
         <docblock line="60">
           <description>(non-PHPdoc)</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="60" name="see" description="\SclNominetEpp\Request.AbstractRequest::addContent()" refers="\SclNominetEpp\Request.AbstractRequest::addContent()"/>
         </docblock>
         <argument line="64">
           <name>$xml</name>
-          <default></default>
+          <default/>
           <type>\SimpleXMLElement</type>
         </argument>
       </method>
@@ -3307,14 +3307,14 @@ processes the responses.</description>
         <full_name>setValue</full_name>
         <docblock line="79">
           <description>SetValue</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="79" name="param" description="" type="string" variable="$value">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
         <argument line="84">
           <name>$value</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -3347,7 +3347,7 @@ processes the responses.</description>
       <full_name>\SclNominetEpp\Request\Create\Host</full_name>
       <docblock line="7">
         <description>This class build the XML for a Nominet EPP host:create command.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="7" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <constant namespace="SclNominetEpp\Request\Create" line="14" package="Default">
@@ -3367,11 +3367,11 @@ processes the responses.</description>
       </constant>
       <property final="false" static="false" visibility="protected" line="18" namespace="SclNominetEpp\Request\Create" package="Default">
         <name>$nameserver</name>
-        <default></default>
+        <default/>
       </property>
       <property final="false" static="false" visibility="protected" line="19" namespace="SclNominetEpp\Request\Create" package="Default">
         <name>$value</name>
-        <default></default>
+        <default/>
       </property>
       <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Create" line="21" package="Default">
         <name>__construct</name>
@@ -3382,7 +3382,7 @@ processes the responses.</description>
         <full_name>addSpecificContent</full_name>
         <argument line="33">
           <name>$create</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -3394,15 +3394,15 @@ processes the responses.</description>
         <name>setNameserver</name>
         <full_name>setNameserver</full_name>
         <docblock line="53">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="53" name="param" description="" type="\SclNominetEpp\Nameserver" variable="$nameserver">
             <type by_reference="false">\SclNominetEpp\Nameserver</type>
           </tag>
         </docblock>
         <argument line="57">
           <name>$nameserver</name>
-          <default></default>
+          <default/>
           <type>\SclNominetEpp\Nameserver</type>
         </argument>
       </method>
@@ -3424,7 +3424,7 @@ processes the responses.</description>
       <full_name>\SclNominetEpp\Request\Create\Contact</full_name>
       <docblock line="10">
         <description>This class build the XML for a Nominet EPP contact:create command.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="10" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <constant namespace="SclNominetEpp\Request\Create" line="18" package="Default">
@@ -3451,8 +3451,8 @@ processes the responses.</description>
         <name>$contact</name>
         <default>null</default>
         <docblock line="23">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="23" name="var" description="" type="\SclNominetEpp\Contact">
             <type by_reference="false">\SclNominetEpp\Contact</type>
           </tag>
@@ -3460,10 +3460,10 @@ processes the responses.</description>
       </property>
       <property final="false" static="false" visibility="protected" line="33" namespace="SclNominetEpp\Request\Create" package="Default">
         <name>$value</name>
-        <default></default>
+        <default/>
         <docblock line="29">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="29" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -3478,7 +3478,7 @@ processes the responses.</description>
         <full_name>addSpecificContent</full_name>
         <argument line="47">
           <name>$create</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -3490,15 +3490,15 @@ processes the responses.</description>
         <name>setContact</name>
         <full_name>setContact</full_name>
         <docblock line="80">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="80" name="param" description="" type="\SclNominetEpp\Request\Create\Contact" variable="$contact">
             <type by_reference="false">\SclNominetEpp\Request\Create\Contact</type>
           </tag>
         </docblock>
         <argument line="84">
           <name>$contact</name>
-          <default></default>
+          <default/>
           <type>\SclNominetEpp\Contact</type>
         </argument>
       </method>
@@ -3763,27 +3763,27 @@ processes the responses.</description>
       <error line="21" code="50010">No DocBlock was found for method __construct()</error>
     </parse_markers>
   </file>
-  <file path="src/SclNominetEpp/Request/Info/AbstractInfo.php" hash="dc8009a32b38f6a587c0e964a2721409" package="Default">
+  <file path="src/SclNominetEpp/Request/Info/AbstractInfo.php" hash="ef85eab011c0776b53582adc6a5aa4a3" package="Default">
     <docblock line="2">
       <description>Contains the nominet AbstractInfo request class definition.</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="2" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
     </docblock>
-    <class final="false" abstract="true" namespace="SclNominetEpp\Request\Info" line="17" package="Default">
+    <class final="false" abstract="false" namespace="SclNominetEpp\Request\Info" line="17" package="Default">
       <extends>\SclNominetEpp\Request</extends>
       <name>AbstractInfo</name>
       <full_name>\SclNominetEpp\Request\Info\AbstractInfo</full_name>
       <docblock line="12">
         <description>This class build the XML for a Nominet EPP info command.</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="12" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="24" namespace="SclNominetEpp\Request\Info" package="Default">
         <name>$infoNamespace</name>
-        <default/>
+        <default></default>
         <docblock line="20">
-          <description/>
-          <long-description/>
+          <description></description>
+          <long-description></long-description>
           <tag line="20" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -3791,10 +3791,10 @@ processes the responses.</description>
       </property>
       <property final="false" static="false" visibility="protected" line="30" namespace="SclNominetEpp\Request\Info" package="Default">
         <name>$valueName</name>
-        <default/>
+        <default></default>
         <docblock line="26">
-          <description/>
-          <long-description/>
+          <description></description>
+          <long-description></long-description>
           <tag line="26" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -3802,10 +3802,10 @@ processes the responses.</description>
       </property>
       <property final="false" static="false" visibility="protected" line="36" namespace="SclNominetEpp\Request\Info" package="Default">
         <name>$value</name>
-        <default/>
+        <default></default>
         <docblock line="32">
-          <description/>
-          <long-description/>
+          <description></description>
+          <long-description></long-description>
           <tag line="32" name="var" description="" type="\SclNominetEpp\Request\Info\type">
             <type by_reference="false">\SclNominetEpp\Request\Info\type</type>
           </tag>
@@ -3816,17 +3816,17 @@ processes the responses.</description>
         <full_name>__construct</full_name>
         <argument line="38">
           <name>$type</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="38">
           <name>$infoNamespace</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="38">
           <name>$valueName</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
         <argument line="38">
@@ -3840,7 +3840,7 @@ processes the responses.</description>
         <full_name>lookup</full_name>
         <docblock line="47">
           <description>The value to lookup.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="47" name="param" description="" type="string" variable="$value">
             <type by_reference="false">string</type>
           </tag>
@@ -3850,7 +3850,7 @@ processes the responses.</description>
         </docblock>
         <argument line="53">
           <name>$value</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -3859,12 +3859,12 @@ processes the responses.</description>
         <full_name>addContent</full_name>
         <docblock line="60">
           <description>(non-PHPdoc)</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="60" name="see" description="\SclNominetEpp\Request.AbstractRequest::addContent()" refers="\SclNominetEpp\Request.AbstractRequest::addContent()"/>
         </docblock>
         <argument line="64">
           <name>$xml</name>
-          <default/>
+          <default></default>
           <type>\SimpleXMLElement</type>
         </argument>
       </method>
@@ -4421,42 +4421,42 @@ for including specific fields in the update request "domain:remove" tag.</descri
       <full_name>\SclNominetEpp\Request\Update\AbstractUpdate</full_name>
       <docblock line="8">
         <description>This abstract class enables building the XML for a Nominet EPP update command.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="8" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="15" namespace="SclNominetEpp\Request\Update" package="Default">
         <name>$type</name>
-        <default></default>
+        <default/>
       </property>
       <property final="false" static="false" visibility="protected" line="17" namespace="SclNominetEpp\Request\Update" package="Default">
         <name>$updateNamespace</name>
-        <default></default>
+        <default/>
       </property>
       <property final="false" static="false" visibility="protected" line="19" namespace="SclNominetEpp\Request\Update" package="Default">
         <name>$valueName</name>
-        <default></default>
+        <default/>
       </property>
       <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Request\Update" line="21" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
         <argument line="21">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="21">
           <name>$response</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="21">
           <name>$updateNamespace</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="21">
           <name>$valueName</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -4465,7 +4465,7 @@ for including specific fields in the update request "domain:remove" tag.</descri
         <full_name>add</full_name>
         <argument line="30">
           <name>$field</name>
-          <default></default>
+          <default/>
           <type>\SclNominetEpp\Request\Update\Field\UpdateFieldInterface</type>
         </argument>
       </method>
@@ -4474,7 +4474,7 @@ for including specific fields in the update request "domain:remove" tag.</descri
         <full_name>remove</full_name>
         <argument line="31">
           <name>$field</name>
-          <default></default>
+          <default/>
           <type>\SclNominetEpp\Request\Update\Field\UpdateFieldInterface</type>
         </argument>
       </method>
@@ -5240,7 +5240,7 @@ for including specific fields in the update request "domain:remove" tag.</descri
   <file path="src/SclNominetEpp/Request/Check/AbstractCheck.php" hash="b85101b545039fc68bb98c2535c37fa0" package="Default">
     <docblock line="2">
       <description>Contains the nominet AbstractCheck request class definition.</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Tom Oram &lt;tom@scl.co.uk&gt;"/>
       <tag line="2" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
     </docblock>
@@ -5250,16 +5250,16 @@ for including specific fields in the update request "domain:remove" tag.</descri
       <full_name>\SclNominetEpp\Request\Check\AbstractCheck</full_name>
       <docblock line="13">
         <description>This class build the XML for a Nominet EPP check command.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="13" name="author" description="Tom Oram &lt;tom@scl.co.uk&gt;"/>
         <tag line="13" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <property final="false" static="false" visibility="private" line="26" namespace="SclNominetEpp\Request\Check" package="Default">
         <name>$type</name>
-        <default></default>
+        <default/>
         <docblock line="21">
           <description>The type of check this is.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="21" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -5267,10 +5267,10 @@ for including specific fields in the update request "domain:remove" tag.</descri
       </property>
       <property final="false" static="false" visibility="private" line="32" namespace="SclNominetEpp\Request\Check" package="Default">
         <name>$checkNamespace</name>
-        <default></default>
+        <default/>
         <docblock line="28">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="28" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -5278,10 +5278,10 @@ for including specific fields in the update request "domain:remove" tag.</descri
       </property>
       <property final="false" static="false" visibility="private" line="38" namespace="SclNominetEpp\Request\Check" package="Default">
         <name>$valueName</name>
-        <default></default>
+        <default/>
         <docblock line="34">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="34" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -5291,8 +5291,8 @@ for including specific fields in the update request "domain:remove" tag.</descri
         <name>$values</name>
         <default>array()</default>
         <docblock line="40">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="40" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -5303,7 +5303,7 @@ for including specific fields in the update request "domain:remove" tag.</descri
         <full_name>__construct</full_name>
         <docblock line="46">
           <description>Tells the parent class what the action of this request is.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="46" name="param" description="" type="string" variable="$type">
             <type by_reference="false">string</type>
           </tag>
@@ -5313,22 +5313,22 @@ for including specific fields in the update request "domain:remove" tag.</descri
         </docblock>
         <argument line="52">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="52">
           <name>$response</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="52">
           <name>$checkNamespace</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="52">
           <name>$valueName</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -5337,7 +5337,7 @@ for including specific fields in the update request "domain:remove" tag.</descri
         <full_name>lookup</full_name>
         <docblock line="61">
           <description>The values to lookup.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="61" name="param" description="" type="array|string" variable="$values">
             <type by_reference="false">array</type>
             <type by_reference="false">string</type>
@@ -5348,7 +5348,7 @@ for including specific fields in the update request "domain:remove" tag.</descri
         </docblock>
         <argument line="67">
           <name>$values</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -5357,12 +5357,12 @@ for including specific fields in the update request "domain:remove" tag.</descri
         <full_name>addContent</full_name>
         <docblock line="78">
           <description>(non-PHPdoc)</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="78" name="see" description="\SclNominetEpp\Request.AbstractRequest::addContent()" refers="\SclNominetEpp\Request.AbstractRequest::addContent()"/>
         </docblock>
         <argument line="82">
           <name>$xml</name>
-          <default></default>
+          <default/>
           <type>\SimpleXMLElement</type>
         </argument>
       </method>
@@ -5570,29 +5570,29 @@ for including specific fields in the update request "domain:remove" tag.</descri
       <full_name>\SclNominetEpp\Response\Create\AbstractCreate</full_name>
       <docblock line="9">
         <description>This class interprets XML for a Nominet EPP &lt;create&gt; command response.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="9" name="todo" description="finishing abstraction of create!"/>
         <tag line="9" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="16" namespace="SclNominetEpp\Response\Create" package="Default">
         <name>$object</name>
-        <default></default>
+        <default/>
       </property>
       <property final="false" static="false" visibility="protected" line="18" namespace="SclNominetEpp\Response\Create" package="Default">
         <name>$valueName</name>
-        <default></default>
+        <default/>
       </property>
       <method final="false" abstract="false" static="false" visibility="public" namespace="SclNominetEpp\Response\Create" line="20" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
         <argument line="20">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="20">
           <name>$valueName</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -5601,7 +5601,7 @@ for including specific fields in the update request "domain:remove" tag.</descri
         <full_name>processData</full_name>
         <argument line="26">
           <name>$xml</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -5983,7 +5983,7 @@ If there is no "ip" attribute it defaults to "v4".</description>
   <file path="src/SclNominetEpp/Response/Check/AbstractCheck.php" hash="058f8257603ac8ee8a0f6b32e3626057" package="Default">
     <docblock line="2">
       <description>Contains the nominet AbstractCheck response class definition.</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
     </docblock>
     <class final="false" abstract="true" namespace="SclNominetEpp\Response\Check" line="17" package="Default">
@@ -5992,15 +5992,15 @@ If there is no "ip" attribute it defaults to "v4".</description>
       <full_name>\SclNominetEpp\Response\Check\AbstractCheck</full_name>
       <docblock line="12">
         <description>This class interprets XML for a Nominet EPP check command response.</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="12" name="author" description="Merlyn Cooper &lt;merlyn.cooper@hotmail.co.uk&gt;"/>
       </docblock>
       <property final="false" static="false" visibility="private" line="24" namespace="SclNominetEpp\Response\Check" package="Default">
         <name>$type</name>
-        <default></default>
+        <default/>
         <docblock line="19">
           <description>The type of check this is.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="19" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -6008,10 +6008,10 @@ If there is no "ip" attribute it defaults to "v4".</description>
       </property>
       <property final="false" static="false" visibility="private" line="30" namespace="SclNominetEpp\Response\Check" package="Default">
         <name>$valueName</name>
-        <default></default>
+        <default/>
         <docblock line="26">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="26" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -6021,8 +6021,8 @@ If there is no "ip" attribute it defaults to "v4".</description>
         <name>$values</name>
         <default>array()</default>
         <docblock line="32">
-          <description></description>
-          <long-description></long-description>
+          <description/>
+          <long-description/>
           <tag line="32" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -6033,22 +6033,22 @@ If there is no "ip" attribute it defaults to "v4".</description>
         <full_name>__construct</full_name>
         <argument line="38">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="38">
           <name>$response</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="38">
           <name>$updateNamespace</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="38">
           <name>$valueName</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6057,7 +6057,7 @@ If there is no "ip" attribute it defaults to "v4".</description>
         <full_name>processData</full_name>
         <argument line="46">
           <name>$data</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6066,7 +6066,7 @@ If there is no "ip" attribute it defaults to "v4".</description>
         <full_name>getValues</full_name>
         <docblock line="62">
           <description>Get $this-&gt;values</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="62" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -6077,14 +6077,14 @@ If there is no "ip" attribute it defaults to "v4".</description>
         <full_name>setType</full_name>
         <docblock line="72">
           <description>Set $this-&gt;type</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="72" name="param" description="" type="string" variable="$type">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
         <argument line="77">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6093,7 +6093,7 @@ If there is no "ip" attribute it defaults to "v4".</description>
         <full_name>getType</full_name>
         <docblock line="82">
           <description>Get $this-&gt;type</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="82" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -6104,14 +6104,14 @@ If there is no "ip" attribute it defaults to "v4".</description>
         <full_name>setValueName</full_name>
         <docblock line="92">
           <description>Set $this-&gt;valueName</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="92" name="param" description="" type="string" variable="$valueName">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
         <argument line="97">
           <name>$valueName</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -6120,7 +6120,7 @@ If there is no "ip" attribute it defaults to "v4".</description>
         <full_name>getValueName</full_name>
         <docblock line="102">
           <description>Get $this-&gt;valueName</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="102" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>

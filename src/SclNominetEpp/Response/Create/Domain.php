@@ -17,7 +17,7 @@ class Domain extends Response
 
     public function processData($xml)
     {
-        if (!isset($xml->response->resData)) {
+        if($this->xmlInvalid($xml)){
             return;
         }
         $ns = $xml->getNamespaces(true);
@@ -30,7 +30,7 @@ class Domain extends Response
         $this->domain->setCreated(new DateTime($creData->crDate));
         $this->domain->setExpired(new DateTime($creData->exDate));
     }
-
+    
     public function getDomain()
     {
         return $this->domain;
