@@ -11,10 +11,20 @@ use SclNominetEpp\Contact as ContactObject;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Contact extends Response
+class Contact extends AbstractCreate
 {
+    const TYPE = 'contact';
+    const OBJECT_TYPE = 'ContactObject';
+    
     protected $contact;
 
+    public function __construct()
+    {
+        parent::__construct(null);
+        parent::setType(self::TYPE);
+        parent::setObjectType(self::OBJECT_TYPE);
+    }
+    
     public function processData($xml)
     {
         if($this->xmlInvalid($xml)){
@@ -35,5 +45,9 @@ class Contact extends Response
     public function getContact()
     {
         return $this->contact;
+    }
+
+    protected function addSpecificData() {
+        
     }
 }

@@ -4,7 +4,6 @@ namespace SclNominetEpp\Response\Create;
 
 use DateTime;
 use SclNominetEpp\Response;
-use SclNominetEpp\Nameserver;
 
 /**
  * This class interprets XML for a Nominet EPP <create> command response.
@@ -16,11 +15,13 @@ abstract class AbstractCreate extends Response
     protected $object;
     
     protected $type;
+    protected $objectType;
     protected $valueName;
 
-    public function __construct($type, $valueName)
+    public function __construct($type, $objectType, $valueName)
     {
         $this->type = $type;
+        $this->objectType = $objectType;
         $this->valueName = $valueName;
     }
     
@@ -32,14 +33,15 @@ abstract class AbstractCreate extends Response
             return;
         }
         $ns = $xml->getNamespaces(true);
-        $this->object = new Nameserver();
+        $objectType = $this->objectType;
+        $this->object = new $objectType();
 
         $response  = $xml->response;
 
         $creData   = $response->resData->children($ns["{$this->type}"])->creData;
         $this->object->setHostName($creData->$name);
         $this->object->setCreated(new DateTime($creData->crDate));
-        $this->addSpecificData();
+        $this->addSpecificData($creData);
     }
 
     public function xmlInvalid($xml)
@@ -54,5 +56,45 @@ abstract class AbstractCreate extends Response
     public function getHost()
     {
         return $this->object;
+    }
+
+    /**
+     * Set $this->type
+     *
+     * @param string $type
+     */
+    protected function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * Get $this->type
+     *
+     * @return string
+     */
+    protected function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set $this->valueName
+     *
+     * @param string $valueName
+     */
+    public function setValueName($valueName)
+    {
+        $this->valueName = $valueName;
+    }
+
+    /**
+     * Get $this->valueName
+     *
+     * @return string
+     */
+    public function getValueName()
+    {
+        return $this->valueName;
     }
 }

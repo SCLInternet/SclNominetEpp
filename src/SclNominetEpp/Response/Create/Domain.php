@@ -3,7 +3,6 @@
 namespace SclNominetEpp\Response\Create;
 
 use DateTime;
-use SclNominetEpp\Response;
 use SclNominetEpp\Domain as DomainObject;
 
 /**
@@ -11,10 +10,19 @@ use SclNominetEpp\Domain as DomainObject;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Domain extends Response
+class Domain extends AbstractCreate
 {
+    const TYPE = 'domain';
+    const OBJECT_TYPE = '\SclNominetEpp\Domain';
+    
     protected $domain;
 
+    public function __construct()
+    {
+        parent::__construct(null);
+        parent::setType(self::TYPE);
+        parent::setObjectType(self::OBJECT_TYPE);
+    }
     public function processData($xml)
     {
         if($this->xmlInvalid($xml)){
@@ -28,11 +36,16 @@ class Domain extends Response
         $creData  = $response->resData->children($ns['domain'])->creData;
         $this->domain->setName($creData->name);
         $this->domain->setCreated(new DateTime($creData->crDate));
-        $this->domain->setExpired(new DateTime($creData->exDate));
+
     }
     
     public function getDomain()
     {
         return $this->domain;
+    }
+
+    protected function addSpecificData($creData) {
+        
+        $this->domain->setExpired(new DateTime($creData->exDate));
     }
 }

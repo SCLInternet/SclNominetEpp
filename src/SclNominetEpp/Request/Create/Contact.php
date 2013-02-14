@@ -2,8 +2,6 @@
 
 namespace SclNominetEpp\Request\Create;
 
-use SimpleXMLElement;
-use SclNominetEpp\Request;
 use SclNominetEpp\Contact as ContactObject;
 use Exception;
 

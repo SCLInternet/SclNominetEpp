@@ -3,7 +3,6 @@
 namespace SclNominetEpp\Response\Create;
 
 use DateTime;
-use SclNominetEpp\Response;
 use SclNominetEpp\Nameserver;
 
 /**
@@ -11,10 +10,20 @@ use SclNominetEpp\Nameserver;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Host extends Response
+class Host extends AbstractCreate
 {
+    const TYPE = 'host';
+    const OBJECT_TYPE = 'Nameserver';
+    
     protected $host;
 
+    public function __construct()
+    {
+        parent::__construct(null);
+        parent::setType(self::TYPE);
+        parent::setObjectType(self::OBJECT_TYPE);
+    }
+    
     public function processData($xml)
     {
         if ($this->xmlInvalid($xml)) {
@@ -33,5 +42,9 @@ class Host extends Response
     public function getHost()
     {
         return $this->host;
+    }
+
+    protected function addSpecificData() {
+        
     }
 }
