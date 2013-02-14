@@ -9,7 +9,7 @@ use SclNominetEpp\Request;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Release extends Request
+abstract class AbstractRelease extends Request
 {
     /**
      *
