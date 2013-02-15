@@ -91,4 +91,18 @@ class Host extends AbstractInfo
     {
         return $this->host;
     }
+
+    protected function addExtension(){;}
+
+    protected function addInfData(SimpleXMLElement $infData) {
+        
+    }
+
+    protected function addSpecificData(SimpleXMLElement $infData) {
+        
+    }
+
+    protected function setValue(SimpleXMLElement $infData) {
+        
+    }
 }

@@ -12,7 +12,7 @@ use SclNominetEpp\Nameserver;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Domain extends Response
+class Domain extends AbstractInfo
 {
     protected $domain;
 
@@ -61,5 +61,17 @@ class Domain extends Response
     public function getDomain()
     {
         return $this->domain;
+    }
+
+    protected function addExtension(SimpleXMLElement $extension) {
+        
+    }
+
+    protected function addInfData(SimpleXMLElement $infData) {
+        
+    }
+
+    protected function setValue(SimpleXMLElement $infData) {
+        
     }
 }
