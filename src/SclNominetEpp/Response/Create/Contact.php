@@ -15,6 +15,9 @@ class Contact extends AbstractCreate
     const TYPE = 'contact';
     const VALUE_NAME = 'id';
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(
@@ -24,6 +27,11 @@ class Contact extends AbstractCreate
         );
     }
     
+    /**
+     * Overriding setter of AbstractCreate Response
+     * 
+     * @param string $name
+     */
     public function setValue($name)
     {
         $this->host->setId($name);

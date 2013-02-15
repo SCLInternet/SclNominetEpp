@@ -38,11 +38,10 @@ abstract class AbstractCheck extends Response
     private $values = array();
 
     /**
+     * Constructor
      * 
-     * 
-     * 
-     * @param object $type
-     * @param object $valueName
+     * @param string $type
+     * @param string $valueName
      */
     public function __construct($type, $valueName)
     {

@@ -18,6 +18,9 @@ class Domain extends AbstractCreate
     
     protected $domain;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
          parent::__construct(
@@ -26,15 +29,27 @@ class Domain extends AbstractCreate
             self::VALUE_NAME
         );
     }
-        
+    
+    /**
+     * Overriding function "processData" 
+     * 
+     * @param SimpleXMLElement $xml
+     */
     protected function processData($xml) {
+        
         parent::processData($xml);
+        
         $ns = $xml->getNamespaces(true);
-        $response  = $xml->response;
-        $creData   = $response->resData->children($ns[$this->type])->creData;
+        $response = $xml->response;
+        $creData  = $response->resData->children($ns[$this->type])->creData;
         $this->domain->setExpired(new DateTime($creData->exDate));
     }
     
+    /**
+     * Overriding setter of AbstractCreate Response
+     * 
+     * @param string $name
+     */
     public function setValue($name)
     {
         $this->host->setName($name);

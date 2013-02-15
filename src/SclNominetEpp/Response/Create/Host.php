@@ -15,6 +15,9 @@ class Host extends AbstractCreate
     const TYPE = 'host';
     const VALUE_NAME = 'name';
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(
@@ -24,6 +27,11 @@ class Host extends AbstractCreate
         );
     }
     
+    /**
+     * Overriding setter of AbstractCreate Response
+     * 
+     * @param string $name
+     */
     public function setValue($name)
     {
         $this->host->setHostName($name);

@@ -13,8 +13,7 @@ class Contact extends AbstractCheck
     const VALUE_NAME = 'id';
 
     /**
-     *
-     * @param type $data
+     * Constructor
      */
     public function __construct()
     {

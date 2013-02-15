@@ -18,6 +18,13 @@ abstract class AbstractCreate extends Response
     protected $objectType;
     protected $valueName;
 
+    /**
+     * Constructor
+     * 
+     * @param string $type
+     * @param object $object
+     * @param string $valueName
+     */
     public function __construct($type, $object, $valueName)
     {
         $this->type = (string) $type;
@@ -26,28 +33,30 @@ abstract class AbstractCreate extends Response
     }
     
     /**
+     * Constructor
      * 
      * @param SimpleXMLElement $xml
      * @return type
      */
     protected function processData(\SimpleXMLElement $xml)
     {
-        $name = $this->valueName;
-        
         if($this->xmlInvalid($xml)){
             return;
         }
+        
+        $name = $this->valueName;
         $ns = $xml->getNamespaces(true);
-
         $response = $xml->response;
 
         $creData  = $response->resData->children($ns[$this->type])->creData;
         $this->object->setValue($creData->$name);
         $this->object->setCreated(new DateTime($creData->crDate));
-        //$this->addSpecificData($creData);
     }
 
     /**
+     * Assuming $xml is invalid, 
+     * this function returns "true" to affirm that the xml is invalid, 
+     * otherwise "false".
      * 
      * @param SimpleXMLElement $xml
      * @return boolean
