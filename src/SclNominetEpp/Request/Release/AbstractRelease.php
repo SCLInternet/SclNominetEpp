@@ -39,7 +39,7 @@ abstract class AbstractRelease extends Request
     public function __construct($type, $response, $updateNamespace, $valueName)
     {
         parent::__construct('update', $response);
-        $this->type  = $type;        
+        $this->type  = $type;
         $this->updateNamespace = $updateNamespace;
         $this->valueName = $valueName;
     }

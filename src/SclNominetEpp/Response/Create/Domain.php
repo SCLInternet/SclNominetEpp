@@ -23,7 +23,7 @@ class Domain extends AbstractCreate
      */
     public function __construct()
     {
-         parent::__construct(
+        parent::__construct(
             self::TYPE,
             new DomainObject(),
             self::VALUE_NAME
@@ -35,7 +35,8 @@ class Domain extends AbstractCreate
      * 
      * @param SimpleXMLElement $xml
      */
-    protected function processData($xml) {
+    protected function processData($xml)
+    {
         
         parent::processData($xml);
         
@@ -55,7 +56,8 @@ class Domain extends AbstractCreate
         $this->host->setName($name);
     }
 
-    protected function addSpecificData(\SimpleXMLElement $creData) {
+    protected function addSpecificData(\SimpleXMLElement $creData)
+    {
         
         $this->domain->setExpired(new DateTime($creData->exDate));
     }

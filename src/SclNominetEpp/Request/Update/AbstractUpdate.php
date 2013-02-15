@@ -10,7 +10,8 @@ use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class AbstractUpdate extends Request{
+abstract class AbstractUpdate extends Request
+{
     
     protected $type;
     

@@ -79,7 +79,8 @@ class Contact extends AbstractCreate
      * 
      * @throws Exception
      */
-    public function objectValidate(){
+    public function objectValidate()
+    {
         if (!$this->contact instanceof ContactObject) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
             throw new Exception($exception);

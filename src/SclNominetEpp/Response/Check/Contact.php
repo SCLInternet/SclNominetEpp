@@ -20,6 +20,6 @@ class Contact extends AbstractCheck
         parent::__construct(
             self::TYPE,
             self::VALUE_NAME
-        );    
+        );
     }
 }

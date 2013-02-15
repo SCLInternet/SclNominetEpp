@@ -40,7 +40,7 @@ abstract class AbstractCreate extends Response
      */
     protected function processData(\SimpleXMLElement $xml)
     {
-        if($this->xmlInvalid($xml)){
+        if ($this->xmlInvalid($xml)) {
             return;
         }
         
@@ -62,7 +62,7 @@ abstract class AbstractCreate extends Response
      * @return boolean
      */
     protected function xmlInvalid(\SimpleXMLElement $xml)
-    {   
+    {
         return !isset($xml->response->resData);
     }
     
@@ -73,13 +73,18 @@ abstract class AbstractCreate extends Response
      */
     abstract protected function setValue(\SimpleXMLElement $xml);
     
-//    protected function addSpecificData(\SimpleXMLElement $xml)
-//    {
-//    }
+    /**
+     * @todo may be worth refactoring the create response to have this (as abstract) 
+     * instead of overwriting the parent class.
+     * 
+     * @param \SimpleXMLElement $xml
+     */
+    protected function addSpecificData(\SimpleXMLElement $xml)
+    {
+    }
     
     public function getObject()
     {
         return $this->object;
     }
-
 }
