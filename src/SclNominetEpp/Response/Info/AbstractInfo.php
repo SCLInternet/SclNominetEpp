@@ -3,9 +3,6 @@
 namespace SclNominetEpp\Response\Info;
 
 use SclNominetEpp\Response;
-use DateTime;
-use SclNominetEpp\Domain as DomainObject;
-use SclNominetEpp\Nameserver;
 
 /**
  * This class interprets XML for a Nominet EPP info command response.
