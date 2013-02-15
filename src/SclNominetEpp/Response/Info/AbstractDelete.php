@@ -12,22 +12,22 @@ use SclNominetEpp\Nameserver;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Domain extends Response
+class AbstractDelete extends Response
 {
-    protected $domain;
+    protected $object;
 
     public function processData($xml)
     {
-        if (!isset($xml->response->resData)) {
+        if($this->xmlInvalid($xml)){
             return;
         }
 
         $ns = $xml->getNamespaces(true);
-        $this->domain = new DomainObject();
+        $this->object = new DomainObject();
         $response = $xml->response;
 
-        $infData = $response->resData->children($ns['domain'])->infData;
-        $extension = $response->extension->children($ns['domain-nom-ext'])->infData;
+        $infData = $response->resData->children($ns["{$this->type}"])->infData;
+        $extension = $response->extension->children($ns["{$this->type}-nom-ext"])->infData;
 
         $nschildren = $infData->ns->hostObj;
         foreach ($nschildren as $nschild) {
@@ -54,10 +54,21 @@ class Domain extends Response
         $this->domain->setNextBill($extension->{'next-bill'});
     }
 
-    protected function addSpecificData(\SimpleXMLElement $xml)
-    {
-         
+    /**
+     * Assuming $xml is invalid, 
+     * this function returns "true" to affirm that the xml is invalid, 
+     * otherwise "false".
+     * 
+     * @param SimpleXMLElement $xml
+     * @return boolean
+     */
+    protected function xmlInvalid(\SimpleXMLElement $xml)
+    {   
+        return !isset($xml->response->resData);
     }
+    
+    abstract protected function addSpecificData(\SimpleXMLElement $xml);
+    
     public function getDomain()
     {
         return $this->domain;
