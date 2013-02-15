@@ -8,11 +8,13 @@ use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Nameserver;
 
 /**
- * This class interprets XML for a Nominet EPP domain:info command response.
- *
+ * This class interprets XML for a Nominet EPP info command response.
+ * @todo this class is based on the Response Info Domain Class, 
+ * anything "domain" specific should be generalised, report to the author below.
+ * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class AbstractDelete extends Response
+abstract class AbstractInfo extends Response
 {
     protected $object;
 
