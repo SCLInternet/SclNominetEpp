@@ -25,9 +25,9 @@ class Host extends AbstractDelete
     {
         parent::__construct(
             self::TYPE,
-            new DeleteHostResponse(),
             self::DELETE_NAMESPACE,
-            self::VALUE_NAME
+            self::VALUE_NAME,
+            new DeleteHostResponse()
         );
     }
 }

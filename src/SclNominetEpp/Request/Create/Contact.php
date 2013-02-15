@@ -35,10 +35,10 @@ class Contact extends AbstractCreate
         $this->value = $this->contact->getId();
         parent::__construct(
             self::TYPE,
-            new CheckContactResponse(),
             self::CREATE_NAMESPACE,
             self::VALUE_NAME,
-            $this->value
+            $this->value,
+            new CheckContactResponse()
         );
     }
     

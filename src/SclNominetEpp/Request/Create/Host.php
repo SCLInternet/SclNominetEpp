@@ -23,10 +23,10 @@ class Host extends AbstractCreate
         $this->value = $this->nameserver->getHostName();
         parent::__construct(
             self::TYPE,
-            new CheckContactResponse(),
             self::CREATE_NAMESPACE,
             self::VALUE_NAME,
-            $this->value
+            $this->value,
+            new CheckContactResponse()
         );
     }
     

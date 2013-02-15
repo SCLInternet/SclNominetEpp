@@ -34,6 +34,6 @@ class Contact extends AbstractCreate
      */
     public function setValue($name)
     {
-        $this->host->setId($name);
+        $this->contact->setId($name);
     }
 }

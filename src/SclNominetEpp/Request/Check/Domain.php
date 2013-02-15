@@ -29,9 +29,9 @@ class Domain extends AbstractCheck
     {
         parent::__construct(
             self::TYPE,
-            new CheckDomainResponse(),
             self::CHECK_NAMESPACE,
-            self::VALUE_NAME
+            self::VALUE_NAME,
+            new CheckDomainResponse()
         );
     }
 }

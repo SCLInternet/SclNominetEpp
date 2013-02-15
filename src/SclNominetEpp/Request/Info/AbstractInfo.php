@@ -14,7 +14,7 @@ use SclNominetEpp\Request;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class AbstractInfo extends Request
+abstract class AbstractInfo extends Request
 {
 
     /**
@@ -37,7 +37,6 @@ class AbstractInfo extends Request
 
     public function __construct($type, $infoNamespace, $valueName, $response = null)
     {
-
         parent::__construct('info', $response);
         $this->type = $type;
         $this->valueName = $valueName;

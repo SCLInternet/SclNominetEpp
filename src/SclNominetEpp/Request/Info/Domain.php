@@ -17,7 +17,6 @@ class Domain extends AbstractInfo
 
     public function __construct()
     {
-
         parent::__construct(
             self::TYPE,
             self::INFO_NAMESPACE,

@@ -49,7 +49,7 @@ abstract class AbstractCheck extends Request
      * @param  string     $type
      * @throws \Exception
      */
-    public function __construct($type, $response, $checkNamespace, $valueName)
+    public function __construct($type, $checkNamespace, $valueName, $response = null)
     {
         parent::__construct('check', $response);
 

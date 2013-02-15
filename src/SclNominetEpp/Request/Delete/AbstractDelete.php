@@ -45,7 +45,7 @@ abstract class AbstractDelete extends Request
      * @param  string     $type
      * @throws \Exception
      */
-    public function __construct($type, $response, $deleteNamespace, $valueName)
+    public function __construct($type, $deleteNamespace, $valueName, $response = null)
     {
         parent::__construct('delete', $response);
 

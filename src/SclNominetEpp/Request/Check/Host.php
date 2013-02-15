@@ -29,9 +29,9 @@ class Host extends AbstractCheck
     {
         parent::__construct(
             self::TYPE,
-            new CheckHostResponse(),
             self::CHECK_NAMESPACE,
-            self::VALUE_NAME
+            self::VALUE_NAME,
+            new CheckHostResponse()
         );
     }
 }
