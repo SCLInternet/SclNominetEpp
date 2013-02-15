@@ -16,10 +16,11 @@ class Contact extends AbstractCheck
      *
      * @param type $data
      */
-    public function __construct($data = null)
+    public function __construct()
     {
-        parent::__construct($data);
-        parent::setType(self::TYPE);
-        parent::setValueName(self::VALUE_NAME);
+        parent::__construct(
+            self::TYPE,
+            self::VALUE_NAME
+        );    
     }
 }

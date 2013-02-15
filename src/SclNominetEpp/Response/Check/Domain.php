@@ -16,9 +16,9 @@ class Domain extends AbstractCheck
      *
      * @param type $data
      */
-    public function __construct($data = null)
+    public function __construct()
     {
-        parent::__construct($data);
+        parent::__construct();
         parent::setType(self::TYPE);
         parent::setValueName(self::VALUE_NAME);
     }

@@ -1,6 +1,8 @@
 <?php
 namespace SclNominetEpp\Request;
 
+use SclNominetEpp\Request\Login;
+
 /**
  * login epp command test
  */

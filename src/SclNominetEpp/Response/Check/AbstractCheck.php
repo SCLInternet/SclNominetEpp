@@ -17,32 +17,45 @@ use SclNominetEpp\Response;
 abstract class AbstractCheck extends Response
 {
     /**
-     * The type of check this is.
+     * Type is the "check request type" (contact/domain/host)
      *
      * @var string
      */
     private $type;
 
     /**
-     *
+     * Value Name is the name of the identifying value, "valueName" (name/id)
+     * 
      * @var string
      */
     private $valueName;
 
     /**
      *
+     * 
      * @var array
      */
     private $values = array();
 
-    public function __construct($type, $response, $updateNamespace, $valueName)
+    /**
+     * 
+     * 
+     * 
+     * @param object $type
+     * @param object $valueName
+     */
+    public function __construct($type, $valueName)
     {
-        parent::__construct('check', $response);
         $this->type = $type;
-        $this->updateNamespace = $updateNamespace;
         $this->valueName = $valueName;
     }
 
+    /**
+     * 
+     * @param SimpleXMLElement $data
+     * @todo Hey Tom, What's this return type?
+     * @return type
+     */
     public function processData($data)
     {
         if (!isset($data->response->resData)) {
@@ -67,45 +80,5 @@ abstract class AbstractCheck extends Response
     public function getValues()
     {
         return $this->values;
-    }
-
-    /**
-     * Set $this->type
-     *
-     * @param string $type
-     */
-    protected function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * Get $this->type
-     *
-     * @return string
-     */
-    protected function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set $this->valueName
-     *
-     * @param string $valueName
-     */
-    public function setValueName($valueName)
-    {
-        $this->valueName = $valueName;
-    }
-
-    /**
-     * Get $this->valueName
-     *
-     * @return string
-     */
-    public function getValueName()
-    {
-        return $this->valueName;
     }
 }

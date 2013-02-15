@@ -18,10 +18,10 @@ abstract class AbstractCreate extends Response
     protected $objectType;
     protected $valueName;
 
-    public function __construct($type, $objectType, $valueName)
+    public function __construct($type, $object, $valueName)
     {
         $this->type = (string) $type;
-        $this->objectType = $objectType;
+        $this->object = $object;
         $this->valueName = $valueName;
     }
     
@@ -38,8 +38,6 @@ abstract class AbstractCreate extends Response
             return;
         }
         $ns = $xml->getNamespaces(true);
-        $objectType = $this->objectType;
-        $this->object = new $objectType();
 
         $response = $xml->response;
 
