@@ -12,33 +12,37 @@ use DateTime;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Contact extends Response
+class Contact extends AbstractInfo
 {
+    const TYPE = 'contact';
+    const VALUE_NAME = 'id';
+    
     protected $contact;
 
-    public function processData($xml)
+    public function __construct()
     {
-        if (!isset($xml->response->resData)) {
-            return;
-        }
+        parent::__construct(
+            self::TYPE,
+            new ContactObject(),
+            self::VALUE_NAME
+        );
+    }
 
-        $ns = $xml->getNamespaces(true);
-        $this->contact = new ContactObject();
-
-        $response  = $xml->response;
-
-        $infData   = $response->resData->children($ns['contact'])->infData;
-        $extension = $response->extension->children($ns['contact-nom-ext'])->infData;
-
+    public function addSpecificData(SimpleXMLElement $infData, SimpleXMLElement $extension)
+    {
+        $this->addInfData($infData);
+        $this->addExtensionData($extension);
+    }
+    
+    public function addInfData(SimpleXMLElement $infData)
+    {
         $postalInfo = $infData->postalInfo;
         $addrXml    = $postalInfo->addr;
 
         //toString ADDRESS XML
-
         $streets = $addrXml->street;
 
         //ADDRESS SETTING
-
         $address = new Address();
         $address->setAddressLineOne($streets[0]);
         $address->setAddressLineTwo($streets[1]);
@@ -47,7 +51,23 @@ class Contact extends Response
         $address->setCountryCode($addrXml->cc);
         $address->setStateProvince($addrXml->sp);
         $address->setPostCode($addrXml->pc);
-
+        
+        //NORMAL DATA
+        $this->contact->setEmail($infData->email);
+        $this->contact->setFax($infData->fax);
+        $this->contact->setPhone($infData->voice); //optional
+        //
+            //Postal Info
+        $this->contact->setName($postalInfo->name); //Postal Info
+        $this->contact->setOrganisation($postalInfo->org);
+        $this->contact->setAddress($address);         //Postal Info
+    }
+    /**
+     * 
+     * @param \SimpleXMLElement $extension
+     */
+    public function addExtensionData(SimpleXMLElement $extension)
+    {
         //EXTENSION DATA
 
         $this->contact->setCompanyNumber($extension->{'co-no'});
@@ -60,23 +80,12 @@ class Contact extends Response
         $this->contact->setOptOut($optOut);
         $this->contact->setTradeName($extension->{'trad-name'});
         $this->contact->setType($extension->{'type'});
-
-        //NORMAL DATA
-
-        $this->contact->setID($infData->id);
-        $this->contact->setEmail($infData->email);
-        $this->contact->setFax($infData->fax);
-        $this->contact->setPhone($infData->voice); //optional
-
-            //Dates
-        $this->contact->setCreated(new DateTime((string) $infData->crDate));
-        $this->contact->setUpDate(new DateTime((string) $infData->upDate));
-            //Postal Info
-        $this->contact->setName($postalInfo->name); //Postal Info
-        $this->contact->setOrganisation($postalInfo->org);
-        $this->contact->setAddress($address);         //Postal Info
     }
-
+    
+    protected function setValue($id) {
+        $this->contact->setId($id);
+    }
+    
     public function getContact()
     {
         return $this->contact;

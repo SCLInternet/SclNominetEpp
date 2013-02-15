@@ -15,6 +15,20 @@ abstract class AbstractInfo extends Response
 {
     protected $object;
 
+    /**
+     * Constructor
+     * 
+     * @param string $type
+     * @param object $object
+     * @param string $valueName
+     */
+    public function __construct($type, $object, $valueName)
+    {
+        $this->type = (string) $type;
+        $this->object = $object;
+        $this->valueName = $valueName;
+    }
+    
     public function processData($xml)
     {
         if ($this->xmlInvalid($xml)) {
@@ -22,7 +36,6 @@ abstract class AbstractInfo extends Response
         }
         $name = $this->valueName;
         $ns = $xml->getNamespaces(true);
-        $this->object = new DomainObject();
         $response = $xml->response;
 
         $infData = $response->resData->children($ns["{$this->type}"])->infData;
@@ -47,14 +60,18 @@ abstract class AbstractInfo extends Response
      * @param SimpleXMLElement $xml
      * @return boolean
      */
-    protected function xmlInvalid(\SimpleXMLElement $xml)
+    protected function xmlInvalid(SimpleXMLElement $xml)
     {
         return !isset($xml->response->resData);
     }
     
-    abstract protected function addSpecificData(\SimpleXMLElement $infData, \SimpleXMLElement $extension = null);
+    abstract protected function addSpecificData(SimpleXMLElement $infData, SimpleXMLElement $extension = null);
     
-    abstract protected function setValue(\SimpleXMLElement $xml);
+    abstract protected function addInfData(SimpleXMLElement $infData);
+    
+    abstract protected function addExtension(SimpleXMLElement $extension);
+    
+    abstract protected function setValue(SimpleXMLElement $infData);
     
     public function getObject()
     {

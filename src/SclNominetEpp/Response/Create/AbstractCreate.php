@@ -13,9 +13,7 @@ use SclNominetEpp\Response;
 abstract class AbstractCreate extends Response
 {
     protected $object;
-    
     protected $type;
-    protected $objectType;
     protected $valueName;
 
     /**
