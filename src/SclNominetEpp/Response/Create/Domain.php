@@ -30,21 +30,21 @@ class Domain extends AbstractCreate
         );
     }
     
-    /**
-     * Overriding function "processData" 
-     * 
-     * @param SimpleXMLElement $xml
-     */
-    protected function processData($xml)
-    {
-        
-        parent::processData($xml);
-        
-        $ns = $xml->getNamespaces(true);
-        $response = $xml->response;
-        $creData  = $response->resData->children($ns[$this->type])->creData;
-        $this->domain->setExpired(new DateTime($creData->exDate));
-    }
+//    /**
+//     * Overriding function "processData" 
+//     * 
+//     * @param SimpleXMLElement $xml
+//     */
+//    protected function processData($xml)
+//    {
+//        
+//        parent::processData($xml);
+//        
+//        $ns = $xml->getNamespaces(true);
+//        $response = $xml->response;
+//        $creData  = $response->resData->children($ns[$this->type])->creData;
+//        $this->object->setExpired(new DateTime($creData->exDate));
+//    }
     
     /**
      * Overriding setter of AbstractCreate Response
@@ -53,12 +53,12 @@ class Domain extends AbstractCreate
      */
     public function setValue($name)
     {
-        $this->host->setName($name);
+        $this->object->setName($name);
     }
 
-    protected function addSpecificData(\SimpleXMLElement $creData)
+    protected function addSpecificData(SimpleXMLElement $creData)
     {
         
-        $this->domain->setExpired(new DateTime($creData->exDate));
+        $this->object->setExpired(new DateTime($creData->exDate));
     }
 }

@@ -49,6 +49,7 @@ abstract class AbstractCreate extends Response
         $creData  = $response->resData->children($ns[$this->type])->creData;
         $this->object->setIdentifier($creData->$valueName);
         $this->object->setCreated(new DateTime($creData->crDate));
+        $this->addSpecificData($creData);
     }
 
     /**
