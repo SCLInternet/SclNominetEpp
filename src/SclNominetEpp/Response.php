@@ -6,6 +6,11 @@ use SimpleXMLElement;
 use SclRequestResponse\Exception\InvalidResponsePacketException;
 use SclRequestResponse\ResponseInterface;
 
+/**
+ * This class handles the essentials of all command responses
+ *
+ * @author Tom Oram <tom@scl.co.uk>
+ */
 class Response implements ResponseInterface
 {
     /**
@@ -43,7 +48,7 @@ class Response implements ResponseInterface
     /**
      * Read the data from an array into this object.
      *
-     * @param string $data
+     * @param string $xml
      *
      * @return Response
      *
@@ -72,6 +77,7 @@ class Response implements ResponseInterface
     }
 
     /**
+     * Get boolean of success of the command from the response.
      * 
      * @return boolean
      */
