@@ -24,28 +24,34 @@ abstract class AbstractCreate extends Request
     private $type;
 
     /**
-     *
+     * The namespace for the create command
+     * 
      * @var string
      */
     private $createNamespace;
 
     /**
-     *
+     * The name of the identifier.
+     * 
      * @var string
      */
     private $valueName;
 
     /**
-     *
+     * The value of the identifier.
+     * 
      * @var string
      */
     private $value;
     
     /**
-     * Tells the parent class what the action of this request is.
+     * Construcotr
      *
-     * @param  string     $type
-     * @throws \Exception
+     * @param string $type
+     * @param string $createNamespace
+     * @param string $valueName
+     * @param string $value
+     * @param SimpleXMLElement $response
      */
     public function __construct($type, $createNamespace, $valueName, $value, $response = null)
     {
@@ -88,6 +94,14 @@ abstract class AbstractCreate extends Request
         return $this;
     }
     
+    /**
+     * Valdiates whether the object is of the correct class.
+     * 
+     */
     abstract protected function objectValidate();
-    abstract protected function addSpecificContent(\SimpleXMLElement $create);
+    
+    /**
+     * @param SimpleXMLElement $create Create xml data.
+     */
+    abstract protected function addSpecificContent(SimpleXMLElement $create);
 }
