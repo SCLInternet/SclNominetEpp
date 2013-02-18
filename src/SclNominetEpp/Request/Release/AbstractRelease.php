@@ -49,9 +49,11 @@ abstract class AbstractRelease extends Request
      *
      * @param  string $value
      */
-    public function setValue($value)
+    public function lookup($value)
     {
         $this->value = $value;
+        
+        return $this;
     }
     
     public function setRegistrarTag($registrarTag)

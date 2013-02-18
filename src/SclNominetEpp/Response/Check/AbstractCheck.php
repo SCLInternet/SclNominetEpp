@@ -55,20 +55,32 @@ abstract class AbstractCheck extends Response
      * @todo Hey Tom, What's this return type?
      * @return type
      */
-    public function processData($data)
+    protected function processData(SimpleXMLElement $xml)
     {
-        if (!isset($data->response->resData)) {
+        if ($this->xmlInvalid($xml)) {
             return;
         }
 
-        $ns = $data->getNamespaces(true);
+        $ns = $xml->getNamespaces(true);
 
-        $xmlValues = $data->response->resData->children($ns[$this->type]);
+        $xmlValues = $xml->response->resData->children($ns[$this->type]);
 
         $valueName = $this->valueName;
         foreach ($xmlValues->chkData->cd as $value) {
             $this->values[(string) $value->$valueName] = (boolean) (string) $value->$valueName->attributes()->avail;
         }
+    }
+        /**
+     * Assuming $xml is invalid, 
+     * this function returns "true" to affirm that the xml is invalid, 
+     * otherwise "false".
+     * 
+     * @param SimpleXMLElement $xml
+     * @return boolean
+     */
+    protected function xmlInvalid(SimpleXMLElement $xml)
+    {
+        return !isset($xml->response->resData);
     }
 
     /**

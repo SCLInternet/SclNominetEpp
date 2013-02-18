@@ -19,6 +19,8 @@ abstract class AbstractUpdate extends Request
     
     protected $valueName;
     
+    protected $value;
+    
     public function __construct($type, $response, $updateNamespace, $valueName)
     {
         parent::__construct('update', $response);
@@ -26,6 +28,13 @@ abstract class AbstractUpdate extends Request
         $this->type            = $type;
         $this->updateNamespace = $updateNamespace;
         $this->valueName       = $valueName;
+    }
+    
+    public function lookup($value)
+    {
+        $this->value = $value;
+        
+        return $value;
     }
     
     abstract protected function add(UpdateFieldInterface $field);

@@ -32,8 +32,8 @@ class Host extends AbstractCreate
      * 
      * @param string $name
      */
-    public function setValue($name)
+    public function setValue($hostName)
     {
-        $this->host->setHostName($name);
+        $this->host->setHostName($hostName);
     }
 }

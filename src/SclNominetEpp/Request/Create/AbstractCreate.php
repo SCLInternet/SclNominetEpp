@@ -73,7 +73,7 @@ abstract class AbstractCreate extends Request
         $create->addAttribute('xsi:schemaLocation', $createXSI);
         $create->addChild($this->valueName, $this->value, $createXSI);
         
-        $this->addSpecificContent();
+        $this->addSpecificContent($create);
     }
     
     /**
@@ -81,11 +81,13 @@ abstract class AbstractCreate extends Request
      *
      * @param  string $value
      */
-    public function setValue($value)
+    public function lookup($value)
     {
         $this->value = $value;
+        
+        return $this;
     }
     
     abstract protected function objectValidate();
-    abstract protected function addSpecificContent();
+    abstract protected function addSpecificContent(\SimpleXMLElement $create);
 }

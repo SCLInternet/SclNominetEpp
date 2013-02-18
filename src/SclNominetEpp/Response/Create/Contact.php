@@ -30,10 +30,10 @@ class Contact extends AbstractCreate
     /**
      * Overriding setter of AbstractCreate Response
      * 
-     * @param string $name
+     * @param string $id
      */
-    public function setValue($name)
+    public function setValue($id)
     {
-        $this->contact->setId($name);
+        $this->contact->setId($id);
     }
 }

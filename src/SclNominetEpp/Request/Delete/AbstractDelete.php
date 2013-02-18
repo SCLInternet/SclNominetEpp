@@ -55,6 +55,19 @@ abstract class AbstractDelete extends Request
     }
 
     /**
+     * The value to lookup.
+     *
+     * @param  string $value
+     * @return Info
+     */
+    public function lookup($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+    
+    /**
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
      */
