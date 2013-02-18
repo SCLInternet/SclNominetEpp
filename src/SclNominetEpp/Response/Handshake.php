@@ -18,10 +18,19 @@ class Handshake extends Response
             return;
         }
         
-        $ns = $xml->getNamespaces(true);
-        $response = $xml->response;
-        $domainListData = $response->resData->children($ns["h:hanData"])->domainListData;
-        $domainListData->addAttribute('noDomains',2);
+        $ns             = $xml->getNamespaces(true);
+        $response       = $xml->response;
+        
+        $handshakeData  = $response->resData->children($ns["h:hanData"]);
+        
+        $domainListData = $handshakeData->domainListData;
+        $caseId         = $handshakeData->caseId;
+//        foreach ($xmlValues->chkData->cd as $value) {
+//            $available = (boolean) (string) $value->$valueName->attributes()->avail;
+//            $this->values[(string) $value->$valueName] = $available;
+//        }
+        //$domainListData->
+        //$domainListData->
     }
 
     
