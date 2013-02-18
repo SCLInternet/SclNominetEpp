@@ -42,8 +42,12 @@ class Domain extends AbstractCreate
             new CheckContactResponse()
         );
     }
-        
-    public function addSpecificContent($create)
+    
+    /**
+     * includes Create Object specific content for addContent in AbstractCreate
+     * @param SimpleXMLElement $create
+     */
+    public function addSpecificContent(SimpleXMLElement $create)
     {
         $period = $create->addChild('period', 2);
         $period->addAttribute('unit', 'y');
@@ -61,7 +65,8 @@ class Domain extends AbstractCreate
     }
     
     /**
-     *
+     * Creates XML for all the nameservers
+     * 
      * @param SimpleXMLElement $create
      */
     protected function createNameservers(SimpleXMLElement $create)
@@ -72,7 +77,8 @@ class Domain extends AbstractCreate
     }
 
     /**
-     *
+     * Creates XML for all the contacts
+     * 
      * @param SimpleXMLElement $create
      */
     protected function createContacts(SimpleXMLElement $create)
