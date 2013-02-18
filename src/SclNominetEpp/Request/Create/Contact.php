@@ -81,7 +81,7 @@ class Contact extends AbstractCreate
     /**
      * Set Contact to the passed ContactObject file.
      * 
-     * @param SclNominetEpp\Contact $contact
+     * @param ContactObject $contact
      */
     public function setContact(ContactObject $contact)
     {

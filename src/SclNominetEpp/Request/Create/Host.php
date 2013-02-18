@@ -15,9 +15,9 @@ class Host extends AbstractCreate
     const CREATE_NAMESPACE = 'urn:ietf:params:xml:ns:host-1.0';
     const VALUE_NAME = 'name';
 
-    protected $nameserver;
-    protected $value;
-
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->value = $this->nameserver->getHostName();
@@ -30,7 +30,13 @@ class Host extends AbstractCreate
         );
     }
     
-    public function addSpecificContent($create)
+    /**
+     * This function is used to add Object specific content 
+     * to the Abstract class' implementation of addContent
+     * 
+     * @param SimpleXMLElement $create
+     */
+    public function addSpecificContent(SimpleXMLElement $create)
     {
         if ($this->nameserver->getIpv4() !== null) {
             $ipv4 = $create->addChild('addr', $this->nameserver->getIpv4());
@@ -42,6 +48,11 @@ class Host extends AbstractCreate
         }
     }
     
+    /**
+     * An Exception is thrown if the object is not of type \SclNominetEpp\Contact
+     * 
+     * @throws Exception
+     */
     public function objectValidate()
     {
         if (!$this->nameserver instanceof Nameserver) {
