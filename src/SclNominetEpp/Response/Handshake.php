@@ -9,11 +9,9 @@ use SclNominetEpp\Response;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class ListDomains extends Response
+class Handshake extends Response
 {
-    //put your code here
-    protected $domains = array();
-
+   
     protected function processData($xml)
     {
         if ($this->xmlInvalid($xml)) {
@@ -21,16 +19,12 @@ class ListDomains extends Response
         }
         
         $ns = $xml->getNamespaces(true);
-
-        $domains = $xml->response->resData->children($ns['list'])->listData;
-
-        $this->domains = array();
-
-        foreach ($domains->domainName as $domain) {
-            $this->domains[] = (string) $domain;
-        }
+        $response = $xml->response;
+        $domainListData = $response->resData->children($ns["h:hanData"])->domainListData;
+        $domainListData->addAttribute('noDomains',2);
     }
 
+    
     public function xmlInvalid($xml)
     {
         if (!isset($xml->response->resData)) {
@@ -40,6 +34,6 @@ class ListDomains extends Response
     
     public function getDomains()
     {
-        return $this->domains;
+        
     }
 }

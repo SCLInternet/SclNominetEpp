@@ -38,7 +38,7 @@ abstract class AbstractInfo extends Response
         $ns = $xml->getNamespaces(true);
         $response = $xml->response;
 
-        $infData = $response->resData->children($ns["{$this->type}"])->infData;
+        $infData = $response->resData->children($ns[$this->type])->infData;
         $extension = $response->extension->children($ns["{$this->type}-nom-ext"])->infData;
         $this->object->setValue($infData->$name);
         $this->object->setClientID($infData->clID);
