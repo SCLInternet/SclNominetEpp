@@ -384,6 +384,7 @@ class Nominet extends AbstractRequestResponse
 
     /**
      * The <update> operation allows the attributes of an object to be updated.
+     * @param Contact $contact The contact to be updated.
      */
     public function updateContact(Contact $contact)
     {
@@ -416,6 +417,7 @@ class Nominet extends AbstractRequestResponse
 
     /**
      * The <update> operation allows the attributes of an object to be updated.
+     * @param Nameserver $host The nameserver to be updated.
      */
     public function updateHost(Nameserver $host)
     {
