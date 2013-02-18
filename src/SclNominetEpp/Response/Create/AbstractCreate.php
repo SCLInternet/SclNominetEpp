@@ -82,6 +82,11 @@ abstract class AbstractCreate extends Response
     {
     }
     
+    /**
+     * Get object of the Create command.
+     * 
+     * @return object
+     */
     public function getObject()
     {
         return $this->object;

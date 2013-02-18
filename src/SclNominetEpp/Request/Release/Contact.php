@@ -22,9 +22,9 @@ class Contact extends AbstractRelease
     {
         parent::__construct(
             self::TYPE,
-            new ReleaseContactResponse(),
             self::UPDATE_NAMESPACE,
-            self::VALUE_NAME
+            self::VALUE_NAME,
+            new ReleaseContactResponse()
         );
     }
 }

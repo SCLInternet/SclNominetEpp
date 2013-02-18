@@ -52,11 +52,11 @@ abstract class AbstractRelease extends Request
      * Constructor
      * 
      * @param string $type
-     * @param object $response
      * @param string $updateNamespace
      * @param string $valueName
+     * @param SimpleXMLElement $response
      */
-    public function __construct($type, $response, $updateNamespace, $valueName)
+    public function __construct($type, $updateNamespace, $valueName, $response = null)
     {
         parent::__construct('update', $response);
         $this->type  = $type;

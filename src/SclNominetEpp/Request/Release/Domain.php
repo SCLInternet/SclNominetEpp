@@ -22,9 +22,9 @@ class Domain extends AbstractRelease
     {
         parent::__construct(
             self::TYPE,
-            new ReleaseDomainResponse(),
             self::UPDATE_NAMESPACE,
-            self::VALUE_NAME
+            self::VALUE_NAME,
+            new ReleaseDomainResponse()
         );
     }
 }
