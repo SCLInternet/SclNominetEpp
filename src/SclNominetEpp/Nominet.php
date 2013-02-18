@@ -305,6 +305,7 @@ class Nominet extends AbstractRequestResponse
 
     /**
      * The <update> operation allows the attributes of an object to be updated.
+     * @param Domain $domain The Domain to be updated.
      */
     public function updateDomain(Domain $domain)
     {
