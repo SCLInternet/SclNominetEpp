@@ -48,6 +48,14 @@ abstract class AbstractRelease extends Request
      */
     private $registrarTag;
     
+    /**
+     * Constructor
+     * 
+     * @param string $type
+     * @param object $response
+     * @param string $updateNamespace
+     * @param string $valueName
+     */
     public function __construct($type, $response, $updateNamespace, $valueName)
     {
         parent::__construct('update', $response);
@@ -69,6 +77,7 @@ abstract class AbstractRelease extends Request
     }
     
     /**
+     * Set the tag for the current demain name
      * 
      * @param type $registrarTag
      */
@@ -78,6 +87,7 @@ abstract class AbstractRelease extends Request
     }
     
     /**
+     * Add content to the request form.
      * 
      * @param \SimpleXMLElement $updateXML
      */
