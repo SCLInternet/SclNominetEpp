@@ -71,21 +71,40 @@ class Response implements ResponseInterface
         return $this;
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public function success()
     {
         return 1000 === $this->code;
     }
 
+    /**
+     * Get the response code
+     * 
+     * @return int
+     */
     public function code()
     {
         return $this->code;
     }
 
+    /**
+     * Get the response message
+     * 
+     * @return string
+     */
     public function message()
     {
         return $this->message;
     }
 
+    /**
+     * Get any extra response data
+     * 
+     * @return SimpleXMLElement
+     */
     public function data()
     {
         return $this->data;

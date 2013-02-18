@@ -31,6 +31,11 @@ class Contact
 
     const TYPE_UNKNOWN = 'UNKNOWN';
 
+    /**
+     * array of organisation types.
+     * 
+     * @var array
+     */
     private static $organisationTypes = array(
         self::TYPE_UK_LTD,
         self::TYPE_UK_PLC,
@@ -51,6 +56,11 @@ class Contact
         self::TYPE_UNKNOWN
     );
 
+    /**
+     * The Contact identifier.
+     * 
+     * @var string
+     */
     private $id;
     /**
      * The contact name.
@@ -60,7 +70,7 @@ class Contact
     private $name;
 
     /**
-     * The contact email address
+     * The contact email address.
      *
      * @var string
      */
@@ -81,7 +91,7 @@ class Contact
     /**
      * The registered company number or the DfES UK school number of the registrant.
      *
-     * @var type
+     * @var string
      */
     private $companyNumber;
 
@@ -144,7 +154,8 @@ class Contact
 
     /**
      * 
-     * @var type 
+     * 
+     * @var string
      */
     private $type;
     
