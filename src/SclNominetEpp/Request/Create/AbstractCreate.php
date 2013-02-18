@@ -101,6 +101,10 @@ abstract class AbstractCreate extends Request
     abstract protected function objectValidate();
     
     /**
+     * This allows subclasses to add their own specific content
+     * to the addContent function that all subclasses may run
+     * because it is defined in this abstract class.
+     * 
      * @param SimpleXMLElement $create Create xml data.
      */
     abstract protected function addSpecificContent(SimpleXMLElement $create);
