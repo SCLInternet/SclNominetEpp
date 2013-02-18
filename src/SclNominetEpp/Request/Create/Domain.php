@@ -66,7 +66,7 @@ class Domain extends AbstractCreate
      */
     protected function createNameservers(SimpleXMLElement $create)
     {
-        foreach ($this->domain->getNameservers() as $nameserver) {
+        foreach ($this->object->getNameservers() as $nameserver) {
             $create->addChild('hostObj', $nameserver->getHostName());
         }
     }
@@ -77,26 +77,32 @@ class Domain extends AbstractCreate
      */
     protected function createContacts(SimpleXMLElement $create)
     {
-        foreach ($this->domain->getContacts() as $type => $value) {
+        foreach ($this->object->getContacts() as $type => $value) {
             $contact = $create->addChild('contact', $value->getId());
             $contact->addAttribute('type', $type);
         }
     }
 
+    /**
+     * An Exception is thrown if the object is not of type \SclNominetEpp\Domain
+     * 
+     * @throws Exception
+     */
     public function objectValidate()
     {
-        if (!$this->domain instanceof DomainObject) {
+        if (!$this->object instanceof DomainObject) {
             $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
     }
     
     /**
-     *
-     * @param Domain $domain
+     * Set Domain.
+     * 
+     * @param \SclNominetEpp\Domain $object
      */
-    public function setDomain(DomainObject $domain)
+    public function setDomain(DomainObject $object)
     {
-        $this->domain = $domain;
+        $this->object = $object;
     }
 }

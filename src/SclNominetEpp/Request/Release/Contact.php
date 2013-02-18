@@ -15,9 +15,6 @@ class Contact extends AbstractRelease
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:release-1.0';
     const VALUE_NAME = 'registrant';
 
-    protected $registrant = '';
-    protected $value;
-
     /**
      * Constructor
      */

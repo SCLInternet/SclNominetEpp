@@ -75,7 +75,7 @@ class Contact extends AbstractCreate
     }
     
     /**
-     * An Exception is thrown if the object is not of it's expected type.
+     * An Exception is thrown if the object is not of type \SclNominetEpp\Contact
      * 
      * @throws Exception
      */
