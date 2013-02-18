@@ -52,47 +52,54 @@ class Domain
     private $nameservers = array();
 
     /**
-     * specified in the Nominet EPP as "clID"
+     * The identifier of the sponsoring client.
+     * Specified in the Nominet EPP as "clID"
      * 
      * @var string
      */
     private $clientID;
 
     /**
-     * specified in the Nominet EPP as "crID"
+     * The identifier of the client that created the domain object.
+     * Specified in the Nominet EPP as "crID"
      * 
      * @var string
      */
     private $creatorID;
 
     /**
-     * CreatedDate specified in the Nominet EPP as "crDate"
+     * The date and time of domain object creation.
+     * Specified in the Nominet EPP as "crDate"
      *
      * @var DateTime
      */
     private $created;
 
     /**
-     * ExpiredDate specified in the Nominet EPP as "exDate"
+     * The date and time identifying the end of the domain object's registration period.
+     * Specified in the Nominet EPP as "exDate"
      *
      * @var DateTime
      */
     private $expired;
 
     /**
-     * The date the domain name was last changed, formatted as: YYYYMMDD
-     * 
-     * @var DateTime
-     */
-    private $upID;
-
-    /**
-     * The user that last changed the domain name.
+     * The identifier of the client that last updated the domain object.
+     * This variable MUST be null if the domain has never been modified.
      * (could be a name and email address or the value submitted from the <clTRID> element if created by EPP)
      * 
      * @var string
      */
-    private $upDate;
+    private $upID = null;
+
+    /**
+     * 
+     * The date and time of the most recent domain-object modification, formatted as: YYYYMMDD.
+     * This variable MUST be null if the domain object has never been modified.
+     * 
+     * @var DateTime
+     */
+    private $upDate = null;
 
     /**
      * If first-bill is not set or set to "th", the registration
@@ -253,7 +260,7 @@ class Domain
     }
 
     /**
-     * Get the array $this->nameservers
+     * Get the array of nameservers
      * 
      * @return array
      */
@@ -273,7 +280,8 @@ class Domain
         unset($this->nameservers[$arrayKey]);
     }
     /**
-     *
+     * Set the identifier of the sponsoring client.
+     * 
      * @param string $clientID
      */
     public function setClientID($clientID)
@@ -282,7 +290,8 @@ class Domain
     }
 
     /**
-     *
+     * Get the identifier of the sponsoring client.
+     * 
      * @return string
      */
     public function getClientID()
@@ -291,7 +300,7 @@ class Domain
     }
 
     /**
-     * Set $this->creatorID
+     * Set the identifier of the client that created the domain object.
      *
      * @param string $creatorID
      */
@@ -301,7 +310,7 @@ class Domain
     }
 
     /**
-     * Get $this->creatorID
+     * Get the identifier of the client that created the domain object.
      *
      * @return string
      */
