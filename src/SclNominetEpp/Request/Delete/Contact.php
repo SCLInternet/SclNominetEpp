@@ -15,9 +15,6 @@ class Contact extends AbstractDelete
     const DELETE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
     const VALUE_NAME = 'id';
 
-    protected $contact = '';
-    protected $value;
-
     /**
      * Constructor
      */

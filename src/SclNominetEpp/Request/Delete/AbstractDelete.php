@@ -41,9 +41,11 @@ abstract class AbstractDelete extends Request
 
     /**
      * Tells the parent class what the action of this request is.
-     *
-     * @param  string     $type
-     * @throws \Exception
+     * 
+     * @param type $type
+     * @param type $deleteNamespace
+     * @param type $valueName
+     * @param type $response
      */
     public function __construct($type, $deleteNamespace, $valueName, $response = null)
     {

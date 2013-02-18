@@ -15,9 +15,6 @@ class Host extends AbstractDelete
     const DELETE_NAMESPACE = 'urn:ietf:params:xml:ns:host-1.0';
     const VALUE_NAME = 'name';
 
-    protected $host = '';
-    protected $value;
-
     /**
      * Constructor
      */

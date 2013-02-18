@@ -15,9 +15,6 @@ class Domain extends AbstractDelete
     const DELETE_NAMESPACE = 'urn:ietf:params:xml:ns:domain-1.0';
     const VALUE_NAME = 'name';
 
-    protected $domain = '';
-    protected $value;
-
     /**
      *  Constructor
      */
