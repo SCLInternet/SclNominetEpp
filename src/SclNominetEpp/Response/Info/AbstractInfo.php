@@ -22,11 +22,11 @@ abstract class AbstractInfo extends Response
      * @param object $object
      * @param string $valueName
      */
-    public function __construct($type, $object, $valueName)
+    public function __construct($type, AbstractInfo $object, $valueName)
     {
         $this->type = (string) $type;
         $this->object = $object;
-        $this->valueName = $valueName;
+        $this->valueName = (string) $valueName;
     }
     
     public function processData($xml)
@@ -65,11 +65,15 @@ abstract class AbstractInfo extends Response
         return !isset($xml->response->resData);
     }
     
-    abstract protected function addSpecificData(SimpleXMLElement $infData, SimpleXMLElement $extension = null);
+    protected function addSpecificData(SimpleXMLElement $infData, SimpleXMLElement $extension = null)
+    {
+        $this->addInfData($infData);
+        $this->addExtensionData($extension);
+    }
     
     abstract protected function addInfData(SimpleXMLElement $infData);
     
-    abstract protected function addExtension(SimpleXMLElement $extension);
+    abstract protected function addExtensionData(SimpleXMLElement $extension);
     
     abstract protected function setValue(SimpleXMLElement $infData);
     

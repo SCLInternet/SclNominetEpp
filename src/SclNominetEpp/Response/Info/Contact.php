@@ -16,8 +16,6 @@ class Contact extends AbstractInfo
 {
     const TYPE = 'contact';
     const VALUE_NAME = 'id';
-    
-    protected $contact;
 
     public function __construct()
     {
@@ -26,12 +24,6 @@ class Contact extends AbstractInfo
             new ContactObject(),
             self::VALUE_NAME
         );
-    }
-
-    public function addSpecificData(SimpleXMLElement $infData, SimpleXMLElement $extension)
-    {
-        $this->addInfData($infData);
-        $this->addExtensionData($extension);
     }
     
     public function addInfData(SimpleXMLElement $infData)
@@ -82,8 +74,8 @@ class Contact extends AbstractInfo
         $this->contact->setType($extension->{'type'});
     }
     
-    protected function setValue($id) {
-        $this->contact->setId($id);
+    protected function setValue(SimpleXMLElement $id) {
+        $this->contact->setId((string)$id);
     }
     
     public function getContact()

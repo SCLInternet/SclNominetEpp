@@ -23,11 +23,11 @@ abstract class AbstractCreate extends Response
      * @param object $object
      * @param string $valueName
      */
-    public function __construct($type, $object, $valueName)
+    public function __construct($type, AbstractCreate $object, $valueName)
     {
         $this->type = (string) $type;
         $this->object = $object;
-        $this->valueName = $valueName;
+        $this->valueName = (string) $valueName;
     }
     
     /**

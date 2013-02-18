@@ -67,7 +67,8 @@ abstract class AbstractCheck extends Response
 
         $valueName = $this->valueName;
         foreach ($xmlValues->chkData->cd as $value) {
-            $this->values[(string) $value->$valueName] = (boolean) (string) $value->$valueName->attributes()->avail;
+            $available = (boolean) (string) $value->$valueName->attributes()->avail;
+            $this->values[(string) $value->$valueName] = $available;
         }
     }
         /**

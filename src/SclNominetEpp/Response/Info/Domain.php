@@ -2,7 +2,6 @@
 
 namespace SclNominetEpp\Response\Info;
 
-use SclNominetEpp\Response;
 use DateTime;
 use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Nameserver;
@@ -14,64 +13,56 @@ use SclNominetEpp\Nameserver;
  */
 class Domain extends AbstractInfo
 {
-    protected $domain;
 
-    public function processData($xml)
+    const TYPE = 'domain';
+    const VALUE_NAME = 'name';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        if (!isset($xml->response->resData)) {
-            return;
-        }
+        parent::__construct(
+            self::TYPE,
+            new DomainObject(),
+            self::VALUE_NAME
+        );
+    }
+    
+    public function getDomain()
+    {
+        return $this->object;
+    }
 
-        $ns = $xml->getNamespaces(true);
-        $this->domain = new DomainObject();
-        $response = $xml->response;
-
-        $infData = $response->resData->children($ns['domain'])->infData;
-        $extension = $response->extension->children($ns['domain-nom-ext'])->infData;
-
+    protected function addInfData(SimpleXMLElement $infData)
+    {
+        
         $nschildren = $infData->ns->hostObj;
         foreach ($nschildren as $nschild) {
             $nameserver = new Nameserver();
             $nameserver->setHostName($nschild);
-            $this->domain->addNameserver($nameserver);
+            $this->object->addNameserver($nameserver);
         }
 
-        $this->domain->setName($infData->name);
-        $this->domain->setRegistrant($infData->registrant);
+        $this->object->setRegistrant($infData->registrant);
 
-        $this->domain->setClientID($infData->clID);
-        $this->domain->setCreatorID($infData->crID);
-        $this->domain->setCreated(new DateTime((string) $infData->crDate));
-        $this->domain->setExpired(new DateTime((string) $infData->exDate));
-        $this->domain->setUpID($infData->upID);
-        $this->domain->setUpDate(new DateTime((string) $infData->upDate));
-
-        //EXTENSION DATA
-        $this->domain->setRegStatus($extension->{'reg-status'});
-        $this->domain->setFirstBill($extension->{'first-bill'});
-        $this->domain->setRecurBill($extension->{'recur-bill'});
-        $this->domain->setAutoBill($extension->{'auto-bill'});
-        $this->domain->setNextBill($extension->{'next-bill'});
+        $this->object->setCreatorID($infData->crID);
+        $this->object->setExpired(new DateTime((string) $infData->exDate));
+        $this->object->setUpID($infData->upID);
     }
-
-    protected function addSpecificData(\SimpleXMLElement $xml)
+    
+    protected function addExtensionData(SimpleXMLElement $extension)
     {
-         
+                //EXTENSION DATA
+        $this->object->setRegStatus($extension->{'reg-status'});
+        $this->object->setFirstBill($extension->{'first-bill'});
+        $this->object->setRecurBill($extension->{'recur-bill'});
+        $this->object->setAutoBill($extension->{'auto-bill'});
+        $this->object->setNextBill($extension->{'next-bill'});
     }
-    public function getDomain()
+
+    protected function setValue(SimpleXMLElement $name)
     {
-        return $this->domain;
-    }
-
-    protected function addExtension(SimpleXMLElement $extension) {
-        
-    }
-
-    protected function addInfData(SimpleXMLElement $infData) {
-        
-    }
-
-    protected function setValue(SimpleXMLElement $infData) {
-        
+        $this->object->setName((string)$name);
     }
 }
