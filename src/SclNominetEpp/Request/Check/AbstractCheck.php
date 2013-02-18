@@ -44,10 +44,12 @@ abstract class AbstractCheck extends Request
     private $values = array();
 
     /**
-     * Tells the parent class what the action of this request is.
-     *
-     * @param  string     $type
-     * @throws \Exception
+     * Constructor.
+     * 
+     * @param string $type
+     * @param string $checkNamespace
+     * @param string $valueName
+     * @param SimpleXMLElement $response
      */
     public function __construct($type, $checkNamespace, $valueName, $response = null)
     {

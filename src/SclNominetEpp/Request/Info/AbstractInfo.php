@@ -35,6 +35,14 @@ abstract class AbstractInfo extends Request
      */
     protected $value;
 
+    /**
+     * Constructor
+     * 
+     * @param string $type
+     * @param string $infoNamespace
+     * @param string $valueName
+     * @param SimpleXMLElement $response
+     */
     public function __construct($type, $infoNamespace, $valueName, $response = null)
     {
         parent::__construct('info', $response);
