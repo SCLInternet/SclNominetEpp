@@ -20,17 +20,8 @@ class Domain extends AbstractCreate
     const VALUE_NAME = 'name';
 
     /**
-     *
-     * @var DomainObject
+     * Constructor
      */
-    protected $domain = null;
-
-    /**
-     *
-     * @var string
-     */
-    protected $value;
-
     public function __construct()
     {
         $this->value = $this->domain->getName();
