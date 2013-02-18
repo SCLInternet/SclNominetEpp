@@ -19,17 +19,8 @@ class Contact extends AbstractCreate
     const DUMMY_PASSWORD = 'qwerty';
 
     /**
-     *
-     * @var ContactObject
+     * Constructor
      */
-    protected $contact = null;
-
-    /**
-     *
-     * @var string
-     */
-    protected $value;
-
     public function __construct()
     {
         $this->value = $this->contact->getId();
@@ -48,7 +39,7 @@ class Contact extends AbstractCreate
      * 
      * @param SimpleXMLElement $create
      */
-    public function addSpecificContent(\SimpleXMLElement $create)
+    public function addSpecificContent(SimpleXMLElement $create)
     {
         $address = $this->contact->getAddress();
         
@@ -90,7 +81,7 @@ class Contact extends AbstractCreate
     /**
      * Set Contact to the passed ContactObject file.
      * 
-     * @param Contact $contact
+     * @param SclNominetEpp\Contact $contact
      */
     public function setContact(ContactObject $contact)
     {
