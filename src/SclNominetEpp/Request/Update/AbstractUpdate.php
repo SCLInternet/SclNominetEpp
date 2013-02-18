@@ -10,9 +10,8 @@ use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class AbstractUpdate extends Request implements RequestObjectSpecifier
+abstract class AbstractUpdate extends Request
 {
-    
     protected $type;
     
     protected $updateNamespace;
@@ -37,6 +36,27 @@ abstract class AbstractUpdate extends Request implements RequestObjectSpecifier
         return $value;
     }
     
-    abstract protected function add(UpdateFieldInterface $field);
-    abstract protected function remove(UpdateFieldInterface $field);
+        /**
+     * The <b>add()</b> function assigns a Field object as an element of the add array
+     * for including specific fields in the update request "{$this->type}:add" tag.
+     * ($this->type = 'domain' || 'contact' || 'contactID' || 'host'; (pseudo-code))
+     * 
+     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
+     */
+    protected function add(UpdateFieldInterface $field)
+    {
+        $this->add[] = $field;
+    }
+
+    /**
+     * The <b>remove()</b> function assigns a Field object as an element of the remove array
+     * for including specific fields in the update request "{$this->type}:remove" tag.
+     * ($this->type = 'domain' || 'contact' || 'contactID' || 'host'; (pseudo-code))
+     * 
+     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
+     */
+    protected function remove(UpdateFieldInterface $field)
+    {
+        $this->remove[] = $field;
+    }
 }
