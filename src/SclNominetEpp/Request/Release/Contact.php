@@ -18,6 +18,9 @@ class Contact extends AbstractRelease
     protected $registrant = '';
     protected $value;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(

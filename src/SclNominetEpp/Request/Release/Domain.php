@@ -15,9 +15,9 @@ class Domain extends AbstractRelease
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:release-1.0';
     const VALUE_NAME = 'domainName';
 
-    protected $domain = '';
-    protected $value;
-
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(

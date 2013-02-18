@@ -12,7 +12,8 @@ use SclNominetEpp\Request;
 abstract class AbstractRelease extends Request
 {
     /**
-     *
+     * The value of the check Identifier.
+     * 
      * @var string
      */
     protected $value='';
@@ -25,16 +26,27 @@ abstract class AbstractRelease extends Request
     private $type;
 
     /**
+     * The namespace of update
      *
      * @var string
      */
     private $updateNamespace;
 
     /**
-     *
+     * The name of the check Identifier (e.g. 'id', 'name')
+     * 
      * @var string
      */
     private $valueName;
+    
+    /**
+     * This is the tag the domain name is currently on. 
+     * When used with a release or transfer operation, 
+     * this is the tag of the registrar receiving the domain name.
+     * 
+     * @var mixed 
+     */
+    private $registrarTag;
     
     public function __construct($type, $response, $updateNamespace, $valueName)
     {
@@ -56,6 +68,10 @@ abstract class AbstractRelease extends Request
         return $this;
     }
     
+    /**
+     * 
+     * @param type $registrarTag
+     */
     public function setRegistrarTag($registrarTag)
     {
         $this->registrarTag = $registrarTag;
