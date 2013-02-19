@@ -225,6 +225,7 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
 
         $request = new Request\Create\Contact();
+        $request->setContact($contact);
         $request->lookup($contact->getId());
         $response = $this->processRequest($request);
 
@@ -242,6 +243,7 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
 
         $request = new Request\Create\Domain();
+        $request->setDomain($domain);
         $request->lookup($domain->getName());
 
         $response = $this->processRequest($request);
@@ -258,7 +260,8 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
         $request = new Request\Create\Host($host);
-
+        $request->setNameserver($host);
+        $request->lookup($host->getHostName);
         $response = $this->processRequest($request);
 
         return $response->success();

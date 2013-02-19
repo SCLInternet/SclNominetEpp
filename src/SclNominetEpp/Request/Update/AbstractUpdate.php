@@ -21,6 +21,13 @@ abstract class AbstractUpdate extends Request
     
     protected $value;
     
+    /**
+     * 
+     * @param type $type
+     * @param type $response
+     * @param type $updateNamespace
+     * @param type $valueName
+     */
     public function __construct($type, $response, $updateNamespace, $valueName)
     {
         parent::__construct('update', $response);

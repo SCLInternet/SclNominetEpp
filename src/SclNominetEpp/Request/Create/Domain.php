@@ -57,12 +57,12 @@ class Domain extends AbstractCreate
     /**
      * Creates XML for all the nameservers
      * 
-     * @param SimpleXMLElement $create
+     * @param SimpleXMLElement $ns
      */
-    protected function createNameservers(SimpleXMLElement $create)
+    protected function createNameservers(SimpleXMLElement $ns)
     {
         foreach ($this->object->getNameservers() as $nameserver) {
-            $create->addChild('hostObj', $nameserver->getHostName());
+            $ns->addChild('hostObj', $nameserver->getHostName());
         }
     }
 
@@ -84,9 +84,9 @@ class Domain extends AbstractCreate
      * 
      * @throws Exception
      */
-    public function objectValidate()
+    public function objectValidate($object)
     {
-        if (!$this->object instanceof DomainObject) {
+        if (!$object instanceof DomainObject) {
             $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
             throw new Exception($exception);
         }

@@ -9,6 +9,7 @@ namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Request;
 use SimpleXMLElement;
+use Exception;
 
 /**
  * This class build the XML for a Nominet EPP create command.
@@ -46,12 +47,18 @@ abstract class AbstractCreate extends Request
     private $value;
     
     /**
+     * The domain|contact|host object.
+     * 
+     * @var object
+     */
+    protected $object = null;
+    
+    /**
      * Constructor
      *
      * @param string $type
      * @param string $createNamespace
      * @param string $valueName
-     * @param string $value
      * @param SimpleXMLElement $response
      */
     public function __construct($type, $createNamespace, $valueName, $response = null)
@@ -70,9 +77,9 @@ abstract class AbstractCreate extends Request
     protected function addContent(\SimpleXMLElement $xml)
     {
         try{
-            $this->objectValidate();
+            $this->objectValidate($this->object);
         } catch (Exception $e) {
-            echo "Message:" . $e->getMessage();
+            echo "\nMessage:" . $e->getMessage() . "\n\n";
         }
         $createNS  = $this->createNamespace;
 
@@ -80,7 +87,7 @@ abstract class AbstractCreate extends Request
         
         $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
         $create->addAttribute('xsi:schemaLocation', $createXSI);
-        $create->addChild($this->valueName, $this->value, $createXSI);
+        $create->addChild($this->valueName, $this->value);
         
         $this->addSpecificContent($create);
     }
@@ -101,7 +108,7 @@ abstract class AbstractCreate extends Request
      * Valdiates whether the object is of the correct class.
      * 
      */
-    abstract protected function objectValidate();
+    abstract protected function objectValidate($object);
     
     /**
      * This allows subclasses to add their own specific content
