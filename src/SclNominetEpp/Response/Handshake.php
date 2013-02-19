@@ -3,7 +3,7 @@
 namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
-
+use SclNominetEpp\Handshake as HandshakeObject;
 /**
  * This class interprets XML for a Nominet EPP list command response.
  *
@@ -11,7 +11,26 @@ use SclNominetEpp\Response;
  */
 class Handshake extends Response
 {
-   
+    /**
+     * A handshake object for response information gathering.
+     * 
+     * @var HandshakeObject 
+     */
+    private $handshake;
+    
+    /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->handshake = new HandshakeObject();
+    }
+    
+    /**
+     * @todo Tom, what's the return type?
+     * 
+     * @param SimpleXMLElement $xml
+     * @return mixed
+     */
     protected function processData($xml)
     {
         if ($this->xmlInvalid($xml)) {
@@ -23,14 +42,13 @@ class Handshake extends Response
         
         $handshakeData  = $response->resData->children($ns["h:hanData"]);
         
+        $this->handshake->setCaseId($handshakeData->caseId);
         $domainListData = $handshakeData->domainListData;
-        $caseId         = $handshakeData->caseId;
-//        foreach ($xmlValues->chkData->cd as $value) {
-//            $available = (boolean) (string) $value->$valueName->attributes()->avail;
-//            $this->values[(string) $value->$valueName] = $available;
-//        }
-        //$domainListData->
-        //$domainListData->
+        $attributeArray = $domainListData->attributes();
+        $this->handshake->getNumberOfDomains($attributeArray['noDomains']);
+        foreach ($domainListData as $domain) {
+            $this->handshake->addDomain($domain);
+        }
     }
 
     
@@ -40,9 +58,9 @@ class Handshake extends Response
             return;
         }
     }
-    
-    public function getDomains()
+      
+    public function getHandshake()
     {
-        
+        return $this->handshake;
     }
 }
