@@ -14,9 +14,9 @@ class ListDomains extends Response
     //put your code here
     protected $domains = array();
 
-    protected function processData($xml)
+    protected function processData(SimpleXMLElement $xml)
     {
-        if ($this->xmlInvalid($xml)) {
+        if (!$this->xmlValid($xml->response->resData)) {
             return;
         }
         
@@ -31,11 +31,9 @@ class ListDomains extends Response
         }
     }
 
-    public function xmlInvalid($xml)
+    public function xmlValid(SimpleXMLElement $xml)
     {
-        if (!isset($xml->response->resData)) {
-            return;
-        }
+        return isset($xml);
     }
     
     public function getDomains()

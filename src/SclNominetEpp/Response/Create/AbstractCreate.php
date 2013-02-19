@@ -38,7 +38,7 @@ abstract class AbstractCreate extends Response
      */
     protected function processData(\SimpleXMLElement $xml)
     {
-        if ($this->xmlInvalid($xml)) {
+        if (!$this->xmlValid($xml->response->resData)) {
             return;
         }
         
@@ -60,9 +60,9 @@ abstract class AbstractCreate extends Response
      * @param SimpleXMLElement $xml
      * @return boolean
      */
-    protected function xmlInvalid(\SimpleXMLElement $xml)
+    protected function xmlValid(SimpleXMLElement $xml)
     {
-        return !isset($xml->response->resData);
+        return isset($xml);
     }
     
     /**
@@ -78,7 +78,7 @@ abstract class AbstractCreate extends Response
      * 
      * @param \SimpleXMLElement $xml
      */
-    protected function addSpecificData(\SimpleXMLElement $xml)
+    protected function addSpecificData(SimpleXMLElement $xml)
     {
     }
     

@@ -57,7 +57,7 @@ abstract class AbstractCheck extends Response
      */
     protected function processData(SimpleXMLElement $xml)
     {
-        if ($this->xmlInvalid($xml)) {
+        if (!$this->xmlValid($xml->response->resData)) {
             return;
         }
 
@@ -79,9 +79,9 @@ abstract class AbstractCheck extends Response
      * @param SimpleXMLElement $xml
      * @return boolean
      */
-    protected function xmlInvalid(SimpleXMLElement $xml)
+    protected function xmlValid(SimpleXMLElement $xml)
     {
-        return !isset($xml->response->resData);
+        return isset($xml);
     }
 
     /**

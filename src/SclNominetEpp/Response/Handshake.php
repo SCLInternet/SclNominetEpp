@@ -33,7 +33,7 @@ class Handshake extends Response
      */
     protected function processData($xml)
     {
-        if ($this->xmlInvalid($xml)) {
+        if (!$this->xmlValid($xml->response->resData)) {
             return;
         }
         
@@ -44,19 +44,24 @@ class Handshake extends Response
         
         $this->handshake->setCaseId($handshakeData->caseId);
         $domainListData = $handshakeData->domainListData;
+        $registrant     = $handshakeData->registrant;
         $attributeArray = $domainListData->attributes();
         $this->handshake->getNumberOfDomains($attributeArray['noDomains']);
-        foreach ($domainListData as $domain) {
-            $this->handshake->addDomain($domain);
+        
+        if ($this->xmlValid($domainListData)) {
+            foreach ($domainListData as $domain) {
+                $this->handshake->addDomain($domain);
+            }
+        }
+        if ($this->xmlValid($registrant)) {
+            $this->handshake->setRegistrant($registrant);
         }
     }
 
     
-    public function xmlInvalid($xml)
+    public function xmlValid(SimpleXMLElement $xml)
     {
-        if (!isset($xml->response->resData)) {
-            return;
-        }
+        return isset($xml);
     }
       
     public function getHandshake()

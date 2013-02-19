@@ -20,7 +20,14 @@ class Handshake
     public $caseId;
     
     /**
+     * The registrant of the handshake.
+     * 
+     * @var string
+     */
+    public $registrant;
+    /**
      * The number of domains within the handshake.
+     * 
      * @var int
      */
     public $numberOfDomains;
@@ -40,7 +47,7 @@ class Handshake
      */
     public function setCaseId($caseId) 
     {
-        $this->caseId = $caseId;
+        $this->caseId = (int)(string) $caseId;
     }
     
     /**
@@ -80,7 +87,7 @@ class Handshake
      */
     public function addDomain($domain)
     {
-        $this->domainList[] = $domain;
+        $this->domainList[] = (string) $domain;
     }
 
     /**
@@ -88,7 +95,8 @@ class Handshake
      * 
      * @param array $domainList
      */
-    public function setDomainList($domainList) {
+    public function setDomainList($domainList)
+    {
         $this->domainList = $domainList;
     }
 
@@ -101,10 +109,24 @@ class Handshake
     {
         return $this->domainList;
     }
-
-//    <h:caseId>6</h:caseId>
-//        <h:domainListData noDomains="2">
-//          <h:domainName>example1.co.uk</h:domainName>
-//          <h:domainName>example2.co.uk</h:domainName>
-//        </h:domainListData>
+    
+    /**
+     * Set the handshake registrant
+     * 
+     * @param string $registrant
+     */
+    public function setRegistrant($registrant)
+    {
+        $this->registrant = (string) $registrant;
+    }
+    
+    /**
+     * Get the handshake registrant
+     * 
+     * @return string
+     */
+    public function getRegistrant()
+    {
+        return $this->registrant;
+    }
 }

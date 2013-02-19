@@ -31,7 +31,7 @@ abstract class AbstractInfo extends Response
     
     public function processData($xml)
     {
-        if ($this->xmlInvalid($xml)) {
+        if (!$this->xmlValid($xml->response->resData)) {
             return;
         }
         $name = $this->valueName;
@@ -60,9 +60,9 @@ abstract class AbstractInfo extends Response
      * @param SimpleXMLElement $xml
      * @return boolean
      */
-    protected function xmlInvalid(SimpleXMLElement $xml)
+    protected function xmlValid(SimpleXMLElement $xml)
     {
-        return !isset($xml->response->resData);
+        return isset($xml);
     }
     
     protected function addSpecificData(SimpleXMLElement $infData, SimpleXMLElement $extension = null)
