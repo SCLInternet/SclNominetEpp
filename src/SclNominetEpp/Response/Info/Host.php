@@ -5,7 +5,6 @@ namespace SclNominetEpp\Response\Info;
 use SclNominetEpp\Response;
 use SclNominetEpp\Nameserver;
 use SimpleXMLElement;
-use DateTime;
 
 /**
  * This class interprets XML for a Nominet EPP host:info command response.
@@ -14,8 +13,17 @@ use DateTime;
  */
 class Host extends AbstractInfo
 {
+    const TYPE = 'host';
+    const VALUE_NAME = 'name';
 
-    protected $host;
+    public function __construct()
+    {
+        parent::__construct(
+            self::TYPE,
+            new Nameserver(),
+            self::VALUE_NAME
+        );
+    }
 
     public function processData($xml)
     {
@@ -32,13 +40,8 @@ class Host extends AbstractInfo
         $this->host->setHostName($infData->name);
         $this->statusArrPopulate($infData);
         $this->ipCheck($infData); // sets ipv4 and ipv6:- $this->host->setIpv4 and setIpv6
-        $this->host->setClientID($infData->clID);
         $this->host->setCreatorID($infData->crID);
-        $this->host->setCreated(new DateTime((string) $infData->crDate));
         $this->host->setUpID($infData->upID);
-        if (isset($infData->upDate)) {
-            $this->host->setUpDate(new DateTime((string) $infData->upDate));
-        }
     }
 
     /**
@@ -103,6 +106,10 @@ class Host extends AbstractInfo
     }
 
     protected function setValue(SimpleXMLElement $infData) {
+        
+    }
+
+    protected function addExtensionData(SimpleXMLElement $extension) {
         
     }
 }

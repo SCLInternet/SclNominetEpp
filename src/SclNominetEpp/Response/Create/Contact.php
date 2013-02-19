@@ -32,7 +32,7 @@ class Contact extends AbstractCreate
      * 
      * @param string $id
      */
-    public function setValue($id)
+    protected function setValue($id)
     {
         $this->object->setId($id);
     }

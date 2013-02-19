@@ -36,7 +36,7 @@ class Host extends AbstractCreate
      * 
      * @param SimpleXMLElement $create
      */
-    public function addSpecificContent(SimpleXMLElement $create)
+    protected function addSpecificContent(SimpleXMLElement $create)
     {
         if ($this->nameserver->getIpv4() !== null) {
             $ipv4 = $create->addChild('addr', $this->nameserver->getIpv4());

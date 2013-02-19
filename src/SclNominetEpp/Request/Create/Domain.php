@@ -38,7 +38,7 @@ class Domain extends AbstractCreate
      * includes Create Object specific content for addContent in AbstractCreate
      * @param SimpleXMLElement $create
      */
-    public function addSpecificContent(SimpleXMLElement $create)
+    protected function addSpecificContent(SimpleXMLElement $create)
     {
         $period = $create->addChild('period', 2);
         $period->addAttribute('unit', 'y');

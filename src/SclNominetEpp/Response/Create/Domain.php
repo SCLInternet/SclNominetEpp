@@ -51,7 +51,7 @@ class Domain extends AbstractCreate
      * 
      * @param string $name
      */
-    public function setValue($name)
+    protected function setValue($name)
     {
         $this->object->setName($name);
     }

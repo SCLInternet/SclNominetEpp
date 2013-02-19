@@ -39,7 +39,7 @@ class Contact extends AbstractCreate
      * 
      * @param SimpleXMLElement $create
      */
-    public function addSpecificContent(SimpleXMLElement $create)
+    protected function addSpecificContent(SimpleXMLElement $create)
     {
         $address = $this->contact->getAddress();
         

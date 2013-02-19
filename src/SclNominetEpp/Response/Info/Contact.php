@@ -58,7 +58,7 @@ class Contact extends AbstractInfo
      * 
      * @param \SimpleXMLElement $extension
      */
-    public function addExtensionData(SimpleXMLElement $extension)
+    protected function addExtensionData(SimpleXMLElement $extension)
     {
         //EXTENSION DATA
 
