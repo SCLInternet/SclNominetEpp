@@ -4,6 +4,7 @@ namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
 use SclNominetEpp\Handshake as HandshakeObject;
+use SimpleXMLElement;
 /**
  * This class interprets XML for a Nominet EPP list command response.
  *
@@ -21,7 +22,8 @@ class Handshake extends Response
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->handshake = new HandshakeObject();
     }
     
@@ -31,7 +33,7 @@ class Handshake extends Response
      * @param SimpleXMLElement $xml
      * @return mixed
      */
-    protected function processData($xml)
+    protected function processData(SimpleXMLElement $xml)
     {
         if (!$this->xmlValid($xml->response->resData)) {
             return;

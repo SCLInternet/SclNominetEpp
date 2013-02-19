@@ -8,6 +8,7 @@
 namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Request;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP create command.

@@ -24,7 +24,7 @@ class Domain extends AbstractCreate
      */
     public function __construct()
     {
-        $this->value = $this->domain->getName();
+        $this->value = $this->object->getName();
         parent::__construct(
             self::TYPE,
             self::CREATE_NAMESPACE,

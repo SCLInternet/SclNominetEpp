@@ -8,6 +8,7 @@
 namespace SclNominetEpp\Response\Check;
 
 use SclNominetEpp\Response;
+use SimpleXMLElement;
 
 /**
  * This class interprets XML for a Nominet EPP check command response.

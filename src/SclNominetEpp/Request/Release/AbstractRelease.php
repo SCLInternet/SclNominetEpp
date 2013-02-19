@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Request\Release;
 
 use SclNominetEpp\Request;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP r:release command.

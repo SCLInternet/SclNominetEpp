@@ -8,6 +8,7 @@
 namespace SclNominetEpp\Request\Info;
 
 use SclNominetEpp\Request;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP info command.

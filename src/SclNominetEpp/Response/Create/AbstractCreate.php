@@ -4,6 +4,7 @@ namespace SclNominetEpp\Response\Create;
 
 use DateTime;
 use SclNominetEpp\Response;
+use SimpleXMLElement;
 
 /**
  * This class interprets XML for a Nominet EPP <create> command response.

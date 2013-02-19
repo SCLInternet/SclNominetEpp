@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Response\Update;
 
 use SclNominetEpp\Response;
+use SimpleXMLElement;
 
 /**
  * DocBlock: Description of AbstractUpdate

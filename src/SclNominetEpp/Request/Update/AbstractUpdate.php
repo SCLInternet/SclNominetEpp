@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Request;
+use SimpleXMLElement;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**

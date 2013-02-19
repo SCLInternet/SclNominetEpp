@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Request\Delete;
 
 use SclNominetEpp\Request;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP delete command.
