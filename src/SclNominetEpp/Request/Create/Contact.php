@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Contact as ContactObject;
+use SclNominetEpp\Response\Create\Contact as CreateContactResponse;
 use Exception;
 
 /**
@@ -23,13 +24,11 @@ class Contact extends AbstractCreate
      */
     public function __construct()
     {
-        $this->value = $this->contact->getId();
         parent::__construct(
             self::TYPE,
             self::CREATE_NAMESPACE,
             self::VALUE_NAME,
-            $this->value,
-            new CheckContactResponse()
+            new CreateContactResponse()
         );
     }
     
@@ -76,6 +75,7 @@ class Contact extends AbstractCreate
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
+        return true;
     }
     
     /**

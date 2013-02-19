@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Domain as DomainObject;
+use SclNominetEpp\Response\Create\Domain as CreateDomainResponse;
 use SimpleXMLElement;
 use Exception;
 
@@ -24,13 +25,11 @@ class Domain extends AbstractCreate
      */
     public function __construct()
     {
-        $this->value = $this->object->getName();
         parent::__construct(
             self::TYPE,
             self::CREATE_NAMESPACE,
             self::VALUE_NAME,
-            $this->value,
-            new CheckContactResponse()
+            new CreateDomainResponse()
         );
     }
     
@@ -46,7 +45,7 @@ class Domain extends AbstractCreate
         $ns = $create->addChild('ns');
         $this->createNameservers($ns);
 
-        $create->addChild('registrant', $this->domain->getRegistrant());
+        $create->addChild('registrant', $this->object->getRegistrant());
 
         $this->createContacts($create);
 
@@ -91,6 +90,7 @@ class Domain extends AbstractCreate
             $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
+        return true;
     }
     
     /**

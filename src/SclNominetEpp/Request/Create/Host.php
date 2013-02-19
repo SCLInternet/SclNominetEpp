@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request\Create;
 
+use SclNominetEpp\Response\Create\Host as CreateHostResponse;
 use SclNominetEpp\Nameserver;
 
 /**
@@ -20,13 +21,11 @@ class Host extends AbstractCreate
      */
     public function __construct()
     {
-        $this->value = $this->nameserver->getHostName();
         parent::__construct(
             self::TYPE,
             self::CREATE_NAMESPACE,
             self::VALUE_NAME,
-            $this->value,
-            new CheckContactResponse()
+            new CreateHostResponse()
         );
     }
     
@@ -59,6 +58,7 @@ class Host extends AbstractCreate
             $exception = sprintf('A valid Nameserver object was not passed to \Request\CreateHost, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
+        return true;
     }
     
     /**
