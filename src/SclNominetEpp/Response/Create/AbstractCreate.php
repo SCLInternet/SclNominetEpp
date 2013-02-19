@@ -53,8 +53,8 @@ abstract class AbstractCreate extends Response
     }
 
     /**
-     * Assuming $xml is invalid, 
-     * this function returns "true" to affirm that the xml is invalid, 
+     * Assuming $xml is valid, 
+     * this function returns "true" to affirm that the xml is valid, 
      * otherwise "false".
      * 
      * @param SimpleXMLElement $xml

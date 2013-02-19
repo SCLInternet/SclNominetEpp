@@ -14,6 +14,11 @@ class ListDomains extends Response
     //put your code here
     protected $domains = array();
 
+    /**
+     * @todo Tom, what's the return type?
+     * @param \SimpleXMLElement $xml
+     * @return mixed
+     */
     protected function processData(SimpleXMLElement $xml)
     {
         if (!$this->xmlValid($xml->response->resData)) {
@@ -31,11 +36,20 @@ class ListDomains extends Response
         }
     }
 
+    /**
+     * 
+     * @param \SimpleXMLElement $xml
+     * @return boolean
+     */
     public function xmlValid(SimpleXMLElement $xml)
     {
         return isset($xml);
     }
     
+    /**
+     * 
+     * @return array
+     */
     public function getDomains()
     {
         return $this->domains;
