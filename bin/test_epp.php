@@ -33,7 +33,7 @@ $argv = array_values($argv);
 switch (strtolower($command)) {
     case 'createcontact':
         $contact = new \SclNominetEpp\Contact();
-        $contact->setId('sc2343');
+        $contact->setId($argv[0]);
         $contact->setName('name');
         $contact->setEmail('example@email.com');
         $address = new Address();

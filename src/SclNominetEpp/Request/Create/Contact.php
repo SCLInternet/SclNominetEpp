@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request\Create;
 
+use \SimpleXMLElement;
 use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Response\Create\Contact as CreateContactResponse;
 use Exception;
@@ -40,12 +41,12 @@ class Contact extends AbstractCreate
      */
     protected function addSpecificContent(SimpleXMLElement $create)
     {
-        $address = $this->contact->getAddress();
+        $address = $this->object->getAddress();
         
         $postalInfo = $create->addChild('postalInfo');
         $postalInfo->addAttribute('type', 'int');
-        $postalInfo->addChild('name', $this->contact->getName());
-        $postalInfo->addChild('org', $this->contact->getOrganisation());
+        $postalInfo->addChild('name', $this->object->getName());
+        $postalInfo->addChild('org', $this->object->getOrganisation());
 
         $addr = $postalInfo->addChild('addr');
         $addr->addChild('street', $address->getAddressLineOne());
@@ -56,8 +57,8 @@ class Contact extends AbstractCreate
         $addr->addChild('pc', $address->getPostCode());
         $addr->addChild('cc', $address->getCountryCode());
 
-        $create->addChild('voice', $this->contact->getPhone());
-        $create->addChild('email', $this->contact->getEmail());
+        $create->addChild('voice', $this->object->getPhone());
+        $create->addChild('email', $this->object->getEmail());
 
         //Mandatory for EPP but not used by nominet
         $authInfo = $create->addChild('authInfo');
@@ -69,9 +70,9 @@ class Contact extends AbstractCreate
      * 
      * @throws Exception
      */
-    public function objectValidate()
+    public function objectValidate($contact)
     {
-        if (!$this->contact instanceof ContactObject) {
+        if (!$contact instanceof ContactObject) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
             throw new Exception($exception);
         }
@@ -83,8 +84,8 @@ class Contact extends AbstractCreate
      * 
      * @param ContactObject $contact
      */
-    public function setContact(ContactObject $contact)
+    public function setContact(ContactObject $object)
     {
-        $this->contact = $contact;
+        $this->object = $object;
     }
 }
