@@ -46,8 +46,8 @@ abstract class AbstractCreate extends Response
         $valueName = $this->valueName;
         $ns = $xml->getNamespaces(true);
         $response = $xml->response;
-        $creData  = $response->resData->children($ns["{$this->type}:creData"]);
-        $this->object->setIdentifier($creData->$valueName);
+        $creData  = $response->resData->children($ns["{$this->type}"])->creData;
+        $this->setIdentifier($creData->$valueName);
         $this->object->setCreated(new DateTime($creData->crDate));
         $this->addSpecificData($creData);
     }
@@ -70,7 +70,7 @@ abstract class AbstractCreate extends Response
      *
      * @param string $valueName
      */
-    abstract protected function setValue($valueName);
+    abstract protected function setIdentifier($valueName);
     
     /**
      * @todo may be worth refactoring the create response to have this (as abstract) 

@@ -32,7 +32,7 @@ class Host extends AbstractCreate
      * 
      * @param string $name
      */
-    protected function setValue($hostName)
+    protected function setIdentifier($hostName)
     {
         $this->object->setHostName($hostName);
     }
