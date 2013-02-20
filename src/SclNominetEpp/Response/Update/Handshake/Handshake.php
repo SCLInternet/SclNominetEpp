@@ -1,6 +1,6 @@
 <?php
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Update\Handshake;
 
 use SclNominetEpp\Response;
 use SclNominetEpp\Handshake as HandshakeObject;
