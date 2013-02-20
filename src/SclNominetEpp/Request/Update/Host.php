@@ -1,10 +1,10 @@
 <?php
 
-namespace SclNominetEpp\Request\Update\Update;
+namespace SclNominetEpp\Request\Update;
 
-use SclNominetEpp\Response\Update\Update\Host as UpdateHostResponse;
+use SclNominetEpp\Response\Update\Host as UpdateHostResponse;
 use SclNominetEpp\Request;
-use SclNominetEpp\Request\Update\Update\Field\UpdateFieldInterface;
+use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.

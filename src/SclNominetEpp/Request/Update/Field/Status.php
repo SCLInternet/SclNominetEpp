@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request\Update\Update\Field;
+namespace SclNominetEpp\Request\Update\Field;
 
 /**
  * UpdateDomain "add" and "remove" both use "status" as a field

@@ -1,10 +1,10 @@
 <?php
 
-namespace SclNominetEpp\Request\Update\Update;
+namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Request;
 use SimpleXMLElement;
-use SclNominetEpp\Request\Update\Update\Field\UpdateFieldInterface;
+use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**
  * This abstract class enables building the XML for a Nominet EPP update command.
