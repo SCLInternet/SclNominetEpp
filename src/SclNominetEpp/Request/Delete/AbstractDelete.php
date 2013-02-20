@@ -71,8 +71,9 @@ abstract class AbstractDelete extends Request
     }
     
     /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
+     * addContent
+     * @todo An actual description
+     * @param SimpleXMLElement $deleteXML
      */
     public function addContent(SimpleXMLElement $deleteXML)
     {

@@ -26,17 +26,20 @@ abstract class AbstractCheck extends Request
     private $type;
 
     /**
+     * The namespace for the Nominet EPP check request.
      *
      * @var string
      */
     private $checkNamespace;
 
     /**
-     *
+     * The name of the identifying value for the check request
+     * (e.g. name or id)
+     * 
      * @var string
      */
     private $valueName;
-
+    
     /**
      *
      * @var array

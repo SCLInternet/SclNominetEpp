@@ -19,18 +19,22 @@ abstract class AbstractInfo extends Request
 {
 
     /**
-     *
+     * The namespace for the Nominet EPP info request.
+     * 
      * @var string
      */
     protected $infoNamespace;
 
     /**
-     *
+     * The name of the identifying value for the info request
+     * (e.g. name or id)
+     * 
      * @var string
      */
     protected $valueName;
 
     /**
+     * The value of the identifier of the info request.
      *
      * @var type
      */
@@ -66,8 +70,10 @@ abstract class AbstractInfo extends Request
     }
 
     /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
+     * addContent
+     * @todo An actual description
+     * 
+     * @param \SimpleXMLElement $xml
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
