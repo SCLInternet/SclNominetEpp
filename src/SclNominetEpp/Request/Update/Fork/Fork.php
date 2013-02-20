@@ -5,9 +5,9 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Update\Fork;
 
-use SclNominetEpp\Response\Fork as ForkResponse;
+use SclNominetEpp\Response\Update\Fork as ForkResponse;
 use SclNominetEpp\Request;
 
 /**
