@@ -28,9 +28,7 @@ class ListDomains extends Response
         $ns = $xml->getNamespaces(true);
 
         $domains = $xml->response->resData->children($ns['list'])->listData;
-
-        $this->domains = array();
-
+        
         foreach ($domains->domainName as $domain) {
             $this->domains[] = (string) $domain;
         }

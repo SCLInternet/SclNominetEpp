@@ -272,9 +272,27 @@ class Nominet extends AbstractRequestResponse
      * Further details of this are available in RFC 5731 The delete command may
      * not be used to delete nameservers and accounts.
      */
-    public function delete()
+    public function deleteDomain(Domain $domain)
     {
         $this->loginCheck();
+        $request  = new Request\Delete\Domain($domain);
+        $response = $this->processRequest($request);
+        
+        return $response->success();
+    }
+    
+    /**
+     * The EPP <delete> command allows the registrar to delete a domain name.
+     * Further details of this are available in RFC 5731 The delete command may
+     * not be used to delete nameservers and accounts.
+     */
+    public function deleteContact()
+    {
+        $this->loginCheck();
+        $request  = new Request\Delete\Contact($contact);
+        $response = $this->processRequest($request);
+        
+        return $response->success();
     }
 
     /**
@@ -324,10 +342,6 @@ class Nominet extends AbstractRequestResponse
         $currentContacts    = $currentDomain->getContacts();
         $newNameservers     = $domain->getNameservers();
         $newContacts        = $domain->getContacts();
-
-        echo "\n#########################\n";
-        var_dump($currentDomain);
-        echo "\n#########################\n";
         
         $addContacts       = array_uintersect(
             $newContacts,
@@ -369,9 +383,7 @@ class Nominet extends AbstractRequestResponse
                 $request->remove(new Update\Field\DomainNameserver($nameserver->getHostName()));
             }
         }
-        echo "##################";
-        var_dump($removeContacts);
-        echo "##################";
+        
         if (!empty($removeContacts)) {
             foreach ($removeContacts as $type => $contact) {
                 $request->remove(new Update\Field\DomainContact($contact->getId(), $type));

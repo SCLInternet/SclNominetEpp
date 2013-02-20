@@ -86,8 +86,8 @@ abstract class AbstractCreate extends Request
         $createXSI = $createNS . ' ' . "{$this->type}-1.0.xsd";
         
         $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
-        $create->addAttribute('xsi:schemaLocation', $createXSI);
-        $create->addChild($this->valueName, $this->value);
+        //$create->addAttribute('xsi:schemaLocation', $createXSI);
+        $create->addChild($this->valueName, $this->value, $createNS);
         
         $this->addSpecificContent($create);
     }
