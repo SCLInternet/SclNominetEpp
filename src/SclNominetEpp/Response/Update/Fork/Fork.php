@@ -1,6 +1,6 @@
 <?php
 
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Update\Fork;
 
 use SclNominetEpp\Response;
 

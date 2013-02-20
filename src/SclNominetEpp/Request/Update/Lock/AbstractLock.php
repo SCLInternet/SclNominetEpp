@@ -2,11 +2,13 @@
 
 namespace SclNominetEpp\Request\Update\Lock;
 
+use SclNominetEpp\Request;
+
 /**
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class AbstractLock
+abstract class AbstractLock extends Request
 {
     /**
      * The domain name.
