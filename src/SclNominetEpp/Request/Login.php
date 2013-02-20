@@ -75,7 +75,7 @@ class Login extends Request
     }
 
     /**
-     * @param SimpleXMLElement
+     * @param SimpleXMLElement $xml
      * @param string $uri
      */
     private function addObjUri(SimpleXMLElement $xml, $uri)
@@ -84,7 +84,7 @@ class Login extends Request
     }
 
     /**
-     * @param SimpleXMLElement
+     * @param SimpleXMLElement $xml
      * @param string $uri
      */
     private function addSvcExtension(SimpleXMLElement $xml, $uri)

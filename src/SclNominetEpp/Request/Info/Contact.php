@@ -21,6 +21,9 @@ class Contact extends AbstractInfo
     const INFO_NAMESPACE = "urn:ietf:params:xml:ns:contact-1.0";
     const VALUE_NAME = "id";
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(
