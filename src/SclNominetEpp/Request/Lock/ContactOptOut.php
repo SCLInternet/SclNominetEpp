@@ -7,7 +7,7 @@
 
 namespace SclNominetEpp\Request\Lock;
 
-use SclNominetEpp\Response\Lock\ContactOptOut as ContactOptOutResponse;
+use SclNominetEpp\Response\Lock\OptOut as OptOutResponse;
 use SclNominetEpp\Request;
 
 /**
@@ -17,26 +17,19 @@ use SclNominetEpp\Request;
  */
 class ContactOptOut extends Request
 {
-    /**
-     * The domain name.
-     *
-     * @var string
-     */
-    protected $contactId;
-
-    /**
-     * The expiry date.
-     *
-     * @var string
-     */
-    protected $domainName;
+    const OBJECT = 'contact';
+    const TYPE   = 'opt-out';
 
     /**
      * Tells the parent class what the action of this request is.
      */
     public function __construct()
     {
-        parent::__construct('update', new ContactOptOutResponse());
+        parent::__construct(
+            self::OBJECT,
+            self::TYPE,
+            new OptOutResponse()
+        );
     }
 
     public function setContactId($contactId)

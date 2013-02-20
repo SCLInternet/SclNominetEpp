@@ -7,7 +7,7 @@
 
 namespace SclNominetEpp\Request\Lock;
 
-use SclNominetEpp\Response\Lock\DomainOptOut as DomainOptOutResponse;
+use SclNominetEpp\Response\Lock\OptOut as OptOutResponse;
 use SclNominetEpp\Request;
 
 /**
@@ -18,26 +18,19 @@ use SclNominetEpp\Request;
 class DomainOptOut extends Request
 {
     
-    /**
-     * The expiry date.
-     *
-     * @var string
-     */
-    protected $domainName;
+    const OBJECT = 'domain';
+    const TYPE   = 'opt-out';
 
     /**
      * Tells the parent class what the action of this request is.
      */
     public function __construct()
     {
-        parent::__construct('update', new DomainInvestigateResponse());
-    }
-    
-    public function setDomainName($domainName)
-    {
-        $this->domainName = $domainName;
-
-        return $this;
+        parent::__construct(
+            self::OBJECT,
+            self::TYPE,
+            new OptOutResponse()
+        );
     }
 
     /**

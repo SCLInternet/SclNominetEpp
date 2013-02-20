@@ -10,7 +10,7 @@
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class AbstractInvestigate
+class AbstractLock
 {
     /**
      * The domain name.
@@ -27,11 +27,27 @@ class AbstractInvestigate
     protected $domainName;
 
     /**
+     * Either a "contact" or a "domain"
+     *
+     * @var string 
+     */
+    protected $object;
+    
+    /**
+     * Either "investigation" or "opt-out"
+     * 
+     * @var string 
+     */
+    protected $type;
+    /**
      * Tells the parent class what the action of this request is.
      */
-    public function __construct()
+    public function __construct($object, $type, $response = null)
     {
-        parent::__construct('update', new ContactInvestigateResponse());
+        parent::__construct('update', $response);
+        $this->object = $object;
+        $this->type   = $type;
+        
     }
 
     public function setContactId($contactId)
@@ -62,8 +78,8 @@ class AbstractInvestigate
 
         $lock = $xml->addChild('l:lock', '', $lockNS);
         $lock->addAttribute('xsi:schemaLocation', $lockXSI, $lockNS);
-        $lock->addAttribute('object', 'contact');   //Can be contact or domain
-        $lock->addAttribute('type', 'investigate'); //Can be opt-out or investigate
+        $lock->addAttribute('object', $this->object);   //Can be contact or domain
+        $lock->addAttribute('type', $this->type); //Can be opt-out or investigate
         
         $lock->addChild('contactId', $this->contactId);
         $lock->addChild('domainName', $this->domainName);
