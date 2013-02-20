@@ -107,6 +107,9 @@ abstract class AbstractCreate extends Request
     /**
      * Valdiates whether the object is of the correct class.
      * 
+     * @param object $object
+     * @return boolean
+     * @throws Exception
      */
     abstract protected function objectValidate($object);
     

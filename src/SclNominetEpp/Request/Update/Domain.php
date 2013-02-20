@@ -16,10 +16,18 @@ class Domain extends Request
     const TYPE = 'domain'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:domain-1.0';
     const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.1';
-
     const VALUE_NAME = 'name';
 
+    /**
+     *
+     * @var type 
+     */
     protected $domain = null;
+    
+    /**
+     * Identifying value
+     * @var type 
+     */
     protected $value;
     
     /**
@@ -36,6 +44,11 @@ class Domain extends Request
      */
     private $remove = array();
 
+    /**
+     * Constructor
+     * 
+     * @param string $value
+     */
     public function __construct($value)
     {
         parent::__construct('update', new UpdateDomainResponse());
@@ -65,6 +78,12 @@ class Domain extends Request
         $this->remove[] = $field;
     }
     
+    /**
+     * addContent
+     * @todo Description
+     * 
+     * @param \SimpleXMLElement $updateXML
+     */
     public function addContent(\SimpleXMLElement $updateXML)
     {
         $domainNS    = self::UPDATE_NAMESPACE;
@@ -107,6 +126,11 @@ class Domain extends Request
 
     }
 
+    /**
+     * Setter
+     * 
+     * @param type $domain
+     */
     public function setDomain($domain)
     {
         $this->domain = $domain;

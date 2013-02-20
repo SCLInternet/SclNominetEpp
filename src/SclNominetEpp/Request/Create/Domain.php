@@ -82,6 +82,8 @@ class Domain extends AbstractCreate
     /**
      * An Exception is thrown if the object is not of type \SclNominetEpp\Domain
      * 
+     * @param \SclNominetEpp\Domain $object
+     * @return boolean
      * @throws Exception
      */
     public function objectValidate($object)

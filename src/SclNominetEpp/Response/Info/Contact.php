@@ -56,7 +56,7 @@ class Contact extends AbstractInfo
     }
     /**
      * 
-     * @param \SimpleXMLElement $extension
+     * @param SimpleXMLElement $extension
      */
     protected function addExtensionData(SimpleXMLElement $extension)
     {
@@ -74,10 +74,18 @@ class Contact extends AbstractInfo
         $this->contact->setType($extension->{'type'});
     }
     
+    /**
+     * 
+     * @param SimpleXMLElement $id
+     */
     protected function setValue(SimpleXMLElement $id) {
         $this->contact->setId((string)$id);
     }
     
+    /**
+     * 
+     * @return type
+     */
     public function getContact()
     {
         return $this->contact;

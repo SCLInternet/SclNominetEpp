@@ -97,6 +97,8 @@ class Login extends Request
 
     /**
      * {@inheritDoc}
+     * 
+     * @param \SimpleXMLElement $xml
      */
     protected function addContent(\SimpleXMLElement $xml)
     {

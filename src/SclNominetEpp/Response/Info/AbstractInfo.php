@@ -30,7 +30,13 @@ abstract class AbstractInfo extends Response
         $this->valueName = (string) $valueName;
     }
     
-    public function processData($xml)
+    /**
+     * 
+     * @todo The return type?
+     * @param SimpleXMLElement $xml
+     * @return mixed
+     */
+    public function processData(SimpleXMLElement $xml)
     {
         if (!$this->xmlValid($xml->response->resData)) {
             return;
@@ -66,18 +72,38 @@ abstract class AbstractInfo extends Response
         return isset($xml);
     }
     
+    /**
+     * Allows the child classes to include specific data that could not be abstracted.
+     * 
+     * @param SimpleXMLElement $infData
+     * @param SimpleXMLElement $extension
+     */
     protected function addSpecificData(SimpleXMLElement $infData, SimpleXMLElement $extension = null)
     {
         $this->addInfData($infData);
         $this->addExtensionData($extension);
     }
     
+    /**
+     * @param SimpleXMLElement $infData This is the normal data
+     */
     abstract protected function addInfData(SimpleXMLElement $infData);
     
+    /**
+     * @param SimpleXMLElement $extension This is the extension data
+     */
     abstract protected function addExtensionData(SimpleXMLElement $extension);
     
+    /**
+     * @param SimpleXMLElement $infData
+     */
     abstract protected function setValue(SimpleXMLElement $infData);
     
+    /**
+     * Getter for the currently initialised child object.
+     * 
+     * @return object
+     */
     public function getObject()
     {
         return $this->object;

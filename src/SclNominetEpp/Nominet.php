@@ -271,6 +271,9 @@ class Nominet extends AbstractRequestResponse
      * The EPP <delete> command allows the registrar to delete a domain name.
      * Further details of this are available in RFC 5731 The delete command may
      * not be used to delete nameservers and accounts.
+     * 
+     * @param \SclNominetEpp\Domain $domain
+     * @return boolean|mixed
      */
     public function deleteDomain(Domain $domain)
     {
@@ -285,8 +288,11 @@ class Nominet extends AbstractRequestResponse
      * The EPP <delete> command allows the registrar to delete a domain name.
      * Further details of this are available in RFC 5731 The delete command may
      * not be used to delete nameservers and accounts.
+     * 
+     * @param \SclNominetEpp\Contact $contact
+     * @return type
      */
-    public function deleteContact()
+    public function deleteContact(Contact $contact)
     {
         $this->loginCheck();
         $request  = new Request\Delete\Contact($contact);
@@ -300,7 +306,7 @@ class Nominet extends AbstractRequestResponse
      * other object types.
      *
      * @param string $domain The domain to be renewed
-     * @param \DateTime|NULL The new expiry data or NULL
+     * @param \DateTime|NULL $expDate The new expiry data or NULL
      */
     public function renew($domain, $expDate)
     {
