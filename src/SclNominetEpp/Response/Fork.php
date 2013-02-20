@@ -25,6 +25,8 @@ class Fork extends Response
         $ns = $xml->getNamespaces(true);
 
         $contactDetails = $xml->response->resData->children($ns['contact'])->creData;
+        $contactDetails->id;
+        $contactDetails->crDate;
 
     }
 }
