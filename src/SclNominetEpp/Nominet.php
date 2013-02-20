@@ -550,10 +550,10 @@ class Nominet extends AbstractRequestResponse
      * The <transfer> command allows a registrar to request that a domain name
      * or account object to be transferred from another registrar.
      */
-    public function transfer()
-    {
-        $this->loginCheck();
-    }
+    //public function transfer()
+    //{
+    //    $this->loginCheck();
+    //}
 
     /**
      * The <handshake> operation allows a registrar to accept or reject a
