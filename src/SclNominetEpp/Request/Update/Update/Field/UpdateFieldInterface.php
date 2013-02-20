@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request\Update\Field;
+namespace SclNominetEpp\Request\Update\Update\Field;
 
 
 /**

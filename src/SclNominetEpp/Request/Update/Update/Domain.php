@@ -1,10 +1,10 @@
 <?php
 
-namespace SclNominetEpp\Request\Update;
+namespace SclNominetEpp\Request\Update\Update;
 
-use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
+use SclNominetEpp\Response\Update\Update\Domain as UpdateDomainResponse;
 use SclNominetEpp\Request;
-use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
+use SclNominetEpp\Request\Update\Update\Field\UpdateFieldInterface;
 
 /**
  * This class build the XML for a Nominet EPP domain:update command.

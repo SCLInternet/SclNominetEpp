@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request\Update\Helper;
+namespace SclNominetEpp\Request\Update\Update\Helper;
 
 /**
  * DocBlock: Description of DomainCompareHelper
