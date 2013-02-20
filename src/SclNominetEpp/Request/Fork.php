@@ -11,7 +11,7 @@ use SclNominetEpp\Response\Fork as ForkResponse;
 use SclNominetEpp\Request;
 
 /**
- * This class build the XML for a Nominet EPP renew command.
+ * This class build the XML for a Nominet EPP fork command.
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
@@ -55,9 +55,6 @@ class Fork extends Request
     {
         $forkNS  = 'http://www.nominet.org.uk/epp/xml/std-fork-1.0';
         $forkXSI = $forkNS . ' std-fork-1.0.xsd';
-
-        //$domainNS  = 'urn:ietf:params:xml:ns:domain-1.0';
-        //$domainXSI = 'urn:ietf:params:xml:ns:domain-1.0 domain-1.0.xsd';
 
         $fork = $xml->addChild('f:fork', '', $forkNS);
         $fork->addAttribute('xsi:schemaLocation', $forkXSI, $forkNS);

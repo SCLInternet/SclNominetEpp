@@ -5,7 +5,7 @@ namespace SclNominetEpp\Response;
 use SclNominetEpp\Response;
 
 /**
- * This class interprets XML for a Nominet EPP renew command response.
+ * This class interprets XML for a Nominet EPP fork command response.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
