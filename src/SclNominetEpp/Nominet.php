@@ -580,6 +580,13 @@ class Nominet extends AbstractRequestResponse
     public function fork()
     {
         $this->loginCheck();
+        
+        $request = new Request\Update\Fork\Fork();
+
+        $request->lookup($hostName);
+
+        $response = $this->processRequest($request);
+        $host = $response->getHost();
     }
 
     /**
