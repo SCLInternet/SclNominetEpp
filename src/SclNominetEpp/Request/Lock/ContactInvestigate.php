@@ -59,14 +59,14 @@ class ContactInvestigate extends Request
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
-        $forkNS  = 'http://www.nominet.org.uk/epp/xml/std-locks-1.0';
-        $forkXSI = $forkNS . ' std-locks-1.0.xsd';
+        $lockNS  = 'http://www.nominet.org.uk/epp/xml/std-locks-1.0';
+        $lockXSI = $lockNS . ' std-locks-1.0.xsd';
 
         //$domainNS  = 'urn:ietf:params:xml:ns:domain-1.0';
         //$domainXSI = 'urn:ietf:params:xml:ns:domain-1.0 domain-1.0.xsd';
 
-        $lock = $xml->addChild('l:lock', '', $forkNS);
-        $lock->addAttribute('xsi:schemaLocation', $forkXSI, $forkNS);
+        $lock = $xml->addChild('l:lock', '', $lockNS);
+        $lock->addAttribute('xsi:schemaLocation', $lockXSI, $lockNS);
         $lock->addAttribute('object', 'contact');   //Can be contact or domain
         $lock->addAttribute('type', 'investigate'); //Can be opt-out or investigate
         
