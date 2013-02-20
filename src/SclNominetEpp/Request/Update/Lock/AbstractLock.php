@@ -37,8 +37,14 @@ abstract class AbstractLock extends Request
      * @var string 
      */
     protected $type;
+    
     /**
-     * Tells the parent class what the action of this request is.
+     * Initialises the object string, and type string. 
+     * Feeds the expected response to the request class.
+     * 
+     * @param string $object
+     * @param string $type
+     * @param object $response
      */
     public function __construct($object, $type, $response = null)
     {
@@ -48,13 +54,25 @@ abstract class AbstractLock extends Request
         
     }
 
+    /**
+     * Set the contact id
+     * 
+     * @param string $contactId
+     * @return AbstractLock
+     */
     public function setContactId($contactId)
     {
-        $this->contactId = $contactId;
+        $this->contactId = (string)$contactId;
 
         return $this;
     }
     
+    /**
+     * Set the domain name
+     * 
+     * @param string $domainName
+     * @return AbstractLock
+     */
     public function setDomainName($domainName)
     {
         $this->domainName = $domainName;

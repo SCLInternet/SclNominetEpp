@@ -11,13 +11,12 @@ use SclNominetEpp\Response\Update\Lock\OptOut as OptOutResponse;
 use SclNominetEpp\Request\Update\Lock\AbstractLock;
 
 /**
- * This class build the XML for a Nominet EPP lock command.
+ * This class provides specific information for the building of the Nominet EPP lock command.
  *
- * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class DomainOptOut extends AbstractLock
-{
-    
+{  
     const OBJECT = 'domain';
     const TYPE   = 'opt-out';
 
