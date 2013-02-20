@@ -5,9 +5,9 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Lock;
 
-use SclNominetEpp\Response\ContactOptOut as ContactOptOutResponse;
+use SclNominetEpp\Response\Lock\ContactOptOut as ContactOptOutResponse;
 use SclNominetEpp\Request;
 
 /**
@@ -36,7 +36,7 @@ class ContactOptOut extends Request
      */
     public function __construct()
     {
-        parent::__construct('update', new ContactInvestigateResponse());
+        parent::__construct('update', new ContactOptOutResponse());
     }
 
     public function setContactId($contactId)
@@ -68,7 +68,7 @@ class ContactOptOut extends Request
         $lock = $xml->addChild('l:lock', '', $forkNS);
         $lock->addAttribute('xsi:schemaLocation', $forkXSI, $forkNS);
         $lock->addAttribute('object', 'contact');   //Can be contact or domain
-        $lock->addAttribute('type', 'investigate'); //Can be opt-out or investigate
+        $lock->addAttribute('type', 'opt-out'); //Can be opt-out or investigate
         
         $lock->addChild('contactId', $this->contactId);
         $lock->addChild('domainName', $this->domainName);

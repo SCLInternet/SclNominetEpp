@@ -5,9 +5,9 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Lock;
 
-use SclNominetEpp\Response\DomainOptOut as DomainOptOutResponse;
+use SclNominetEpp\Response\Lock\DomainOptOut as DomainOptOutResponse;
 use SclNominetEpp\Request;
 
 /**
@@ -55,7 +55,7 @@ class DomainOptOut extends Request
         $lock = $xml->addChild('l:lock', '', $forkNS);
         $lock->addAttribute('xsi:schemaLocation', $forkXSI, $forkNS);
         $lock->addAttribute('object', 'domain');   //Can be contact or domain
-        $lock->addAttribute('type', 'investigate'); //Can be opt-out or investigate
+        $lock->addAttribute('type', 'opt-out'); //Can be opt-out or investigate
         $lock->addChild('domainName', $this->domainName);
     }
 }

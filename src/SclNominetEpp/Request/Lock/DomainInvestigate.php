@@ -5,9 +5,9 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Lock;
 
-use SclNominetEpp\Response\DomainInvestigate as DomainInvestigateResponse;
+use SclNominetEpp\Response\Lock\DomainInvestigate as DomainInvestigateResponse;
 use SclNominetEpp\Request;
 
 /**

@@ -5,9 +5,9 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Lock;
 
-use SclNominetEpp\Response\ContactInvestigate as ContactInvestigateResponse;
+use SclNominetEpp\Response\Lock\ContactInvestigate as ContactInvestigateResponse;
 use SclNominetEpp\Request;
 
 /**
