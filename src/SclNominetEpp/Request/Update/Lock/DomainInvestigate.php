@@ -5,20 +5,20 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request\Lock;
+namespace SclNominetEpp\Request\Update\Lock;
 
-use SclNominetEpp\Response\Lock\Investigate as InvestigateResponse;
-use SclNominetEpp\Request;
-
+use SclNominetEpp\Response\Update\Lock\Investigate as InvestigateResponse;
+use SclNominetEpp\Request\Update\Lock\AbstractLock;
 /**
  * This class build the XML for a Nominet EPP lock command.
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class ContactInvestigate extends Request
+class DomainInvestigate extends AbstractLock
 {
-    const OBJECT = 'contact';
-    const TYPE   = 'investigate';
+    
+    const OBJECT = 'domain';
+    const TYPE   = 'investigation';
 
     /**
      * Tells the parent class what the action of this request is.

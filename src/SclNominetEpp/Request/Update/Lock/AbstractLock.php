@@ -1,16 +1,12 @@
 <?php
 
-/**
- * 
- * 
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
- */
+namespace SclNominetEpp\Request\Update\Lock;
 
 /**
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class AbstractLock
+abstract class AbstractLock
 {
     /**
      * The domain name.

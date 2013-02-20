@@ -1,6 +1,6 @@
 <?php
 
-namespace SclNominetEpp\Request\Release;
+namespace SclNominetEpp\Request\Update\Release;
 
 use SclNominetEpp\Request;
 use SimpleXMLElement;

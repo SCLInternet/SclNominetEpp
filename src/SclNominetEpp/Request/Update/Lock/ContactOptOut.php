@@ -5,20 +5,19 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request\Lock;
+namespace SclNominetEpp\Request\Update\Lock;
 
-use SclNominetEpp\Response\Lock\OptOut as OptOutResponse;
-use SclNominetEpp\Request;
+use SclNominetEpp\Response\Update\Lock\OptOut as OptOutResponse;
+use SclNominetEpp\Request\Update\Lock\AbstractLock;
 
 /**
  * This class build the XML for a Nominet EPP lock command.
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class DomainOptOut extends Request
+class ContactOptOut extends AbstractLock
 {
-    
-    const OBJECT = 'domain';
+    const OBJECT = 'contact';
     const TYPE   = 'opt-out';
 
     /**
@@ -31,6 +30,20 @@ class DomainOptOut extends Request
             self::TYPE,
             new OptOutResponse()
         );
+    }
+
+    public function setContactId($contactId)
+    {
+        $this->contactId = $contactId;
+
+        return $this;
+    }
+    
+    public function setDomainName($domainName)
+    {
+        $this->domainName = $domainName;
+
+        return $this;
     }
 
     /**
@@ -47,8 +60,10 @@ class DomainOptOut extends Request
 
         $lock = $xml->addChild('l:lock', '', $forkNS);
         $lock->addAttribute('xsi:schemaLocation', $forkXSI, $forkNS);
-        $lock->addAttribute('object', 'domain');   //Can be contact or domain
+        $lock->addAttribute('object', 'contact');   //Can be contact or domain
         $lock->addAttribute('type', 'opt-out'); //Can be opt-out or investigate
+        
+        $lock->addChild('contactId', $this->contactId);
         $lock->addChild('domainName', $this->domainName);
     }
 }

@@ -1,19 +1,19 @@
 <?php
 
-namespace SclNominetEpp\Request\Release;
+namespace SclNominetEpp\Request\Update\Release;
 
-use SclNominetEpp\Response\Release\Domain as ReleaseDomainResponse;
+use SclNominetEpp\Response\Update\Release\Contact as ReleaseContactResponse;
 
 /**
  * This class build the XML for a Nominet EPP r:release command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Domain extends AbstractRelease
+class Contact extends AbstractRelease
 {
-    const TYPE = 'domain'; //For possible Abstracting later
+    const TYPE = 'contact'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:release-1.0';
-    const VALUE_NAME = 'domainName';
+    const VALUE_NAME = 'registrant';
 
     /**
      * Constructor
@@ -24,7 +24,7 @@ class Domain extends AbstractRelease
             self::TYPE,
             self::UPDATE_NAMESPACE,
             self::VALUE_NAME,
-            new ReleaseDomainResponse()
+            new ReleaseContactResponse()
         );
     }
 }
