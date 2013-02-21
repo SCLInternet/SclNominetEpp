@@ -15,9 +15,10 @@ class ListDomains extends Response
     protected $domains = array();
 
     /**
-     * @todo Tom, what's the return type?
-     * @param \SimpleXMLElement $xml
-     * @return mixed
+     * {@inheritDoc}
+     * 
+     * @param SimpleXMLElement $xml
+     * @return void
      */
     protected function processData(SimpleXMLElement $xml)
     {

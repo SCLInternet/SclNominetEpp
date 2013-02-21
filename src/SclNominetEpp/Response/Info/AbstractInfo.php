@@ -23,7 +23,7 @@ abstract class AbstractInfo extends Response
      * @param object $object
      * @param string $valueName
      */
-    public function __construct($type, AbstractInfo $object, $valueName)
+    public function __construct($type, $object, $valueName)
     {
         $this->type = (string) $type;
         $this->object = $object;
@@ -31,10 +31,10 @@ abstract class AbstractInfo extends Response
     }
     
     /**
+     * {@inheritDoc}
      * 
-     * @todo The return type?
      * @param SimpleXMLElement $xml
-     * @return mixed
+     * @return void
      */
     public function processData(SimpleXMLElement $xml)
     {
@@ -47,7 +47,7 @@ abstract class AbstractInfo extends Response
 
         $infData = $response->resData->children($ns[$this->type])->infData;
         $extension = $response->extension->children($ns["{$this->type}-nom-ext"])->infData;
-        $this->object->setValue($infData->$name);
+        $this->setValue($infData->$name);
         $this->object->setClientID($infData->clID);
         $this->object->setCreated(new DateTime((string) $infData->crDate));
         $this->object->setUpDate(new DateTime((string) $infData->upDate));

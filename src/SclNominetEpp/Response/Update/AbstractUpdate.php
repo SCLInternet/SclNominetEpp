@@ -6,7 +6,7 @@ use SclNominetEpp\Response;
 use SimpleXMLElement;
 
 /**
- * DocBlock: Description of AbstractUpdate
+ * {@inheritDoc}
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */

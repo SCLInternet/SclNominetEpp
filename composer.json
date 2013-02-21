@@ -18,6 +18,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
+        "sclinternet/scl-contact": "dev-master",
         "sclinternet/scl-socket": "dev-master",
         "sclinternet/scl-request-response": "dev-master"
     },

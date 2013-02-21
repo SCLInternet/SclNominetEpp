@@ -51,10 +51,10 @@ abstract class AbstractCheck extends Response
     }
 
     /**
+     * {@inheritDoc}
      * 
      * @param SimpleXMLElement $data
-     * @todo Hey Tom, What's this return type?
-     * @return type
+     * @return void
      */
     protected function processData(SimpleXMLElement $xml)
     {

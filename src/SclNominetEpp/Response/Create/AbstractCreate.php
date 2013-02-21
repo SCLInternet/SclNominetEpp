@@ -32,10 +32,10 @@ abstract class AbstractCreate extends Response
     }
     
     /**
-     * Constructor
+     * {@inheritDoc}
      * 
      * @param SimpleXMLElement $xml
-     * @return type
+     * @return void
      */
     protected function processData(\SimpleXMLElement $xml)
     {

@@ -28,10 +28,10 @@ class Handshake extends Response
     }
     
     /**
-     * @todo Tom, what's the return type?
+     * {@inheritDoc}
      * 
      * @param SimpleXMLElement $xml
-     * @return mixed
+     * @return void
      */
     protected function processData(SimpleXMLElement $xml)
     {

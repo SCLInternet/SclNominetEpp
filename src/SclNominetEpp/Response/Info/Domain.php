@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Response\Info;
 
 use DateTime;
+use SimpleXMLElement;
 use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Nameserver;
 

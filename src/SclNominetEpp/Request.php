@@ -78,9 +78,9 @@ class Request implements RequestInterface
     /**
      * 
      * 
-     * @todo fix documented return type and describe function.
+     * @todo fix describe function.
      * @param SimpleXMLElement $xml
-     * @return mixed
+     * @return string
      */
     private function formatXml($xml)
     {

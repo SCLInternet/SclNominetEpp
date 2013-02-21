@@ -79,8 +79,7 @@ class Domain extends Request
     }
     
     /**
-     * addContent
-     * @todo Description
+     * {@inheritDoc}
      * 
      * @param \SimpleXMLElement $updateXML
      */
