@@ -3,10 +3,10 @@ namespace SclNominetEpp;
 
 /**
  * A contact record
- * 
+ *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class Contact extends \SclContact\Contact 
+class Contact extends \SclContact\Contact
 {
         //TYPE
     const TYPE_UK_LTD                   = 'LTD';
@@ -33,7 +33,7 @@ class Contact extends \SclContact\Contact
 
     /**
      * array of organisation types.
-     * 
+     *
      * @var array
      */
     private static $organisationTypes = array(
@@ -58,7 +58,7 @@ class Contact extends \SclContact\Contact
 
     /**
      * The Contact identifier.
-     * 
+     *
      * @var string
      */
     private $id;
@@ -100,7 +100,7 @@ class Contact extends \SclContact\Contact
 
     /**
      * Trading name of the organisation
-     * 
+     *
      * @var string
      */
     private $tradeName;
@@ -113,12 +113,12 @@ class Contact extends \SclContact\Contact
     private $organisationType = self::TYPE_UNKNOWN;
 
     /**
-     * 
-     * 
+     *
+     *
      * @var string
      */
     private $type;
-    
+
     /**
      * Constructor
      */
@@ -269,20 +269,20 @@ class Contact extends \SclContact\Contact
     {
         return $this->organisationType;
     }
-    
+
     /**
      * Set $this->type
-     * 
+     *
      * @param string $type
      */
     public function setType($type)
     {
         $this->type = $type;
     }
-    
+
     /**
      * Get $this->type
-     * 
+     *
      * @return string
      */
     public function getType()

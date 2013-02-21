@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Response\Create\Host as CreateHostResponse;
 use SclNominetEpp\Nameserver;
+use Exception;
 
 /**
  * This class build the XML for a Nominet EPP host:create command.
@@ -60,7 +61,7 @@ class Host extends AbstractCreate
         }
         return true;
     }
-    
+
 
     /**
      *

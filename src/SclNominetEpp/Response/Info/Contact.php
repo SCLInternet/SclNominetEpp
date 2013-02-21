@@ -28,9 +28,9 @@ class Contact extends AbstractInfo
             self::VALUE_NAME
         );
     }
-    
+
     /**
-     * 
+     *
      * @param \SclNominetEpp\Response\Info\SimpleXMLElement $infData
      */
     public function addInfData(SimpleXMLElement $infData)
@@ -50,7 +50,7 @@ class Contact extends AbstractInfo
         $address->setCountryCode($addrXml->cc);
         $address->setStateProvince($addrXml->sp);
         $address->setPostCode($addrXml->pc);
-        
+
         //NORMAL DATA
         $this->contact->setEmail($infData->email);
         $this->contact->setFax($infData->fax);
@@ -62,7 +62,7 @@ class Contact extends AbstractInfo
         $this->contact->setAddress($address);         //Postal Info
     }
     /**
-     * 
+     *
      * @param SimpleXMLElement $extension
      */
     protected function addExtensionData(SimpleXMLElement $extension)
@@ -80,17 +80,18 @@ class Contact extends AbstractInfo
         $this->contact->setTradeName($extension->{'trad-name'});
         $this->contact->setType($extension->{'type'});
     }
-    
+
     /**
-     * 
+     *
      * @param SimpleXMLElement $id
      */
-    protected function setValue(SimpleXMLElement $id) {
+    protected function setValue(SimpleXMLElement $id)
+    {
         $this->contact->setId((string)$id);
     }
-    
+
     /**
-     * 
+     *
      * @return type
      */
     public function getContact()
