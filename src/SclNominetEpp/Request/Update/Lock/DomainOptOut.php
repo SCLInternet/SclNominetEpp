@@ -31,23 +31,4 @@ class DomainOptOut extends AbstractLock
             new OptOutResponse()
         );
     }
-
-    /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
-     */
-    protected function addContent(\SimpleXMLElement $xml)
-    {
-        $forkNS  = 'http://www.nominet.org.uk/epp/xml/std-locks-1.0';
-        $forkXSI = $forkNS . ' std-locks-1.0.xsd';
-
-        //$domainNS  = 'urn:ietf:params:xml:ns:domain-1.0';
-        //$domainXSI = 'urn:ietf:params:xml:ns:domain-1.0 domain-1.0.xsd';
-
-        $lock = $xml->addChild('l:lock', '', $forkNS);
-        $lock->addAttribute('xsi:schemaLocation', $forkXSI, $forkNS);
-        $lock->addAttribute('object', 'domain');   //Can be contact or domain
-        $lock->addAttribute('type', 'opt-out'); //Can be opt-out or investigate
-        $lock->addChild('domainName', $this->domainName);
-    }
 }

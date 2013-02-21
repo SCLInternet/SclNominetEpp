@@ -8,7 +8,7 @@ use SimpleXMLElement;
 
 /**
  * This class interprets XML for a Nominet EPP <create> command response.
- * @todo finishing abstraction of create!
+ * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 abstract class AbstractCreate extends Response
@@ -76,7 +76,7 @@ abstract class AbstractCreate extends Response
      * @todo may be worth refactoring the create response to have this (as abstract) 
      * instead of overwriting the parent class.
      * 
-     * @param \SimpleXMLElement $xml
+     * @param SimpleXMLElement $xml
      */
     protected function addSpecificData(SimpleXMLElement $xml)
     {

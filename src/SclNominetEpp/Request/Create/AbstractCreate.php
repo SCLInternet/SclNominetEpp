@@ -71,8 +71,9 @@ abstract class AbstractCreate extends Request
     }
 
     /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
+     * {@inheritDoc}
+     * 
+     * @param SimpleXMLElement $xml
      */
     protected function addContent(\SimpleXMLElement $xml)
     {

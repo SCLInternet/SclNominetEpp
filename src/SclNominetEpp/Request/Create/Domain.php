@@ -35,6 +35,7 @@ class Domain extends AbstractCreate
     
     /**
      * includes Create Object specific content for addContent in AbstractCreate
+     * 
      * @param SimpleXMLElement $create
      */
     protected function addSpecificContent(SimpleXMLElement $create)

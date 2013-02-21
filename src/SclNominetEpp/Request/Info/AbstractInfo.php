@@ -70,8 +70,7 @@ abstract class AbstractInfo extends Request
     }
 
     /**
-     * addContent
-     * @todo An actual description
+     * {@inheritDoc}
      * 
      * @param \SimpleXMLElement $xml
      */

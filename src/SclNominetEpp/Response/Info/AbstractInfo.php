@@ -4,11 +4,10 @@ namespace SclNominetEpp\Response\Info;
 
 use SclNominetEpp\Response;
 use SimpleXMLElement;
+use DateTime;
 
 /**
  * This class interprets XML for a Nominet EPP info command response.
- * @todo this class is based on the Response Info Domain Class, 
- * anything "domain" specific should be generalised, report to the author below.
  * 
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */

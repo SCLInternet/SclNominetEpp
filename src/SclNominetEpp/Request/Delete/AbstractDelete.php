@@ -71,8 +71,8 @@ abstract class AbstractDelete extends Request
     }
     
     /**
-     * addContent
-     * @todo An actual description
+     * {@inheritDoc}
+     * 
      * @param SimpleXMLElement $deleteXML
      */
     public function addContent(SimpleXMLElement $deleteXML)

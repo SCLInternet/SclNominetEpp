@@ -76,9 +76,9 @@ class Request implements RequestInterface
     }
 
     /**
+     * FormatXml makes the XML readable.
      * 
      * 
-     * @todo fix describe function.
      * @param SimpleXMLElement $xml
      * @return string
      */

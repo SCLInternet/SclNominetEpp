@@ -81,8 +81,8 @@ abstract class AbstractLock extends Request
     }
 
     /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
+     * {@inheritDoc}
+     * 
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
