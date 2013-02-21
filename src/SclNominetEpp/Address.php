@@ -6,7 +6,7 @@ namespace SclNominetEpp;
  * DocBlock: Description of Address
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Address
+class Address extends \SclContact\Address
 {
     /**
      * An array of all the country codes (as of 18/02/2013 (DD/MM/YYYY))
