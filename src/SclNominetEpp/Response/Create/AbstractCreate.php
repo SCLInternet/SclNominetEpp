@@ -46,10 +46,13 @@ abstract class AbstractCreate extends Response
         $valueName = $this->valueName;
         $ns = $xml->getNamespaces(true);
         $response = $xml->response;
-        $creData  = $response->resData->children($ns["{$this->type}"])->creData;
-        $this->setIdentifier($creData->$valueName);
-        $this->object->setCreated(new DateTime($creData->crDate));
-        $this->addSpecificData($creData);
+        
+        if ($this->success()) {
+            $creData  = $response->resData->children($ns["{$this->type}"])->creData;
+            $this->setIdentifier($creData->$valueName);
+            $this->object->setCreated(new DateTime($creData->crDate));
+            $this->addSpecificData($creData);
+        }
     }
 
     /**

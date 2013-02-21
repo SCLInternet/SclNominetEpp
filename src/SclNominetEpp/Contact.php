@@ -1,12 +1,14 @@
 <?php
 namespace SclNominetEpp;
+//
+//use vendor\sclinternet\scl-contact\SclContact\Contact;
 
 /**
  * A contact record
  * 
  * @author Tom Oram <tom@scl.co.uk>
  */
-class Contact
+class Contact //extends 
 {
         //TYPE
     const TYPE_UK_LTD                   = 'LTD';
