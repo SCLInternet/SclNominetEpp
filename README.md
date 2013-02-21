@@ -1,6 +1,8 @@
 NOMINET EPP IMPLEMENTATION
 ==========================
 
+[![Build Status](https://travis-ci.org/SCLInternet/SclNominetEpp.png?branch=master)](https://travis-ci.org/SCLInternet/SclNominetEpp)
+
 Introduction
 ------------
 
