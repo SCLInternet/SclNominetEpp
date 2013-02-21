@@ -5,6 +5,7 @@ namespace SclNominetEpp\Response\Update\Handshake;
 use SclNominetEpp\Response;
 use SclNominetEpp\Handshake as HandshakeObject;
 use SimpleXMLElement;
+
 /**
  * This class interprets XML for a Nominet EPP list command response.
  *

@@ -30,22 +30,6 @@ class Domain extends AbstractCreate
         );
     }
     
-//    /**
-//     * Overriding function "processData" 
-//     * 
-//     * @param SimpleXMLElement $xml
-//     */
-//    protected function processData($xml)
-//    {
-//        
-//        parent::processData($xml);
-//        
-//        $ns = $xml->getNamespaces(true);
-//        $response = $xml->response;
-//        $creData  = $response->resData->children($ns[$this->type])->creData;
-//        $this->object->setExpired(new DateTime($creData->exDate));
-//    }
-    
     /**
      * Overriding setter of AbstractCreate Response
      * 

@@ -77,7 +77,7 @@ abstract class AbstractCreate extends Request
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
-        try{
+        try {
             $this->objectValidate($this->object);
         } catch (Exception $e) {
             echo "\nMessage:" . $e->getMessage() . "\n\n";

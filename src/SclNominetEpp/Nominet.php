@@ -26,7 +26,7 @@ class Nominet extends AbstractRequestResponse
     const LIST_MONTH  = 1;
     const LIST_EXPIRY = 2;
 
-    /* 
+    /*
      * A client MUST NOT alter status values set by the server.
      * A server MAY alter or override status values set by a client, subject to local server policies.
      * Status values that can be added or removed by a client are prefixed with "client".
@@ -44,7 +44,7 @@ class Nominet extends AbstractRequestResponse
     const STATUS_SERVER_TRANSFER_PROHIBITED = 'serverTransferProhibited';
     const STATUS_SERVER_UPDATE_PROHIBITED   = 'serverUpdateProhibited';
 
-    /* 
+    /*
      * pending[action]" status MUST NOT be combined
      * with either:-
      * "client[action]Prohibited" or

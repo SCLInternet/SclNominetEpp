@@ -16,7 +16,7 @@ use SclNominetEpp\Request\Update\Lock\AbstractLock;
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class DomainOptOut extends AbstractLock
-{  
+{
     const OBJECT = 'domain';
     const TYPE   = 'opt-out';
 
