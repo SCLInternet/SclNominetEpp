@@ -276,30 +276,16 @@ class Nominet extends AbstractRequestResponse
      * Further details of this are available in RFC 5731 The delete command may
      * not be used to delete nameservers and accounts.
      * 
-     * @param \SclNominetEpp\Domain $domain
+     * @param \SclNominetEpp\Domain|string $domain
      * @return boolean|mixed
      */
-    public function deleteDomain(Domain $domain)
+    public function deleteDomain($domain)
     {
         $this->loginCheck();
-        $request  = new Request\Delete\Domain($domain);
-        $response = $this->processRequest($request);
         
-        return $response->success();
-    }
-    
-    /**
-     * The EPP <delete> command allows the registrar to delete a domain name.
-     * Further details of this are available in RFC 5731 The delete command may
-     * not be used to delete nameservers and accounts.
-     * 
-     * @param \SclNominetEpp\Contact $contact
-     * @return type
-     */
-    public function deleteContact(Contact $contact)
-    {
-        $this->loginCheck();
-        $request  = new Request\Delete\Contact($contact);
+        $request  = new Request\Delete\Domain();
+
+        $request->lookup((string) $domain);
         $response = $this->processRequest($request);
         
         return $response->success();
@@ -555,15 +541,6 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
     }
-
-    /**
-     * The <transfer> command allows a registrar to request that a domain name
-     * or account object to be transferred from another registrar.
-     */
-    //public function transfer()
-    //{
-    //    $this->loginCheck();
-    //}
 
     /**
      * The <handshake> operation allows a registrar to accept or reject a

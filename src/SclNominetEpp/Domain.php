@@ -536,4 +536,9 @@ class Domain
     {
         $this->password = (string) $password;
     }
+    
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
