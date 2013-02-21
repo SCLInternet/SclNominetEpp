@@ -10,7 +10,7 @@ class Address extends \SclContact\Address
 {
     /**
      * An array of all the country codes (as of 18/02/2013 (DD/MM/YYYY))
-     * 
+     *
      * @var array
      */
     private static $countryCodes = array(
@@ -27,8 +27,8 @@ class Address extends \SclContact\Address
         'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KP', 'KR', 'KW', 'KY', 'KZ',
         'LA', 'LB', 'LC', 'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV', 'LY',
         'MA', 'MC', 'MD', 'ME', 'MF', 'MG', 'MH', 'MK', 'ML', 'MM', 'MN', 'MO', 'MP', 'MQ', 'MR', 'MS', 'MT', 'MU', 'MV', 'MW', 'MX', 'MY', 'MZ',
-        'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NL', 'NO', 'NP', 'NR', 'NU', 'NZ', 
-        'OM', 
+        'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NL', 'NO', 'NP', 'NR', 'NU', 'NZ',
+        'OM',
         'PA', 'PE', 'PF', 'PG', 'PH', 'PK', 'PL', 'PM', 'PN', 'PR', 'PS', 'PT', 'PW', 'PY',
         'QA',
         'RE', 'RO', 'RS', 'RU', 'RW',
@@ -40,25 +40,25 @@ class Address extends \SclContact\Address
         'YE', 'YT',
         'ZA', 'ZM', 'ZW'
     );
-    
+
     /**
      * First line of an address
      * specified as <street> in the nominet EPP.
-     * 
+     *
      * @var string
      */
     private $addressLineOne;
     /**
      * Second line of an address
      * specified as <street> in the nominet EPP.
-     * 
+     *
      * @var string
      */
     private $addressLineTwo = null;
     /**
      * Third line of an address
      * specified as <street> in the nominet EPP.
-     * 
+     *
      * @var string
      */
     private $addressLineThree = null;
