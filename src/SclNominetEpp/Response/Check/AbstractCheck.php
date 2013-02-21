@@ -58,6 +58,9 @@ abstract class AbstractCheck extends Response
      */
     protected function processData(SimpleXMLElement $xml)
     {
+        if (!$this->success()) {
+            return;
+        }
         if (!$this->xmlValid($xml->response->resData)) {
             return;
         }

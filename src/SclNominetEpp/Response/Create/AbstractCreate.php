@@ -39,6 +39,9 @@ abstract class AbstractCreate extends Response
      */
     protected function processData(\SimpleXMLElement $xml)
     {
+        if (!$this->success()) {
+            return;
+        }
         if (!$this->xmlValid($xml->response->resData)) {
             return;
         }
@@ -47,12 +50,10 @@ abstract class AbstractCreate extends Response
         $ns = $xml->getNamespaces(true);
         $response = $xml->response;
         
-        if ($this->success()) {
-            $creData  = $response->resData->children($ns["{$this->type}"])->creData;
-            $this->setIdentifier($creData->$valueName);
-            $this->object->setCreated(new DateTime($creData->crDate));
-            $this->addSpecificData($creData);
-        }
+        $creData  = $response->resData->children($ns["{$this->type}"])->creData;
+        $this->setIdentifier($creData->$valueName);
+        $this->object->setCreated(new DateTime($creData->crDate));
+        $this->addSpecificData($creData);
     }
 
     /**
