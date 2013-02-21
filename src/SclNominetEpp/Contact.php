@@ -62,31 +62,6 @@ class Contact extends \SclContact\Contact
      * @var string
      */
     private $id;
-    /**
-     * The contact name.
-     *
-     * @var string
-     */
-    private $name;
-
-    /**
-     * The contact email address.
-     *
-     * @var string
-     */
-    private $email;
-
-    /**
-     * The contact address.
-     * (which comprises of the "contact:street", "city",
-     *                         "sp" (state or province),
-     *                         "pc" (postcode) and
-     *                         "cc" (country code)
-     * )
-     *
-     * @var Address
-     */
-    private $address;
 
     /**
      * The registered company number or the DfES UK school number of the registrant.
@@ -96,25 +71,10 @@ class Contact extends \SclContact\Contact
     private $companyNumber;
 
     /**
-     * The contact phone number;(A.K.A. voice)
-     *
-     * @var string
-     */
-    private $phone = null;
-
-    /**
      * The name of the organisation associated with the contact.
-     *
+     * @todo rename all instances of organisation to company.
      * @var string
      */
-    private $organisation = null;
-
-    /**
-     * The fax number of the contact
-     *
-     * @var string
-     */
-    private $fax = null;
 
     /**
      * The optOut is used to prevent the registrant's address details
@@ -188,66 +148,6 @@ class Contact extends \SclContact\Contact
     }
 
     /**
-     * Set $name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = (string) $name;
-    }
-
-    /**
-     * Get $name
-     *
-     * @return string $name
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set $email
-     *
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = (string) $email;
-    }
-
-    /**
-     * Get $email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set $address
-     *
-    * @param Address $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-    }
-
-    /**
-     * Get $address
-     *
-     * @return Address
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
      * Set $companyNumber
      *
      * @param string $companyNumber
@@ -265,66 +165,6 @@ class Contact extends \SclContact\Contact
     public function getCompanyNumber()
     {
         return $this->companyNumber;
-    }
-
-    /**
-     * Set $phone
-     *
-     * @param string $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = (string) $phone;
-    }
-
-    /**
-     * Get $phone
-     *
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * Set $organisation
-     *
-     * @param string $organisation
-     */
-    public function setOrganisation($organisation)
-    {
-        $this->organisation = (string) $organisation;
-    }
-
-    /**
-     * Get $organisation
-     *
-     * @return string
-     */
-    public function getOrganisation()
-    {
-        return $this->organisation;
-    }
-
-    /**
-     * Set $fax
-     *
-     * @param string $fax
-     */
-    public function setFax($fax)
-    {
-        $this->fax = (string) $fax;
-    }
-
-    /**
-     * Get $fax
-     *
-     * @return string
-     */
-    public function getFax()
-    {
-        return $this->fax;
     }
 
     /**
