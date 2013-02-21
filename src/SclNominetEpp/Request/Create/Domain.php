@@ -74,9 +74,9 @@ class Domain extends AbstractCreate
      */
     protected function createContacts(SimpleXMLElement $create)
     {
-        foreach ($this->object->getContacts() as $type => $value) {
-            $contact = $create->addChild('contact', $value->getId());
-            $contact->addAttribute('type', $type);
+        foreach ($this->object->getContacts() as $contact) {
+            $contactXml = $create->addChild('contact', $contact->getId());
+            $contactXml->addAttribute('type', $contact->getType());
         }
     }
 
