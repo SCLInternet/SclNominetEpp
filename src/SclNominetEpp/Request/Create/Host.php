@@ -28,11 +28,11 @@ class Host extends AbstractCreate
             new CreateHostResponse()
         );
     }
-    
+
     /**
-     * This function is used to add Object specific content 
+     * This function is used to add Object specific content
      * to the Abstract class' implementation of addContent
-     * 
+     *
      * @param SimpleXMLElement $create
      */
     protected function addSpecificContent(SimpleXMLElement $create)
@@ -46,10 +46,10 @@ class Host extends AbstractCreate
             $ipv6->addAttribute('ip', 'v6');
         }
     }
-    
+
     /**
      * An Exception is thrown if the object is not of type \SclNominetEpp\Contact
-     * 
+     *
      * @throws Exception
      */
     public function objectValidate($object)
@@ -61,6 +61,7 @@ class Host extends AbstractCreate
         return true;
     }
     
+
     /**
      *
      * @param Nameserver $nameserver
