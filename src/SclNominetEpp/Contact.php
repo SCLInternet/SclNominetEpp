@@ -1,7 +1,7 @@
 <?php
 namespace SclNominetEpp;
-//
-//use vendor\sclinternet\scl-contact\SclContact\Contact;
+
+//use sclinternet\scl-contact\src\SclContact\Contact;
 
 /**
  * A contact record
