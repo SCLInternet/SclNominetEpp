@@ -15,6 +15,9 @@ class Poll extends Response{
 
     protected $id;
 
+    protected $queueDate;
+
+    protected $message;
 
     public function __construct()
     {
@@ -23,19 +26,37 @@ class Poll extends Response{
 
     public function processData(\SimpleXMLElement $xml)
     {
-        if (!$this->success()) {
-            //has been acknowledged
+        if ($this->success()) {
+            $messageQueue = $xml->response->msgQ;
+            $this->count = (int) $messageQueue->attributes()->count;
+            $this->id    = (string) $messageQueue->attributes()->id;
 
-        } else if (1301 === $this->code()) {
-            //requires acknowledged
-            $messageQ = $xml->response->msgQ;
-            $this->count = (int) $messageQ->attributes()->count;
-            $this->id    = (string) $messageQ->attributes()->id;
-
-
-        } else {
-            return;
+            if (self::SUCCESS_MESSAGE_RETRIEVED === $this->code()) {
+                $this->queueDate = new DateTime((string)$messageQueue->qDate);
+                $this->message   = (string)$messageQueue->msg;
+            }
         }
-
     }
+
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getQueueDate()
+    {
+        return $this->queueDate;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+
 }

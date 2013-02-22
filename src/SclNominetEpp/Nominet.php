@@ -138,6 +138,7 @@ class Nominet extends AbstractRequestResponse
     /**
      * A <logout> command is used to end a session with an EPP server. On receipt
      * the EPP server responds and then closes the connection with the client.
+     * @return boolean
      */
     public function logout()
     {
@@ -145,11 +146,13 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request('logout');
 
+        /* @var $response Response */
         $response = $this->processRequest($request);
 
         // TODO Do something with the response
 
         $this->loggedIn = false;
+        return $response::SUCCESS_ENDING_SESSION === $response->code();
     }
 
     /**
