@@ -626,7 +626,7 @@ class Nominet extends AbstractRequestResponse
      * The investigation <lock> command can be used to lock down a domain name,
      * preventing a number of operations upon it.
      */
-    public function lockInvestigateContact()
+    public function lock($objectName, $type)
     {
         $this->loginCheck();
 

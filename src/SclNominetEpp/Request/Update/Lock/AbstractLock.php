@@ -5,7 +5,7 @@ namespace SclNominetEpp\Request\Update\Lock;
 use SclNominetEpp\Request;
 
 /**
- * 
+ *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 abstract class AbstractLock extends Request
@@ -27,21 +27,21 @@ abstract class AbstractLock extends Request
     /**
      * Either a "contact" or a "domain"
      *
-     * @var string 
+     * @var string
      */
     protected $object;
-    
+
     /**
      * Either "investigation" or "opt-out"
-     * 
-     * @var string 
+     *
+     * @var string
      */
     protected $type;
-    
+
     /**
-     * Initialises the object string, and type string. 
+     * Initialises the object string, and type string.
      * Feeds the expected response to the request class.
-     * 
+     *
      * @param string $object
      * @param string $type
      * @param object $response
@@ -51,12 +51,12 @@ abstract class AbstractLock extends Request
         parent::__construct('update', $response);
         $this->object = $object;
         $this->type   = $type;
-        
+
     }
 
     /**
      * Set the contact id
-     * 
+     *
      * @param string $contactId
      * @return AbstractLock
      */
@@ -66,10 +66,10 @@ abstract class AbstractLock extends Request
 
         return $this;
     }
-    
+
     /**
      * Set the domain name
-     * 
+     *
      * @param string $domainName
      * @return AbstractLock
      */
@@ -82,7 +82,7 @@ abstract class AbstractLock extends Request
 
     /**
      * {@inheritDoc}
-     * 
+     *
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
@@ -96,8 +96,47 @@ abstract class AbstractLock extends Request
         $lock->addAttribute('xsi:schemaLocation', $lockXSI, $lockNS);
         $lock->addAttribute('object', $this->object);   //Can be contact or domain
         $lock->addAttribute('type', $this->type); //Can be opt-out or investigate
-        
-        $lock->addChild('contactId', $this->contactId);
-        $lock->addChild('domainName', $this->domainName);
+
+        if ('investigate' === $this->type) {
+            $this->investigate($lock);
+        }
+        if ('optout'      === $this->type) {
+            $this->optOut($lock);
+        }
+        if ('contact' !== $this->object) {
+            throw new Exception("Invalid object string");
+        }
     }
+
+    private function investigate($lock)
+    {
+        if ('domain' === $this->object){
+            $lock->addChild('domainName', $this->domainName);
+            return;
+        }
+
+        if (null !== $this->contactId && null !== $this->domainName){
+            throw new Exception("Both ContactId and DomainName set");
+        }
+        if (null !== $this->contactId) {
+            $lock->addChild('contactId', $this->contactId);
+        }
+        if (null !== $this->domainName) {
+            $lock->addChild('domainName', $this->domainName);
+        }
+    }
+
+    private function optOut($lock)
+    {
+        if (null !== $this->contactId && null !== $this->domainName){
+            throw new Exception("Both ContactId and DomainName set");
+        }
+        if (null !== $this->contactId) {
+            $lock->addChild('contactId', $this->contactId);
+        }
+        if (null !== $this->domainName) {
+            $lock->addChild('domainName', $this->domainName);
+        }
+    }
+
 }

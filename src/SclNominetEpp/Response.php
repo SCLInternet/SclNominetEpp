@@ -5,6 +5,7 @@ namespace SclNominetEpp;
 use SimpleXMLElement;
 use SclRequestResponse\Exception\InvalidResponsePacketException;
 use SclRequestResponse\ResponseInterface;
+use Exception;
 
 /**
  * This class handles the essentials of all command responses
@@ -105,7 +106,7 @@ class Response implements ResponseInterface
 
     /**
      * Any extra response data.
-     *
+     * @todo WHAT THE FRAK ARE YOU ON ABOUT TOM?
      * @var SimpleXMLElement
      */
     protected $data;
@@ -145,6 +146,14 @@ class Response implements ResponseInterface
         $this->message = $data->response->result->msg;
 
         $this->data = array();
+
+        if (!in_array($this->code(), self::$errorCodes)) {
+            throw new Exception("Unexpected result-code: {$this->code()}");
+        }
+
+        if (!$this->success()){
+            return $this->message();
+        }
 
         $this->processData($data);
 
