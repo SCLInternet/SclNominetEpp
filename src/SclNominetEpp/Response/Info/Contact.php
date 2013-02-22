@@ -58,7 +58,7 @@ class Contact extends AbstractInfo
         //
             //Postal Info
         $this->contact->setName($postalInfo->name); //Postal Info
-        $this->contact->setOrganisation($postalInfo->org);
+        $this->contact->setCompany($postalInfo->org);
         $this->contact->setAddress($address);         //Postal Info
     }
     /**
