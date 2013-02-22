@@ -43,12 +43,12 @@ class Contact extends AbstractInfo
 
         //ADDRESS SETTING
         $address = new Address();
-        $address->setAddressLineOne($streets[0]);
-        $address->setAddressLineTwo($streets[1]);
-        $address->setAddressLineThree($streets[2]);
+        $address->setLine1($streets[0]);
+        $address->setLine2($streets[1]);
+        $address->setLine3($streets[2]);
         $address->setCity($addrXml->city);
-        $address->setCountryCode($addrXml->cc);
-        $address->setStateProvince($addrXml->sp);
+        $address->setCountry($addrXml->cc);
+        $address->setCounty($addrXml->sp);
         $address->setPostCode($addrXml->pc);
 
         //NORMAL DATA

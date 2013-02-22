@@ -37,15 +37,15 @@ switch (strtolower($command)) {
         $contact->setName('name');
         $contact->setEmail('example@email.com');
         $address = new Address();
-        $address->setAddressLineOne('Bryn Seion Chapel');
+        $address->setLine1('Bryn Seion Chapel');
         $address->setCity('Cardigan');
-        $address->setCountryCode('US');
-        $address->setStateProvince('Ceredigion');
+        $address->setCountry('US');
+        $address->setCounty('Ceredigion');
         $address->setPostCode('SA43 2HB');
         $contact->setAddress($address);
         $contact->setCompanyNumber('NI65786');
         $contact->setPhone('+44.3344555666');
-        $contact->setOrganisation('sclMerlyn');
+        $contact->setCompany('sclMerlyn');
         $contact->setFax('+443344555616');
         $contact->setOptOut('y');
         $argv[0] = $contact;
@@ -86,7 +86,7 @@ switch (strtolower($command)) {
         $nameserver2 = new \SclNominetEpp\Nameserver();
         $nameserver2->setHostName('ns3.example.com.');
         $domain->addNameserver($nameserver2);
-        
+
         $domain->setRegistrant('sc2343');
         $techy = new \SclNominetEpp\Contact();
         $techy->setId('tech1');
