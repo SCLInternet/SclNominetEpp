@@ -104,33 +104,36 @@ abstract class AbstractLock extends Request
             $this->optOut($lock);
         }
         if ('contact' !== $this->object) {
-            throw new Exception("Invalid object string");
+            throw new Exception("Invalid string for \$object ");
         }
     }
 
     private function investigate($lock)
     {
+        $this->invalidSetupException();
+
         if ('domain' === $this->object){
             $lock->addChild('domainName', $this->domainName);
             return;
         }
-
-        if (null !== $this->contactId && null !== $this->domainName){
-            throw new Exception("Both ContactId and DomainName set");
-        }
-        if (null !== $this->contactId) {
-            $lock->addChild('contactId', $this->contactId);
-        }
-        if (null !== $this->domainName) {
-            $lock->addChild('domainName', $this->domainName);
-        }
+        $this->idChildDecider($lock);
     }
 
     private function optOut($lock)
     {
+        $this->invalidSetupException();
+
+        $this->idChildDecider($lock);
+    }
+
+    private function invalidSetupException()
+    {
         if (null !== $this->contactId && null !== $this->domainName){
             throw new Exception("Both ContactId and DomainName set");
         }
+    }
+
+    private function idChildDecider($lock){
         if (null !== $this->contactId) {
             $lock->addChild('contactId', $this->contactId);
         }
@@ -138,5 +141,4 @@ abstract class AbstractLock extends Request
             $lock->addChild('domainName', $this->domainName);
         }
     }
-
 }
