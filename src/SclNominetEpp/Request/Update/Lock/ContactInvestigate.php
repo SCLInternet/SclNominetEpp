@@ -8,6 +8,7 @@
 namespace SclNominetEpp\Request\Update\Lock;
 
 use SclNominetEpp\Response\Update\Lock\Investigate as InvestigateResponse;
+use SclNominetEpp\Request\Update\Lock\AbstractLock;
 
 /**
  * This class provides specific information for the building of the Nominet EPP lock command.
