@@ -110,7 +110,7 @@ abstract class AbstractLock extends Request
 
     private function investigate($lock)
     {
-        $this->invalidSetupException();
+        $this->checkInvalidSetup();
 
         if ('domain' === $this->object){
             $lock->addChild('domainName', $this->domainName);
@@ -121,12 +121,12 @@ abstract class AbstractLock extends Request
 
     private function optOut($lock)
     {
-        $this->invalidSetupException();
+        $this->checkInvalidSetup();
 
         $this->idChildDecider($lock);
     }
 
-    private function invalidSetupException()
+    private function checkInvalidSetup()
     {
         if (null !== $this->contactId && null !== $this->domainName){
             throw new Exception("Both ContactId and DomainName set");
