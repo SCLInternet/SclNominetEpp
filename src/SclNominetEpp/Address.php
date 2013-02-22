@@ -50,44 +50,12 @@ class Address extends \SclContact\Address
     );
 
     /**
-     * First line of an address
-     * specified as <street> in the nominet EPP.
-     *
-     * @var string
-     */
-    private $addressLineOne;
-    /**
-     * Second line of an address
-     * specified as <street> in the nominet EPP.
-     *
-     * @var string
-     */
-    private $addressLineTwo = null;
-    /**
-     * Third line of an address
-     * specified as <street> in the nominet EPP.
-     *
-     * @var string
-     */
-    private $addressLineThree = null;
-    /**
-     * The City of an address
-     *
-     * @var string
-     */
-    private $city;
-    /**
      * The State or Province of an address
      *
      * @var string
      */
     private $stateProvince = null;
-    /**
-     * The Post Code of an address
-     *
-     * @var string
-     */
-    private $postCode = null;
+
     /**
      * The Country Code of an address
      *
@@ -101,86 +69,6 @@ class Address extends \SclContact\Address
     public function __construct()
     {
 
-    }
-
-    /**
-     * Set $this->addressLineOne
-     *
-     * @param string $addressLineOne
-     */
-    public function setAddressLineOne($addressLineOne)
-    {
-        $this->addressLineOne = (string) $addressLineOne;
-    }
-
-    /**
-     * Get $this->addressLineOne
-     *
-     * @return string
-     */
-    public function getAddressLineOne()
-    {
-        return $this->addressLineOne;
-    }
-
-    /**
-     * Set $this->addressLineTwo
-     *
-     * @param string $addressLineTwo
-     */
-    public function setAddressLineTwo($addressLineTwo)
-    {
-        $this->addressLineTwo = (string) $addressLineTwo;
-    }
-
-    /**
-     * Get $this->addressLineTwo
-     *
-     * @return string
-     */
-    public function getAddressLineTwo()
-    {
-        return $this->addressLineTwo;
-    }
-
-    /**
-     * Set $this->addressLineThree
-     *
-     * @param string $addressLineThree
-     */
-    public function setAddressLineThree($addressLineThree)
-    {
-        $this->addressLineThree = (string) $addressLineThree;
-    }
-
-    /**
-     * Get $this->addressLineThree
-     *
-     * @return string
-     */
-    public function getAddressLineThree()
-    {
-        return $this->addressLineThree;
-    }
-
-    /**
-     * Set $this->city
-     *
-     * @param string $city
-     */
-    public function setCity($city)
-    {
-        $this->city = (string) $city;
-    }
-
-    /**
-     * Get $this->city
-     *
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
     }
 
     /**
@@ -201,26 +89,6 @@ class Address extends \SclContact\Address
     public function getStateProvince()
     {
         return $this->stateProvince;
-    }
-
-    /**
-     * Set $this->postCode
-     *
-     * @param string $postCode
-     */
-    public function setPostCode($postCode)
-    {
-        $this->postCode = (string) $postCode;
-    }
-
-    /**
-     * Get $this->postCode
-     *
-     * @return string
-     */
-    public function getPostCode()
-    {
-        return $this->postCode;
     }
 
     /**
