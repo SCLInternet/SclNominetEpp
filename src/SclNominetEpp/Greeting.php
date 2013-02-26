@@ -9,12 +9,12 @@
  */
 class Greeting {
 
-    const ACCESS_ALL  = "<all/>";
-    const ACCESS_NONE = "<none/>";
-    const ACCESS_NULL = "<null/>";
-    const ACCESS_PERSONAL = "<personal/>";
-    const ACCESS_PERSONAL_AND_OTHER = "<personalAndOther/>";
-    const ACCESS_OTHER = "<other/>";
+    const ACCESS_ALL  = "all";
+    const ACCESS_NONE = "none";
+    const ACCESS_NULL = "null";
+    const ACCESS_PERSONAL           = "personal";
+    const ACCESS_PERSONAL_AND_OTHER = "personalAndOther";
+    const ACCESS_OTHER              = "other";
 
     /**
      *
@@ -32,10 +32,10 @@ class Greeting {
     );
 
 
-    const PURPOSE_ADMIN = "<admin/>";
-    const PURPOSE_CONTACT = "<contact/>";
-    const PURPOSE_PROV = "<prov/>";
-    const PURPOSE_OTHER = "<other/>";
+    const PURPOSE_ADMIN   = "admin";
+    const PURPOSE_CONTACT = "contact";
+    const PURPOSE_PROV    = "prov";
+    const PURPOSE_OTHER   = "other";
 
     /**
      * {@link http://tools.ietf.org/html/rfc5730#section-2.4 <purpose> children documentation}
@@ -49,8 +49,33 @@ class Greeting {
         self::PURPOSE_OTHER
     );
 
-    const RECIPIENT_OTHER = "<other/>";
-    const RECIPIENT_OURS  = "<ours>";
+    const RECIPIENT_OTHER     = "other";
+    const RECIPIENT_OURS      = "ours";
+    const RECIPIENT_PUBLIC    = "public";
+    const RECIPIENT_SAME      = "same";
+    const RECIPIENT_UNRELATED = "unreleated";
+
+    /**
+     * {@link http://tools.ietf.org/html/rfc5730#section-2.4 <purpose> children documentation}
+     *
+     * @var array
+     */
+    protected static $recipientTags = array(
+        self::RECIPIENT_OTHER,
+        self::RECIPIENT_OURS,
+        self::RECIPIENT_PUBLIC,
+        self::RECIPIENT_SAME,
+        self::RECIPIENT_UNRELATED
+    );
+
+    const RETENTION_BUSINESS   = "business";
+    const RETENTION_INDEFINITE = "indefinite";
+    const RETENTION_LEGAL      = "legal";
+    const RETENTION_NONE       = "none";
+
+    const EXPIRY_ABSOLUTE = "absolute";
+    const EXPIRY_RELATIVE = "relative";
+
     /**
      * The server name.
      *
