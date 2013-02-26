@@ -14,7 +14,6 @@ class Greeting extends Response
 {
     protected $greetingObject;
 
-    protected $objectURIs;
     /**
      * {@inheritDoc}
      *
@@ -37,12 +36,43 @@ class Greeting extends Response
         $serviceMenu = $xml->svcMenu;
         $this->greetingObject->setVersion($serviceMenu->version);
         $this->greetingObject->setLanguage($serviceMenu->lang);
-        $this->objectURIs = $serviceMenu->children()->objURI;
+        $objectURIs = $serviceMenu->children()->objURI;
 
-        foreach ($this->objectURIs as $objectURI) {
+        foreach ($objectURIs as $objectURI) {
             $this->greetingObject->addObjectURI((string)$objectURI);
         }
 
+        $extensionURIs = $serviceMenu->svcExtension->children()->extURI;
+
+        foreach ($extensionURIs as $extensionURI) {
+            $this->greetingObject->addExtensionURI((string)$extensionURI);
+        }
+
+        $dataCollectionPolicy = $xml->dcp;
+
+        $access    = $dataCollectionPolicy->access;
+
+        $statement = $dataCollectionPolicy->statement;
+
+        $purposes   = $statement->children()->purpose;
+        foreach ($purposes as $purpose) {
+            $this->greetingObject->purposes[] = $purpose->getName();
+        }
+
+        $recipients  = $statement->children()->recipient;
+        foreach ($recipients as $recipient) {
+            $this->greetingObject->recipients[] = $recipient->getName();
+        }
+
+        $retention = $statement->retention;
+
+
+    }
+
+    protected function populate(SimpleXMLElement $xmlChildren, $childrenString){
+        foreach ($xmlChildren as $xmlChild) {
+            $this->greetingObject->$childrenString[] = $xmlChild->getName();
+        }
     }
 
     /**

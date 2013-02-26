@@ -59,6 +59,14 @@ class Response implements ResponseInterface
     const ERROR_AUTHENTICATION_SERVER_CLOSING_CONNECTION            = 2501;
     const ERROR_SESSION_LIMIT_EXCEEDED_SERVER_CLOSING_CONNECTION    = 2502;
 
+    protected static $successCodes = array(
+        self::SUCCESS_STANDARD,
+        self::SUCCESS_ACTION_PENDING,
+        self::SUCCESS_NO_MESSAGES,
+        self::SUCCESS_MESSAGE_RETRIEVED,
+        self::SUCCESS_ENDING_SESSION
+    );
+
     protected static $errorCodes = array(
         self::ERROR_UNKNOWN_COMMAND,
         self::ERROR_COMMAND_SYNTAX,
@@ -147,7 +155,7 @@ class Response implements ResponseInterface
 
         $this->data = array();
 
-        if (!in_array($this->code(), self::$errorCodes)) {
+        if ((!in_array($this->code(), self::$errorCodes))&&(!in_array($this->code(), self::$successCodes))) {
             throw new Exception("Unexpected result-code: {$this->code()}");
         }
 

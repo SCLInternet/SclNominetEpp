@@ -115,7 +115,7 @@ class Nominet extends AbstractRequestResponse
         }
         $this->loggedIn = true;
 
-        return true;
+        return $response::SUCCESS_STANDARD === $response->code();;
     }
 
     /**
@@ -148,8 +148,6 @@ class Nominet extends AbstractRequestResponse
 
         /* @var $response Response */
         $response = $this->processRequest($request);
-
-        // TODO Do something with the response
 
         $this->loggedIn = false;
         return $response::SUCCESS_ENDING_SESSION === $response->code();
@@ -630,7 +628,11 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\Update\Lock\ContactInvestigate();
+        $request = new Request\Update\Lock\Lock($objectName, $type);
+
+        $reponse = $this->processRequest($request);
+
+        return $response;
     }
 
     /**

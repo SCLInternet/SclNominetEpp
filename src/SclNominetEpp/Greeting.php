@@ -115,7 +115,7 @@ class Greeting {
     /**
      * The protocol version supported by the server.
      *
-     * @var string
+     * @var float
      */
     protected $version;
 
@@ -151,13 +151,13 @@ class Greeting {
      *
      * @var type
      */
-    protected $purpose;
+    protected $purposes = array();
 
     /**
      *
      * @var type
      */
-    protected $recipient;
+    protected $recipients = array();
 
     /**
      *
