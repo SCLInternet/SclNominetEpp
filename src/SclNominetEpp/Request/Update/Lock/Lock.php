@@ -8,22 +8,49 @@ use SclNominetEpp\Request;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class AbstractLock extends Request
+abstract class Lock extends Request
 {
+    const OBJECT_CONTACT = 'contact';
+    const OBJECT_DOMAIN  = 'domain';
+    const TYPE_INVESTIGATION = 'investigation';
+    const TYPE_OPTOUT        = 'opt-out';
+
     /**
-     * The domain name.
+     * all accepted objects of Lock command.
+     *
+     * @var array
+     */
+    private static $objects = array(
+        self::OBJECT_CONTACT,
+        self::OBJECT_DOMAIN
+    );
+
+    /**
+     * All acceptable types of Lock command.
+     *
+     * @var array
+     */
+    private static $types = array(
+        self::TYPE_INVESTIGATION,
+        self::TYPE_OPTOUT
+    );
+
+    /**
+     * Contact Id.
      *
      * @var string
      */
     protected $contactId;
 
     /**
-     * The expiry date.
+     * Domain Name.
      *
      * @var string
      */
     protected $domainName;
 
+
+    protected $objectIdentifier;
     /**
      * Either a "contact" or a "domain"
      *
@@ -49,9 +76,12 @@ abstract class AbstractLock extends Request
     public function __construct($object, $type, $response = null)
     {
         parent::__construct('update', $response);
-        $this->object = $object;
-        $this->type   = $type;
-
+        if (in_array($object, self::$objects)) {
+            $this->object = $object;
+        }
+        if (in_array($type, self::$types)) {
+            $this->type   = $type;
+        }
     }
 
     /**
@@ -97,22 +127,26 @@ abstract class AbstractLock extends Request
         $lock->addAttribute('object', $this->object);   //Can be contact or domain
         $lock->addAttribute('type', $this->type); //Can be opt-out or investigate
 
-        if ('investigate' === $this->type) {
+        if (self::TYPE_INVESTIGATION === $this->type) {
             $this->investigate($lock);
         }
-        if ('optout'      === $this->type) {
+        if (self::TYPE_OPTOUT === $this->type) {
             $this->optOut($lock);
         }
-        if ('contact' !== $this->object) {
+        if (self::OBJECT_CONTACT !== $this->object) {
             throw new Exception("Invalid string for \$object ");
         }
     }
 
     private function investigate($lock)
     {
-        $this->checkInvalidSetup();
+        try {
+            $this->checkInvalidSetup();
+        } catch (Exception $e) {
+            echo $e->message();
+        }
 
-        if ('domain' === $this->object){
+        if (self::OBJECT_DOMAIN === $this->object){
             $lock->addChild('domainName', $this->domainName);
             return;
         }
@@ -121,7 +155,12 @@ abstract class AbstractLock extends Request
 
     private function optOut($lock)
     {
-        $this->checkInvalidSetup();
+        try {
+            $this->checkInvalidSetup();
+        } catch (Exception $e) {
+            echo $e->message();
+        }
+
 
         $this->idChildDecider($lock);
     }
@@ -129,7 +168,7 @@ abstract class AbstractLock extends Request
     private function checkInvalidSetup()
     {
         if (null !== $this->contactId && null !== $this->domainName){
-            throw new Exception("Both ContactId and DomainName set");
+            throw new Exception("Both ContactId and DomainName set, only one should be set.");
         }
     }
 
