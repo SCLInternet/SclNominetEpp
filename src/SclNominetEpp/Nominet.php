@@ -633,27 +633,6 @@ class Nominet extends AbstractRequestResponse
         $request = new Request\Update\Lock\ContactInvestigate();
     }
 
-    public function lockOptOutContact()
-    {
-        $this->loginCheck();
-
-        $request = new Request\Update\Lock\ContactOptOut();
-    }
-
-    public function lockInvestigateDomain()
-    {
-        $this->loginCheck();
-
-        $request = new Request\Update\Lock\DomainInvestigate();
-    }
-
-    public function lockOptOutDomain()
-    {
-        $this->loginCheck();
-
-        $request = new Request\Update\Lock\DomainOptOut();
-    }
-
     /**
      * The reseller create command is used to define a new reseller on your tag
      */
