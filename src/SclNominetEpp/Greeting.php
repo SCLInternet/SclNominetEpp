@@ -73,6 +73,18 @@ class Greeting {
     const RETENTION_LEGAL      = "legal";
     const RETENTION_NONE       = "none";
 
+     /**
+     * {@link http://tools.ietf.org/html/rfc5730#section-2.4 <purpose> children documentation}
+     *
+     * @var array
+     */
+    protected static $retentionTags = array(
+        self::RETENTION_BUSINESS,
+        self::RETENTION_INDEFINITE,
+        self::RETENTION_LEGAL,
+        self::RETENTION_NONE
+    );
+
     const EXPIRY_ABSOLUTE = "absolute";
     const EXPIRY_RELATIVE = "relative";
 
