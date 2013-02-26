@@ -89,6 +89,16 @@ class Greeting {
     const EXPIRY_RELATIVE = "relative";
 
     /**
+     * {@link http://tools.ietf.org/html/rfc5730#section-2.4 <purpose> children documentation}
+     *
+     * @var array
+     */
+    protected static $expiryTags = array(
+        self::EXPIRY_ABSOLUTE,
+        self::EXPIRY_RELATIVE
+    );
+
+    /**
      * The server name.
      *
      * @var string
