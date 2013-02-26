@@ -165,4 +165,136 @@ class Greeting {
      */
     protected $retention;
 
+    /**
+     * getServerId
+     *
+     * @return string
+     */
+    public function getServerId()
+    {
+        return $this->serverId;
+    }
+
+    /**
+     *
+     * @param string $serverId
+     */
+    public function setServerId($serverId)
+    {
+        $this->serverId = $serverId;
+    }
+
+    /**
+     *
+     * @return DateTime
+     */
+    public function getServerDate()
+    {
+        return $this->serverDate;
+    }
+
+    /**
+     *
+     * @param DateTime $serverDate
+     */
+    public function setServerDate($serverDate)
+    {
+        $this->serverDate = $serverDate;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     *
+     * @param string $version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     *
+     * @param string $languages
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    public function getObjectURIs()
+    {
+        return $this->objectURIs;
+    }
+
+    public function addObjectURI($objectURI)
+    {
+        $this->objectURIs[] = (string) $objectURI;
+    }
+
+    public function getExtensionURIs()
+    {
+        return $this->extensionURIs;
+    }
+
+    public function setExtensionURIs($extensionURI)
+    {
+        $this->extensionURIs[] = (string) $extensionURI;
+    }
+
+    public function getAccess()
+    {
+        return $this->access;
+    }
+
+    public function setAccess($access)
+    {
+        $this->access = $access;
+    }
+
+    public function getPurpose()
+    {
+        return $this->purpose;
+    }
+
+    public function setPurpose($purpose)
+    {
+        $this->purpose = $purpose;
+    }
+
+    public function getRecipient()
+    {
+        return $this->recipient;
+    }
+
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
+    }
+
+    public function getRetention()
+    {
+        return $this->retention;
+    }
+
+    public function setRetention($retention)
+    {
+        $this->retention = $retention;
+    }
 }

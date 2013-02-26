@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
+use SclNominetEpp\Greeting as GreetingObject;
 
 /**
  * This class interprets XML for a Nominet EPP list command response.
@@ -11,6 +12,9 @@ use SclNominetEpp\Response;
  */
 class Greeting extends Response
 {
+    protected $greetingObject;
+
+    protected $objectURIs;
     /**
      * {@inheritDoc}
      *
@@ -26,7 +30,18 @@ class Greeting extends Response
             return;
         }
 
+        $this->greetingObject = new GreetingObject();
         $ns = $xml->getNamespaces(true);
+        $this->greetingObject->setServerId($xml->svID);
+        $this->greetingObject->setServerDate(new DateTime($xml->svDate));
+        $serviceMenu = $xml->svcMenu;
+        $this->greetingObject->setVersion($serviceMenu->version);
+        $this->greetingObject->setLanguage($serviceMenu->lang);
+        $this->objectURIs = $serviceMenu->children()->objURI;
+
+        foreach ($this->objectURIs as $objectURI) {
+            $this->greetingObject->addObjectURI((string)$objectURI);
+        }
 
     }
 
