@@ -52,7 +52,7 @@ class Handshake extends Response
         $domainListData = $handshakeData->domainListData;
         $registrant     = $handshakeData->registrant;
         $attributeArray = $domainListData->attributes();
-        $this->handshake->getNumberOfDomains($attributeArray['noDomains']);
+        $this->handshake->setNumberOfDomains($attributeArray['noDomains']);
 
         if ($this->xmlValid($domainListData)) {
             foreach ($domainListData as $domain) {
