@@ -128,7 +128,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request('hello');
+        $request = new Request\Hello();
 
         $response = $this->processRequest($request);
 

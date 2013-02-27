@@ -21,6 +21,7 @@ class Hello extends Request
     {
 
     }
+
     public function getPacket()
     {
         if (null !== $this->output) {
