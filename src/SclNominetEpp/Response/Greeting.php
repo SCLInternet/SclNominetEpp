@@ -4,6 +4,7 @@ namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
 use SimpleXMLElement;
+use DateTime;
 use SclNominetEpp\Greeting as GreetingObject;
 
 /**
