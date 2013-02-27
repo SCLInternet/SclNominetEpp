@@ -1,15 +1,13 @@
 <?php
 
-namespace SclNominetEpp\Response\Update\Fork;
-
-use SclNominetEpp\Response;
+namespace SclNominetEpp;
 
 /**
- * This class interprets XML for a Nominet EPP fork command response.
+ * This class is the fork object for the fork command response data
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Fork extends Response
+class Fork
 {
     /**
      * New contact identifier.
@@ -25,34 +23,6 @@ class Fork extends Response
      */
     protected $createDate;
 
-    /**
-     *
-     * @var ForkObject
-     */
-    protected $fork;
-    
-    /**
-     * {@inheritDoc}
-     *
-     * @param \SimpleXMLElement $xml
-     * @return void
-     */
-    protected function processData(SimpleXMLElement $xml)
-    {
-        if (!$this->success()) {
-            return;
-        }
-        if (!$this->xmlValid($xml->response->resData)) {
-            return;
-        }
-
-        $ns = $xml->getNamespaces(true);
-
-        $contactDetails = $xml->response->resData->children($ns['contact'])->creData;
-        $this->contactId = $contactDetails->id;
-        $this->createDate = $contactDetails->crDate;
-
-    }
 
     /**
      *

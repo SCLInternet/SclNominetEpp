@@ -9,49 +9,50 @@ namespace SclNominetEpp;
  */
 class Poll{
 
-    protected $count;
-
-    protected $id;
-
-    protected $queueDate;
-
-    protected $message;
-
     /**
      * Number of messages left unacknowledged in the queue.
      *
-     * @return int
+     * @var int
      */
+    protected $count;
+
+    /**
+     * Poll Identifier
+     *
+     * @var string
+     */
+    protected $id;
+
+    /**
+     * Date of the message in the Queue.
+     *
+     * @var DateTime
+     */
+    protected $queueDate;
+
+    /**
+     * Poll Message.
+     *
+     * @var string
+     */
+    protected $message;
+
+
     public function getCount()
     {
         return $this->count;
     }
 
-    /**
-     * Identifier
-     *
-     * @return string
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Date of the message in the Queue.
-     *
-     * @return DateTime
-     */
     public function getQueueDate()
     {
         return $this->queueDate;
     }
 
-    /**
-     * Message.
-     *
-     * @return string
-     */
     public function getMessage()
     {
         return $this->message;

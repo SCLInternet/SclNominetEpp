@@ -14,6 +14,10 @@ use Exception;
  */
 class Poll extends Response{
 
+    /**
+     *
+     * @var PollObject
+     */
     protected $poll;
 
     public function __construct()
@@ -24,7 +28,7 @@ class Poll extends Response{
     /**
      *
      * @param \SimpleXMLElement $xml
-     * @return type
+     * @return void
      * @throws Exception
      */
     public function processData(SimpleXMLElement $xml)
