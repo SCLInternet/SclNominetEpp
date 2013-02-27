@@ -19,10 +19,11 @@ class Unrenew extends Request{
     //put your code here
     const UNRENEW_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/std-unrenew-1.0';
 
+    protected $domainNames;
+
     public function __construct($value)
     {
         parent::__construct('update', new UnrenewResponse());
-        $this->value = $value;
     }
 
     public function addContent(\SimpleXMLElement $updateXML)
@@ -33,6 +34,10 @@ class Unrenew extends Request{
 
         $update = $updateXML->addChild('u:unrenew', '', $unrenewNS);
         $update->addAttribute('xsi:schemaLocation', $unrenewXSI);
-        
+        if (!empty($this->domainNames)) {
+            foreach ($this->domainNames as $domainName) {
+                $update->addChild('domainName', $domainName, $unrenewNS);
+            }
+        }
     }
 }
