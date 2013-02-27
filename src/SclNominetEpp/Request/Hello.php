@@ -7,6 +7,7 @@
 
 namespace SclNominetEpp\Request;
 
+use SimpleXMLElement;
 use SclNominetEpp\Response\Greeting;
 use SclNominetEpp\Request;
 
@@ -17,11 +18,6 @@ use SclNominetEpp\Request;
  */
 class Hello extends Request
 {
-    public function __construct()
-    {
-
-    }
-
     public function getPacket()
     {
         if (null !== $this->output) {
