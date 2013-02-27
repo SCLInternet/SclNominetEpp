@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Response\Poll;
 
 use SclNominetEpp\Response;
+use SclNominetEpp\Poll as PollObject;
 use SimpleXMLElement;
 use Exception;
 
@@ -13,17 +14,11 @@ use Exception;
  */
 class Poll extends Response{
 
-    protected $count;
-
-    protected $id;
-
-    protected $queueDate;
-
-    protected $message;
+    protected $poll;
 
     public function __construct()
     {
-        ;
+        $this->poll = new PollObject();
     }
 
     /**
@@ -35,34 +30,12 @@ class Poll extends Response{
     public function processData(SimpleXMLElement $xml)
     {
         $messageQueue = $xml->response->msgQ;
-        $this->count = (int) $messageQueue->attributes()->count;
-        $this->id    = (string) $messageQueue->attributes()->id;
+        $this->poll->count = (int) $messageQueue->attributes()->count;
+        $this->poll->id    = (string) $messageQueue->attributes()->id;
 
         if (self::SUCCESS_MESSAGE_RETRIEVED === $this->code()) {
-            $this->queueDate = new DateTime((string)$messageQueue->qDate);
-            $this->message   = (string)$messageQueue->msg;
+            $this->poll->queueDate = new DateTime((string)$messageQueue->qDate);
+            $this->poll->message   = (string)$messageQueue->msg;
         }
     }
-
-    public function getCount()
-    {
-        return $this->count;
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getQueueDate()
-    {
-        return $this->queueDate;
-    }
-
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-
 }
