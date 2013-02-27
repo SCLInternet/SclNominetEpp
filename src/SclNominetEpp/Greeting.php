@@ -254,7 +254,7 @@ class Greeting {
         return $this->extensionURIs;
     }
 
-    public function setExtensionURIs($extensionURI)
+    public function addExtensionURI($extensionURI)
     {
         $this->extensionURIs[] = (string) $extensionURI;
     }
@@ -266,27 +266,31 @@ class Greeting {
 
     public function setAccess($access)
     {
-        $this->access = $access;
+        echo (string) $access;
+        if (!in_array((string) $access, self::$accessTags)) {
+            throw new \Exception("Invald access Tag: $access");
+        }
+        $this->access = (string)$access;
     }
 
-    public function getPurpose()
+    public function getPurposes()
     {
-        return $this->purpose;
+        return $this->purposes;
     }
 
-    public function setPurpose($purpose)
+    public function addPurpose($purpose)
     {
-        $this->purpose = $purpose;
+        $this->purposes[] = (string)$purpose;
     }
 
-    public function getRecipient()
+    public function getRecipients()
     {
-        return $this->recipient;
+        return $this->recipients;
     }
 
-    public function setRecipient($recipient)
+    public function addRecipient($recipient)
     {
-        $this->recipient = $recipient;
+        $this->recipients[] = $recipient;
     }
 
     public function getRetention()

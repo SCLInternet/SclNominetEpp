@@ -51,21 +51,20 @@ class Greeting extends Response
         if (!$this->xmlValid($xml)) {
             return;
         }
-        var_dump($xml);
+        //var_dump($xml);
 
         $this->greetingObject = new GreetingObject();
         $ns = $xml->getNamespaces(true);
-        $this->greetingObject->setServerId($xml->svID);
-        $this->greetingObject->setServerDate(new DateTime($xml->svDate));
-        $serviceMenu = $xml->svcMenu;
+        $this->greetingObject->setServerId($xml->greeting->svID);
+        $this->greetingObject->setServerDate(new DateTime($xml->greeting->svDate));
+        $serviceMenu = $xml->greeting->svcMenu;
         $this->greetingObject->setVersion($serviceMenu->version);
         $this->greetingObject->setLanguage($serviceMenu->lang);
-        var_dump($serviceMenu);
-//        $objectURIs = $serviceMenu->children()->objURI;
-//
-//        foreach ($objectURIs as $objectURI) {
-//            $this->greetingObject->addObjectURI((string)$objectURI);
-//        }
+        $objectURIs = $serviceMenu->children()->objURI;
+
+        foreach ($objectURIs as $objectURI) {
+            $this->greetingObject->addObjectURI((string)$objectURI);
+        }
 
         $extensionURIs = $serviceMenu->svcExtension->children()->extURI;
 
@@ -73,23 +72,27 @@ class Greeting extends Response
             $this->greetingObject->addExtensionURI((string)$extensionURI);
         }
 
-        $dataCollectionPolicy = $xml->dcp;
+        $dataCollectionPolicy = $xml->greeting->dcp;
+        $accesses = $dataCollectionPolicy->children('access');
+        var_dump($dataCollectionPolicy);
 
-        $access    = $dataCollectionPolicy->access;
+        foreach($accesses as $access) {
+            $this->greetingObject->setAccess($access->getName());
+        }
 
         $statement = $dataCollectionPolicy->statement;
 
-        $purposes   = $statement->children()->purpose;
+        $purposes   = $statement->children('purpose');
         foreach ($purposes as $purpose) {
-            $this->greetingObject->purposes[] = $purpose->getName();
+            $this->greetingObject->addPurpose($purpose->getName());
         }
 
-        $recipients  = $statement->children()->recipient;
+        $recipients  = $statement->children('recipient');
         foreach ($recipients as $recipient) {
-            $this->greetingObject->recipients[] = $recipient->getName();
+            $this->greetingObject->addRecipient($recipient->getName());
         }
 
-        $retention = $statement->retention;
+        $this->greetingObject->setRetention($statement->retention->getName());
     }
 
     /**
