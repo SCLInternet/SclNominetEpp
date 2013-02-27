@@ -73,9 +73,7 @@ class Greeting extends Response
         }
 
         $dataCollectionPolicy = $xml->greeting->dcp;
-        $accesses = $dataCollectionPolicy->children('access');
-        var_dump($dataCollectionPolicy);
-
+        $accesses = $dataCollectionPolicy->children()->access->children();
         foreach($accesses as $access) {
             $this->greetingObject->setAccess($access->getName());
         }
