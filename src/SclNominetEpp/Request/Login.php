@@ -97,10 +97,10 @@ class Login extends Request
 
     /**
      * {@inheritDoc}
-     * 
-     * @param \SimpleXMLElement $xml
+     *
+     * @param SimpleXMLElement $xml
      */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $xml)
     {
         $xml->addChild('clID', $this->tag);
         $xml->addChild('pw', $this->password);

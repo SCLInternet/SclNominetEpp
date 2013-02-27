@@ -67,7 +67,7 @@ class Request implements RequestInterface
 
     /**
      * This method should be over to provide the content of the request.
-     * 
+     *
      * @param SimpleXMLElement $action
      */
     protected function addContent(SimpleXMLElement $action)
@@ -77,8 +77,8 @@ class Request implements RequestInterface
 
     /**
      * FormatXml makes the XML readable.
-     * 
-     * 
+     *
+     *
      * @param SimpleXMLElement $xml
      * @return string
      */
