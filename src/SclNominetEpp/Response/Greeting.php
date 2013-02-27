@@ -16,8 +16,10 @@ class Greeting extends Response
 {
     protected $greetingObject;
 
-        /**
+    /**
      * Read the data from an array into this object.
+     * Greeting doesn't use the "<response>" tag
+     * so "init()" needs to be overwritten to avoid redundant validation
      *
      * @param string $xml
      *
@@ -49,6 +51,7 @@ class Greeting extends Response
         if (!$this->xmlValid($xml)) {
             return;
         }
+        var_dump($xml);
 
         $this->greetingObject = new GreetingObject();
         $ns = $xml->getNamespaces(true);
@@ -57,11 +60,12 @@ class Greeting extends Response
         $serviceMenu = $xml->svcMenu;
         $this->greetingObject->setVersion($serviceMenu->version);
         $this->greetingObject->setLanguage($serviceMenu->lang);
-        $objectURIs = $serviceMenu->children()->objURI;
-
-        foreach ($objectURIs as $objectURI) {
-            $this->greetingObject->addObjectURI((string)$objectURI);
-        }
+        var_dump($serviceMenu);
+//        $objectURIs = $serviceMenu->children()->objURI;
+//
+//        foreach ($objectURIs as $objectURI) {
+//            $this->greetingObject->addObjectURI((string)$objectURI);
+//        }
 
         $extensionURIs = $serviceMenu->svcExtension->children()->extURI;
 

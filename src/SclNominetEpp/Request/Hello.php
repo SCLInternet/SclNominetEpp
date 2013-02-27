@@ -18,6 +18,12 @@ use SclNominetEpp\Request;
  */
 class Hello extends Request
 {
+    /**
+     * Hello doesn't use the "<command>" tag
+     * so "getPacket()" needs to be overwritten to avoid redundant validation
+     *
+     * @return type
+     */
     public function getPacket()
     {
         if (null !== $this->output) {
