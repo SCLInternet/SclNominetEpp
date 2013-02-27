@@ -82,7 +82,7 @@ class Request implements RequestInterface
      * @param SimpleXMLElement $xml
      * @return string
      */
-    private function formatXml($xml)
+    protected function formatXml($xml)
     {
         $dom = new DOMDocument('1.0');
         $dom->preserveWhiteSpace = false;

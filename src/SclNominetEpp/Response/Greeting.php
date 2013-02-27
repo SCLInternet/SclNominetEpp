@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
+use SimpleXMLElement;
 use SclNominetEpp\Greeting as GreetingObject;
 
 /**
@@ -14,6 +15,28 @@ class Greeting extends Response
 {
     protected $greetingObject;
 
+        /**
+     * Read the data from an array into this object.
+     *
+     * @param string $xml
+     *
+     * @return Response
+     *
+     * @throws \Exception
+     */
+    public function init($xml)
+    {
+        echo $xml;
+        $data = new SimpleXMLElement($xml);
+
+        // TODO verify all these element exist
+
+        $this->processData($data);
+
+        // TODO save transactions
+        return $this;
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -22,9 +45,6 @@ class Greeting extends Response
      */
     protected function processData(SimpleXMLElement $xml)
     {
-        if (!$this->success()) {
-            return;
-        }
         if (!$this->xmlValid($xml)) {
             return;
         }
@@ -65,14 +85,6 @@ class Greeting extends Response
         }
 
         $retention = $statement->retention;
-
-
-    }
-
-    protected function populate(SimpleXMLElement $xmlChildren, $childrenString){
-        foreach ($xmlChildren as $xmlChild) {
-            $this->greetingObject->$childrenString[] = $xmlChild->getName();
-        }
     }
 
     /**

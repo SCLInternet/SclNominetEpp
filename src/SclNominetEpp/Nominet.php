@@ -128,7 +128,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\Hello();
+        $request = new Request\Hello('hello', new \SclNominetEpp\Response\Greeting());
 
         $response = $this->processRequest($request);
 

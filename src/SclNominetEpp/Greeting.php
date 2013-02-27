@@ -1,4 +1,5 @@
 <?php
+namespace SclNominetEpp;
 
 /**
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
