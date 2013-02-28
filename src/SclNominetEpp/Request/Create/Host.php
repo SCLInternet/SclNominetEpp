@@ -72,4 +72,10 @@ class Host extends AbstractCreate
     {
         $this->nameserver = $nameserver;
     }
+
+
+    protected function getName()
+    {
+        return $this->object->getHostName();
+    }
 }

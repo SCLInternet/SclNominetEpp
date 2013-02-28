@@ -33,4 +33,9 @@ class Contact extends AbstractInfo
             new ContactInfoResponse()
         );
     }
+
+    protected function getName()
+    {
+        return $this->object->getId();
+    }
 }

@@ -87,4 +87,10 @@ class Contact extends AbstractCreate
     {
         $this->object = $object;
     }
+
+
+    protected function getName()
+    {
+        return $this->object->getId();
+    }
 }

@@ -32,10 +32,10 @@ class Domain extends AbstractCreate
             new CreateDomainResponse()
         );
     }
-    
+
     /**
      * includes Create Object specific content for addContent in AbstractCreate
-     * 
+     *
      * @param SimpleXMLElement $create
      */
     protected function addSpecificContent(SimpleXMLElement $create)
@@ -54,10 +54,10 @@ class Domain extends AbstractCreate
         $authInfo = $create->addChild('authInfo');
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
-    
+
     /**
      * Creates XML for all the nameservers
-     * 
+     *
      * @param SimpleXMLElement $ns
      */
     protected function createNameservers(SimpleXMLElement $ns)
@@ -69,7 +69,7 @@ class Domain extends AbstractCreate
 
     /**
      * Creates XML for all the contacts
-     * 
+     *
      * @param SimpleXMLElement $create
      */
     protected function createContacts(SimpleXMLElement $create)
@@ -82,7 +82,7 @@ class Domain extends AbstractCreate
 
     /**
      * An Exception is thrown if the object is not of type \SclNominetEpp\Domain
-     * 
+     *
      * @param \SclNominetEpp\Domain $object
      * @return boolean
      * @throws Exception
@@ -95,14 +95,19 @@ class Domain extends AbstractCreate
         }
         return true;
     }
-    
+
     /**
      * Set Domain.
-     * 
+     *
      * @param \SclNominetEpp\Domain $object
      */
     public function setDomain(DomainObject $object)
     {
         $this->object = $object;
+    }
+
+    protected function getName()
+    {
+        return $this->object->getName();
     }
 }

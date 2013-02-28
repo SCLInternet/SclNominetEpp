@@ -249,7 +249,6 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Create\Domain();
         $request->setDomain($domain);
-        $request->lookup($domain->getName());
 
         $response = $this->processRequest($request);
 

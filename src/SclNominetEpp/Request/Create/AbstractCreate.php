@@ -27,32 +27,25 @@ abstract class AbstractCreate extends Request
 
     /**
      * The namespace for the create command
-     * 
+     *
      * @var string
      */
     private $createNamespace;
 
     /**
      * The name of the identifier.
-     * 
+     *
      * @var string
      */
     private $valueName;
 
     /**
-     * The value of the identifier.
-     * 
-     * @var string
-     */
-    private $value;
-    
-    /**
      * The domain|contact|host object.
-     * 
+     *
      * @var object
      */
     protected $object = null;
-    
+
     /**
      * Constructor
      *
@@ -72,7 +65,7 @@ abstract class AbstractCreate extends Request
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param SimpleXMLElement $xml
      */
     protected function addContent(\SimpleXMLElement $xml)
@@ -85,40 +78,30 @@ abstract class AbstractCreate extends Request
         $createNS  = $this->createNamespace;
 
         $createXSI = $createNS . ' ' . "{$this->type}-1.0.xsd";
-        
+
         $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
         //$create->addAttribute('xsi:schemaLocation', $createXSI);
-        $create->addChild($this->valueName, $this->value, $createNS);
-        
+        $create->addChild($this->valueName, $this->getName(), $createNS);
+
         $this->addSpecificContent($create);
     }
-    
-    /**
-     * SetValue
-     *
-     * @param  string $value
-     */
-    public function lookup($value)
-    {
-        $this->value = $value;
-        
-        return $this;
-    }
-    
+
+    abstract protected function getName();
+
     /**
      * Valdiates whether the object is of the correct class.
-     * 
+     *
      * @param object $object
      * @return boolean
      * @throws Exception
      */
     abstract protected function objectValidate($object);
-    
+
     /**
      * This allows subclasses to add their own specific content
      * to the addContent function that all subclasses may run
      * because it is defined in this abstract class.
-     * 
+     *
      * @param SimpleXMLElement $create Create xml data.
      */
     abstract protected function addSpecificContent(SimpleXMLElement $create);

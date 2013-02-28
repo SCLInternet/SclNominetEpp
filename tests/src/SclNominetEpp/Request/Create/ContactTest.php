@@ -81,7 +81,7 @@ EOX;
 
         /*
         * The contact address.
-        * which comprises of the (addressLineOne, city, cc, addressLineTwo, addressLineThree, sp, pc);
+        * which comprises of the (Line1, city, cc, Line2, sp, pc);
         *
         */
         $address = new Address();
@@ -106,9 +106,9 @@ EOX;
         // The registered company number or the DfES UK school number of the registrant.
         $contact->setPhone($phoneNumber);
         $contact->setCompany('sclMerlyn');
-            $phoneNumber = new PhoneNumber();
-            $phoneNumber->set('+443344555616');
-        $contact->setFax($phoneNumber);
+            $fax = new PhoneNumber();
+            $fax->set('+443344555616');
+        $contact->setFax($fax);
         $contact->setOptOut('y');
 
         $this->request->setContact($contact);

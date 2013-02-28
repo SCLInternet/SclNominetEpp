@@ -282,7 +282,7 @@ class Contact extends \SclContact\Contact
      */
     public function setType($type)
     {
-        $this->type = $type;
+        $this->type = (string) $type;
     }
 
     /**

@@ -27,4 +27,9 @@ class Host extends AbstractInfo
             new HostInfoResponse()
         );
     }
+
+    protected function getName()
+    {
+        return $this->object->getHostName();
+    }
 }
