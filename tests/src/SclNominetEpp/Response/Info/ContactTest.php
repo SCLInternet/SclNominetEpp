@@ -3,7 +3,13 @@ namespace SclNominetEpp\Response\Info;
 
 use DateTime;
 use SclNominetEpp\Response\Info\Contact as ContactInfo;
+
+use SclContact\Fax;
+use SclContact\Country;
+use SclContact\Postcode;
+use SclContact\Email;
 use SclContact\PersonName;
+use SclContact\PhoneNumber;
 
 /**
  * contain:info response test
@@ -48,7 +54,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
         <contact:roid>50489603-UK</contact:roid>
         <contact:status s="ok"/>
         <contact:postalInfo type="loc">
-          <contact:name>name</contact:name>
+          <contact:name>first last</contact:name>
           <contact:org>sclMerlyn</contact:org>
           <contact:addr>
             <contact:street>Bryn Seion Chapel</contact:street>
@@ -90,22 +96,36 @@ EOX;
         $expected->setId('sc2343');
         $expected->setCreated(new DateTime('2013-01-29T11:09:23'));
         $expected->setUpDate(new DateTime('2013-01-29T11:09:23'));
-        $personName = new PersonName('name','');
+
+            $personName = new PersonName();
+            $personName->setFirstName('first');
+            $personName->setLastName('last');
         $expected->setName($personName);
+
         $expected->setCompany('sclMerlyn');
-        $expected->setEmail('example@email.com');
-        $expected->setPhone('+44.3344555666');
+
+            $email = new Email();
+            $email->set('example@email.com');
+        $expected->setEmail($email);
+
+            $phoneNumber = new PhoneNumber();
+            $phoneNumber->set('+44.3344555666');
+        $expected->setPhone($phoneNumber);
         $expected->setOptOut(false);
         $expected->setCompanyNumber('5489549');
         $expected->setTradeName('Big enterprises');
         $expected->setType('UNKNOWN');
 
         $address = new \SclNominetEpp\Address();
-        $address->setAddressLineOne('Bryn Seion Chapel');
+        $address->setLine1('Bryn Seion Chapel');
         $address->setCity('Cardigan');
-        $address->setStateProvince('Ceredigion');
-        $address->setPostCode('SA43 2HB');
-        $address->setCountryCode('US');
+        $address->setCounty('Ceredigion');
+            $postcode = new Postcode();
+            $postcode->set('SA43 2HB');
+        $address->setPostCode($postcode);
+            $country = new Country();
+            $country->setCode('US');
+        $address->setCountry($country);
 
         $expected->setAddress($address);
 

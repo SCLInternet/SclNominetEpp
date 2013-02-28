@@ -77,8 +77,14 @@ EOX;
         $admin = new Contact();
         $admin->setId('admin1');
 
-        $domain->addContact('tech', $tech);
-        $domain->addContact('admin', $admin);
+        $techy = new \SclNominetEpp\Contact();
+        $techy->setId('tech1');
+        $techy->setType('tech');
+        $domain->addContact($techy);
+        $admin = new \SclNominetEpp\Contact();
+        $admin->setId('admin1');
+        $admin->settype('admin');
+        $domain->addContact($admin);
 
         $this->request->setDomain($domain);
 

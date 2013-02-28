@@ -32,30 +32,29 @@ class Contact extends AbstractCreate
             new CreateContactResponse()
         );
     }
-    
+
     /**
-     * This function is used to add Object specific content 
+     * This function is used to add Object specific content
      * to the Abstract class' implementation of addContent
-     * 
+     *
      * @param SimpleXMLElement $create
      */
     protected function addSpecificContent(SimpleXMLElement $create)
     {
         $address = $this->object->getAddress();
-        
+
         $postalInfo = $create->addChild('postalInfo');
         $postalInfo->addAttribute('type', 'int');
         $postalInfo->addChild('name', $this->object->getName());
-        $postalInfo->addChild('org', $this->object->getOrganisation());
+        $postalInfo->addChild('org', $this->object->getCompany());
 
         $addr = $postalInfo->addChild('addr');
-        $addr->addChild('street', $address->getAddressLineOne());
-        $addr->addChild('street', $address->getAddressLineTwo());
-        $addr->addChild('street', $address->getAddressLineThree());
+        $addr->addChild('street', $address->getLine1());
+        $addr->addChild('street', $address->getLine2());
         $addr->addChild('city', $address->getCity());
-        $addr->addChild('sp', $address->getStateProvince());
+        $addr->addChild('sp', $address->getCounty());
         $addr->addChild('pc', $address->getPostCode());
-        $addr->addChild('cc', $address->getCountryCode());
+        $addr->addChild('cc', $address->getCountry());
 
         $create->addChild('voice', $this->object->getPhone());
         $create->addChild('email', $this->object->getEmail());
@@ -64,10 +63,10 @@ class Contact extends AbstractCreate
         $authInfo = $create->addChild('authInfo');
         $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
-    
+
     /**
      * An Exception is thrown if the object is not of type \SclNominetEpp\Contact
-     * 
+     *
      * @throws Exception
      */
     public function objectValidate($contact)
@@ -78,10 +77,10 @@ class Contact extends AbstractCreate
         }
         return true;
     }
-    
+
     /**
      * Set Contact to the passed ContactObject file.
-     * 
+     *
      * @param ContactObject $contact
      */
     public function setContact(ContactObject $object)

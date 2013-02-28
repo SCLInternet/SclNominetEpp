@@ -2,7 +2,7 @@
 
 namespace SclNominetEpp\Response;
 
-use SclNominetEpp\Response;
+use SclRequestResponse\ResponseInterface;
 use SimpleXMLElement;
 use DateTime;
 use SclNominetEpp\Greeting as GreetingObject;
@@ -12,7 +12,7 @@ use SclNominetEpp\Greeting as GreetingObject;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Greeting extends Response
+class Greeting implements ResponseInterface
 {
     protected $greetingObject;
 
@@ -95,11 +95,31 @@ class Greeting extends Response
 
     /**
      *
-     * @param \SimpleXMLElement $xml
+     * @param SimpleXMLElement $xml
      * @return boolean
      */
     public function xmlValid(SimpleXMLElement $xml)
     {
         return isset($xml);
+    }
+
+    public function code()
+    {
+        return SclNominetEpp\Response::SUCCESS_STANDARD;
+    }
+
+    public function data()
+    {
+        return null;
+    }
+
+    public function message()
+    {
+        return '';
+    }
+
+    public function success()
+    {
+        return true;
     }
 }

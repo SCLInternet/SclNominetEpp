@@ -2,10 +2,9 @@
 
 namespace SclNominetEpp\Response\Info;
 
-use SclNominetEpp\Response;
+use SimpleXMLElement;
 use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Address;
-use DateTime;
 
 /**
  * This class interprets XML for a Nominet EPP contact:info command response.
