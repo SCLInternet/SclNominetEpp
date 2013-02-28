@@ -5,6 +5,7 @@ use DateTime;
 
 use SclNominetEpp\Response\Create\Host as CreateHost;
 
+
 /**
  * host:create response test
  */
@@ -59,7 +60,7 @@ EOX;
 
         $this->response->init($xml);
 
-        $host = $this->response->getHost();
+        $host = $this->response->getObject();
 
         $this->assertEquals($expected, $host);
 

@@ -59,7 +59,7 @@ EOX;
 
         $this->response->init($xml);
 
-        $host = $this->response->getContact();
+        $host = $this->response->getObject();
 
         $this->assertEquals($expected, $host);
     }

@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Response\Create\Host as CreateHostResponse;
 use SclNominetEpp\Nameserver;
+use SimpleXMLElement;
 use Exception;
 
 /**

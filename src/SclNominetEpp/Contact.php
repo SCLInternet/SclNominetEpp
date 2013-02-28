@@ -36,7 +36,7 @@ class Contact extends \SclContact\Contact
      *
      * @var array
      */
-    private static $organisationTypes = array(
+    private static $companyTypes = array(
         self::TYPE_UK_LTD,
         self::TYPE_UK_PLC,
         self::TYPE_UK_PARTNERSHIP,
@@ -110,7 +110,7 @@ class Contact extends \SclContact\Contact
      *
      * @var string
      */
-    private $organisationType = self::TYPE_UNKNOWN;
+    private $companyType = self::TYPE_UNKNOWN;
 
     /**
      *
@@ -252,12 +252,12 @@ class Contact extends \SclContact\Contact
      *
      * @param string $organisationType
      */
-    public function setOrganisationType($organisationType)
+    public function setCompanyType($companyType)
     {
-        if (!in_array((string) $organisationType, self::$organisationTypes)) {
-            throw new \Exception("Invald organisation type: $organisationType");
+        if (!in_array((string) $companyType, self::$companyTypes)) {
+            throw new \Exception("Invald organisation type: $companyType");
         }
-        $this->organisationType = (string) $organisationType;
+        $this->companyType = (string) $companyType;
     }
 
     /**
@@ -265,9 +265,9 @@ class Contact extends \SclContact\Contact
      *
      * @return string
      */
-    public function getOrganisationType()
+    public function getCompanyType()
     {
-        return $this->organisationType;
+        return $this->companyType;
     }
 
     /**

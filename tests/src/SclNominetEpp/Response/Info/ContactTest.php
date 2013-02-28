@@ -3,6 +3,7 @@ namespace SclNominetEpp\Response\Info;
 
 use DateTime;
 use SclNominetEpp\Response\Info\Contact as ContactInfo;
+use SclContact\PersonName;
 
 /**
  * contain:info response test
@@ -89,8 +90,9 @@ EOX;
         $expected->setId('sc2343');
         $expected->setCreated(new DateTime('2013-01-29T11:09:23'));
         $expected->setUpDate(new DateTime('2013-01-29T11:09:23'));
-        $expected->setName('name');
-        $expected->setOrganisation('sclMerlyn');
+        $personName = new PersonName('name','');
+        $expected->setName($personName);
+        $expected->setCompany('sclMerlyn');
         $expected->setEmail('example@email.com');
         $expected->setPhone('+44.3344555666');
         $expected->setOptOut(false);
