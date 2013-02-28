@@ -302,7 +302,7 @@ class Contact extends \SclContact\Contact
      */
     public function setClientID($clientID)
     {
-        $this->clientID = $clientID;
+        $this->clientID = (string) $clientID;
     }
 
     /**

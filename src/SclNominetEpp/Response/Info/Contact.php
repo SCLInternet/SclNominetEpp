@@ -6,6 +6,12 @@ use SimpleXMLElement;
 use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Address;
 
+use SclContact\Country;
+use SclContact\Postcode;
+use SclContact\Email;
+use SclContact\PersonName;
+use SclContact\PhoneNumber;
+
 /**
  * This class interprets XML for a Nominet EPP contact:info command response.
  *
@@ -44,19 +50,33 @@ class Contact extends AbstractInfo
         $address = new Address();
         $address->setLine1($streets[0]);
         $address->setLine2($streets[1]);
-        $address->setLine3($streets[2]);
         $address->setCity($addrXml->city);
-        $address->setCountry($addrXml->cc);
+            $country = new Country();
+            $country->setCode($addrXml->cc);
+        $address->setCountry($country);
         $address->setCounty($addrXml->sp);
-        $address->setPostCode($addrXml->pc);
+            $postcode = new Postcode();
+            $postcode->set($addrXml->pc);
+        $address->setPostCode($postcode);
 
         //NORMAL DATA
-        $this->object->setEmail($infData->email);
-        $this->object->setFax($infData->fax);
-        $this->object->setPhone($infData->voice); //optional
-        //
+            $email = new Email();
+            $email->set($infData->email);
+        $this->object->setEmail($email);
+            $faxNumber = new PhoneNumber();
+            $faxNumber->set($infData->fax);
+        $this->object->setFax($faxNumber);
+            $phoneNumber = new PhoneNumber();
+            $phoneNumber->set($infData->voice);
+        $this->object->setPhone($phoneNumber); //optional
             //Postal Info
-        $this->object->setName($postalInfo->name); //Postal Info
+            $name = explode(" ", $postalInfo->name);
+            $last = array_pop($name);
+            $first = implode(" ", $name);
+            $personName = new PersonName();
+            $personName->setFirstName($first);
+            $personName->setLastName($last);
+        $this->object->setName($personName); //Postal Info
         $this->object->setCompany($postalInfo->org);
         $this->object->setAddress($address);         //Postal Info
     }
