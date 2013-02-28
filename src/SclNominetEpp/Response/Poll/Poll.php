@@ -12,7 +12,8 @@ use Exception;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Poll extends Response{
+class Poll extends Response
+{
 
     /**
      *

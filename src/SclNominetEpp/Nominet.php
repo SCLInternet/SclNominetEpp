@@ -115,7 +115,7 @@ class Nominet extends AbstractRequestResponse
         }
         $this->loggedIn = true;
 
-        return $response::SUCCESS_STANDARD === $response->code();;
+        return $response::SUCCESS_STANDARD === $response->code();
     }
 
     /**

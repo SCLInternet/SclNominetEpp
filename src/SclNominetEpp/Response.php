@@ -159,7 +159,7 @@ class Response implements ResponseInterface
             throw new Exception("Unexpected result-code: {$this->code()}");
         }
 
-        if (!$this->success()){
+        if (!$this->success()) {
             return $this->message();
         }
 

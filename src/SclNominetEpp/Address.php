@@ -19,7 +19,7 @@ class Address extends \SclContact\Address
 
         $this->setLine1($lines[0]);
 
-        if (isset($line[1])) {
+        if (isset($lines[1])) {
             $this->setLine2($lines[1]);
         }
     }
@@ -28,7 +28,6 @@ class Address extends \SclContact\Address
      * @todo swap all references of state/province to County
      *
      */
-    public function setCountry();
 
     /**
      * @todo swap all references of countryCode to country

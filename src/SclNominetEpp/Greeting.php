@@ -8,7 +8,8 @@ namespace SclNominetEpp;
 /**
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Greeting {
+class Greeting
+{
 
     const ACCESS_ALL  = "all";
     const ACCESS_NONE = "none";

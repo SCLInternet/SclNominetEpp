@@ -15,7 +15,8 @@ use SclNominetEpp\Response\Update\Unrenew as UnrenewResponse;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Unrenew extends Request{
+class Unrenew extends Request
+{
     //put your code here
     const UNRENEW_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/std-unrenew-1.0';
 

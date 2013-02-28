@@ -146,7 +146,7 @@ abstract class Lock extends Request
             echo $e->message();
         }
 
-        if (self::OBJECT_DOMAIN === $this->object){
+        if (self::OBJECT_DOMAIN === $this->object) {
             $lock->addChild('domainName', $this->domainName);
             return;
         }
@@ -167,12 +167,13 @@ abstract class Lock extends Request
 
     private function checkInvalidSetup()
     {
-        if (null !== $this->contactId && null !== $this->domainName){
+        if (null !== $this->contactId && null !== $this->domainName) {
             throw new Exception("Both ContactId and DomainName set, only one should be set.");
         }
     }
 
-    private function idChildDecider($lock){
+    private function idChildDecider($lock)
+    {
         if (null !== $this->contactId) {
             $lock->addChild('contactId', $this->contactId);
         }

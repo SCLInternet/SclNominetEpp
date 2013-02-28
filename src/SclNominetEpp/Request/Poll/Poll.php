@@ -5,7 +5,7 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request;
+namespace SclNominetEpp\Request\Poll;
 
 use SclNominetEpp\Response\Poll as PollResponse;
 use SclNominetEpp\Request;
@@ -40,7 +40,7 @@ class Poll extends Request
      */
     protected function addContent(SimpleXMLElement $xml)
     {
-       $this->xml->poll->addAttribute('op', $this->getOp());
+        $this->xml->poll->addAttribute('op', $this->getOp());
     }
 
     public function getOp()

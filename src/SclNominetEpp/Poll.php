@@ -7,7 +7,8 @@ namespace SclNominetEpp;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Poll{
+class Poll
+{
 
     /**
      * Number of messages left unacknowledged in the queue.
@@ -57,6 +58,4 @@ class Poll{
     {
         return $this->message;
     }
-
-
 }
