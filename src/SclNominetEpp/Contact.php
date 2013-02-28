@@ -120,6 +120,11 @@ class Contact extends \SclContact\Contact
     private $type;
 
     /**
+     *
+     */
+    private $clientID;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -288,5 +293,25 @@ class Contact extends \SclContact\Contact
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set $this->clientID
+     *
+     * @param string $clientID
+     */
+    public function setClientID($clientID)
+    {
+        $this->clientID = $clientID;
+    }
+
+    /**
+     * Get $this->clientID
+     *
+     * @return gettype
+     */
+    public function getClientID()
+    {
+        return $this->clientID;
     }
 }

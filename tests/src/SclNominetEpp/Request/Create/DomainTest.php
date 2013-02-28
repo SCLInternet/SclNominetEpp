@@ -72,13 +72,8 @@ EOX;
 
         var_dump($nameserver);
 
-        $tech  = new Contact();
-        $tech->setId('techy1');
-        $admin = new Contact();
-        $admin->setId('admin1');
-
         $techy = new \SclNominetEpp\Contact();
-        $techy->setId('tech1');
+        $techy->setId('techy1');
         $techy->setType('tech');
         $domain->addContact($techy);
         $admin = new \SclNominetEpp\Contact();

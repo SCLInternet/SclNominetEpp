@@ -51,14 +51,14 @@ class Contact extends AbstractInfo
         $address->setPostCode($addrXml->pc);
 
         //NORMAL DATA
-        $this->contact->setEmail($infData->email);
-        $this->contact->setFax($infData->fax);
-        $this->contact->setPhone($infData->voice); //optional
+        $this->object->setEmail($infData->email);
+        $this->object->setFax($infData->fax);
+        $this->object->setPhone($infData->voice); //optional
         //
             //Postal Info
-        $this->contact->setName($postalInfo->name); //Postal Info
-        $this->contact->setCompany($postalInfo->org);
-        $this->contact->setAddress($address);         //Postal Info
+        $this->object->setName($postalInfo->name); //Postal Info
+        $this->object->setCompany($postalInfo->org);
+        $this->object->setAddress($address);         //Postal Info
     }
     /**
      *
@@ -68,16 +68,16 @@ class Contact extends AbstractInfo
     {
         //EXTENSION DATA
 
-        $this->contact->setCompanyNumber($extension->{'co-no'});
+        $this->object->setCompanyNumber($extension->{'co-no'});
         $optOut     = strtolower((string) $extension->{'opt-out'});
         if ('n' === $optOut) {
             $optOut = false;
         } else {
             $optOut = true;
         }
-        $this->contact->setOptOut($optOut);
-        $this->contact->setTradeName($extension->{'trad-name'});
-        $this->contact->setType($extension->{'type'});
+        $this->object->setOptOut($optOut);
+        $this->object->setTradeName($extension->{'trad-name'});
+        $this->object->setType($extension->{'type'});
     }
 
     /**
@@ -86,7 +86,7 @@ class Contact extends AbstractInfo
      */
     protected function setValue(SimpleXMLElement $id)
     {
-        $this->contact->setId((string)$id);
+        $this->object->setId((string)$id);
     }
 
     /**
@@ -95,6 +95,6 @@ class Contact extends AbstractInfo
      */
     public function getContact()
     {
-        return $this->contact;
+        return $this->object;
     }
 }
