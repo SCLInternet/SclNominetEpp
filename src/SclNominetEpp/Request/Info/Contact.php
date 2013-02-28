@@ -34,6 +34,16 @@ class Contact extends AbstractInfo
         );
     }
 
+    /**
+     * Set Contact to the passed ContactObject file.
+     *
+     * @param ContactObject $contact
+     */
+    public function setContact(ContactObject $object)
+    {
+        $this->object = $object;
+    }
+
     protected function getName()
     {
         return $this->object->getId();

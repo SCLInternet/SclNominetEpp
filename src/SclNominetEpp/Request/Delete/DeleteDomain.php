@@ -15,7 +15,7 @@ abstract class DeleteDomain extends Request
 {
     /**
      * The value of the specific object for deletion
-     * 
+     *
      * @var string
      */
     private $value;
@@ -29,21 +29,8 @@ abstract class DeleteDomain extends Request
     }
 
     /**
-     * The value to lookup.
-     *
-     * @param  string $value
-     * @return Info
-     */
-    public function lookup($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-    
-    /**
      * {@inheritDoc}
-     * 
+     *
      * @param SimpleXMLElement $deleteXML
      */
     public function addContent(SimpleXMLElement $deleteXML)
@@ -54,6 +41,21 @@ abstract class DeleteDomain extends Request
 
         $delete = $deleteXML->addChild("domain:delete", '', $deleteNS);
         $delete->addAttribute('xsi:schemaLocation', $deleteXSI);
-        $delete->addChild('name', $this->value, $deleteNS);
+        $delete->addChild('name', $this->getName(), $deleteNS);
+    }
+
+    /**
+     * Set Domain.
+     *
+     * @param \SclNominetEpp\Domain $object
+     */
+    public function setDomain(DomainObject $object)
+    {
+        $this->object = $object;
+    }
+
+    protected function getName()
+    {
+        return $this->object->getName();
     }
 }

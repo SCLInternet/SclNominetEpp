@@ -28,6 +28,15 @@ class Host extends AbstractInfo
         );
     }
 
+    /**
+     *
+     * @param Nameserver $nameserver
+     */
+    public function setNameserver(Nameserver $nameserver)
+    {
+        $this->nameserver = $nameserver;
+    }
+
     protected function getName()
     {
         return $this->object->getHostName();

@@ -231,7 +231,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Create\Contact();
         $request->setContact($contact);
-        $request->lookup($contact->getId());
+
         $response = $this->processRequest($request);
 
         return $response->success();
@@ -265,7 +265,7 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
         $request = new Request\Create\Host($host);
         $request->setNameserver($host);
-        $request->lookup($host->getHostName());
+        
         $response = $this->processRequest($request);
 
         return $response->success();
@@ -279,13 +279,13 @@ class Nominet extends AbstractRequestResponse
      * @param \SclNominetEpp\Domain|string $domain
      * @return boolean|mixed
      */
-    public function deleteDomain($domain)
+    public function deleteDomain(Domain $domain)
     {
         $this->loginCheck();
 
         $request  = new Request\Delete\Domain();
 
-        $request->lookup((string) $domain);
+        $request->setDomain($domain);
         $response = $this->processRequest($request);
 
         return $response->success();

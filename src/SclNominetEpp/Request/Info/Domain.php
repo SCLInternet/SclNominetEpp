@@ -43,6 +43,16 @@ class Domain extends AbstractInfo
         $name->addAttribute('hosts', 'all');
     }
 
+    /**
+     * Set Domain.
+     *
+     * @param \SclNominetEpp\Domain $object
+     */
+    public function setDomain(DomainObject $object)
+    {
+        $this->object = $object;
+    }
+
     protected function getName()
     {
         return $this->object->getName();
