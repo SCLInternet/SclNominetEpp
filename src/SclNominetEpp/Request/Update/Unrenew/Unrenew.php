@@ -1,8 +1,8 @@
 <?php
-namespace SclNominetEpp\Request\Update;
+namespace SclNominetEpp\Request\Update\Unrenew;
 
 use SclNominetEpp\Request;
-use SclNominetEpp\Response\Update\Unrenew as UnrenewResponse;
+use SclNominetEpp\Response\Update\Unrenew\Unrenew as UnrenewResponse;
 
 /**
  *

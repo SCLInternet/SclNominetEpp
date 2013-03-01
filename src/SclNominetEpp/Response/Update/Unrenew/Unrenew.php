@@ -1,6 +1,6 @@
 <?php
 
-namespace SclNominetEpp\Response\Info;
+namespace SclNominetEpp\Response\Update\Unrenew;
 
 use SclNominetEpp\Response;
 use SimpleXMLElement;
@@ -11,7 +11,7 @@ use DateTime;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class Unrenew extends Response
+class Unrenew extends Response
 {
     protected $object;
 
@@ -50,7 +50,7 @@ abstract class Unrenew extends Response
         $renData = $response->resData->children($ns['domain'])->renData;
 
         foreach ($renData as $renDataTag) {
-            
+
         }
 
     }
