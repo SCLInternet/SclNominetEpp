@@ -29,7 +29,7 @@ class Domain extends AbstractInfo
             self::VALUE_NAME
         );
     }
-    
+
     public function getDomain()
     {
         return $this->object;
@@ -37,7 +37,7 @@ class Domain extends AbstractInfo
 
     protected function addInfData(SimpleXMLElement $infData)
     {
-        
+
         $nschildren = $infData->ns->hostObj;
         foreach ($nschildren as $nschild) {
             $nameserver = new Nameserver();
@@ -51,8 +51,8 @@ class Domain extends AbstractInfo
         $this->object->setExpired(new DateTime((string) $infData->exDate));
         $this->object->setUpID($infData->upID);
     }
-    
-    protected function addExtensionData(SimpleXMLElement $extension)
+
+    protected function addExtensionData(SimpleXMLElement $extension = null)
     {
                 //EXTENSION DATA
         $this->object->setRegStatus($extension->{'reg-status'});

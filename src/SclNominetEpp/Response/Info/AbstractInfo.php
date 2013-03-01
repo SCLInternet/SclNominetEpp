@@ -8,7 +8,7 @@ use DateTime;
 
 /**
  * This class interprets XML for a Nominet EPP info command response.
- * 
+ *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 abstract class AbstractInfo extends Response
@@ -17,7 +17,7 @@ abstract class AbstractInfo extends Response
 
     /**
      * Constructor
-     * 
+     *
      * @param string $type
      * @param object $object
      * @param string $valueName
@@ -28,10 +28,10 @@ abstract class AbstractInfo extends Response
         $this->object = $object;
         $this->valueName = (string) $valueName;
     }
-    
+
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param SimpleXMLElement $xml
      * @return void
      */
@@ -48,12 +48,16 @@ abstract class AbstractInfo extends Response
         $response = $xml->response;
 
         $infData = $response->resData->children($ns[$this->type])->infData;
-        $extension = $response->extension->children($ns["{$this->type}-nom-ext"])->infData;
+        if (isset($ns["{$this->type}-nom-ext"])) {
+            $extension = $response->extension->children($ns["{$this->type}-nom-ext"])->infData;
+        }
         $this->setValue($infData->$name);
+        echo $infData->clID;
+
         $this->object->setClientID($infData->clID);
         $this->object->setCreated(new DateTime((string) $infData->crDate));
         $this->object->setUpDate(new DateTime((string) $infData->upDate));
-        
+
         if (!isset($extension)) {
             $this->addSpecificData($infData);
         } else {
@@ -62,10 +66,10 @@ abstract class AbstractInfo extends Response
     }
 
     /**
-     * Assuming $xml is invalid, 
-     * this function returns "true" to affirm that the xml is invalid, 
+     * Assuming $xml is invalid,
+     * this function returns "true" to affirm that the xml is invalid,
      * otherwise "false".
-     * 
+     *
      * @param SimpleXMLElement $xml
      * @return boolean
      */
@@ -73,10 +77,10 @@ abstract class AbstractInfo extends Response
     {
         return isset($xml);
     }
-    
+
     /**
      * Allows the child classes to include specific data that could not be abstracted.
-     * 
+     *
      * @param SimpleXMLElement $infData
      * @param SimpleXMLElement $extension
      */
@@ -85,25 +89,25 @@ abstract class AbstractInfo extends Response
         $this->addInfData($infData);
         $this->addExtensionData($extension);
     }
-    
+
     /**
      * @param SimpleXMLElement $infData This is the normal data
      */
     abstract protected function addInfData(SimpleXMLElement $infData);
-    
+
     /**
      * @param SimpleXMLElement $extension This is the extension data
      */
-    abstract protected function addExtensionData(SimpleXMLElement $extension);
-    
+    abstract protected function addExtensionData(SimpleXMLElement $extension = null);
+
     /**
      * @param SimpleXMLElement $infData
      */
     abstract protected function setValue(SimpleXMLElement $infData);
-    
+
     /**
      * Getter for the currently initialised child object.
-     * 
+     *
      * @return object
      */
     public function getObject()

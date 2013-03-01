@@ -107,6 +107,7 @@ EOX;
             $email->set('example@email.com');
         $expected->setEmail($email);
 
+        $expected->setClientID('SCL');
             $phoneNumber = new PhoneNumber();
             $phoneNumber->set('+44.3344555666');
         $expected->setPhone($phoneNumber);

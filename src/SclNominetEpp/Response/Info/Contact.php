@@ -63,9 +63,9 @@ class Contact extends AbstractInfo
             $email = new Email();
             $email->set($infData->email);
         $this->object->setEmail($email);
-            $faxNumber = new PhoneNumber();
-            $faxNumber->set($infData->fax);
-        $this->object->setFax($faxNumber);
+        if ($infData->fax) {
+            $this->object->setFax(new PhoneNumber($infData->fax));
+        }
             $phoneNumber = new PhoneNumber();
             $phoneNumber->set($infData->voice);
         $this->object->setPhone($phoneNumber); //optional
@@ -84,7 +84,7 @@ class Contact extends AbstractInfo
      *
      * @param SimpleXMLElement $extension
      */
-    protected function addExtensionData(SimpleXMLElement $extension)
+    protected function addExtensionData(SimpleXMLElement $extension = null)
     {
         //EXTENSION DATA
 
