@@ -45,7 +45,7 @@ class Contact extends AbstractCreate
 
         $postalInfo = $create->addChild('postalInfo');
         $postalInfo->addAttribute('type', 'int');
-        $postalInfo->addChild('name', $this->object->getName());
+        $postalInfo->addChild('name', (string)$this->object->getName());
         $postalInfo->addChild('org', $this->object->getCompany());
 
         $addr = $postalInfo->addChild('addr');
@@ -56,8 +56,8 @@ class Contact extends AbstractCreate
         $addr->addChild('pc', $address->getPostCode());
         $addr->addChild('cc', $address->getCountry());
 
-        $create->addChild('voice', $this->object->getPhone());
-        $create->addChild('email', $this->object->getEmail());
+        $create->addChild('voice', $this->object->getPhone()->get());
+        $create->addChild('email', $this->object->getEmail()->get());
 
         //Mandatory for EPP but not used by nominet
         $authInfo = $create->addChild('authInfo');

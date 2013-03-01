@@ -133,6 +133,5 @@ EOX;
         $contact = $this->response->getContact();
 
         $this->assertEquals($expected, $contact);
-
     }
 }

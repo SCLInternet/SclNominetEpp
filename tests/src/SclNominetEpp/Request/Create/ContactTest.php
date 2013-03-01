@@ -108,8 +108,8 @@ EOX;
         $contact->setCompany('sclMerlyn');
             $fax = new PhoneNumber();
             $fax->set('+443344555616');
-        $contact->setFax($fax);
-        $contact->setOptOut('y');
+        //$contact->setFax($fax);
+        //$contact->setOptOut('y');
 
         $this->request->setContact($contact);
 
