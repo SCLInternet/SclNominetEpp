@@ -39,12 +39,12 @@ class Host extends AbstractCreate
      */
     protected function addSpecificContent(SimpleXMLElement $create)
     {
-        if ($this->nameserver->getIpv4() !== null) {
-            $ipv4 = $create->addChild('addr', $this->nameserver->getIpv4());
+        if ($this->object->getIpv4() !== null) {
+            $ipv4 = $create->addChild('addr', $this->object->getIpv4());
             $ipv4->addAttribute('ip', 'v4');
         }
-        if ($this->nameserver->getIpv6() !== null) {
-            $ipv6 = $create->addChild('addr', $this->nameserver->getIpv6());
+        if ($this->object->getIpv6() !== null) {
+            $ipv6 = $create->addChild('addr', $this->object->getIpv6());
             $ipv6->addAttribute('ip', 'v6');
         }
     }
@@ -68,9 +68,9 @@ class Host extends AbstractCreate
      *
      * @param Nameserver $nameserver
      */
-    public function setNameserver(Nameserver $nameserver)
+    public function setNameserver(Nameserver $object)
     {
-        $this->nameserver = $nameserver;
+        $this->object = $object;
     }
 
 
