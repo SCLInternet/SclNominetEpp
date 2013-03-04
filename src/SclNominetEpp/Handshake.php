@@ -17,28 +17,28 @@ class Handshake
      *
      * @var mixed
      */
-    public $caseId;
+    private $caseId;
 
     /**
      * The registrant of the handshake.
      *
      * @var string
      */
-    public $registrant;
+    private $registrant;
+
     /**
      * The number of domains within the handshake.
      *
      * @var int
      */
-    public $numberOfDomains;
+    private $numberOfDomains;
 
     /**
      * An array of domains involved in the handshake.
      *
      * @var array
      */
-
-    public $domainList = array();
+    private $domainList = array();
 
     /**
      * Set case Id.

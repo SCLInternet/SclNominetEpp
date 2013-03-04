@@ -35,11 +35,11 @@ abstract class AbstractCheck extends Request
     /**
      * The name of the identifying value for the check request
      * (e.g. name or id)
-     * 
+     *
      * @var string
      */
     private $valueName;
-    
+
     /**
      *
      * @var array
@@ -48,13 +48,13 @@ abstract class AbstractCheck extends Request
 
     /**
      * Constructor.
-     * 
+     *
      * @param string $type
      * @param string $checkNamespace
      * @param string $valueName
-     * @param SimpleXMLElement $response
+     * @param Response $response
      */
-    public function __construct($type, $checkNamespace, $valueName, $response = null)
+    public function __construct($type, $checkNamespace, $valueName, Response $response = null)
     {
         parent::__construct('check', $response);
 
@@ -69,7 +69,7 @@ abstract class AbstractCheck extends Request
      * @param  array|string $values
      * @return Check
      */
-    public function lookup($values)
+    public function setValues($values)
     {
         if (is_array($values)) {
             $this->values = $values;

@@ -127,6 +127,7 @@ class Request implements RequestInterface
         );
 
         $this->output = $this->formatXml($this->output);
+        //@todo Remove debug code
         echo $this->output;
         return $this->output;
     }

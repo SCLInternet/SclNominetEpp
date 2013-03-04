@@ -52,9 +52,9 @@ abstract class AbstractCreate extends Request
      * @param string $type
      * @param string $createNamespace
      * @param string $valueName
-     * @param SimpleXMLElement $response
+     * @param Response $response
      */
-    public function __construct($type, $createNamespace, $valueName, $response = null)
+    public function __construct($type, $createNamespace, $valueName, Response $response = null)
     {
         parent::__construct('create', $response);
 
@@ -68,13 +68,14 @@ abstract class AbstractCreate extends Request
      *
      * @param SimpleXMLElement $xml
      */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $xml)
     {
         try {
             $this->objectValidate($this->object);
         } catch (Exception $e) {
-            echo "\nMessage:" . $e->getMessage() . "\n\n";
+            $e->getMessage();
         }
+
         $createNS  = $this->createNamespace;
 
         $createXSI = $createNS . ' ' . "{$this->type}-1.0.xsd";

@@ -253,20 +253,20 @@ class Contact extends \SclContact\Contact
     }
 
     /**
-     * Set $this->organisationType
+     * Set $this->companyType
      *
-     * @param string $organisationType
+     * @param string $companyType
      */
     public function setCompanyType($companyType)
     {
-        if (!in_array((string) $companyType, self::$companyTypes)) {
+        if (!in_array($companyType, self::$companyTypes)) {
             throw new \Exception("Invald organisation type: $companyType");
         }
         $this->companyType = (string) $companyType;
     }
 
     /**
-     * Get $this->organisationType
+     * Get $this->companyType
      *
      * @return string
      */

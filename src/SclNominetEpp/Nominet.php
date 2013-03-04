@@ -13,6 +13,7 @@ use SclRequestResponse\AbstractRequestResponse;
 use SclNominetEpp\Exception\LoginRequiredException;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update;
+use SclNominetEpp\Response\ListDomains;
 
 /**
  * This class exposes all the actions of the Nominet EPP system in a nice PHP
@@ -23,9 +24,6 @@ use SclNominetEpp\Request\Update;
  */
 class Nominet extends AbstractRequestResponse
 {
-    const LIST_MONTH  = 1;
-    const LIST_EXPIRY = 2;
-
     /*
      * A client MUST NOT alter status values set by the server.
      * A server MAY alter or override status values set by a client, subject to local server policies.
@@ -190,7 +188,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Check\Contact();
 
-        $request->lookup($contactIds);
+        $request->setValues($contactIds);
 
         $response = $this->processRequest($request);
 
@@ -212,7 +210,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Check\Host();
 
-        $request->lookup($hosts);
+        $request->setValues($hosts);
 
         $response = $this->processRequest($request);
 
@@ -264,8 +262,9 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
         $request = new Request\Create\Host($host);
+
         $request->setNameserver($host);
-        
+
         $response = $this->processRequest($request);
 
         return $response->success();
@@ -286,6 +285,7 @@ class Nominet extends AbstractRequestResponse
         $request  = new Request\Delete\Domain();
 
         $request->setDomain($domain);
+
         $response = $this->processRequest($request);
 
         return $response->success();
@@ -318,6 +318,8 @@ class Nominet extends AbstractRequestResponse
     public function unrenew()
     {
         $this->loginCheck();
+
+        $request = new Request\Unrenew();
     }
 
     /**
@@ -583,13 +585,13 @@ class Nominet extends AbstractRequestResponse
      * The <fork> command allows a number of domain names on a registrant contact
      * to be moved to a copy of that contact.
      */
-    public function fork()
+    public function fork($hostName)
     {
         $this->loginCheck();
 
         $request = new Request\Update\Fork\Fork();
 
-        $request->lookup($hostName);
+        $request->setValue($hostName);
 
         $response = $this->processRequest($request);
         return $response->getHost();
@@ -603,11 +605,11 @@ class Nominet extends AbstractRequestResponse
      * @param  integer    $month
      * @param  integer|null    $type
      */
-    public function listDomains($year, $month, $type = self::LIST_MONTH)
+    public function listDomains($year, $month, $type = ListDomains::LIST_MONTH)
     {
         $this->loginCheck();
 
-        if (!in_array($type, array(self::LIST_MONTH, self::LIST_EXPIRY))) {
+        if (!in_array($type, array(ListDomains::LIST_MONTH, ListDomains::LIST_EXPIRY))) {
             throw new \Exception("Invalid type $type.");
         }
 
