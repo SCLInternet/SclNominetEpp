@@ -29,8 +29,7 @@ class HostTest extends \PHPUnit_Framework_TestCase
 <epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
   <command>
     <check>
-      <host:check
-       xmlns:host="urn:ietf:params:xml:ns:host-1.0">
+      <host:check xmlns:host="urn:ietf:params:xml:ns:host-1.0">
         <host:name>ns1.example.com</host:name>
         <host:name>ns2.example.com</host:name>
         <host:name>ns3.example.com</host:name>
