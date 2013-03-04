@@ -5,7 +5,7 @@ namespace SclNominetEpp\Response\Create;
 use SclNominetEpp\Contact as ContactObject;
 
 /**
- * This class gives AbstractCreate information to interpret XML 
+ * This class gives AbstractCreate information to interpret XML
  * for a Nominet EPP host:create command response.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
@@ -26,10 +26,10 @@ class Contact extends AbstractCreate
             self::VALUE_NAME
         );
     }
-    
+
     /**
      * Overriding setter of AbstractCreate Response
-     * 
+     *
      * @param string $id
      */
     protected function setIdentifier($id)

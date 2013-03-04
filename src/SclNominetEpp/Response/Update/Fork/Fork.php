@@ -30,7 +30,7 @@ class Fork extends Response
      * @var ForkObject
      */
     protected $fork;
-    
+
     /**
      * {@inheritDoc}
      *

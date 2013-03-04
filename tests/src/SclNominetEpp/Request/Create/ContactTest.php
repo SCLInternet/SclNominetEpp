@@ -57,9 +57,6 @@ class ContactTest extends \PHPUnit_Framework_TestCase
         </contact:postalInfo>
         <contact:voice>+44.3344555666</contact:voice>
         <contact:email>example@email.com</contact:email>
-        <contact:authInfo>
-          <contact:pw>qwerty</contact:pw>
-        </contact:authInfo>
       </contact:create>
     </create>
   </command>

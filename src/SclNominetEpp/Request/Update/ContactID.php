@@ -20,7 +20,7 @@ class ContactID extends Request
 
     protected $newContactID = null;
     protected $value;
-    
+
     private $add = array();
     private $remove = array();
 
@@ -33,7 +33,7 @@ class ContactID extends Request
     /**
      * The <b>add()</b> function assigns a Field object as an element of the add array
      * for including specific fields in the update request "contactID:add" tag.
-     * 
+     *
      * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
      */
     public function add(UpdateFieldInterface $field)
@@ -44,14 +44,14 @@ class ContactID extends Request
     /**
      * The <b>remove()</b> function assigns a Field object as an element of the remove array
      * for including specific fields in the update request "contactID:remove" tag.
-     * 
+     *
      * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
      */
     public function remove(UpdateFieldInterface $field)
     {
         $this->remove[] = $field;
     }
-    
+
     public function addContent(SimpleXMLElement $updateXML)
     {
         $contactNS   = self::UPDATE_NAMESPACE;

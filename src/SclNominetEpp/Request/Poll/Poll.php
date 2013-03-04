@@ -1,8 +1,8 @@
 <?php
 /**
- * Contains the nominet Renew request class definition.
+ * Contains the nominet Poll request class definition.
  *
- * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
 namespace SclNominetEpp\Request\Poll;
@@ -11,7 +11,7 @@ use SclNominetEpp\Response\Poll as PollResponse;
 use SclNominetEpp\Request;
 
 /**
- * This class build the XML for a Nominet EPP fork command.
+ * This class builds the XML for a Nominet EPP <poll> command.
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
@@ -51,7 +51,7 @@ class Poll extends Request
     public function setOp($op)
     {
         if (!($op == self::OP_ACKNOWLEDGE || $op == self::OP_RETRIEVE)) {
-            throw new Exception("\"op\" is not legal, MUST be \"ack\" or \"req\".");
+            throw new Exception("The op \"$op\" is not legal, MUST be \"ack\" or \"req\".");
         }
         $this->op = $op;
     }

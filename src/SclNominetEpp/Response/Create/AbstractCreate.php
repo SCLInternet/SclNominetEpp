@@ -8,7 +8,7 @@ use SimpleXMLElement;
 
 /**
  * This class interprets XML for a Nominet EPP <create> command response.
- * 
+ *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 abstract class AbstractCreate extends Response
@@ -19,7 +19,7 @@ abstract class AbstractCreate extends Response
 
     /**
      * Constructor
-     * 
+     *
      * @param string $type
      * @param object $object
      * @param string $valueName
@@ -30,10 +30,10 @@ abstract class AbstractCreate extends Response
         $this->object = $object;
         $this->valueName = (string) $valueName;
     }
-    
+
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param SimpleXMLElement $xml
      * @return void
      */
@@ -45,11 +45,11 @@ abstract class AbstractCreate extends Response
         if (!$this->xmlValid($xml->response->resData)) {
             return;
         }
-        
+
         $valueName = $this->valueName;
         $ns = $xml->getNamespaces(true);
         $response = $xml->response;
-        
+
         $creData  = $response->resData->children($ns["{$this->type}"])->creData;
         $this->setIdentifier($creData->$valueName);
         $this->object->setCreated(new DateTime($creData->crDate));
@@ -57,10 +57,10 @@ abstract class AbstractCreate extends Response
     }
 
     /**
-     * Assuming $xml is valid, 
-     * this function returns "true" to affirm that the xml is valid, 
+     * Assuming $xml is valid,
+     * this function returns "true" to affirm that the xml is valid,
      * otherwise "false".
-     * 
+     *
      * @param SimpleXMLElement $xml
      * @return boolean
      */
@@ -68,27 +68,27 @@ abstract class AbstractCreate extends Response
     {
         return isset($xml);
     }
-    
+
     /**
      * Set $this->valueName
      *
      * @param string $valueName
      */
     abstract protected function setIdentifier($valueName);
-    
+
     /**
-     * @todo may be worth refactoring the create response to have this (as abstract) 
+     * @todo may be worth refactoring the create response to have this (as abstract)
      * instead of overwriting the parent class.
-     * 
+     *
      * @param SimpleXMLElement $xml
      */
     protected function addSpecificData(SimpleXMLElement $xml)
     {
     }
-    
+
     /**
      * Get object of the Create command.
-     * 
+     *
      * @return object
      */
     public function getObject()

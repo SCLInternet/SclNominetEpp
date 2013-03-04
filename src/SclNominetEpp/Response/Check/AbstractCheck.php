@@ -26,21 +26,21 @@ abstract class AbstractCheck extends Response
 
     /**
      * Value Name is the name of the identifying value, "valueName" (name/id)
-     * 
+     *
      * @var string
      */
     private $valueName;
 
     /**
      *
-     * 
+     *
      * @var array
      */
     private $values = array();
 
     /**
      * Constructor
-     * 
+     *
      * @param string $type
      * @param string $valueName
      */
@@ -52,7 +52,7 @@ abstract class AbstractCheck extends Response
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @param SimpleXMLElement $data
      * @return void
      */
@@ -76,10 +76,10 @@ abstract class AbstractCheck extends Response
         }
     }
         /**
-     * Assuming $xml is invalid, 
-     * this function returns "true" to affirm that the xml is invalid, 
+     * Assuming $xml is invalid,
+     * this function returns "true" to affirm that the xml is invalid,
      * otherwise "false".
-     * 
+     *
      * @param SimpleXMLElement $xml
      * @return boolean
      */
