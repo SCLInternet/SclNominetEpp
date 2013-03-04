@@ -41,7 +41,7 @@ class Renew extends Request
 
     /**
      * Set the date
-     * 
+     *
      * @param string $domain
      * @param DateTime $expDate
      * @return \SclNominetEpp\Request\Renew
@@ -57,7 +57,7 @@ class Renew extends Request
     /**
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
-     * 
+     *
      * @param SimpleXMLElement $xml
      */
     protected function addContent(SimpleXMLElement $xml)

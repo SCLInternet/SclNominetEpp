@@ -21,7 +21,7 @@ class Contact extends Request
 
     protected $contact = null;
     protected $value;
-        
+
     private $add = array();
     private $remove = array();
 
@@ -31,11 +31,11 @@ class Contact extends Request
         $this->contact = $contact;
     }
 
-    
+
     /**
      * The <b>add()</b> function assigns a Field object as an element of the add array
      * for including specific fields in the update request "contact:add" tag.
-     * 
+     *
      * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
      */
     public function add(UpdateFieldInterface $field)
@@ -46,14 +46,14 @@ class Contact extends Request
     /**
      * The <b>remove()</b> function assigns a Field object as an element of the remove array
      * for including specific fields in the update request "contact:remove" tag.
-     * 
+     *
      * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
      */
     public function remove(UpdateFieldInterface $field)
     {
         $this->remove[] = $field;
     }
-    
+
     public function addContent(\SimpleXMLElement $updateXML)
     {
         $contactNS   = self::UPDATE_NAMESPACE;
@@ -66,15 +66,15 @@ class Contact extends Request
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
         $update->addChild(self::VALUE_NAME, $this->contact, $contactNS);
 
-        
+
         $addBlock = $updateXML->addChild('add', '', $contactNS);
-        
+
         foreach ($this->add as $field) {
             $field->fieldXml($addBlock, $contactNS);
         }
-        
+
         $remBlock = $updateXML->addChild('rem', '', $contactNS);
-        
+
         foreach ($this->remove as $field) {
             $field->fieldXml($remBlock, $contactNS);
         }
