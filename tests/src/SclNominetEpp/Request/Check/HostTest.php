@@ -26,7 +26,7 @@ class HostTest extends \PHPUnit_Framework_TestCase
     {
                 $xml = <<<EOX
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+<epp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:ietf:params:xml:ns:epp-1.0" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.0 epp-1.0.xsd">
   <command>
     <check>
       <host:check xmlns:host="urn:ietf:params:xml:ns:host-1.0">
