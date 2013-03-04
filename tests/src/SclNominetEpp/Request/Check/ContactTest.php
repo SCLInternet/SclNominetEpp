@@ -37,6 +37,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
         <contact:id>8013sah</contact:id>
       </contact:check>
     </check>
+    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
 

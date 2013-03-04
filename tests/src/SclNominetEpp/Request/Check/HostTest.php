@@ -35,9 +35,9 @@ class HostTest extends \PHPUnit_Framework_TestCase
         <host:name>ns3.example.com</host:name>
       </host:check>
     </check>
-    <clTRID>ABC-12345</clTRID>
   </command>
 </epp>
+
 EOX;
 
         $hosts = array('ns1.example.com','ns2.example.com', 'ns3.example.com');
