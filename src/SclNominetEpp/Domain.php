@@ -6,7 +6,7 @@ use DateTime;
 
 /**
  * A domain record
- * 
+ *
  * @author Tom Oram <tom@scl.co.uk>
  */
 class Domain
@@ -39,14 +39,14 @@ class Domain
 
     /**
      * All the contacts of the registered domain.
-     * 
+     *
      * @var array
      */
     private $contacts = array();
 
     /**
      * All the nameservers of the registered domain.
-     * 
+     *
      * @var array
      */
     private $nameservers = array();
@@ -54,7 +54,7 @@ class Domain
     /**
      * The identifier of the sponsoring client.
      * Specified in the Nominet EPP as "clID"
-     * 
+     *
      * @var string
      */
     private $clientID;
@@ -62,7 +62,7 @@ class Domain
     /**
      * The identifier of the client that created the domain object.
      * Specified in the Nominet EPP as "crID"
-     * 
+     *
      * @var string
      */
     private $creatorID;
@@ -87,16 +87,16 @@ class Domain
      * The identifier of the client that last updated the domain object.
      * This variable MUST be null if the domain has never been modified.
      * (could be a name and email address or the value submitted from the <clTRID> element if created by EPP)
-     * 
+     *
      * @var string
      */
     private $upID = null;
 
     /**
-     * 
+     *
      * The date and time of the most recent domain-object modification, formatted as: YYYYMMDD.
      * This variable MUST be null if the domain object has never been modified.
-     * 
+     *
      * @var DateTime
      */
     private $upDate = null;
@@ -143,7 +143,7 @@ class Domain
 
     /**
      * Domain's current registration status
-     * 
+     *
      * @var string
      */
     private $regStatus;
@@ -220,7 +220,7 @@ class Domain
 
     /**
      * Set add $contact to array of contacts
-     * 
+     *
      * @param \SclNominetEpp\Contact $contact
      */
     public function addContact(Contact $contact)
@@ -237,10 +237,10 @@ class Domain
     {
         return $this->contacts;
     }
-    
+
     /**
      * Remove $contact from the array of contacts if it already exists.
-     * 
+     *
      * @param \SclNominetEpp\Contact $contact
      */
     public function removeContact(Contact $contact)
@@ -261,7 +261,7 @@ class Domain
 
     /**
      * Get the array of nameservers
-     * 
+     *
      * @return array
      */
     public function getNameservers()
@@ -271,7 +271,7 @@ class Domain
 
     /**
      * Remove $namserver from the array of namservers if it already exists.
-     * 
+     *
      * @param \SclNominetEpp\Nameserver $nameserver
      */
     public function removeNameserver(Nameserver $nameserver)
@@ -281,7 +281,7 @@ class Domain
     }
     /**
      * Set the identifier of the sponsoring client.
-     * 
+     *
      * @param string $clientID
      */
     public function setClientID($clientID)
@@ -291,7 +291,7 @@ class Domain
 
     /**
      * Get the identifier of the sponsoring client.
-     * 
+     *
      * @return string
      */
     public function getClientID()
@@ -536,7 +536,7 @@ class Domain
     {
         $this->password = (string) $password;
     }
-    
+
     public function __toString()
     {
         return $this->getName();
