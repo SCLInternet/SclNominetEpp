@@ -14,7 +14,7 @@ abstract class AbstractRelease extends Request
 {
     /**
      * The value of the check Identifier.
-     * 
+     *
      * @var string
      */
     protected $value='';
@@ -35,23 +35,23 @@ abstract class AbstractRelease extends Request
 
     /**
      * The name of the check Identifier (e.g. 'id', 'name')
-     * 
+     *
      * @var string
      */
     private $valueName;
-    
+
     /**
-     * This is the tag the domain name is currently on. 
-     * When used with a release or transfer operation, 
+     * This is the tag the domain name is currently on.
+     * When used with a release or transfer operation,
      * this is the tag of the registrar receiving the domain name.
-     * 
-     * @var mixed 
+     *
+     * @var mixed
      */
     private $registrarTag;
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param string $type
      * @param string $updateNamespace
      * @param string $valueName
@@ -73,23 +73,23 @@ abstract class AbstractRelease extends Request
     public function lookup($value)
     {
         $this->value = $value;
-        
+
         return $this;
     }
-    
+
     /**
      * Set the tag for the current demain name
-     * 
+     *
      * @param type $registrarTag
      */
     public function setRegistrarTag($registrarTag)
     {
         $this->registrarTag = $registrarTag;
     }
-    
+
     /**
      * Add content to the request form.
-     * 
+     *
      * @param \SimpleXMLElement $updateXML
      */
     public function addContent(\SimpleXMLElement $updateXML)
