@@ -20,7 +20,7 @@ class Nameserver
 
     /**
      * Array of status of a Nameserver
-     *
+     * 
      * @var array|string
      */
     private $status = array();
