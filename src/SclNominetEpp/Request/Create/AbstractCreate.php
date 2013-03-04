@@ -8,6 +8,7 @@
 namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Request;
+use SclNominetEpp\Response;
 use SimpleXMLElement;
 use Exception;
 

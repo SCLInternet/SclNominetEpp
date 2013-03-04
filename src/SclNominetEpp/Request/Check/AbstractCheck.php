@@ -9,6 +9,7 @@
 namespace SclNominetEpp\Request\Check;
 
 use SclNominetEpp\Request;
+use SclNominetEpp\Response;
 
 /**
  * This class build the XML for a Nominet EPP check command.
