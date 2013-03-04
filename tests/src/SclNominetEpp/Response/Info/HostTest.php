@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Response;
+namespace SclNominetEpp\Response\Info;
 
 use SclNominetEpp\Nameserver;
 use DateTime;
@@ -71,11 +71,12 @@ EOX;
         $expected->setClientID('UNKNOWN');
         $expected->setCreatorID('NOMINET');
         $expected->setCreated(new DateTime('2013-01-31T00:11:05'));
+        $expected->setUpDate(new DateTime(''));
 
         $this->response->init($xml);
 
         $host = $this->response->getHost();
-
+        var_dump($host);
         $this->assertEquals($expected, $host);
 
     }

@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\Contact as UpdateContactResponse;
 use SclNominetEpp\Request;
+use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.
@@ -21,10 +22,36 @@ class Contact extends Request
     protected $contact = null;
     protected $value;
 
+    private $add = array();
+    private $remove = array();
+
     public function __construct(Contact $contact)
     {
         parent::__construct('update', new UpdateContactResponse());
         $this->contact = $contact;
+    }
+
+
+    /**
+     * The <b>add()</b> function assigns a Field object as an element of the add array
+     * for including specific fields in the update request "contact:add" tag.
+     *
+     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
+     */
+    public function add(UpdateFieldInterface $field)
+    {
+        $this->add[] = $field;
+    }
+
+    /**
+     * The <b>remove()</b> function assigns a Field object as an element of the remove array
+     * for including specific fields in the update request "contact:remove" tag.
+     *
+     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
+     */
+    public function remove(UpdateFieldInterface $field)
+    {
+        $this->remove[] = $field;
     }
 
     public function addContent(\SimpleXMLElement $updateXML)
@@ -37,12 +64,20 @@ class Contact extends Request
 
         $update = $updateXML->addChild('contact:update', '', $contactNS);
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
-        $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
+        $update->addChild(self::VALUE_NAME, $this->contact, $contactNS);
 
-        $add = $update->addChild('add');
-            $status = $add->addChild('status');
-            $status->addAttribute('s', $s);
-        $remove = $update->addChild('rem');
+
+        $addBlock = $updateXML->addChild('add', '', $contactNS);
+
+        foreach ($this->add as $field) {
+            $field->fieldXml($addBlock, $contactNS);
+        }
+
+        $remBlock = $updateXML->addChild('rem', '', $contactNS);
+
+        foreach ($this->remove as $field) {
+            $field->fieldXml($remBlock, $contactNS);
+        }
 
         $change = $update->addChild('chg');
             $postalInfo = $change->addChild('postalInfo');

@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\Host as UpdateHostResponse;
 use SclNominetEpp\Request;
+use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.
@@ -17,39 +18,68 @@ class Host extends Request
 
     const VALUE_NAME = 'name';
 
-    protected $contact = null;
+    protected $host = null;
     protected $value;
 
-    public function __construct(Contact $contact)
+    private $add = array();
+    private $remove = array();
+
+    public function __construct($value)
     {
         parent::__construct('update', new UpdateHostResponse());
-        $this->contact = $contact;
+        $this->value = $value;
+    }
+
+    /**
+     * The <b>add()</b> function assigns a Field object as an element of the add array
+     * for including specific fields in the update request "host:add" tag.
+     *
+     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
+     */
+    public function add(UpdateFieldInterface $field)
+    {
+        $this->add[] = $field;
+    }
+
+    /**
+     * The <b>remove()</b> function assigns a Field object as an element of the remove array
+     * for including specific fields in the update request "host:remove" tag.
+     *
+     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
+     */
+    public function remove(UpdateFieldInterface $field)
+    {
+        $this->remove[] = $field;
     }
 
     public function addContent(\SimpleXMLElement $updateXML)
     {
-        $contactNS   = self::UPDATE_NAMESPACE;
+        $hostNS  = self::UPDATE_NAMESPACE;
 
-        $contactXSI   =   $contactNS . ' ' . 'host-1.0.xsd';
+        $hostXSI = $hostNS . ' ' . 'host-1.0.xsd';
 
-        $update = $updateXML->addChild('host:update', '', $contactNS);
-        $update->addAttribute('xsi:schemaLocation', $contactXSI);
-        $update->addChild(self::VALUE_NAME, $this->contact, self::UPDATE_NAMESPACE);
+        $update = $updateXML->addChild('host:update', '', $hostNS);
+        $update->addAttribute('xsi:schemaLocation', $hostXSI);
+        $update->addChild(self::VALUE_NAME, $this->value, $hostNS);
 
-        $add = $update->addChild('add');
-            $address = $add->addChild('addr');
-            $address->addAttribute('ip', $ipv);
-            $status  = $add->addChild('status');
-            $status->addAttribute('s', $s);
-        $remove = $update->addChild('rem');
-            $address = $add->addChild('addr');
-            $address->addAttribute('ip', $ipv);
-        $change = $update->addChild('chg');
+        if (!empty($this->add)) {
+            $addBlock = $update->addChild('add', '', $hostNS);
+            foreach ($this->add as $field) {
+                $field->fieldXml($addBlock, $hostNS);
+            }
+        }
+
+        if (!empty($this->remove)) {
+            $remBlock = $updateXML->addChild('rem', '', $hostNS);
+            foreach ($this->remove as $field) {
+                $field->fieldXml($remBlock, $hostNS);
+            }
+        }
 
     }
 
-    public function setContact($contact)
+    public function setContact($host)
     {
-        $this->contact = $contact;
+        $this->host = $host;
     }
 }

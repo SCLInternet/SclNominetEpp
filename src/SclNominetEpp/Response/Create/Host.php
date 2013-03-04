@@ -2,36 +2,38 @@
 
 namespace SclNominetEpp\Response\Create;
 
-use DateTime;
-use SclNominetEpp\Response;
 use SclNominetEpp\Nameserver;
 
 /**
- * This class interprets XML for a Nominet EPP host:create command response.
+ * This class gives AbstractCreate information to interpret XML
+ * for a Nominet EPP host:create command response.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Host extends Response
+class Host extends AbstractCreate
 {
-    protected $host;
+    const TYPE = 'host';
+    const VALUE_NAME = 'name';
 
-    public function processData($xml)
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        if (!isset($xml->response->resData)) {
-            return;
-        }
-        $ns = $xml->getNamespaces(true);
-        $this->host = new Nameserver();
-
-        $response  = $xml->response;
-
-        $creData   = $response->resData->children($ns['host'])->creData;
-        $this->host->setHostName($creData->name);
-        $this->host->setCreated(new DateTime($creData->crDate));
+        parent::__construct(
+            self::TYPE,
+            new Nameserver(),
+            self::VALUE_NAME
+        );
     }
 
-    public function getHost()
+    /**
+     * Overriding setter of AbstractCreate Response
+     *
+     * @param string $name
+     */
+    protected function setIdentifier($hostName)
     {
-        return $this->host;
+        $this->object->setHostName($hostName);
     }
 }

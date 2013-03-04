@@ -8,6 +8,7 @@
 namespace SclNominetEpp\Response\Check;
 
 use SclNominetEpp\Response;
+use SimpleXMLElement;
 
 /**
  * This class interprets XML for a Nominet EPP check command response.
@@ -17,13 +18,14 @@ use SclNominetEpp\Response;
 abstract class AbstractCheck extends Response
 {
     /**
-     * The type of check this is.
+     * Type is the "check request type" (contact/domain/host)
      *
      * @var string
      */
     private $type;
 
     /**
+     * Value Name is the name of the identifying value, "valueName" (name/id)
      *
      * @var string
      */
@@ -31,29 +33,59 @@ abstract class AbstractCheck extends Response
 
     /**
      *
+     *
      * @var array
      */
     private $values = array();
 
-    public function __construct($data = null)
+    /**
+     * Constructor
+     *
+     * @param string $type
+     * @param string $valueName
+     */
+    public function __construct($type, $valueName)
     {
-        parent::__construct($data);
+        $this->type = $type;
+        $this->valueName = $valueName;
     }
 
-    public function processData($data)
+    /**
+     * {@inheritDoc}
+     *
+     * @param SimpleXMLElement $data
+     * @return void
+     */
+    protected function processData(SimpleXMLElement $xml)
     {
-        if (!isset($data->response->resData)) {
+        if (!$this->success()) {
+            return;
+        }
+        if (!$this->xmlValid($xml->response->resData)) {
             return;
         }
 
-        $ns = $data->getNamespaces(true);
+        $ns = $xml->getNamespaces(true);
 
-        $xmlValues = $data->response->resData->children($ns[$this->type]);
+        $xmlValues = $xml->response->resData->children($ns[$this->type]);
 
         $valueName = $this->valueName;
         foreach ($xmlValues->chkData->cd as $value) {
-            $this->values[(string) $value->$valueName] = (boolean) (string) $value->$valueName->attributes()->avail;
+            $available = (boolean) (string) $value->$valueName->attributes()->avail;
+            $this->values[(string) $value->$valueName] = $available;
         }
+    }
+        /**
+     * Assuming $xml is invalid,
+     * this function returns "true" to affirm that the xml is invalid,
+     * otherwise "false".
+     *
+     * @param SimpleXMLElement $xml
+     * @return boolean
+     */
+    protected function xmlValid(SimpleXMLElement $xml)
+    {
+        return isset($xml);
     }
 
     /**
@@ -64,45 +96,5 @@ abstract class AbstractCheck extends Response
     public function getValues()
     {
         return $this->values;
-    }
-
-    /**
-     * Set $this->type
-     *
-     * @param string $type
-     */
-    protected function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * Get $this->type
-     *
-     * @return string
-     */
-    protected function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set $this->valueName
-     *
-     * @param string $valueName
-     */
-    public function setValueName($valueName)
-    {
-        $this->valueName = $valueName;
-    }
-
-    /**
-     * Get $this->valueName
-     *
-     * @return string
-     */
-    public function getValueName()
-    {
-        return $this->valueName;
     }
 }

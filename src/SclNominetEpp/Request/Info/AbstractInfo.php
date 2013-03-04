@@ -8,36 +8,48 @@
 namespace SclNominetEpp\Request\Info;
 
 use SclNominetEpp\Request;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP info command.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class AbstractInfo extends Request
+abstract class AbstractInfo extends Request
 {
 
     /**
+     * The namespace for the Nominet EPP info request.
      *
      * @var string
      */
     protected $infoNamespace;
 
     /**
+     * The name of the identifying value for the info request
+     * (e.g. name or id)
      *
      * @var string
      */
     protected $valueName;
 
     /**
+     * The domain|contact|host object.
      *
-     * @var type
+     * @var object
      */
-    protected $value;
+    protected $object = null;
 
+    /**
+     * Constructor
+     *
+     * @param string $type
+     * @param string $infoNamespace
+     * @param string $valueName
+     * @param SimpleXMLElement $response
+     */
     public function __construct($type, $infoNamespace, $valueName, $response = null)
     {
-
         parent::__construct('info', $response);
         $this->type = $type;
         $this->valueName = $valueName;
@@ -45,26 +57,14 @@ class AbstractInfo extends Request
     }
 
     /**
-     * The value to lookup.
+     * {@inheritDoc}
      *
-     * @param  string $value
-     * @return Info
-     */
-    public function lookup($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
+     * @param \SimpleXMLElement $xml
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
         $info = $xml->addChild("{$this->type}:info", '', $this->infoNamespace);
 
-        $info->addChild($this->valueName, $this->value, $this->infoNamespace);
+        $info->addChild($this->valueName, $this->getName(), $this->infoNamespace);
     }
 }

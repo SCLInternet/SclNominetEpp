@@ -9,6 +9,6 @@ use SclNominetEpp\Response;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Host extends Response
+class Host extends AbstractUpdate
 {
 }

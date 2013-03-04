@@ -15,9 +15,11 @@ class Domain extends AbstractInfo
     const INFO_NAMESPACE = "urn:ietf:params:xml:ns:domain-1.0";
     const VALUE_NAME = "name";
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-
         parent::__construct(
             self::TYPE,
             self::INFO_NAMESPACE,
@@ -27,9 +29,11 @@ class Domain extends AbstractInfo
     }
 
     /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
+     * addContent
+     * @todo give this a description
      * @todo Unabstract this specifically for domainInfo.
+     *
+     * @param SimpleXMLElement $xml
      */
     protected function addContent(\SimpleXMLElement $xml)
     {
@@ -37,5 +41,20 @@ class Domain extends AbstractInfo
 
         $name = $info->addChild($this->valueName, $this->value, $this->infoNamespace);
         $name->addAttribute('hosts', 'all');
+    }
+
+    /**
+     * Set Domain.
+     *
+     * @param \SclNominetEpp\Domain $object
+     */
+    public function setDomain(DomainObject $object)
+    {
+        $this->object = $object;
+    }
+
+    protected function getName()
+    {
+        return $this->object->getName();
     }
 }

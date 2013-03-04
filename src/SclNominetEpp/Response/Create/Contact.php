@@ -2,36 +2,38 @@
 
 namespace SclNominetEpp\Response\Create;
 
-use DateTime;
-use SclNominetEpp\Response;
 use SclNominetEpp\Contact as ContactObject;
 
 /**
- * This class interprets XML for a Nominet EPP host:create command response.
+ * This class gives AbstractCreate information to interpret XML
+ * for a Nominet EPP host:create command response.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Contact extends Response
+class Contact extends AbstractCreate
 {
-    protected $contact;
+    const TYPE = 'contact';
+    const VALUE_NAME = 'id';
 
-    public function processData($xml)
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        if (!isset($xml->response->resData)) {
-            return;
-        }
-        $ns = $xml->getNamespaces(true);
-        $this->contact = new ContactObject();
-
-        $response = $xml->response;
-
-        $creData  = $response->resData->children($ns['contact'])->creData;
-        $this->contact->setId($creData->id);
-        $this->contact->setCreated(new DateTime($creData->crDate));
+        parent::__construct(
+            self::TYPE,
+            new ContactObject(),
+            self::VALUE_NAME
+        );
     }
 
-    public function getContact()
+    /**
+     * Overriding setter of AbstractCreate Response
+     *
+     * @param string $id
+     */
+    protected function setIdentifier($id)
     {
-        return $this->contact;
+        $this->object->setId($id);
     }
 }

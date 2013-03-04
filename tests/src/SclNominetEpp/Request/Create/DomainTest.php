@@ -72,13 +72,14 @@ EOX;
 
         var_dump($nameserver);
 
-        $tech  = new Contact();
-        $tech->setId('techy1');
-        $admin = new Contact();
+        $techy = new \SclNominetEpp\Contact();
+        $techy->setId('techy1');
+        $techy->setType('tech');
+        $domain->addContact($techy);
+        $admin = new \SclNominetEpp\Contact();
         $admin->setId('admin1');
-
-        $domain->addContact('tech', $tech);
-        $domain->addContact('admin', $admin);
+        $admin->settype('admin');
+        $domain->addContact($admin);
 
         $this->request->setDomain($domain);
 

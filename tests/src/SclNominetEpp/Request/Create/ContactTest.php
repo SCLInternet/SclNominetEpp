@@ -3,6 +3,13 @@ namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Contact;
 use SclNominetEpp\Address;
+
+use SclContact\Fax;
+use SclContact\Country;
+use SclContact\Postcode;
+use SclContact\PhoneNumber;
+use SclContact\PersonName;
+use SclContact\Email;
 use SclNominetEpp\Request\Create\Contact as CreateContact;
 
 /**
@@ -37,11 +44,10 @@ class ContactTest extends \PHPUnit_Framework_TestCase
       <contact:create xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
         <contact:id>sc2343</contact:id>
         <contact:postalInfo type="int">
-          <contact:name>name</contact:name>
+          <contact:name>first last</contact:name>
           <contact:org>sclMerlyn</contact:org>
           <contact:addr>
             <contact:street>Bryn Seion Chapel</contact:street>
-            <contact:street/>
             <contact:street/>
             <contact:city>Cardigan</contact:city>
             <contact:sp>Ceredigion</contact:sp>
@@ -51,9 +57,6 @@ class ContactTest extends \PHPUnit_Framework_TestCase
         </contact:postalInfo>
         <contact:voice>+44.3344555666</contact:voice>
         <contact:email>example@email.com</contact:email>
-        <contact:authInfo>
-          <contact:pw>qwerty</contact:pw>
-        </contact:authInfo>
       </contact:create>
     </create>
   </command>
@@ -63,28 +66,47 @@ EOX;
 
         $contact = new Contact();
         $contact->setId('sc2343');
-        $contact->setName('name');
-        $contact->setEmail('example@email.com');
+
+            $personName = new PersonName;
+            $personName->setFirstName('first');
+            $personName->setLastName('last');
+        $contact->setName($personName);
+
+            $email = new Email();
+            $email->set('example@email.com');
+        $contact->setEmail($email);
 
         /*
         * The contact address.
-        * which comprises of the (addressLineOne, city, cc, addressLineTwo, addressLineThree, sp, pc);
+        * which comprises of the (Line1, city, cc, Line2, sp, pc);
         *
         */
         $address = new Address();
-        $address->setAddressLineOne('Bryn Seion Chapel');
+        $address->setLine1('Bryn Seion Chapel');
         $address->setCity('Cardigan');
-        $address->setCountryCode('US');
-        $address->setStateProvince('Ceredigion');
-        $address->setPostCode('SA43 2HB');
+
+            $country = new Country();
+            $country->setCode('US');
+        $address->setCountry($country);
+
+        $address->setCounty('Ceredigion');
+
+            $postCode = new Postcode();
+            $postCode->set('SA43 2HB');
+        $address->setPostCode($postCode);
         $contact->setAddress($address);
 
         $contact->setCompanyNumber('NI65786');
+
+            $phoneNumber = new PhoneNumber();
+            $phoneNumber->set('+44.3344555666');
         // The registered company number or the DfES UK school number of the registrant.
-        $contact->setPhone('+44.3344555666');
-        $contact->setOrganisation('sclMerlyn');
-        $contact->setFax('+443344555616');
-        $contact->setOptOut('y');
+        $contact->setPhone($phoneNumber);
+        $contact->setCompany('sclMerlyn');
+            $fax = new PhoneNumber();
+            $fax->set('+443344555616');
+        //$contact->setFax($fax);
+        //$contact->setOptOut('y');
 
         $this->request->setContact($contact);
 

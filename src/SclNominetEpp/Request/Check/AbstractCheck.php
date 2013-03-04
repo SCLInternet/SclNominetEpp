@@ -9,6 +9,7 @@
 namespace SclNominetEpp\Request\Check;
 
 use SclNominetEpp\Request;
+use SclNominetEpp\Response;
 
 /**
  * This class build the XML for a Nominet EPP check command.
@@ -26,12 +27,15 @@ abstract class AbstractCheck extends Request
     private $type;
 
     /**
+     * The namespace for the Nominet EPP check request.
      *
      * @var string
      */
     private $checkNamespace;
 
     /**
+     * The name of the identifying value for the check request
+     * (e.g. name or id)
      *
      * @var string
      */
@@ -44,18 +48,20 @@ abstract class AbstractCheck extends Request
     private $values = array();
 
     /**
-     * Tells the parent class what the action of this request is.
+     * Constructor.
      *
-     * @param  string     $type
-     * @throws \Exception
+     * @param string $type
+     * @param string $checkNamespace
+     * @param string $valueName
+     * @param Response $response
      */
-    public function __construct($type, $response, $checkNamespace, $valueName)
+    public function __construct($type, $checkNamespace, $valueName, Response $response = null)
     {
         parent::__construct('check', $response);
 
-        $this->type = $type;
+        $this->type           = $type;
         $this->checkNamespace = $checkNamespace;
-        $this->valueName = $valueName;
+        $this->valueName      = $valueName;
     }
 
     /**
@@ -64,7 +70,7 @@ abstract class AbstractCheck extends Request
      * @param  array|string $values
      * @return Check
      */
-    public function lookup($values)
+    public function setValues($values)
     {
         if (is_array($values)) {
             $this->values = $values;

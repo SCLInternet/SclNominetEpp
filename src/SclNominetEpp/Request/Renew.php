@@ -39,6 +39,13 @@ class Renew extends Request
         parent::__construct('renew', new RenewResponse());
     }
 
+    /**
+     * Set the date
+     *
+     * @param string $domain
+     * @param DateTime $expDate
+     * @return \SclNominetEpp\Request\Renew
+     */
     public function setDomain($domain, $expDate)
     {
         $this->domain = $domain;
@@ -50,8 +57,10 @@ class Renew extends Request
     /**
      * (non-PHPdoc)
      * @see SclNominetEpp\Request.AbstractRequest::addContent()
+     *
+     * @param SimpleXMLElement $xml
      */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $xml)
     {
         $domainNS  = 'urn:ietf:params:xml:ns:domain-1.0';
         $domainXSI = $domainNS . ' domain-1.0.xsd';

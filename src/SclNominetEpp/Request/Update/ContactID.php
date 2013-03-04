@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Response\Update\UpdateContactID as UpdateContactIDResponse;
 use SclNominetEpp\Request;
+use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.
@@ -20,10 +21,35 @@ class ContactID extends Request
     protected $newContactID = null;
     protected $value;
 
-    public function __construct($newContactID)
+    private $add = array();
+    private $remove = array();
+
+    public function __construct($value)
     {
         parent::__construct('update', new UpdateContactIDResponse());
-        $this->newContactID = $newContactID;
+        $this->value = $value;
+    }
+
+    /**
+     * The <b>add()</b> function assigns a Field object as an element of the add array
+     * for including specific fields in the update request "contactID:add" tag.
+     *
+     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
+     */
+    public function add(UpdateFieldInterface $field)
+    {
+        $this->add[] = $field;
+    }
+
+    /**
+     * The <b>remove()</b> function assigns a Field object as an element of the remove array
+     * for including specific fields in the update request "contactID:remove" tag.
+     *
+     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
+     */
+    public function remove(UpdateFieldInterface $field)
+    {
+        $this->remove[] = $field;
     }
 
     public function addContent(SimpleXMLElement $updateXML)
@@ -36,7 +62,7 @@ class ContactID extends Request
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
         $update->addChild(self::VALUE_NAME, $this->contactID, self::UPDATE_NAMESPACE);
         $change = $update->addChild('chg');
-        $change->addChild(self::VALUE_NAME, $this->newContactID);
+        $change->addChild(self::VALUE_NAME, $this->value);
     }
 
     public function setContactID($contactID)

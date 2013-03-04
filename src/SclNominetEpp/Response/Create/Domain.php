@@ -3,36 +3,47 @@
 namespace SclNominetEpp\Response\Create;
 
 use DateTime;
-use SclNominetEpp\Response;
 use SclNominetEpp\Domain as DomainObject;
+use SimpleXMLElement;
 
 /**
- * This class interprets XML for a Nominet EPP host:create command response.
+ * This class gives AbstractCreate information to interpret XML
+ * for a Nominet EPP host:create command response.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Domain extends Response
+class Domain extends AbstractCreate
 {
+    const TYPE = 'domain';
+    const VALUE_NAME = 'name';
+
     protected $domain;
 
-    public function processData($xml)
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        if (!isset($xml->response->resData)) {
-            return;
-        }
-        $ns = $xml->getNamespaces(true);
-        $this->domain = new DomainObject();
-
-        $response = $xml->response;
-
-        $creData  = $response->resData->children($ns['domain'])->creData;
-        $this->domain->setName($creData->name);
-        $this->domain->setCreated(new DateTime($creData->crDate));
-        $this->domain->setExpired(new DateTime($creData->exDate));
+        parent::__construct(
+            self::TYPE,
+            new DomainObject(),
+            self::VALUE_NAME
+        );
     }
 
-    public function getDomain()
+    /**
+     * Overriding setter of AbstractCreate Response
+     *
+     * @param string $name
+     */
+    protected function setIdentifier($name)
     {
-        return $this->domain;
+        $this->object->setName($name);
+    }
+
+    protected function addSpecificData(SimpleXMLElement $creData)
+    {
+
+        $this->object->setExpired(new DateTime($creData->exDate));
     }
 }

@@ -8,6 +8,11 @@ use SclRequestResponse\ResponseInterface;
 use SimpleXMLElement;
 use SclNominetEpp\Response;
 
+/**
+ * This class handles the essentials of all command requests
+ *
+ * @author Tom Oram <tom@scl.co.uk>
+ */
 class Request implements RequestInterface
 {
     const XSI_NAMESPACE = 'http://www.w3.org/2001/XMLSchema-instance';
@@ -62,13 +67,22 @@ class Request implements RequestInterface
 
     /**
      * This method should be over to provide the content of the request.
+     *
+     * @param SimpleXMLElement $action
      */
     protected function addContent(SimpleXMLElement $action)
     {
         // Nothing happens here
     }
 
-    private function formatXml($xml)
+    /**
+     * FormatXml makes the XML readable.
+     *
+     *
+     * @param SimpleXMLElement $xml
+     * @return string
+     */
+    protected function formatXml($xml)
     {
         $dom = new DOMDocument('1.0');
         $dom->preserveWhiteSpace = false;
@@ -113,7 +127,8 @@ class Request implements RequestInterface
         );
 
         $this->output = $this->formatXml($this->output);
-        //echo $this->output;
+        //@todo Remove debug code
+        echo $this->output;
         return $this->output;
     }
 

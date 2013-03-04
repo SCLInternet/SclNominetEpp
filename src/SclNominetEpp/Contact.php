@@ -2,12 +2,12 @@
 namespace SclNominetEpp;
 
 /**
+ * A contact record
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
-class Contact
+class Contact extends \SclContact\Contact
 {
-
         //TYPE
     const TYPE_UK_LTD                   = 'LTD';
     const TYPE_UK_PLC                   = 'PLC';
@@ -31,7 +31,12 @@ class Contact
 
     const TYPE_UNKNOWN = 'UNKNOWN';
 
-    private static $types = array(
+    /**
+     * array of organisation types.
+     *
+     * @var array
+     */
+    private static $companyTypes = array(
         self::TYPE_UK_LTD,
         self::TYPE_UK_PLC,
         self::TYPE_UK_PARTNERSHIP,
@@ -51,60 +56,25 @@ class Contact
         self::TYPE_UNKNOWN
     );
 
+    /**
+     * The Contact identifier.
+     *
+     * @var string
+     */
     private $id;
-    /**
-     * The contact name.
-     *
-     * @var string
-     */
-    private $name;
-
-    /**
-     * The contact email address
-     *
-     * @var string
-     */
-    private $email;
-
-    /**
-     * The contact address.
-     * (which comprises of the "contact:street", "city",
-     *                         "sp" (state or province),
-     *                         "pc" (postcode) and
-     *                         "cc" (country code)
-     * )
-     *
-     * @var Address
-     */
-    private $address;
 
     /**
      * The registered company number or the DfES UK school number of the registrant.
      *
-     * @var type
+     * @var string
      */
     private $companyNumber;
 
     /**
-     * The contact phone number;(A.K.A. voice)
-     *
-     * @var string
-     */
-    private $phone = null;
-
-    /**
      * The name of the organisation associated with the contact.
-     *
+     * @todo rename all instances of organisation to company.
      * @var string
      */
-    private $organisation = null;
-
-    /**
-     * The fax number of the contact
-     *
-     * @var string
-     */
-    private $fax = null;
 
     /**
      * The optOut is used to prevent the registrant's address details
@@ -129,18 +99,32 @@ class Contact
     private $upDate;
 
     /**
+     * Trading name of the organisation
      *
-     * @var type
+     * @var string
      */
     private $tradeName;
 
     /**
+     * The type of organisation (from the array defined in the Contact class) default "UNKNOWN".
      *
-     * @var type
+     * @var string
      */
-    private $type = self::TYPE_UNKNOWN;
+    private $companyType = self::TYPE_UNKNOWN;
 
-    /*
+    /**
+     *
+     *
+     * @var string
+     */
+    private $type;
+
+    /**
+     *
+     */
+    private $clientID;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -169,66 +153,6 @@ class Contact
     }
 
     /**
-     * Set $name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = (string) $name;
-    }
-
-    /**
-     * Get $name
-     *
-     * @return string $name
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set $email
-     *
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = (string) $email;
-    }
-
-    /**
-     * Get $email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set $address
-     *
-    * @param Address $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-    }
-
-    /**
-     * Get $address
-     *
-     * @return Address
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
      * Set $companyNumber
      *
      * @param string $companyNumber
@@ -246,66 +170,6 @@ class Contact
     public function getCompanyNumber()
     {
         return $this->companyNumber;
-    }
-
-    /**
-     * Set $phone
-     *
-     * @param string $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = (string) $phone;
-    }
-
-    /**
-     * Get $phone
-     *
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * Set $organisation
-     *
-     * @param string $organisation
-     */
-    public function setOrganisation($organisation)
-    {
-        $this->organisation = (string) $organisation;
-    }
-
-    /**
-     * Get $organisation
-     *
-     * @return string
-     */
-    public function getOrganisation()
-    {
-        return $this->organisation;
-    }
-
-    /**
-     * Set $fax
-     *
-     * @param string $fax
-     */
-    public function setFax($fax)
-    {
-        $this->fax = (string) $fax;
-    }
-
-    /**
-     * Get $fax
-     *
-     * @return string
-     */
-    public function getFax()
-    {
-        return $this->fax;
     }
 
     /**
@@ -389,15 +253,35 @@ class Contact
     }
 
     /**
+     * Set $this->companyType
+     *
+     * @param string $companyType
+     */
+    public function setCompanyType($companyType)
+    {
+        if (!in_array($companyType, self::$companyTypes)) {
+            throw new \Exception("Invald organisation type: $companyType");
+        }
+        $this->companyType = (string) $companyType;
+    }
+
+    /**
+     * Get $this->companyType
+     *
+     * @return string
+     */
+    public function getCompanyType()
+    {
+        return $this->companyType;
+    }
+
+    /**
      * Set $this->type
      *
      * @param string $type
      */
     public function setType($type)
     {
-        if (!in_array((string) $type, self::$types)) {
-            throw new \Exception("Invald organisation type: $type");
-        }
         $this->type = (string) $type;
     }
 
@@ -409,5 +293,25 @@ class Contact
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set $this->clientID
+     *
+     * @param string $clientID
+     */
+    public function setClientID($clientID)
+    {
+        $this->clientID = (string) $clientID;
+    }
+
+    /**
+     * Get $this->clientID
+     *
+     * @return gettype
+     */
+    public function getClientID()
+    {
+        return $this->clientID;
     }
 }

@@ -62,7 +62,7 @@ EOX;
 
         $this->response->init($xml);
 
-        $domain = $this->response->getDomain();
+        $domain = $this->response->getObject();
 
         $this->assertEquals($expected, $domain);
     }

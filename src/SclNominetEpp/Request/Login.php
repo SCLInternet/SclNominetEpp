@@ -75,7 +75,7 @@ class Login extends Request
     }
 
     /**
-     * @param SimpleXMLElement
+     * @param SimpleXMLElement $xml
      * @param string $uri
      */
     private function addObjUri(SimpleXMLElement $xml, $uri)
@@ -84,7 +84,7 @@ class Login extends Request
     }
 
     /**
-     * @param SimpleXMLElement
+     * @param SimpleXMLElement $xml
      * @param string $uri
      */
     private function addSvcExtension(SimpleXMLElement $xml, $uri)
@@ -97,8 +97,10 @@ class Login extends Request
 
     /**
      * {@inheritDoc}
+     *
+     * @param SimpleXMLElement $xml
      */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $xml)
     {
         $xml->addChild('clID', $this->tag);
         $xml->addChild('pw', $this->password);

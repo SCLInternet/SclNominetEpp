@@ -15,6 +15,9 @@ class Host extends AbstractInfo
     const INFO_NAMESPACE = "urn:ietf:params:xml:ns:host-1.0";
     const VALUE_NAME = "name";
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(
@@ -23,5 +26,19 @@ class Host extends AbstractInfo
             self::VALUE_NAME,
             new HostInfoResponse()
         );
+    }
+
+    /**
+     *
+     * @param Nameserver $nameserver
+     */
+    public function setNameserver(Nameserver $nameserver)
+    {
+        $this->nameserver = $nameserver;
+    }
+
+    protected function getName()
+    {
+        return $this->object->getHostName();
     }
 }

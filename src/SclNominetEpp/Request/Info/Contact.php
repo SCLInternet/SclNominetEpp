@@ -21,6 +21,9 @@ class Contact extends AbstractInfo
     const INFO_NAMESPACE = "urn:ietf:params:xml:ns:contact-1.0";
     const VALUE_NAME = "id";
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct(
@@ -29,5 +32,20 @@ class Contact extends AbstractInfo
             self::VALUE_NAME,
             new ContactInfoResponse()
         );
+    }
+
+    /**
+     * Set Contact to the passed ContactObject file.
+     *
+     * @param ContactObject $contact
+     */
+    public function setContact(ContactObject $object)
+    {
+        $this->object = $object;
+    }
+
+    protected function getName()
+    {
+        return $this->object->getId();
     }
 }

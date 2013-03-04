@@ -19,6 +19,7 @@ class Nameserver
     private $hostName;
 
     /**
+     * Array of status of a Nameserver
      *
      * @var array|string
      */
@@ -75,6 +76,9 @@ class Nameserver
      */
     private $ipv6 = null;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
     }
@@ -180,7 +184,7 @@ class Nameserver
     }
 
     /**
-     * Set $this->upID
+     * Set the ID of the user that last changed the domain name.
      *
      * @param string $upID
      */
@@ -190,7 +194,7 @@ class Nameserver
     }
 
     /**
-     * Get $this->upID
+     * Get the ID of the user that last changed the domain name.
      *
      * @return string
      */
@@ -200,7 +204,7 @@ class Nameserver
     }
 
     /**
-     * Set $this->upDate
+     * Set the date the domain name was last changed.
      *
      * @param DateTime $upDate
      */
@@ -210,7 +214,7 @@ class Nameserver
     }
 
     /**
-     * Get $this->upDate
+     * Get the date the domain name was last changed.
      *
      * @return DateTime
      */

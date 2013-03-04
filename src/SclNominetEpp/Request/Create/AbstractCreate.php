@@ -8,6 +8,9 @@
 namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Request;
+use SclNominetEpp\Response;
+use SimpleXMLElement;
+use Exception;
 
 /**
  * This class build the XML for a Nominet EPP create command.
@@ -24,24 +27,35 @@ abstract class AbstractCreate extends Request
     private $type;
 
     /**
+     * The namespace for the create command
      *
      * @var string
      */
     private $createNamespace;
 
     /**
+     * The name of the identifier.
      *
      * @var string
      */
     private $valueName;
 
     /**
-     * Tells the parent class what the action of this request is.
+     * The domain|contact|host object.
      *
-     * @param  string     $type
-     * @throws \Exception
+     * @var object
      */
-    public function __construct($type, $response, $createNamespace, $valueName)
+    protected $object = null;
+
+    /**
+     * Constructor
+     *
+     * @param string $type
+     * @param string $createNamespace
+     * @param string $valueName
+     * @param Response $response
+     */
+    public function __construct($type, $createNamespace, $valueName, Response $response = null)
     {
         parent::__construct('create', $response);
 
@@ -51,12 +65,46 @@ abstract class AbstractCreate extends Request
     }
 
     /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
+     * {@inheritDoc}
+     *
+     * @param SimpleXMLElement $xml
      */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $xml)
     {
-        $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
+        try {
+            $this->objectValidate($this->object);
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
 
+        $createNS  = $this->createNamespace;
+
+        $createXSI = $createNS . ' ' . "{$this->type}-1.0.xsd";
+
+        $create = $xml->addChild("{$this->type}:create", '', $this->createNamespace);
+        //$create->addAttribute('xsi:schemaLocation', $createXSI);
+        $create->addChild($this->valueName, $this->getName(), $createNS);
+
+        $this->addSpecificContent($create);
     }
+
+    abstract protected function getName();
+
+    /**
+     * Valdiates whether the object is of the correct class.
+     *
+     * @param object $object
+     * @return boolean
+     * @throws Exception
+     */
+    abstract protected function objectValidate($object);
+
+    /**
+     * This allows subclasses to add their own specific content
+     * to the addContent function that all subclasses may run
+     * because it is defined in this abstract class.
+     *
+     * @param SimpleXMLElement $create Create xml data.
+     */
+    abstract protected function addSpecificContent(SimpleXMLElement $create);
 }

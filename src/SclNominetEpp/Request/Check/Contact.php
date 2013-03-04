@@ -14,6 +14,7 @@ use SclNominetEpp\Response\Check\Contact as CheckContactResponse;
  * This class build the XML for a Nominet EPP contact:check command.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Contact extends AbstractCheck
 {
@@ -28,9 +29,9 @@ class Contact extends AbstractCheck
     {
         parent::__construct(
             self::TYPE,
-            new CheckContactResponse(),
             self::CHECK_NAMESPACE,
-            self::VALUE_NAME
+            self::VALUE_NAME,
+            new CheckContactResponse()
         );
     }
 }

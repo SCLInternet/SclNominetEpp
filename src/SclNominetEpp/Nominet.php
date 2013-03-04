@@ -3,6 +3,7 @@
  * Contains the Nominet class definition.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 
 namespace SclNominetEpp;
@@ -10,19 +11,55 @@ namespace SclNominetEpp;
 use SclRequestResponse\AbstractRequestResponse;
 
 use SclNominetEpp\Exception\LoginRequiredException;
-
 use SclNominetEpp\Request;
+use SclNominetEpp\Request\Update;
+use SclNominetEpp\Response;
+use SclNominetEpp\Response\ListDomains;
 
 /**
  * This class exposes all the actions of the Nominet EPP system in a nice PHP
  * class.
  *
  * @author Tom Oram <tom@scl.co.uk>
+ * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Nominet extends AbstractRequestResponse
 {
-    const LIST_MONTH  = 1;
-    const LIST_EXPIRY = 2;
+    /*
+     * A client MUST NOT alter status values set by the server.
+     * A server MAY alter or override status values set by a client, subject to local server policies.
+     * Status values that can be added or removed by a client are prefixed with "client".
+     */
+    const STATUS_CLIENT_DELETE_PROHIBITED   = 'clientDeleteProhibited';
+    const STATUS_CLIENT_HOLD                = 'clientHold';
+    const STATUS_CLIENT_RENEW               = 'clientRenewProhibited';
+    const STATUS_CLIENT_TRANSFER_PROHIBITED = 'clientTransferProhibited';
+    const STATUS_CLIENT_UPDATE_PROHIBITED   = 'clientUpdateProhibited';
+
+    // Corresponding status values that can be added or removed by a server are prefixed with "server".
+    const STATUS_SERVER_DELETE_PROHIBITED   = 'serverDeleteProhibited';
+    const STATUS_SERVER_HOLD                = 'serverHold';
+    const STATUS_SERVER_RENEW               = 'serverRenewProhibited';
+    const STATUS_SERVER_TRANSFER_PROHIBITED = 'serverTransferProhibited';
+    const STATUS_SERVER_UPDATE_PROHIBITED   = 'serverUpdateProhibited';
+
+    /*
+     * pending[action]" status MUST NOT be combined
+     * with either:-
+     * "client[action]Prohibited" or
+     * "server[action]Prohibited" status or
+     * other "pending[action]" status.
+     */
+    const STATUS_PENDING_CREATE   = 'pendingCreate';
+    const STATUS_PENDING_DELETE   = 'pendingDelete';
+    const STATUS_PENDING_RENEW    = 'pendingRenew';
+    const STATUS_PENDING_TRANSFER = 'pendingTransfer';
+    const STATUS_PENDING_UPDATE   = 'pendingUpdate';
+
+    const STATUS_INACTIVE = 'inactive';
+
+    //"ok" status MUST NOT be combined with any other status.
+    const STATUS_OKAY = 'ok';
 
     /**
      * Flag that states whether we are logged into Nominet or not.
@@ -54,8 +91,8 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The login command is used to establish and authenticate a session with
-     * the EPP server. The login command must be sent to the server before any
+     * The <login> command is used to establish and authenticate a session with
+     * the EPP server. The <login> command must be sent to the server before any
      * other EPP command and identifies and authenticates the tag to be used
      * by the session. An EPP session is terminated by a logout command.
      *
@@ -77,20 +114,20 @@ class Nominet extends AbstractRequestResponse
         }
         $this->loggedIn = true;
 
-        return true;
+        return $response::SUCCESS_STANDARD === $response->code();
     }
 
     /**
-     * The hello command is used to obtain a greeting element from our server
+     * The <hello> command is used to obtain a greeting element from our server
      * and may be used to keep your connection with our EPP server open.
-     * Sending an EPP hello command every 59 minutes will keep your connection
+     * Sending an EPP <hello> command every 59 minutes will keep your connection
      * with our EPP server open.
      */
     public function hello()
     {
         $this->loginCheck();
 
-        $request = new Request\Request('hello');
+        $request = new Request\Hello('hello', new \SclNominetEpp\Response\Greeting());
 
         $response = $this->processRequest($request);
 
@@ -98,27 +135,28 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * A logout command is used to end a session with an EPP server. On receipt
+     * A <logout> command is used to end a session with an EPP server. On receipt
      * the EPP server responds and then closes the connection with the client.
+     * @return boolean
      */
     public function logout()
     {
         $this->loginCheck();
 
-        $request = new Request\Request('logout');
+        $request = new Request('logout');
 
+        /* @var $response Response */
         $response = $this->processRequest($request);
 
-        // TODO Do something with the response
-
         $this->loggedIn = false;
+        return $response::SUCCESS_ENDING_SESSION === $response->code();
     }
 
     /**
      * Checks if a domain or set of domains are available.
      *
-     * The check command is used to determine if the domain name is currently
-     * registered and provides a hint about whether a <create> command would be
+     * The <check> command is used to determine if the domain name is currently
+     * registered and provides a hint about whether a <check> command would be
      * successful.
      *
      * @param string|array $domains
@@ -140,7 +178,7 @@ class Nominet extends AbstractRequestResponse
      * Checks if a contact or set of contacts are available.
      *
      * The check command is used to determine if the domain name is currently
-     * registered and provides a hint about whether a <create> command would be
+     * registered and provides a hint about whether a <check> command would be
      * successful.
      *
      * @param string|array $contactIds
@@ -151,7 +189,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Check\Contact();
 
-        $request->lookup($contactIds);
+        $request->setValues($contactIds);
 
         $response = $this->processRequest($request);
 
@@ -161,8 +199,8 @@ class Nominet extends AbstractRequestResponse
     /**
      * Checks if a host or set of hosts are available.
      *
-     * The check command is used to determine if the domain name is currently
-     * registered and provides a hint about whether a <create> command would be
+     * The <check> command is used to determine if the domain name is currently
+     * registered and provides a hint about whether a <check> command would be
      * successful.
      *
      * @param string|array $hosts
@@ -173,7 +211,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Check\Host();
 
-        $request->lookup($hosts);
+        $request->setValues($hosts);
 
         $response = $this->processRequest($request);
 
@@ -181,10 +219,10 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The create command allows you to register a domain name or to create an
-     * account or nameserver object to link to domain names.
+     * The <create> command allows you to create a contact
+     * account.
      *
-     * @param \SclNominetEpp\Domain $domain
+     * @param \SclNominetEpp\Contact $contact
      */
     public function createContact(Contact $contact)
     {
@@ -192,13 +230,14 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Create\Contact();
         $request->setContact($contact);
+
         $response = $this->processRequest($request);
 
         return $response->success();
     }
 
     /**
-     * The create command allows you to register a domain name or to create an
+     * The <create> command allows you to register a domain name or to create an
      * account or nameserver object to link to domain names.
      *
      * @param \SclNominetEpp\Domain $domain
@@ -215,10 +254,17 @@ class Nominet extends AbstractRequestResponse
         return $response->success();
     }
 
+    /**
+     * The <create> command allows you to create a nameserver object to link to domain names.
+     *
+     * @param \SclNominetEpp\Nameserver $host
+     */
     public function createHost(Nameserver $host)
     {
         $this->loginCheck();
         $request = new Request\Create\Host($host);
+
+        $request->setNameserver($host);
 
         $response = $this->processRequest($request);
 
@@ -226,21 +272,32 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The EPP delete command allows the registrar to delete a domain name.
+     * The EPP <delete> command allows the registrar to delete a domain name.
      * Further details of this are available in RFC 5731 The delete command may
      * not be used to delete nameservers and accounts.
+     *
+     * @param \SclNominetEpp\Domain|string $domain
+     * @return boolean|mixed
      */
-    public function delete()
+    public function deleteDomain(Domain $domain)
     {
         $this->loginCheck();
+
+        $request  = new Request\Delete\Domain();
+
+        $request->setDomain($domain);
+
+        $response = $this->processRequest($request);
+
+        return $response->success();
     }
 
     /**
-     * The renew command only applies to domain names. It has no meaning for
+     * The <renew> command only applies to domain names. It has no meaning for
      * other object types.
      *
      * @param string $domain The domain to be renewed
-     * @param \DateTime|NULL The new expiry data or NULL
+     * @param \DateTime|NULL $expDate The new expiry data or NULL
      */
     public function renew($domain, $expDate)
     {
@@ -255,22 +312,85 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The unrenew operation is used to reverse a renewal request made for a
+     * The <unrenew> operation is used to reverse a renewal request made for a
      * domain name. The renew command only applies to domain names. It has no
      * meaning for other object types.
      */
     public function unrenew()
     {
         $this->loginCheck();
+
+        $request = new Request\Unrenew();
     }
 
     /**
-     * The update operation allows the attributes of an object to be updated.
+     * The <update> operation allows the attributes of an object to be updated.
+     * @param Domain $domain The Domain to be updated.
      */
-    public function updateDomain()
+    public function updateDomain(Domain $domain)
     {
         $this->loginCheck();
-        $request = new Request\Update\Domain();
+        $request = new Request\Update\Domain($domain->getName());
+        $request->setDomain($domain);
+
+        $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
+        if (!$currentDomain instanceof Domain) {
+            throw new Exception("The domain requested for updating is unregistered.");
+        }
+        $currentNameservers = $currentDomain->getNameservers();
+        $currentContacts    = $currentDomain->getContacts();
+        $newNameservers     = $domain->getNameservers();
+        $newContacts        = $domain->getContacts();
+
+        $addContacts       = array_uintersect(
+            $newContacts,
+            $currentContacts,
+            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+        );
+        $removeContacts    = array_uintersect(
+            $currentContacts,
+            $newContacts,
+            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+        );
+        $addNameservers    = array_uintersect(
+            $newNameservers,
+            $currentNameservers,
+            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+        );
+        $removeNameservers = array_uintersect(
+            $currentNameservers,
+            $newNameservers,
+            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+        );
+
+        if (!empty($addNameservers)) {
+            foreach ($addNameservers as $nameserver) {
+                $request->add(new Update\Field\DomainNameserver($nameserver->getHostName()));
+            }
+        }
+
+        if (!empty($addContacts)) {
+            foreach ($addContacts as $type => $contact) {
+                $request->add(new Update\Field\DomainContact($contact->getId(), $type));
+            }
+        }
+
+        $request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
+
+        if (!empty($removeNameservers)) {
+            foreach ($removeNameservers as $nameserver) {
+                $request->remove(new Update\Field\DomainNameserver($nameserver->getHostName()));
+            }
+        }
+
+        if (!empty($removeContacts)) {
+            foreach ($removeContacts as $type => $contact) {
+                $request->remove(new Update\Field\DomainContact($contact->getId(), $type));
+            }
+        }
+
+        //$request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
+        //$request->remove(new Update\Field\DomainContact('mak32', 'tech'));
 
         $response = $this->processRequest($request);
 
@@ -278,27 +398,55 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The update operation allows the attributes of an object to be updated.
+     * The <update> operation allows the attributes of an object to be updated.
+     * @param Contact $contact The contact to be updated.
      */
-    public function updateContact()
+    public function updateContact(Contact $contact)
     {
         $this->loginCheck();
+
+        $request = new Request\Update\Contact();
+
+        $request->add(new Update\Field\Status('', self::STATUS_CLIENT_DELETE_PROHIBITED));
+
+        $response = $this->processRequest($request);
+
+        return $response;
     }
 
+    /**
+     * The <update> operation allows the attributes of an object to be updated.
+     */
     public function updateContactID()
     {
         $this->loginCheck();
 
         $request = new Request\Update\ContactID();
 
+        $request->add(new Update\Field\Status('', self::STATUS_CLIENT_HOLD));
+
         $response = $this->processRequest($request);
 
         return $response;
     }
 
-    public function updateHost()
+    /**
+     * The <update> operation allows the attributes of an object to be updated.
+     * @param Nameserver $host The nameserver to be updated.
+     */
+    public function updateHost(Nameserver $host)
     {
         $this->loginCheck();
+
+        $request = new Request\Update\Host($host->getHostName());
+
+        $request->add(new Update\Field\Status('', self::STATUS_CLIENT_UPDATE_PROHIBITED));
+
+        $request->add(new Update\Field\HostAddress('192.0.2.2', 'v4'));
+
+        $response = $this->processRequest($request);
+
+        return $response;
     }
 
     /**
@@ -323,7 +471,6 @@ class Nominet extends AbstractRequestResponse
             return false;
         }
         $domain = $response->getDomain();
-
         return $domain;
     }
 
@@ -356,7 +503,7 @@ class Nominet extends AbstractRequestResponse
      * an object.
      *
      * @param  string $hostName
-     * @return type
+     * @return Nameserver|mixed
      */
     public function hostInfo($hostName)
     {
@@ -389,7 +536,7 @@ class Nominet extends AbstractRequestResponse
      * message has been received. Then that message is dequeued and the next
      * message in the queue becomes available for retrieval.
      *
-     * NOTE: To use the poll command you must have activated this notification
+     * NOTE: To use the <poll> command you must have activated this notification
      * option for your account in the Online Service. In addition, version 1.1
      * or subsequent schemas must be used if polling via Nominet EPP.
      */
@@ -399,16 +546,7 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The <transfer> command allows a registrar to request that a domain name
-     * or account object to be transferred from another registrar.
-     */
-    public function transfer()
-    {
-        $this->loginCheck();
-    }
-
-    /**
-     * The handshake operation allows a registrar to accept or reject a
+     * The <handshake> operation allows a registrar to accept or reject a
      * registrar change/registrant transfer authorisation request.
      */
     public function handshake()
@@ -417,21 +555,47 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The release operation allows a registrar to move a domain name, or
+     * The <release> operation allows a registrar to move a domain name, or
      * account onto another tag.
      */
-    public function release()
+    public function releaseContact($id)
     {
         $this->loginCheck();
+
+        $request = new Request\Update\Release\Contact();
+        $request->lookup($id);
+        $response = $this->processRequest($request);
+        return $response->getContact();
     }
 
     /**
-     * The fork command allows a number of domain names on a registrant contact
-     * to be moved to a copy of that contact.
+     * The <release> operation allows a registrar to move a domain name, or
+     * account onto another tag.
      */
-    public function fork()
+    public function releaseDomain($name)
     {
         $this->loginCheck();
+
+        $request = new Request\Update\Release\Domain();
+        $request->lookup($name);
+        $response = $this->processRequest($request);
+        return $response->getDomain();
+    }
+
+    /**
+     * The <fork> command allows a number of domain names on a registrant contact
+     * to be moved to a copy of that contact.
+     */
+    public function fork($hostName)
+    {
+        $this->loginCheck();
+
+        $request = new Request\Update\Fork\Fork();
+
+        $request->setValue($hostName);
+
+        $response = $this->processRequest($request);
+        return $response->getHost();
     }
 
     /**
@@ -440,14 +604,13 @@ class Nominet extends AbstractRequestResponse
      *
      * @param  integer    $year
      * @param  integer    $month
-     * @param  integer    $type
-     * @return array|NULL The list of the domains or null on failure.
+     * @param  integer|null    $type
      */
-    public function listDomains($year, $month, $type = self::LIST_MONTH)
+    public function listDomains($year, $month, $type = ListDomains::LIST_MONTH)
     {
         $this->loginCheck();
 
-        if (!in_array($type, array(self::LIST_MONTH, self::LIST_EXPIRY))) {
+        if (!in_array($type, array(ListDomains::LIST_MONTH, ListDomains::LIST_EXPIRY))) {
             throw new \Exception("Invalid type $type.");
         }
 
@@ -460,12 +623,18 @@ class Nominet extends AbstractRequestResponse
     }
 
     /**
-     * The investigation lock command can be used to lock down a domain name,
+     * The investigation <lock> command can be used to lock down a domain name,
      * preventing a number of operations upon it.
      */
-    public function lock()
+    public function lock($objectName, $type)
     {
         $this->loginCheck();
+
+        $request = new Request\Update\Lock\Lock($objectName, $type);
+
+        $reponse = $this->processRequest($request);
+
+        return $response;
     }
 
     /**

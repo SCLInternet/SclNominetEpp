@@ -2,83 +2,119 @@
 
 namespace SclNominetEpp\Response\Info;
 
-use SclNominetEpp\Response;
+use SimpleXMLElement;
 use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Address;
-use DateTime;
+
+use SclContact\Country;
+use SclContact\Postcode;
+use SclContact\Email;
+use SclContact\PersonName;
+use SclContact\PhoneNumber;
 
 /**
  * This class interprets XML for a Nominet EPP contact:info command response.
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Contact extends Response
+class Contact extends AbstractInfo
 {
-    protected $contact;
+    const TYPE = 'contact';
+    const VALUE_NAME = 'id';
 
-    public function processData($xml)
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        if (!isset($xml->response->resData)) {
-            return;
-        }
+        parent::__construct(
+            self::TYPE,
+            new ContactObject(),
+            self::VALUE_NAME
+        );
+    }
 
-        $ns = $xml->getNamespaces(true);
-        $this->contact = new ContactObject();
-
-        $response  = $xml->response;
-
-        $infData   = $response->resData->children($ns['contact'])->infData;
-        $extension = $response->extension->children($ns['contact-nom-ext'])->infData;
-
+    /**
+     *
+     * @param \SclNominetEpp\Response\Info\SimpleXMLElement $infData
+     */
+    public function addInfData(SimpleXMLElement $infData)
+    {
         $postalInfo = $infData->postalInfo;
         $addrXml    = $postalInfo->addr;
 
         //toString ADDRESS XML
-
         $streets = $addrXml->street;
 
         //ADDRESS SETTING
-
         $address = new Address();
-        $address->setAddressLineOne($streets[0]);
-        $address->setAddressLineTwo($streets[1]);
-        $address->setAddressLineThree($streets[2]);
+        $address->setLine1($streets[0]);
+        $address->setLine2($streets[1]);
         $address->setCity($addrXml->city);
-        $address->setCountryCode($addrXml->cc);
-        $address->setStateProvince($addrXml->sp);
-        $address->setPostCode($addrXml->pc);
+            $country = new Country();
+            $country->setCode($addrXml->cc);
+        $address->setCountry($country);
+        $address->setCounty($addrXml->sp);
+            $postcode = new Postcode();
+            $postcode->set($addrXml->pc);
+        $address->setPostCode($postcode);
 
+        //NORMAL DATA
+            $email = new Email();
+            $email->set($infData->email);
+        $this->object->setEmail($email);
+        if ($infData->fax) {
+            $this->object->setFax(new PhoneNumber($infData->fax));
+        }
+            $phoneNumber = new PhoneNumber();
+            $phoneNumber->set($infData->voice);
+        $this->object->setPhone($phoneNumber); //optional
+            //Postal Info
+            $name = explode(" ", $postalInfo->name);
+            $last = array_pop($name);
+            $first = implode(" ", $name);
+            $personName = new PersonName();
+            $personName->setFirstName($first);
+            $personName->setLastName($last);
+        $this->object->setName($personName); //Postal Info
+        $this->object->setCompany($postalInfo->org);
+        $this->object->setAddress($address);         //Postal Info
+    }
+    /**
+     *
+     * @param SimpleXMLElement $extension
+     */
+    protected function addExtensionData(SimpleXMLElement $extension = null)
+    {
         //EXTENSION DATA
 
-        $this->contact->setCompanyNumber($extension->{'co-no'});
+        $this->object->setCompanyNumber($extension->{'co-no'});
         $optOut     = strtolower((string) $extension->{'opt-out'});
         if ('n' === $optOut) {
             $optOut = false;
         } else {
             $optOut = true;
         }
-        $this->contact->setOptOut($optOut);
-        $this->contact->setTradeName($extension->{'trad-name'});
-        $this->contact->setType($extension->{'type'});
-
-        //NORMAL DATA
-
-        $this->contact->setID($infData->id);
-        $this->contact->setEmail($infData->email);
-        $this->contact->setFax($infData->fax);
-        $this->contact->setPhone($infData->voice); //optional
-
-            //Dates
-        $this->contact->setCreated(new DateTime((string) $infData->crDate));
-        $this->contact->setUpDate(new DateTime((string) $infData->upDate));
-            //Postal Info
-        $this->contact->setName($postalInfo->name); //Postal Info
-        $this->contact->setOrganisation($postalInfo->org);
-        $this->contact->setAddress($address);         //Postal Info
+        $this->object->setOptOut($optOut);
+        $this->object->setTradeName($extension->{'trad-name'});
+        $this->object->setType($extension->{'type'});
     }
 
+    /**
+     *
+     * @param SimpleXMLElement $id
+     */
+    protected function setValue(SimpleXMLElement $id)
+    {
+        $this->object->setId((string)$id);
+    }
+
+    /**
+     *
+     * @return type
+     */
     public function getContact()
     {
-        return $this->contact;
+        return $this->object;
     }
 }

@@ -3,7 +3,7 @@
 namespace SclNominetEpp\Request\Create;
 
 use SclNominetEpp\Domain as DomainObject;
-use SclNominetEpp\Request;
+use SclNominetEpp\Response\Create\Domain as CreateDomainResponse;
 use SimpleXMLElement;
 use Exception;
 
@@ -12,7 +12,7 @@ use Exception;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Domain extends Request
+class Domain extends AbstractCreate
 {
 
     const TYPE = 'domain';
@@ -21,46 +21,32 @@ class Domain extends Request
     const VALUE_NAME = 'name';
 
     /**
-     *
-     * @var Domain
+     * Constructor
      */
-    protected $domain = null;
-
-    /**
-     *
-     * @var string
-     */
-    protected $value;
-
     public function __construct()
     {
-        parent::__construct('create');
+        parent::__construct(
+            self::TYPE,
+            self::CREATE_NAMESPACE,
+            self::VALUE_NAME,
+            new CreateDomainResponse()
+        );
     }
 
     /**
+     * includes Create Object specific content for addContent in AbstractCreate
      *
-     * @param  SimpleXMLElement $xml
-     * @throws Exception
+     * @param SimpleXMLElement $create
      */
-    public function addContent(SimpleXMLElement $xml)
+    protected function addSpecificContent(SimpleXMLElement $create)
     {
-        if (!$this->domain instanceof DomainObject) {
-            $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
-            throw new Exception($exception);
-        }
-
-        //@todo the section below needs to be made domain specific, it's been pasted from CreateContact
-
-        $create = $xml->addChild("domain:create", '', self::CREATE_NAMESPACE);
-
-        $create->addChild(self::VALUE_NAME, $this->domain->getName(), self::CREATE_NAMESPACE);
         $period = $create->addChild('period', 2);
         $period->addAttribute('unit', 'y');
 
         $ns = $create->addChild('ns');
         $this->createNameservers($ns);
 
-        $create->addChild('registrant', $this->domain->getRegistrant());
+        $create->addChild('registrant', $this->object->getRegistrant());
 
         $this->createContacts($create);
 
@@ -70,34 +56,58 @@ class Domain extends Request
     }
 
     /**
+     * Creates XML for all the nameservers
      *
-     * @param SimpleXMLElement $create
+     * @param SimpleXMLElement $ns
      */
-    protected function createNameservers(SimpleXMLElement $create)
+    protected function createNameservers(SimpleXMLElement $ns)
     {
-        foreach ($this->domain->getNameservers() as $nameserver) {
-            $create->addChild('hostObj', $nameserver->getHostName());
+        foreach ($this->object->getNameservers() as $nameserver) {
+            $ns->addChild('hostObj', $nameserver->getHostName());
         }
     }
 
     /**
+     * Creates XML for all the contacts
      *
      * @param SimpleXMLElement $create
      */
     protected function createContacts(SimpleXMLElement $create)
     {
-        foreach ($this->domain->getContacts() as $type => $value) {
-            $contact = $create->addChild('contact', $value->getId());
-            $contact->addAttribute('type', $type);
+        foreach ($this->object->getContacts() as $contact) {
+            $contactXml = $create->addChild('contact', $contact->getId());
+            $contactXml->addAttribute('type', $contact->getType());
         }
     }
 
     /**
+     * An Exception is thrown if the object is not of type \SclNominetEpp\Domain
      *
-     * @param Domain $domain
+     * @param \SclNominetEpp\Domain $object
+     * @return boolean
+     * @throws Exception
      */
-    public function setDomain(DomainObject $domain)
+    public function objectValidate($object)
     {
-        $this->domain = $domain;
+        if (!$object instanceof DomainObject) {
+            $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
+            throw new Exception($exception);
+        }
+        return true;
+    }
+
+    /**
+     * Set Domain.
+     *
+     * @param \SclNominetEpp\Domain $object
+     */
+    public function setDomain(DomainObject $object)
+    {
+        $this->object = $object;
+    }
+
+    protected function getName()
+    {
+        return $this->object->getName();
     }
 }

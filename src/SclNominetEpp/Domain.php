@@ -5,6 +5,7 @@ namespace SclNominetEpp;
 use DateTime;
 
 /**
+ * A domain record
  *
  * @author Tom Oram <tom@scl.co.uk>
  */
@@ -30,60 +31,75 @@ class Domain
     private $period = 2;
 
     /**
+     * The Person, Company or Entity who owns or holds a domain name.
      *
      * @var string
      */
     private $registrant;
 
     /**
+     * All the contacts of the registered domain.
      *
      * @var array
      */
     private $contacts = array();
 
     /**
+     * All the nameservers of the registered domain.
      *
      * @var array
      */
     private $nameservers = array();
 
     /**
+     * The identifier of the sponsoring client.
+     * Specified in the Nominet EPP as "clID"
      *
      * @var string
      */
     private $clientID;
 
     /**
+     * The identifier of the client that created the domain object.
+     * Specified in the Nominet EPP as "crID"
      *
      * @var string
      */
     private $creatorID;
 
     /**
-     * createdDate
+     * The date and time of domain object creation.
+     * Specified in the Nominet EPP as "crDate"
      *
      * @var DateTime
      */
     private $created;
 
     /**
-     * expiredDate
+     * The date and time identifying the end of the domain object's registration period.
+     * Specified in the Nominet EPP as "exDate"
      *
      * @var DateTime
      */
     private $expired;
 
     /**
+     * The identifier of the client that last updated the domain object.
+     * This variable MUST be null if the domain has never been modified.
+     * (could be a name and email address or the value submitted from the <clTRID> element if created by EPP)
      *
-     * @var type
+     * @var string
      */
-    private $upID;
+    private $upID = null;
 
     /**
      *
-     * @var type
+     * The date and time of the most recent domain-object modification, formatted as: YYYYMMDD.
+     * This variable MUST be null if the domain object has never been modified.
+     *
+     * @var DateTime
      */
-    private $upDate;
+    private $upDate = null;
 
     /**
      * If first-bill is not set or set to "th", the registration
@@ -126,6 +142,7 @@ class Domain
     private $nextBill;
 
     /**
+     * Domain's current registration status
      *
      * @var string
      */
@@ -202,14 +219,13 @@ class Domain
     }
 
     /**
-     * Set $this->contacts
+     * Set add $contact to array of contacts
      *
-     * @param string $type
-     * @param array  $contacts
+     * @param \SclNominetEpp\Contact $contact
      */
-    public function addContact($type, Contact $contact)
+    public function addContact(Contact $contact)
     {
-        $this->contacts[$type] = $contact;
+        $this->contacts[] = $contact;
     }
 
     /**
@@ -223,7 +239,18 @@ class Domain
     }
 
     /**
-     * Add $nameserver to $this->nameservers
+     * Remove $contact from the array of contacts if it already exists.
+     *
+     * @param \SclNominetEpp\Contact $contact
+     */
+    public function removeContact(Contact $contact)
+    {
+        $arrayKey =  array_search($contact, $this->contacts);
+        unset($this->contacts[$arrayKey]);
+    }
+
+    /**
+     * Add $nameserver to the array of nameservers
      *
      * @param Nameserver $nameserver
      */
@@ -233,9 +260,9 @@ class Domain
     }
 
     /**
-     * Get $this->nameservers
-     * @todo (type)
-     * @return mixed
+     * Get the array of nameservers
+     *
+     * @return array
      */
     public function getNameservers()
     {
@@ -243,6 +270,17 @@ class Domain
     }
 
     /**
+     * Remove $namserver from the array of namservers if it already exists.
+     *
+     * @param \SclNominetEpp\Nameserver $nameserver
+     */
+    public function removeNameserver(Nameserver $nameserver)
+    {
+        $arrayKey =  array_search($nameserver, $this->nameservers);
+        unset($this->nameservers[$arrayKey]);
+    }
+    /**
+     * Set the identifier of the sponsoring client.
      *
      * @param string $clientID
      */
@@ -252,6 +290,7 @@ class Domain
     }
 
     /**
+     * Get the identifier of the sponsoring client.
      *
      * @return string
      */
@@ -261,7 +300,7 @@ class Domain
     }
 
     /**
-     * Set $this->creatorID
+     * Set the identifier of the client that created the domain object.
      *
      * @param string $creatorID
      */
@@ -271,7 +310,7 @@ class Domain
     }
 
     /**
-     * Get $this->creatorID
+     * Get the identifier of the client that created the domain object.
      *
      * @return string
      */
@@ -401,7 +440,7 @@ class Domain
 
     /**
      * Set $this->autoBill
-     *
+     * @todo the "settype" of autoBill
      * @param settype $autoBill
      */
     public function setAutoBill($autoBill)
@@ -411,7 +450,7 @@ class Domain
 
     /**
      * Get $this->autoBill
-     *
+     * @todo the "gettype" of autoBill
      * @return gettype
      */
     public function getAutoBill()
@@ -496,5 +535,10 @@ class Domain
     public function setPassword($password)
     {
         $this->password = (string) $password;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

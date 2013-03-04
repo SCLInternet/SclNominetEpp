@@ -11,25 +11,49 @@ use SclNominetEpp\Response;
  */
 class ListDomains extends Response
 {
-    //put your code here
+    const LIST_MONTH  = 1;
+    const LIST_EXPIRY = 2;
+
     protected $domains = array();
 
-    protected function processData($data)
+    /**
+     * {@inheritDoc}
+     *
+     * @param SimpleXMLElement $xml
+     * @return void
+     */
+    protected function processData(SimpleXMLElement $xml)
     {
-        if (!isset($data->response->resData)) {
+        if (!$this->success()) {
             return;
         }
-        $ns = $data->getNamespaces(true);
+        if (!$this->xmlValid($xml->response->resData)) {
+            return;
+        }
 
-        $domains = $data->response->resData->children($ns['list'])->listData;
+        $ns = $xml->getNamespaces(true);
 
-        $this->domains = array();
+        $domains = $xml->response->resData->children($ns['list'])->listData;
 
         foreach ($domains->domainName as $domain) {
             $this->domains[] = (string) $domain;
         }
     }
 
+    /**
+     *
+     * @param \SimpleXMLElement $xml
+     * @return boolean
+     */
+    public function xmlValid(SimpleXMLElement $xml)
+    {
+        return isset($xml);
+    }
+
+    /**
+     *
+     * @return array
+     */
     public function getDomains()
     {
         return $this->domains;

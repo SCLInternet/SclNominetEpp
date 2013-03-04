@@ -13,13 +13,13 @@ class Host extends AbstractCheck
     const VALUE_NAME = 'name';
 
     /**
-     *
-     * @param type $data
+     *Constructor
      */
-    public function __construct($data = null)
+    public function __construct()
     {
-        parent::__construct(null);
-        parent::setType(self::TYPE);
-        parent::setValueName(self::VALUE_NAME);
+        parent::__construct(
+            self::TYPE,
+            self::VALUE_NAME
+        );
     }
 }
