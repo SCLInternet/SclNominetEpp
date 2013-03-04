@@ -11,7 +11,7 @@ class HostTest extends \PHPUnit_Framework_TestCase
     /**
      * @var Request
      */
-    protected $object;
+    protected $request;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -19,7 +19,7 @@ class HostTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new CheckHost();
+        $this->request = new CheckHost();
     }
 
     public function testProcessData()

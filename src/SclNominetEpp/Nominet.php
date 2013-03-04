@@ -13,6 +13,7 @@ use SclRequestResponse\AbstractRequestResponse;
 use SclNominetEpp\Exception\LoginRequiredException;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update;
+use SclNominetEpp\Response;
 use SclNominetEpp\Response\ListDomains;
 
 /**

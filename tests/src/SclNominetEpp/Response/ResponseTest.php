@@ -11,7 +11,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     /**
      * @var Response
      */
-    protected $object;
+    protected $request;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -19,7 +19,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new Response();
+        $this->request = new Response();
     }
 
     public function testPrintResponse()

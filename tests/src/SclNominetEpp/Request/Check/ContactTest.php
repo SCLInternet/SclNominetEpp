@@ -2,7 +2,8 @@
 namespace SclNominetEpp\Request\Check;
 
 use SclNominetEpp\Contact;
-use SclNominetEpp\Request\Check\Host as CheckHost;
+use SclNominetEpp\Request\Check\Contact as CheckContact;
+use SclNominetEpp\Response;
 
 /**
  * contact:check test
@@ -12,7 +13,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
     /**
      * @var Request
      */
-    protected $object;
+    protected $request;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -20,7 +21,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new CheckHost();
+        $this->request = new CheckContact();
     }
 
     public function testProcessData()
@@ -41,5 +42,10 @@ class ContactTest extends \PHPUnit_Framework_TestCase
 </epp>
 
 EOX;
+
+        $contacts = array('sc2343','sah8013', '8013sah');
+        $this->request->setValues($contacts);
+
+        $this->assertEquals($xml, $this->request->getPacket());
     }
 }

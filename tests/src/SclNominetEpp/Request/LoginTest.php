@@ -11,7 +11,7 @@ class LoginTest extends \PHPUnit_Framework_TestCase
     /**
      * @var Request
      */
-    protected $object;
+    protected $request;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -19,14 +19,14 @@ class LoginTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new Login();
+        $this->request = new Login();
     }
 
     public function testLogin()
     {
-        $this->object;
+        $this->request;
 
-        $this->object->setCredentials('TAG', 'PASSWORD');
+        $this->request->setCredentials('TAG', 'PASSWORD');
 
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -66,7 +66,7 @@ class LoginTest extends \PHPUnit_Framework_TestCase
 
 EOF;
 
-        //$this->assertEquals($xml, (string) $this->object);
+        //$this->assertEquals($xml, (string) $this->request);
 
     }
 }
