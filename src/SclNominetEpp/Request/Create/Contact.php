@@ -18,7 +18,6 @@ class Contact extends AbstractCreate
     const TYPE = 'contact';
     const CREATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
     const VALUE_NAME = 'id';
-    const DUMMY_PASSWORD = 'qwerty';
 
     /**
      * Constructor
