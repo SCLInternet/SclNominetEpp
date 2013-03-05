@@ -70,7 +70,7 @@ abstract class AbstractCheck extends Request
      * @param  array|string $values
      * @return Check
      */
-    public function setValues($values)
+    public function lookup($values)
     {
         if (is_array($values)) {
             $this->values = $values;
