@@ -43,7 +43,7 @@ class ContactTest extends \PHPUnit_Framework_TestCase
 EOX;
 
         $contacts = array('sc2343','sah8013', '8013sah');
-        $this->request->setValues($contacts);
+        $this->request->lookup($contacts);
 
         $this->assertEquals($xml, $this->request->getPacket());
     }

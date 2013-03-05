@@ -41,7 +41,7 @@ class HostTest extends \PHPUnit_Framework_TestCase
 EOX;
 
         $hosts = array('ns1.example.com','ns2.example.com', 'ns3.example.com');
-        $this->request->setValues($hosts);
+        $this->request->lookup($hosts);
 
         $this->assertEquals($xml, $this->request->getPacket());
     }

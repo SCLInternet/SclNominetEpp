@@ -76,7 +76,7 @@ EOX;
         $this->response->init($xml);
 
         $host = $this->response->getHost();
-        var_dump($host);
+
         $this->assertEquals($expected, $host);
 
     }

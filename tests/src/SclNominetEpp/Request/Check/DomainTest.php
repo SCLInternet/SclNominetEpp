@@ -41,7 +41,7 @@ EOX;
 
         $domain = 'caliban-scl.sch.uk';
         $domains = array($domain);
-        $this->request->setValues($domains);
+        $this->request->lookup($domains);
 
         $this->assertEquals($xml, $this->request->getPacket());
     }

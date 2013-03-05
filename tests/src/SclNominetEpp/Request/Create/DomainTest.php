@@ -70,8 +70,6 @@ EOX;
         $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
         $domain->addNameserver($nameserver);
 
-        var_dump($nameserver);
-
         $techy = new \SclNominetEpp\Contact();
         $techy->setId('techy1');
         $techy->setType('tech');
@@ -83,6 +81,6 @@ EOX;
 
         $this->request->setDomain($domain);
 
-                $this->assertEquals($xml, $this->request->getPacket());
+        $this->assertEquals($xml, $this->request->getPacket());
     }
 }
