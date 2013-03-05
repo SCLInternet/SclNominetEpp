@@ -140,11 +140,7 @@ abstract class Lock extends Request
 
     private function investigate($lock)
     {
-        try {
-            $this->checkInvalidSetup();
-        } catch (Exception $e) {
-            echo $e->message();
-        }
+        $this->checkInvalidSetup();
 
         if (self::OBJECT_DOMAIN === $this->object) {
             $lock->addChild('domainName', $this->domainName);
@@ -155,12 +151,7 @@ abstract class Lock extends Request
 
     private function optOut($lock)
     {
-        try {
-            $this->checkInvalidSetup();
-        } catch (Exception $e) {
-            echo $e->message();
-        }
-
+        $this->checkInvalidSetup();
 
         $this->idChildDecider($lock);
     }

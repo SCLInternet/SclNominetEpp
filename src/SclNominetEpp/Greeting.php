@@ -267,7 +267,6 @@ class Greeting
 
     public function setAccess($access)
     {
-        echo (string) $access;
         if (!in_array((string) $access, self::$accessTags)) {
             throw new \Exception("Invald access Tag: $access");
         }

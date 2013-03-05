@@ -29,7 +29,6 @@ class Greeting implements ResponseInterface
      */
     public function init($xml)
     {
-        echo $xml;
         $data = new SimpleXMLElement($xml);
 
         // TODO verify all these element exist

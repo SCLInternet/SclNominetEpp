@@ -141,7 +141,6 @@ class Response implements ResponseInterface
      */
     public function init($xml)
     {
-        echo $xml;
         $data = new SimpleXMLElement($xml);
 
         if (!isset($data->response)) {

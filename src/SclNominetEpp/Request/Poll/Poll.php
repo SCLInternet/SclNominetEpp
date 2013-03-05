@@ -27,11 +27,7 @@ class Poll extends Request
     public function __construct($op)
     {
         parent::__construct('poll', new PollResponse);
-        try {
-            $this->setOp($op);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        $this->setOp($op);
     }
 
     /**

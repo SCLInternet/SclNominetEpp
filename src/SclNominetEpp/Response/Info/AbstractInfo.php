@@ -52,7 +52,6 @@ abstract class AbstractInfo extends Response
             $extension = $response->extension->children($ns["{$this->type}-nom-ext"])->infData;
         }
         $this->setValue($infData->$name);
-        echo $infData->clID;
 
         $this->object->setClientID($infData->clID);
         $this->object->setCreated(new DateTime((string) $infData->crDate));

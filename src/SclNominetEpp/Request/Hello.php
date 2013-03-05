@@ -52,7 +52,7 @@ class Hello extends Request
         );
 
         $this->output = $this->formatXml($this->output);
-        echo $this->output;
+
         return $this->output;
     }
 }
