@@ -2,10 +2,10 @@
 
 namespace SclNominetEpp;
 
-use SimpleXMLElement;
+use SclNominetEpp\Exception\RuntimeException;
 use SclRequestResponse\Exception\InvalidResponsePacketException;
 use SclRequestResponse\ResponseInterface;
-use Exception;
+use SimpleXMLElement;
 
 /**
  * This class handles the essentials of all command responses
@@ -17,47 +17,49 @@ class Response implements ResponseInterface
     /**
      * {@link http://tools.ietf.org/html/rfc4930#section-3 Result Codes}
      */
+
     //RESULT SUCCESS CODES  (1YZZ)
     const SUCCESS_STANDARD          = 1000;
     const SUCCESS_ACTION_PENDING    = 1001;
     const SUCCESS_NO_MESSAGES       = 1300;
     const SUCCESS_MESSAGE_RETRIEVED = 1301;
     const SUCCESS_ENDING_SESSION    = 1500;
-    //RESULT ERROR CODES    (2YZZ)
-        //X0ZZ
-    const ERROR_UNKNOWN_COMMAND             = 2000;
-    const ERROR_COMMAND_SYNTAX              = 2001;
-    const ERROR_COMMAND_USE                 = 2002;
-    const ERROR_REQUIRED_PARAMETER_MISSING  = 2003;
-    const ERROR_PARAMETER_VALUE_RANGE       = 2004;
-    const ERROR_PARAMETER_VALUE_SYNTAX      = 2005;
-        //X1ZZ
-    const ERROR_UNIMPLEMENTED_PROTOCOL_VERSION  = 2100;
-    const ERROR_UNIMPLEMENTED_COMMAND           = 2101;
-    const ERROR_UNIMPLEMENTED_OPTION            = 2102;
-    const ERROR_UNIMPLEMENTED_EXTENSION         = 2103;
-    const ERROR_BILLING_FAILURE                 = 2104;
-    const ERROR_RENEWAL_INELIGIBLE              = 2105;
-    const ERROR_TRANSFER_INELIGIBLE             = 2106;
-        //X2ZZ
-    const ERROR_AUTHENTICATION                      = 2200;
-    const ERROR_AUTHORIZATION                       = 2201;
-    const ERROR_INVALID_AUTHORIZATION_INFORMATION   = 2202;
-        //X3ZZ
-    const ERROR_PENDING_TRANSFER                    = 2300;
-    const ERROR_NOT_PENDING_TRANSFER                = 2301;
-    const ERROR_OBJECT_EXISTS                       = 2302;
-    const ERROR_OBJECT_DOES_NOT_EXIST               = 2303;
-    const ERROR_OBJECT_STATUS_PROHIBITS_OPERATION   = 2304;
-    const ERROR_PARAMETER_VALUE_POLICY              = 2305;
-    const ERROR_UNIMPLEMENTED_OBJECT_SERVICE        = 2307;
-    const ERROR_DATA_MANAGEMENT_POLICY_VIOLATION    = 2308;
-        //X4ZZ
-    const ERROR_COMMAND_FAILED = 2400;
-        //X5ZZ
-    const ERROR_COMMAND_FAILED_SERVER_CLOSING_CONNECTION            = 2500;
-    const ERROR_AUTHENTICATION_SERVER_CLOSING_CONNECTION            = 2501;
-    const ERROR_SESSION_LIMIT_EXCEEDED_SERVER_CLOSING_CONNECTION    = 2502;
+
+    //RESULT ERROR CODES (2YZZ)
+    //X0ZZ
+    const ERROR_UNKNOWN_COMMAND                                  = 2000;
+    const ERROR_COMMAND_SYNTAX                                   = 2001;
+    const ERROR_COMMAND_USE                                      = 2002;
+    const ERROR_REQUIRED_PARAMETER_MISSING                       = 2003;
+    const ERROR_PARAMETER_VALUE_RANGE                            = 2004;
+    const ERROR_PARAMETER_VALUE_SYNTAX                           = 2005;
+    //X1ZZ
+    const ERROR_UNIMPLEMENTED_PROTOCOL_VERSION                   = 2100;
+    const ERROR_UNIMPLEMENTED_COMMAND                            = 2101;
+    const ERROR_UNIMPLEMENTED_OPTION                             = 2102;
+    const ERROR_UNIMPLEMENTED_EXTENSION                          = 2103;
+    const ERROR_BILLING_FAILURE                                  = 2104;
+    const ERROR_RENEWAL_INELIGIBLE                               = 2105;
+    const ERROR_TRANSFER_INELIGIBLE                              = 2106;
+    //X2ZZ
+    const ERROR_AUTHENTICATION                                   = 2200;
+    const ERROR_AUTHORIZATION                                    = 2201;
+    const ERROR_INVALID_AUTHORIZATION_INFORMATION                = 2202;
+    //X3ZZ
+    const ERROR_PENDING_TRANSFER                                 = 2300;
+    const ERROR_NOT_PENDING_TRANSFER                             = 2301;
+    const ERROR_OBJECT_EXISTS                                    = 2302;
+    const ERROR_OBJECT_DOES_NOT_EXIST                            = 2303;
+    const ERROR_OBJECT_STATUS_PROHIBITS_OPERATION                = 2304;
+    const ERROR_PARAMETER_VALUE_POLICY                           = 2305;
+    const ERROR_UNIMPLEMENTED_OBJECT_SERVICE                     = 2307;
+    const ERROR_DATA_MANAGEMENT_POLICY_VIOLATION                 = 2308;
+    //X4ZZ
+    const ERROR_COMMAND_FAILED                                   = 2400;
+    //X5ZZ
+    const ERROR_COMMAND_FAILED_SERVER_CLOSING_CONNECTION         = 2500;
+    const ERROR_AUTHENTICATION_SERVER_CLOSING_CONNECTION         = 2501;
+    const ERROR_SESSION_LIMIT_EXCEEDED_SERVER_CLOSING_CONNECTION = 2502;
 
     protected static $successCodes = array(
         self::SUCCESS_STANDARD,
@@ -149,17 +151,13 @@ class Response implements ResponseInterface
 
         // TODO verify all these element exist
 
-        $this->code = (int) $data->response->result->attributes()->code;
-        $this->message = $data->response->result->msg;
+        $this->code    = (int) $data->response->result->attributes()->code;
+        $this->message = (string) $data->response->result->msg;
 
         $this->data = array();
 
-        if ((!in_array($this->code(), self::$errorCodes))&&(!in_array($this->code(), self::$successCodes))) {
-            throw new Exception("Unexpected result-code: {$this->code()}");
-        }
-
-        if (!$this->success()) {
-            return $this->message();
+        if (!$this->isErrorCode($this->code) && !$this->isSuccessCode($this->code)) {
+            throw RuntimeException::unexpectedResultCode($this->code);
         }
 
         $this->processData($data);
@@ -178,12 +176,11 @@ class Response implements ResponseInterface
      * 1yzz    Positive completion reply.
      * 2yzz    Negative completion reply.
      *
-     * @return boolean
+     * @return bool
      */
     public function success()
     {
-        $code = (string)$this->code;
-        return "1" === $code[0];
+        return $this->isSuccessCode($this->code);
     }
 
     /**
@@ -214,5 +211,27 @@ class Response implements ResponseInterface
     public function data()
     {
         return $this->data;
+    }
+
+    /**
+     * Check if the given code is an error code.
+     *
+     * @param  int $code
+     * @return bool
+     */
+    protected function isErrorCode($code)
+    {
+        return in_array($code, self::$errorCodes);
+    }
+
+    /**
+     * Check if the given code is an success code.
+     *
+     * @param  int $code
+     * @return bool
+     */
+    protected function isSuccessCode($code)
+    {
+        return in_array($code, self::$successCodes);
     }
 }
