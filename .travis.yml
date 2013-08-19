@@ -5,7 +5,11 @@ php:
   - 5.4
 
 before_script:
-  - composer install --dev
-  - wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
+  - composer self-update
+  - composer install --dev --prefer-source
+  - mkdir -p build/logs
 
-script: bin/travis_build.sh
+script: .travis/travis_build.sh
+
+after_script:
+  - php vendor/bin/coveralls -v
