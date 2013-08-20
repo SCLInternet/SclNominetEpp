@@ -11,12 +11,16 @@ if (sizeof($argv) < 2) {
 $config = include __DIR__ . '/test_epp.config.php';
 
 $communicator = new \SclNominetEpp\Communicator(new \SclSocket\Socket);
-$communicator->connect($config['live']);
+$communicator->setupConnection($config['live']);
 
 $nominet = new \SclNominetEpp\Nominet();
 $nominet->setCommunicator($communicator);
 
-$nominet->login($config['username'], $config['password']);
+if (!$nominet->login($config['username'], $config['password'])) {
+    $response = $nominet->getResponse();
+
+    die("Login failed : " . $response->message() . "\n");
+}
 
 $command = $argv[1];
 unset($argv[0]);
