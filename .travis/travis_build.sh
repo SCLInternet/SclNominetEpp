@@ -1,13 +1,10 @@
 #!/bin/bash
 
-phpunit
+vendor/bin/phpunit
 PHPUNIT=$?
 
 vendor/bin/phpcs --standard=psr2 src
 PHPCS=$?
-
-php php-cs-fixer.phar fix -v --dry-run --level=psr2 ./src/
-PHPFX=$?
 
 #vendor/bin/phpmd src text codesize
 #PHPMD=$?
@@ -19,10 +16,6 @@ if [ "$PHPUNIT" -ne "0" ]; then
     EXIT=1
 fi
 if [ "$PHPCS" -ne "0" ]; then
-    echo "**** Coding standards failed"
-    EXIT=1
-fi
-if [ "$PHPFX" -ne "0" ]; then
     echo "**** Coding standards failed"
     EXIT=1
 fi

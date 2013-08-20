@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Response;
 
 use SclNominetEpp\Response;
+use SimpleXMLElement;
 
 /**
  * This class interprets XML for a Nominet EPP list command response.
