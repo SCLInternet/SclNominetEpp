@@ -64,14 +64,14 @@ class Communicator extends PersistentCommunicator
      *
      * @return void
      */
-    public function connect($live = false, $secure = true)
+    public function setupConnection($live = false, $secure = true)
     {
         $liveIndex = $live ? 'live' : 'test';
         $secureIndex = $secure ? 'secure' : 'insecure';
 
         $config = self::$config[$liveIndex][$secureIndex];
 
-        parent::connect($config['host'], $config['port'], $secure);
+        $this->connect($config['host'], $config['port'], $secure);
 
         // TODO Parse and verify the greeting.
         $this->read();
