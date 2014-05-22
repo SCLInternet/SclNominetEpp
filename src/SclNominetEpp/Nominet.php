@@ -335,7 +335,7 @@ class Nominet extends AbstractRequestResponse
 
         $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
         if (!$currentDomain instanceof Domain) {
-            throw new Exception("The domain requested for updating is unregistered.");
+            throw new \Exception("The domain requested for updating is unregistered.");
         }
         $currentNameservers = $currentDomain->getNameservers();
         $currentContacts    = $currentDomain->getContacts();
