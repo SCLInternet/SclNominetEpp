@@ -15,7 +15,7 @@ class Domain extends Request
 {
     const TYPE = 'domain'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:domain-1.0';
-    const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.1';
+    const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.2';
     const VALUE_NAME = 'name';
 
     /**
@@ -89,7 +89,7 @@ class Domain extends Request
         $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
 
         $domainXSI    =    $domainNS . ' ' . 'domain-1.0.xsd';
-        $extensionXSI = $extensionNS . ' ' . 'domain-nom-ext-1.1.xsd';
+        $extensionXSI = $extensionNS . ' ' . 'domain-nom-ext-1.2.xsd';
 
         $update = $updateXML->addChild('domain:update', '', $domainNS);
         $update->addAttribute('xsi:schemaLocation', $domainXSI);
