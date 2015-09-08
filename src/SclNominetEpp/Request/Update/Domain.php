@@ -116,8 +116,6 @@ class Domain extends Request
         $extension = $extensionXML->addChild('domain-nom-ext:update', '', $extensionNS);
         $extension->addAttribute('schemaLocation', $extensionXSI, 'xsi');
 
-        $extension->addChild('first-bill');
-        $extension->addChild('recur-bill');
         $extension->addChild('auto-bill');
         $extension->addChild('next-bill');
         $extension->addChild('notes');
