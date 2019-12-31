@@ -3,6 +3,7 @@
 namespace SclNominetEpp\Request\Info;
 
 use SclNominetEpp\Response\Info\Contact as ContactInfoResponse;
+use SclNominetEpp\Contact as ContactObject;
 
 /**
  * Page-Level DocBlock
@@ -37,9 +38,9 @@ class Contact extends AbstractInfo
     /**
      * Set Contact to the passed ContactObject file.
      *
-     * @param Contact $object
+     * @param ContactObject $contact
      */
-    public function setContact(Contact $object)
+    public function setContact(ContactObject $object)
     {
         $this->object = $object;
     }

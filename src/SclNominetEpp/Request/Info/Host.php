@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request\Info;
 
+use SclNominetEpp\Nameserver;
 use SclNominetEpp\Response\Info\Host as HostInfoResponse;
 
 /**

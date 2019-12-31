@@ -3,6 +3,8 @@
 namespace SclNominetEpp\Request\Info;
 
 use SclNominetEpp\Response\Info\Domain as DomainInfoResponse;
+use SclNominetEpp\Domain as DomainObject;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP domain:info command.
@@ -46,7 +48,7 @@ class Domain extends AbstractInfo
     /**
      * Set Domain.
      *
-     * @param \SclNominetEpp\Domain $object
+     * @param DomainObject $object
      */
     public function setDomain(DomainObject $object)
     {
