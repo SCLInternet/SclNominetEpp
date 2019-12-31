@@ -18,6 +18,7 @@ class Contact extends AbstractCreate
     const TYPE = 'contact';
     const CREATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
     const VALUE_NAME = 'id';
+    const DUMMY_PASSWORD = 'qwerty';
 
     /**
      * Constructor
@@ -57,6 +58,10 @@ class Contact extends AbstractCreate
 
         $create->addChild('voice', $this->object->getPhone()->get());
         $create->addChild('email', $this->object->getEmail()->get());
+
+        //Mandatory for EPP but not used by nominet
+        $authInfo = $create->addChild('authInfo');
+        $authInfo->addChild('pw', self::DUMMY_PASSWORD);
     }
 
     /**
