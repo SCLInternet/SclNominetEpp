@@ -8,7 +8,7 @@ use SclNominetEpp\Request;
  *
  * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-abstract class Lock extends Request
+class Lock extends Request
 {
     const OBJECT_CONTACT = 'contact';
     const OBJECT_DOMAIN  = 'domain';
