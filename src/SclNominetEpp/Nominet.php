@@ -632,7 +632,7 @@ class Nominet extends AbstractRequestResponse
 
         $request = new Request\Update\Lock\Lock($objectName, $type);
 
-        $reponse = $this->processRequest($request);
+        $response = $this->processRequest($request);
 
         return $response;
     }
