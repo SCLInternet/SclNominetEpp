@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request\Create;
 
+use SclContact\AddressInterface;
 use SimpleXMLElement;
 use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Response\Create\Contact as CreateContactResponse;
@@ -19,6 +20,7 @@ class Contact extends AbstractCreate
     const CREATE_NAMESPACE = 'urn:ietf:params:xml:ns:contact-1.0';
     const VALUE_NAME = 'id';
     const DUMMY_PASSWORD = 'qwerty';
+    const POSTAL_INFO_TYPE = 'loc';
 
     /**
      * Constructor
@@ -41,10 +43,13 @@ class Contact extends AbstractCreate
      */
     protected function addSpecificContent(SimpleXMLElement $create)
     {
-        $address = $this->object->getAddress();
+        /** @var ContactObject $object */
+        $object = $this->object;
+        /** @var AddressInterface $address */
+        $address = $object->getAddress();
 
         $postalInfo = $create->addChild('postalInfo');
-        $postalInfo->addAttribute('type', 'int');
+        $postalInfo->addAttribute('type', self::POSTAL_INFO_TYPE);
         $postalInfo->addChild('name', (string)$this->object->getName());
         $postalInfo->addChild('org', $this->object->getCompany());
 
@@ -81,7 +86,7 @@ class Contact extends AbstractCreate
     /**
      * Set Contact to the passed ContactObject file.
      *
-     * @param ContactObject $contact
+     * @param ContactObject $object
      */
     public function setContact(ContactObject $object)
     {
