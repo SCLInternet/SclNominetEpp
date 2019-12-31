@@ -162,6 +162,8 @@ class Nominet extends AbstractRequestResponse
      * successful.
      *
      * @param string|array $domains
+     * @return array
+     * @throws LoginRequiredException
      */
     public function checkDomain($domains)
     {
