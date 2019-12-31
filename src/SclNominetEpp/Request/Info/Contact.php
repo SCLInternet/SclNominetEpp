@@ -37,9 +37,9 @@ class Contact extends AbstractInfo
     /**
      * Set Contact to the passed ContactObject file.
      *
-     * @param ContactObject $contact
+     * @param Contact $object
      */
-    public function setContact(ContactObject $object)
+    public function setContact(Contact $object)
     {
         $this->object = $object;
     }
