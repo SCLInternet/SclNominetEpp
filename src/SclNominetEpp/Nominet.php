@@ -8,6 +8,8 @@
 
 namespace SclNominetEpp;
 
+use DateTime;
+use Exception;
 use SclRequestResponse\AbstractRequestResponse;
 
 use SclNominetEpp\Exception\LoginRequiredException;
@@ -222,7 +224,7 @@ class Nominet extends AbstractRequestResponse
      * The <create> command allows you to create a contact
      * account.
      *
-     * @param \SclNominetEpp\Contact $contact
+     * @param Contact $contact
      */
     public function createContact(Contact $contact)
     {
@@ -240,7 +242,7 @@ class Nominet extends AbstractRequestResponse
      * The <create> command allows you to register a domain name or to create an
      * account or nameserver object to link to domain names.
      *
-     * @param \SclNominetEpp\Domain $domain
+     * @param Domain $domain
      */
     public function createDomain(Domain $domain)
     {
@@ -257,7 +259,7 @@ class Nominet extends AbstractRequestResponse
     /**
      * The <create> command allows you to create a nameserver object to link to domain names.
      *
-     * @param \SclNominetEpp\Nameserver $host
+     * @param Nameserver $host
      */
     public function createHost(Nameserver $host)
     {
@@ -276,7 +278,7 @@ class Nominet extends AbstractRequestResponse
      * Further details of this are available in RFC 5731 The delete command may
      * not be used to delete nameservers and accounts.
      *
-     * @param \SclNominetEpp\Domain|string $domain
+     * @param Domain|string $domain
      * @return boolean|mixed
      */
     public function deleteDomain(Domain $domain)
@@ -297,7 +299,7 @@ class Nominet extends AbstractRequestResponse
      * other object types.
      *
      * @param string $domain The domain to be renewed
-     * @param \DateTime|NULL $expDate The new expiry data or NULL
+     * @param DateTime|NULL $expDate The new expiry data or NULL
      */
     public function renew($domain, $expDate)
     {
@@ -335,7 +337,7 @@ class Nominet extends AbstractRequestResponse
 
         $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
         if (!$currentDomain instanceof Domain) {
-            throw new \Exception("The domain requested for updating is unregistered.");
+            throw new Exception("The domain requested for updating is unregistered.");
         }
         $currentNameservers = $currentDomain->getNameservers();
         $currentContacts    = $currentDomain->getContacts();
@@ -611,7 +613,7 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
 
         if (!in_array($type, array(ListDomains::LIST_MONTH, ListDomains::LIST_EXPIRY))) {
-            throw new \Exception("Invalid type $type.");
+            throw new Exception("Invalid type $type.");
         }
 
         $request = new Request\ListDomains();
