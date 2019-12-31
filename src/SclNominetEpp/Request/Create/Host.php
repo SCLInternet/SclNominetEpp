@@ -66,7 +66,7 @@ class Host extends AbstractCreate
 
     /**
      *
-     * @param Nameserver $nameserver
+     * @param Nameserver $object
      */
     public function setNameserver(Nameserver $object)
     {
