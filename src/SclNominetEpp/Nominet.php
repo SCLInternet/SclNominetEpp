@@ -457,10 +457,11 @@ class Nominet extends AbstractRequestResponse
      * The EPP <info> command is used to retrieve information associated with
      * an object.
      *
-     * @param string  $domainName
-     * @param boolean $recursive  If false only the domain info is fetch, if
+     * @param string $domainName
+     * @param boolean $recursive If false only the domain info is fetch, if
      *     true the attached accounts and host info should be returned also.
-     * @return Domain
+     * @return Domain|bool
+     * @throws LoginRequiredException
      */
     public function domainInfo($domainName, $recursive = false)
     {
@@ -470,6 +471,7 @@ class Nominet extends AbstractRequestResponse
 
         $request->lookup($domainName);
 
+        /** @var Response\Info\Domain $response */
         $response = $this->processRequest($request);
         if (!$response->success()) {
             return false;
@@ -482,8 +484,9 @@ class Nominet extends AbstractRequestResponse
      * The EPP <info> command is used to retrieve information associated with
      * an object. ($contactID is the $registrant from domainInfo)
      *
-     * @param  string  $contactID
+     * @param string $contactID
      * @return boolean
+     * @throws LoginRequiredException
      */
     public function contactInfo($contactID)
     {

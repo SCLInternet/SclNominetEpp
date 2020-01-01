@@ -31,6 +31,17 @@ class Domain extends AbstractInfo
     }
 
     /**
+     * @param string $domainName
+     * @return DomainObject
+     */
+    public function lookup($domainName)
+    {
+        $domain = new DomainObject();
+        $domain->setName($domainName);
+        return $domain;
+    }
+
+    /**
      * addContent
      * @todo give this a description
      * @todo Unabstract this specifically for domainInfo.
