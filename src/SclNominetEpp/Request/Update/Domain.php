@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request\Update;
 
+use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
@@ -20,13 +21,13 @@ class Domain extends Request
 
     /**
      *
-     * @var type
+     * @var DomainObject
      */
     protected $domain = null;
 
     /**
      * Identifying value
-     * @var type
+     * @var string
      */
     protected $value;
 
@@ -126,7 +127,7 @@ class Domain extends Request
     /**
      * Setter
      *
-     * @param type $domain
+     * @param DomainObject $domain
      */
     public function setDomain($domain)
     {
