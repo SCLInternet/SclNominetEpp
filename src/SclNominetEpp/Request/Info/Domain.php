@@ -18,6 +18,13 @@ class Domain extends AbstractInfo
     const VALUE_NAME = "name";
 
     /**
+     * The object.
+     *
+     * @var DomainObject
+     */
+    protected $object = null;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -32,13 +39,14 @@ class Domain extends AbstractInfo
 
     /**
      * @param string $domainName
-     * @return DomainObject
+     * @return Domain
      */
     public function lookup($domainName)
     {
         $domain = new DomainObject();
         $domain->setName($domainName);
-        return $domain;
+        $this->setDomain($domain);
+        return $this;
     }
 
     /**
