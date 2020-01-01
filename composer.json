@@ -31,7 +31,6 @@
     "require-dev": {
         "phpunit/phpunit" : "3.7.*",
         "squizlabs/php_codesniffer" : "1.*",
-        "phpmd/phpmd" : "1.4.0",
-        "satooshi/php-coveralls": "dev-master"
+        "phpmd/phpmd" : "1.4.0"
     }
 }
