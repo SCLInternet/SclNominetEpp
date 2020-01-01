@@ -93,7 +93,7 @@ class Domain extends Request
         $extensionXSI = $extensionNS . ' ' . 'domain-nom-ext-1.2.xsd';
 
         $update = $updateXML->addChild('domain:update', '', $domainNS);
-        $update->addAttribute('schemaLocation', $domainXSI, 'xsi');
+        $update->addAttribute('xsi:schemaLocation', $domainXSI);
         $update->addChild(self::VALUE_NAME, $this->value, $domainNS);
 
         $addBlock = $update->addChild('add', '', $domainNS);
@@ -115,7 +115,7 @@ class Domain extends Request
 
         $extensionXML = $this->xml->command->addChild('extension');
         $extension = $extensionXML->addChild('domain-nom-ext:update', '', $extensionNS);
-        $extension->addAttribute('schemaLocation', $extensionXSI, 'xsi');
+        $extension->addAttribute('xsi:schemaLocation', $extensionXSI);
 
         $extension->addChild('auto-bill');
         $extension->addChild('next-bill');
