@@ -27,34 +27,6 @@ class ContactTest extends \PHPUnit\Framework\TestCase
      */
     public function testCreateContact()
     {
-        $xml = <<<EOX
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<epp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:ietf:params:xml:ns:epp-1.0" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.0 epp-1.0.xsd">
-  <command>
-    <create>
-      <contact:create xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
-        <contact:id>sc2343</contact:id>
-        <contact:postalInfo type="int">
-          <contact:name>first last</contact:name>
-          <contact:org>sclMerlyn</contact:org>
-          <contact:addr>
-            <contact:street>Bryn Seion Chapel</contact:street>
-            <contact:street/>
-            <contact:city>Cardigan</contact:city>
-            <contact:sp>Ceredigion</contact:sp>
-            <contact:pc>SA43 2HB</contact:pc>
-            <contact:cc>US</contact:cc>
-          </contact:addr>
-        </contact:postalInfo>
-        <contact:voice>+44.3344555666</contact:voice>
-        <contact:email>example@email.com</contact:email>
-      </contact:create>
-    </create>
-  </command>
-</epp>
-
-EOX;
-
         $contact = new Contact();
         $contact->setId('sc2343');
 
@@ -100,6 +72,8 @@ EOX;
 
         $this->request->setContact($contact);
 
+        $filename = __DIR__ . '/' . pathinfo(__FILE__, PATHINFO_FILENAME) . '.xml';
+        $xml = file_get_contents($filename);
         $this->assertEquals($xml, $this->request->getPacket());
     }
 
