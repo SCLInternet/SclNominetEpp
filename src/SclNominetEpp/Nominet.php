@@ -9,6 +9,7 @@
 namespace SclNominetEpp;
 
 use DateTime;
+use DomainException;
 use Exception;
 use SclRequestResponse\AbstractRequestResponse;
 
@@ -339,7 +340,7 @@ class Nominet extends AbstractRequestResponse
 
         $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
         if (!$currentDomain instanceof Domain) {
-            throw new Exception("The domain requested for updating is unregistered.");
+            throw new DomainException("The domain requested for updating is unregistered.");
         }
         $currentNameservers = $currentDomain->getNameservers();
         $currentContacts    = $currentDomain->getContacts();
@@ -460,10 +461,10 @@ class Nominet extends AbstractRequestResponse
      * @param string $domainName
      * @param boolean $recursive If false only the domain info is fetch, if
      *     true the attached accounts and host info should be returned also.
-     * @return Domain|bool
+     * @return object
      * @throws LoginRequiredException
      */
-    public function domainInfo($domainName, $recursive = false)
+    public function domainInfo(string $domainName, $recursive = false)
     {
         $this->loginCheck();
 
@@ -474,10 +475,9 @@ class Nominet extends AbstractRequestResponse
         /** @var Response\Info\Domain $response */
         $response = $this->processRequest($request);
         if (!$response->success()) {
-            return false;
+            throw new DomainException($response->message(), $response->code());
         }
-        $domain = $response->getDomain();
-        return $domain;
+        return $response->getDomain();
     }
 
     /**

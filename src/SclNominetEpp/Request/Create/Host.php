@@ -2,10 +2,10 @@
 
 namespace SclNominetEpp\Request\Create;
 
+use InvalidArgumentException;
 use SclNominetEpp\Response\Create\Host as CreateHostResponse;
 use SclNominetEpp\Nameserver;
 use SimpleXMLElement;
-use Exception;
 
 /**
  * This class build the XML for a Nominet EPP host:create command.
@@ -52,13 +52,13 @@ class Host extends AbstractCreate
     /**
      * An Exception is thrown if the object is not of type \SclNominetEpp\Contact
      *
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function objectValidate($object)
     {
         if (!$object instanceof Nameserver) {
             $exception = sprintf('A valid Nameserver object was not passed to \Request\CreateHost, Ln:%d', __LINE__);
-            throw new Exception($exception);
+            throw new InvalidArgumentException($exception);
         }
         return true;
     }

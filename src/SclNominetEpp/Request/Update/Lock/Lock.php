@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request\Update\Lock;
 
+use InvalidArgumentException;
 use SclNominetEpp\Request;
 
 /**
@@ -134,7 +135,7 @@ class Lock extends Request
             $this->optOut($lock);
         }
         if (self::OBJECT_CONTACT !== $this->object) {
-            throw new Exception("Invalid string for \$object ");
+            throw new InvalidArgumentException("Invalid string for \$object ");
         }
     }
 
@@ -159,7 +160,7 @@ class Lock extends Request
     private function checkInvalidSetup()
     {
         if (null !== $this->contactId && null !== $this->domainName) {
-            throw new Exception("Both ContactId and DomainName set, only one should be set.");
+            throw new InvalidArgumentException("Both ContactId and DomainName set, only one should be set.");
         }
     }
 
