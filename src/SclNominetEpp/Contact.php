@@ -129,7 +129,6 @@ class Contact extends \SclContact\Contact
      */
     public function __construct()
     {
-
     }
 
     /**

@@ -119,7 +119,6 @@ class Domain extends Request
         $extension->addChild('next-bill');
         $extension->addChild('notes');
         //@todo implement all variables, also, fix the extension data.
-
     }
 
     /**

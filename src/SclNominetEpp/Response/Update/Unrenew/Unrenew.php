@@ -50,7 +50,6 @@ class Unrenew extends Response
         $renData = $response->resData->children($ns['domain'])->renData;
 
         foreach ($renData as $renDataTag) {
-
         }
     }
 

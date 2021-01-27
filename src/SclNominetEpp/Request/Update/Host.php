@@ -75,7 +75,6 @@ class Host extends Request
                 $field->fieldXml($remBlock, $hostNS);
             }
         }
-
     }
 
     public function setContact($host)

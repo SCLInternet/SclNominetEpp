@@ -1,7 +1,6 @@
 <?php
 namespace SclNominetEpp\Request\Update\Field;
 
-
 /**
  * Details the functions required for an UpdateField (fields like status)
  *

@@ -57,6 +57,5 @@ class ListDomains extends Request
         $domainList->addAttribute('xsi:schemaLocation', $listXSI, self::XSI_NAMESPACE);
 
         $domainList->addChild('month', $this->month);
-
     }
 }

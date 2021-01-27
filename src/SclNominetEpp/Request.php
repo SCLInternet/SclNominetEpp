@@ -60,7 +60,6 @@ class Request implements RequestInterface
         }
 
         $this->xml = new SimpleXMLElement('<epp />');
-
     }
 
     /**

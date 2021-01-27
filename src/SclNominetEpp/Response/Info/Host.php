@@ -91,6 +91,5 @@ class Host extends AbstractInfo
 
     protected function addExtensionData(SimpleXMLElement $extension = null)
     {
-
     }
 }

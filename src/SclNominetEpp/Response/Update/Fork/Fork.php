@@ -51,7 +51,6 @@ class Fork extends Response
         $contactDetails = $xml->response->resData->children($ns['contact'])->creData;
         $this->contactId = $contactDetails->id;
         $this->createDate = $contactDetails->crDate;
-
     }
 
     /**

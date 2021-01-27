@@ -35,6 +35,5 @@ class ContactAddress implements UpdateFieldInterface
     {
         $postalInfo = $xml->addChild('postalInfo', '', $namespace);
         $postalInfo->addAttribute('type', $this->type);
-
     }
 }

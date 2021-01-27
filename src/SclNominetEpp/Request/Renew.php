@@ -74,6 +74,5 @@ class Renew extends Request
         $domainRenew->addChild('curExpDate', $this->expDate);
         $period = $domainRenew->addChild('period', 2);
         $period->addAttribute('unit', 'y');
-
     }
 }
