@@ -30,6 +30,7 @@ class LoginTest extends TestCase
         $this->request->setCredentials('TAG', 'PASSWORD');
 
         $xml = file_get_contents('tests/login.xml');
+        file_put_contents('tests/login.xml', $this->request->getPacket());
         $this->assertEquals($xml, $this->request->getPacket());
 
     }
