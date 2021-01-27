@@ -26,7 +26,7 @@
         "ext-dom": "*"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "SclNominetEpp\\": "src/"
         }
     },
