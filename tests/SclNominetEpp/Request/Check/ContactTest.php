@@ -1,5 +1,5 @@
 <?php
-namespace SclNominetEpp\Request\Check;
+namespace SclNominetEpp\Request\CheckTest;
 
 use SclNominetEpp\Contact;
 use SclNominetEpp\Request\Check\Contact as CheckContact;
