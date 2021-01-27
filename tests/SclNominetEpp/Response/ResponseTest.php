@@ -24,6 +24,12 @@ class ResponseTest extends \PHPUnit\Framework\TestCase
 
     public function testPrintResponse()
     {
-
+        $filename = __DIR__ . '/' . pathinfo(__FILE__, PATHINFO_FILENAME) . '.xml';
+        $xml = file_get_contents($filename);
+        $this->request->init($xml);
+        $this->assertEquals(1000, $this->request->code());
+        $this->assertEquals("Command completed successfully", $this->request->message());
+        $this->assertEquals([], $this->request->data());
+        $this->assertEquals(true, $this->request->success());
     }
 }
