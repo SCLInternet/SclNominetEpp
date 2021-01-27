@@ -210,7 +210,7 @@ class Nameserver
      */
     public function setUpDate(DateTime $upDate)
     {
-        $this->upDate = $upDate;
+        $this->upDate = $upDate->format(DateTime::ATOM);
     }
 
     /**
@@ -220,7 +220,7 @@ class Nameserver
      */
     public function getUpDate()
     {
-        return $this->upDate;
+        return DateTime::createFromFormat(DateTime::ATOM, $this->upDate);
     }
 
     /**
