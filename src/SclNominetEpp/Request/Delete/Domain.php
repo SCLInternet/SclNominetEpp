@@ -5,6 +5,7 @@ namespace SclNominetEpp\Request\Delete;
 use SclNominetEpp\Request;
 use SimpleXMLElement;
 use SclNominetEpp\Response\Delete\Domain as DeleteDomainResponse;
+use SclNominetEpp\Domain as DomainObject;
 
 /**
  * This class build the XML for a Nominet EPP delete command.
@@ -14,7 +15,7 @@ class Domain extends Request
     /**
      * The specific object for deletion
      *
-     * @var DeleteDomainResponse
+     * @var DomainObject
      */
     private $object;
 
@@ -45,9 +46,9 @@ class Domain extends Request
     /**
      * Set Domain.
      *
-     * @param DeleteDomainResponse $object
+     * @param DomainObject $object
      */
-    public function setDomain(DeleteDomainResponse $object)
+    public function setDomain(DomainObject $object)
     {
         $this->object = $object;
     }
