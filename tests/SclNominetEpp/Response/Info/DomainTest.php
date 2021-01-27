@@ -3,6 +3,7 @@ namespace SclNominetEpp\Response\Info;
 
 use SclNominetEpp\Nameserver;
 use DateTime;
+use SclNominetEpp\Response;
 use SclNominetEpp\Response\Info\Domain as DomainInfo;
 
 /**
@@ -96,11 +97,8 @@ EOX;
         $nameserver = new Nameserver();
         $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
         $expected->addNameserver($nameserver);
-        // print_r($expected);
         $this->response->init($xml);
-
         $domain = $this->response->getDomain();
-        // print_r($domain);
 
         $this->assertEquals($expected, $domain);
 
