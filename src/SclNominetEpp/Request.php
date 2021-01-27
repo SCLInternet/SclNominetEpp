@@ -6,12 +6,10 @@ use DOMDocument;
 use SclRequestResponse\RequestInterface;
 use SclRequestResponse\ResponseInterface;
 use SimpleXMLElement;
-use SclNominetEpp\Response;
+use XMLWriter;
 
 /**
  * This class handles the essentials of all command requests
- *
- * @author Tom Oram <tom@scl.co.uk>
  */
 class Request implements RequestInterface
 {

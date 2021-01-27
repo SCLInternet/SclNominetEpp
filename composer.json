@@ -21,7 +21,9 @@
         "sclinternet/scl-contact": "dev-master",
         "sclinternet/scl-socket": "dev-master",
         "sclinternet/scl-request-response": "dev-master",
-        "ext-simplexml": "*"
+        "ext-simplexml": "*",
+        "ext-xmlwriter": "*",
+        "ext-dom": "*"
     },
     "autoload": {
         "psr-0": {
