@@ -67,7 +67,7 @@ class LoginTest extends TestCase
 
 EOF;
 
-        $this->assertEquals($xml, (string) $this->request);
+        $this->assertEquals($xml, $this->request->getPacket());
 
     }
 }
