@@ -8,7 +8,7 @@ use SclNominetEpp\Response\Info\Host as HostInfo;
 /**
  * host:info response test
  */
-class HostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Response

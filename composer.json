@@ -27,11 +27,11 @@
     },
     "autoload": {
         "psr-4": {
-            "SclNominetEpp\\": "src/"
+            "SclNominetEpp\\": "src/SclNominetEpp/"
         }
     },
     "require-dev": {
-        "phpunit/phpunit" : "4.*",
+        "phpunit/phpunit" : "6.*",
         "squizlabs/php_codesniffer" : "1.*",
         "phpmd/phpmd" : "1.4.0"
     }

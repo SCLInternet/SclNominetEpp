@@ -8,7 +8,7 @@ use SclNominetEpp\Response\Create\Domain as CreateDomain;
 /**
  * domain:create response test
  */
-class DomainTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Response

@@ -1,12 +1,13 @@
 <?php
 namespace SclNominetEpp\Request\Check;
 
+use SclNominetEpp\Request;
 use SclNominetEpp\Request\Check\Host as CheckHost;
 
 /**
  * host:check test
  */
-class HostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Request

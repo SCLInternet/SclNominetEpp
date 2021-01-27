@@ -6,7 +6,7 @@ use SclNominetEpp\Response\Check\Host as CheckHost;
 /**
  * host:check response test
  */
-class HostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Response

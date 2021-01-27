@@ -9,7 +9,7 @@ use SclNominetEpp\Response\Create\Host as CreateHost;
 /**
  * host:create response test
  */
-class HostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Response

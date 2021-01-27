@@ -8,7 +8,7 @@ use SclNominetEpp\Response\Create\Contact as CreateContact;
 /**
  * contact:create response test
  */
-class ContactTest extends \PHPUnit_Framework_TestCase
+class ContactTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Response

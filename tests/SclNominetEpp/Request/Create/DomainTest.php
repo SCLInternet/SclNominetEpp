@@ -1,16 +1,16 @@
 <?php
 namespace SclNominetEpp\Request\Create;
 
-use SclNominetEpp\Contact;
 use SclNominetEpp\Nameserver;
 use SclNominetEpp\Domain;
+use SclNominetEpp\Request;
 use SclNominetEpp\Request\Create\Domain as CreateDomain;
 use DateTime;
 
 /**
  * domain:create test
  */
-class DomainTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Request

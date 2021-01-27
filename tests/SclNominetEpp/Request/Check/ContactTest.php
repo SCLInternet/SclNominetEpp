@@ -1,14 +1,13 @@
 <?php
-namespace SclNominetEpp\Request\CheckTest;
+namespace SclNominetEpp\Request\Check;
 
-use SclNominetEpp\Contact;
+use SclNominetEpp\Request;
 use SclNominetEpp\Request\Check\Contact as CheckContact;
-use SclNominetEpp\Response;
 
 /**
  * contact:check test
  */
-class ContactTest extends \PHPUnit_Framework_TestCase
+class ContactTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Request

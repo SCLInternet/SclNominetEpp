@@ -1,13 +1,13 @@
 <?php
 namespace SclNominetEpp\Request\Check;
 
-use SclNominetEpp\Domain;
+use SclNominetEpp\Request;
 use SclNominetEpp\Request\Check\Domain as CheckDomain;
 
 /**
  * domain:contact test
  */
-class DomainTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Request

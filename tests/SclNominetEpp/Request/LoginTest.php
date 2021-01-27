@@ -1,12 +1,13 @@
 <?php
 namespace SclNominetEpp\Request;
 
-use SclNominetEpp\Request\Login;
+use PHPUnit\Framework\TestCase;
+use SclNominetEpp\Request;
 
 /**
  * login epp command test
  */
-class LoginTest extends \PHPUnit_Framework_TestCase
+class LoginTest extends TestCase
 {
     /**
      * @var Request
@@ -66,7 +67,7 @@ class LoginTest extends \PHPUnit_Framework_TestCase
 
 EOF;
 
-        //$this->assertEquals($xml, (string) $this->request);
+        $this->assertEquals($xml, (string) $this->request);
 
     }
 }

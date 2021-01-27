@@ -13,7 +13,7 @@ use SclContact\PhoneNumber;
 /**
  * contain:info response test
  */
-class ContactTest extends \PHPUnit_Framework_TestCase
+class ContactTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Response

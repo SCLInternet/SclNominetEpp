@@ -6,7 +6,7 @@ use SclNominetEpp\Response\Check\Domain as CheckDomain;
 /**
  * domain:check response test
  */
-class DomainTest extends \PHPUnit_Framework_TestCase
+class DomainTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Response
