@@ -27,6 +27,5 @@ class RequestTest extends \PHPUnit\Framework\TestCase
         $filename = __DIR__ . '/' . pathinfo(__FILE__, PATHINFO_FILENAME) . '.xml';
         $xml = file_get_contents($filename);
         $this->assertEquals($xml, $this->object->getPacket());
-
     }
 }
