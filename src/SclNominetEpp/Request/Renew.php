@@ -20,6 +20,9 @@ class Renew extends Request
     /** @const int Default renewal unit, years. */
     const DEFAULT_UNIT = 'y';
 
+    /** @var string Format of the atomic type 'xs:date', eg: 2009-04-07 */
+    const CURRENT_EXPIRY_DATE_FORMAT = 'Y-m-d';
+
     /**
      * The domain name.
      *
@@ -30,7 +33,7 @@ class Renew extends Request
     /**
      * The expiry date.
      *
-     * @var string
+     * @var \DateTimeInterface
      */
     protected $currentExpiryDate;
 
@@ -95,6 +98,18 @@ class Renew extends Request
     }
 
     /**
+     * Set the unit
+     *
+     * @param string $unit
+     * @return \SclNominetEpp\Request\Renew
+     */
+    public function setUnit(string $unit)
+    {
+        $this->unit = $unit;
+        return $this;
+    }
+
+    /**
      * (non-PHPdoc)
      * @param SimpleXMLElement $xml
      * @see Request.AbstractRequest::addContent()
@@ -108,7 +123,7 @@ class Renew extends Request
         $domainRenew = $xml->addChild('domain:renew', '', $domainNS);
         $domainRenew->addAttribute('xsi:schemaLocation', $domainXSI, self::XSI_NAMESPACE);
         $domainRenew->addChild('name', $this->domain);
-        $domainRenew->addChild('curExpDate', $this->currentExpiryDate);
+        $domainRenew->addChild('curExpDate', $this->currentExpiryDate->format(self::CURRENT_EXPIRY_DATE_FORMAT));
         $period = $domainRenew->addChild('period', $this->period);
         $period->addAttribute('unit', $this->unit);
     }
