@@ -47,7 +47,9 @@ class Renew extends Request
     public function __construct(string $domain = null)
     {
         parent::__construct('renew', new RenewResponse());
-        $this->setDomain($domain);
+        if ($domain) {
+            $this->domain = $domain;
+        }
     }
 
     /**
