@@ -157,7 +157,7 @@ class Response implements ResponseInterface
         $this->data = array();
 
         if (!$this->isErrorCode($this->code) && !$this->isSuccessCode($this->code)) {
-            throw RuntimeException::unexpectedResultCode($this->code);
+            throw RuntimeException::unexpectedResultCode($this->code, $this->message);
         }
 
         $this->processData($data);

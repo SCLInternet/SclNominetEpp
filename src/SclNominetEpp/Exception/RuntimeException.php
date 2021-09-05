@@ -9,8 +9,8 @@ namespace SclNominetEpp\Exception;
  */
 class RuntimeException extends \RuntimeException implements ExceptionInterface
 {
-    public static function unexpectedResultCode($code)
+    public static function unexpectedResultCode($code, $message)
     {
-        throw new self("Unexpected result code: $code.");
+        throw new self("Unexpected result code: $code, message: $message");
     }
 }
