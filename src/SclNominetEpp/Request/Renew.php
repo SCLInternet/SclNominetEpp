@@ -110,6 +110,18 @@ class Renew extends Request
     }
 
     /**
+     * @param string $format
+     * @return string
+     */
+    public function getCurrentExpiryDate($format = self::CURRENT_EXPIRY_DATE_FORMAT): string
+    {
+        if ($this->currentExpiryDate === null) {
+            throw new \InvalidArgumentException('Current Expiry Date is required.');
+        }
+        return $this->currentExpiryDate->format($format);
+    }
+
+    /**
      * (non-PHPdoc)
      * @param SimpleXMLElement $xml
      * @see Request.AbstractRequest::addContent()
@@ -117,16 +129,13 @@ class Renew extends Request
      */
     protected function addContent(SimpleXMLElement $xml)
     {
-        if ($this->currentExpiryDate === null) {
-            throw new \InvalidArgumentException('Current Expiry Date is required.');
-        }
         $domainNS = 'urn:ietf:params:xml:ns:domain-1.0';
         $domainXSI = $domainNS . ' domain-1.0.xsd';
 
         $domainRenew = $xml->addChild('domain:renew', '', $domainNS);
         $domainRenew->addAttribute('xsi:schemaLocation', $domainXSI, self::XSI_NAMESPACE);
         $domainRenew->addChild('name', $this->domain);
-        $domainRenew->addChild('curExpDate', $this->currentExpiryDate->format(self::CURRENT_EXPIRY_DATE_FORMAT));
+        $domainRenew->addChild('curExpDate', $this->getCurrentExpiryDate());
         $period = $domainRenew->addChild('period', $this->period);
         $period->addAttribute('unit', $this->unit);
     }
