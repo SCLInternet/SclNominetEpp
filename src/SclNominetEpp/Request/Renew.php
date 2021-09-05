@@ -117,6 +117,9 @@ class Renew extends Request
      */
     protected function addContent(SimpleXMLElement $xml)
     {
+        if ($this->currentExpiryDate === null) {
+            throw new \InvalidArgumentException('Current Expiry Date is required.');
+        }
         $domainNS = 'urn:ietf:params:xml:ns:domain-1.0';
         $domainXSI = $domainNS . ' domain-1.0.xsd';
 
