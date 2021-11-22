@@ -1,14 +1,14 @@
 <?php
 namespace SclNominetEpp;
 
+use DateTime;
+
 /**
  * A contact record
- *
- * @author Tom Oram <tom@scl.co.uk>
  */
 class Contact extends \SclContact\Contact
 {
-        //TYPE
+    //TYPE
     const TYPE_UK_LTD                   = 'LTD';
     const TYPE_UK_PLC                   = 'PLC';
     const TYPE_UK_PARTNERSHIP           = 'PTNR';
@@ -125,20 +125,13 @@ class Contact extends \SclContact\Contact
     private $clientID;
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Set $id
      *
      * @param string $id
      */
-    public function setId($id)
+    public function setId(string $id)
     {
-        $this->id = (string) $id;
+        $this->id = $id;
     }
 
     /**
@@ -204,7 +197,7 @@ class Contact extends \SclContact\Contact
     /**
      * Get $this->created
      *
-     * @return DateType
+     * @return DateTime
      */
     public function getCreated()
     {
@@ -256,10 +249,10 @@ class Contact extends \SclContact\Contact
      *
      * @param string $companyType
      */
-    public function setCompanyType($companyType)
+    public function setCompanyType(string $companyType)
     {
         if (!in_array($companyType, self::$companyTypes)) {
-            throw new \Exception("Invald organisation type: $companyType");
+            throw new \InvalidArgumentException("Invalid organisation type: $companyType");
         }
         $this->companyType = (string) $companyType;
     }

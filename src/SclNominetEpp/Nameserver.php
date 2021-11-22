@@ -77,11 +77,9 @@ class Nameserver
     private $ipv6 = null;
 
     /**
-     * Constructor
+     * @var string
      */
-    public function __construct()
-    {
-    }
+    private $id;
 
     /**
      * Set $this->hostName
@@ -261,5 +259,25 @@ class Nameserver
     public function getIpv6()
     {
         return $this->ipv6;
+    }
+
+    /**
+     * Set $id
+     *
+     * @param string $id
+     */
+    public function setId(string $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Get $id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

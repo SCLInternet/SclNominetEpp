@@ -138,8 +138,7 @@ class Response implements ResponseInterface
      * @param string $xml
      *
      * @return Response
-     *
-     * @throws \Exception
+     * @throws InvalidResponsePacketException
      */
     public function init($xml)
     {

@@ -82,6 +82,7 @@ class Host extends AbstractInfo
         $this->ipCheck($infData); // sets ipv4 and ipv6:- $this->object->setIpv4 and setIpv6
         $this->object->setCreatorID($infData->crID);
         $this->object->setUpID($infData->upID);
+        $this->object->setId($infData->roid);
     }
 
     protected function setValue(SimpleXMLElement $name)
@@ -91,5 +92,6 @@ class Host extends AbstractInfo
 
     protected function addExtensionData(SimpleXMLElement $extension = null)
     {
+        //
     }
 }

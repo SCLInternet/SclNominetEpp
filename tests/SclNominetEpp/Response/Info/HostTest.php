@@ -1,14 +1,16 @@
 <?php
 namespace SclNominetEpp\Response\Info;
 
+use PHPUnit\Framework\TestCase;
 use SclNominetEpp\Nameserver;
 use DateTime;
+use SclNominetEpp\Response;
 use SclNominetEpp\Response\Info\Host as HostInfo;
 
 /**
  * host:info response test
  */
-class HostTest extends \PHPUnit\Framework\TestCase
+class HostTest extends TestCase
 {
     /**
      * @var Response
@@ -63,7 +65,7 @@ class HostTest extends \PHPUnit\Framework\TestCase
 
 EOX;
 
-        $expected = new Nameserver('caliban-scl.sch.uk');
+        $expected = new Nameserver();
         $expected->setHostName('ns1.caliban-scl.sch.uk.');
         $expected->addStatus('ok');
         $expected->addStatus('linked');
@@ -72,12 +74,12 @@ EOX;
         $expected->setCreatorID('NOMINET');
         $expected->setCreated(new DateTime('2013-01-31T00:11:05'));
         $expected->setUpDate(new DateTime(''));
+        $expected->setId('739787E8A10BF2CA11882CE974FD775E-UK');
 
         $this->response->init($xml);
 
         $host = $this->response->getHost();
 
         $this->assertEquals($expected, $host);
-
     }
 }
