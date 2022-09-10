@@ -408,6 +408,9 @@ class Domain
 
     protected function checkBill(string $bill): void
     {
+        if ($bill === '') {
+            return;
+        }
         if (in_array($bill, self::BILLS) === false) {
             $options = implode(', ', self::BILLS);
             $message = sprintf("Invalid bill '%s', must one of '%s'", $bill, $options);
