@@ -327,9 +327,13 @@ class Domain
         return $this->autoBill;
     }
 
-    public function setAutoBill(int $autoBill)
+    /**
+     * @param int|object $autoBill
+     * @return void
+     */
+    public function setAutoBill($autoBill)
     {
-        $this->autoBill = $autoBill;
+        $this->autoBill = (int) $autoBill;
     }
 
     public function getNextBill(): int
