@@ -92,7 +92,7 @@ EOX;
         $expected->setFirstBill('th');
         $expected->setRecurBill('th');
         $expected->setAutoBill('');
-        $expected->setNextBill('');
+        $expected->setNextBill(0);
         $expected->setRegStatus('Registered until expiry date.');
         $nameserver = new Nameserver();
         $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
@@ -101,6 +101,5 @@ EOX;
         $domain = $this->response->getDomain();
 
         $this->assertEquals($expected, $domain);
-
     }
 }

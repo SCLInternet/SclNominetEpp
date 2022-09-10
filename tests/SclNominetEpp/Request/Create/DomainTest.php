@@ -1,6 +1,7 @@
 <?php
 namespace SclNominetEpp\Request\Create;
 
+use PHPUnit\Framework\TestCase;
 use SclNominetEpp\Nameserver;
 use SclNominetEpp\Domain;
 use SclNominetEpp\Request;
@@ -10,7 +11,7 @@ use DateTime;
 /**
  * domain:create test
  */
-class DomainTest extends \PHPUnit\Framework\TestCase
+class DomainTest extends TestCase
 {
     /**
      * @var Request
@@ -28,30 +29,6 @@ class DomainTest extends \PHPUnit\Framework\TestCase
 
     public function testCreateDomain()
     {
-        $xml = <<<EOX
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<epp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:ietf:params:xml:ns:epp-1.0" xsi:schemaLocation="urn:ietf:params:xml:ns:epp-1.0 epp-1.0.xsd">
-  <command>
-    <create>
-      <domain:create xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
-        <domain:name>caliban-scl.sch.uk</domain:name>
-        <domain:period unit="y">2</domain:period>
-        <domain:ns>
-          <domain:hostObj>ns1.caliban-scl.sch.uk.</domain:hostObj>
-        </domain:ns>
-        <domain:registrant>559D2DD4B2862E89</domain:registrant>
-        <domain:contact type="tech">techy1</domain:contact>
-        <domain:contact type="admin">admin1</domain:contact>
-        <domain:authInfo>
-          <domain:pw>qwerty</domain:pw>
-        </domain:authInfo>
-      </domain:create>
-    </create>
-  </command>
-</epp>
-
-EOX;
-
         $domain = new Domain();
         $domain->setName('caliban-scl.sch.uk');
         $domain->setRegistrant('559D2DD4B2862E89');
@@ -61,10 +38,10 @@ EOX;
         $domain->setExpired(new DateTime('2015-01-31T00:11:05'));
         $domain->setUpID('');
         $domain->setUpDate(new DateTime(''));
-        $domain->setFirstBill('th');
-        $domain->setRecurBill('th');
-        $domain->setAutoBill('');
-        $domain->setNextBill('');
+        $domain->setFirstBill(Domain::BILL_REGISTRAR);
+        $domain->setRecurBill(Domain::BILL_REGISTRAR);
+        $domain->setAutoBill(0);
+        $domain->setNextBill(0);
         $domain->setRegStatus('Registered until expiry date.');
         $nameserver = new Nameserver();
         $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
@@ -81,6 +58,8 @@ EOX;
 
         $this->request->setDomain($domain);
 
+        $filename = __DIR__ . '/' . pathinfo(__FILE__, PATHINFO_FILENAME) . '.xml';
+        $xml = file_get_contents($filename);
         $this->assertEquals($xml, $this->request->getPacket());
     }
 }

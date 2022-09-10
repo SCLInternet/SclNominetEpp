@@ -299,11 +299,7 @@ class Domain
 
     public function setFirstBill(string $firstBill)
     {
-        if (in_array($firstBill, self::BILLS)) {
-            $options = implode(', ', self::BILLS);
-            $message = sprintf("Invalid first bill %s, must one of %s", $firstBill, $options);
-            throw new InvalidArgumentException($message);
-        }
+        $this->checkBill($firstBill);
         $this->firstBill = $firstBill;
     }
 
@@ -314,11 +310,7 @@ class Domain
 
     public function setRecurBill(string $recurBill)
     {
-        if (in_array($recurBill, self::BILLS)) {
-            $options = implode(', ', self::BILLS);
-            $message = sprintf("Invalid recurring bill %s, must one of %s", $recurBill, $options);
-            throw new InvalidArgumentException($message);
-        }
+        $this->checkBill($recurBill);
         $this->recurBill = $recurBill;
     }
 
@@ -341,9 +333,13 @@ class Domain
         return $this->nextBill;
     }
 
-    public function setNextBill(int $nextBill)
+    /**
+     * @param int|object $nextBill
+     * @return void
+     */
+    public function setNextBill($nextBill)
     {
-        $this->nextBill = $nextBill;
+        $this->nextBill = (int) $nextBill;
     }
 
     public function getRegStatus(): string
@@ -408,5 +404,14 @@ class Domain
         $this->period = $period;
 
         return $this;
+    }
+
+    protected function checkBill(string $bill): void
+    {
+        if (in_array($bill, self::BILLS) === false) {
+            $options = implode(', ', self::BILLS);
+            $message = sprintf("Invalid bill '%s', must one of '%s'", $bill, $options);
+            throw new InvalidArgumentException($message);
+        }
     }
 }
