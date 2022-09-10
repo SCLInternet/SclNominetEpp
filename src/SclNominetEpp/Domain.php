@@ -3,18 +3,15 @@
 namespace SclNominetEpp;
 
 use DateTime;
+use DateTimeInterface;
+use InvalidArgumentException;
 
-/**
- * A domain record
- *
- * @author Tom Oram <tom@scl.co.uk>
- */
 class Domain
 {
-        //BILLS
     const BILL_REGISTRAR = 'th';
-
-    const BILL_CUSTOMER  = 'bc';
+    const BILL_CUSTOMER = 'bc';
+    const BILLS = [self::BILL_REGISTRAR, self::BILL_CUSTOMER];
+    const REGISTRATION_PERIOD = 2;
 
     /**
      * Domain name
@@ -28,7 +25,7 @@ class Domain
      *
      * @var int
      */
-    private $period = 2;
+    private $period = self::REGISTRATION_PERIOD;
 
     /**
      * The Person, Company or Entity who owns or holds a domain name.
@@ -162,78 +159,25 @@ class Domain
      */
     private $password;
 
-    /**
-     * Set the value of period
-     *
-     * @param  integer $period Must be 2
-     * @return Domain
-     */
-    public function setPeriod($period)
-    {
-        if (2 !== $period) {
-            throw new \Exception("Invalid period $period.");
-        }
-        $this->period = $period;
-
-        return $this;
-    }
-
-    /**
-     * Set $this->name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = (string) $name;
-    }
-
-    /**
-     * Get $this->name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set $this->registrant
-     *
-     * @param string $registrant
-     */
-    public function setRegistrant($registrant)
-    {
-        $this->registrant = (string) $registrant;
-    }
-
-    /**
-     * Get $this->registrant
-     *
-     * @return string
-     */
-    public function getRegistrant()
+    public function getRegistrant(): string
     {
         return $this->registrant;
     }
 
+    public function setRegistrant(string $registrant)
+    {
+        $this->registrant = $registrant;
+    }
+
     /**
      * Set add $contact to array of contacts
-     *
-     * @param \SclNominetEpp\Contact $contact
      */
     public function addContact(Contact $contact)
     {
         $this->contacts[] = $contact;
     }
 
-    /**
-     * Get $this->contacts
-     *
-     * @return array
-     */
-    public function getContacts()
+    public function getContacts(): array
     {
         return $this->contacts;
     }
@@ -241,18 +185,16 @@ class Domain
     /**
      * Remove $contact from the array of contacts if it already exists.
      *
-     * @param \SclNominetEpp\Contact $contact
+     * @param Contact $contact
      */
     public function removeContact(Contact $contact)
     {
-        $arrayKey =  array_search($contact, $this->contacts);
+        $arrayKey = array_search($contact, $this->contacts);
         unset($this->contacts[$arrayKey]);
     }
 
     /**
      * Add $nameserver to the array of nameservers
-     *
-     * @param Nameserver $nameserver
      */
     public function addNameserver(Nameserver $nameserver)
     {
@@ -261,10 +203,8 @@ class Domain
 
     /**
      * Get the array of nameservers
-     *
-     * @return array
      */
-    public function getNameservers()
+    public function getNameservers(): array
     {
         return $this->nameservers;
     }
@@ -272,273 +212,197 @@ class Domain
     /**
      * Remove $namserver from the array of namservers if it already exists.
      *
-     * @param \SclNominetEpp\Nameserver $nameserver
+     * @param Nameserver $nameserver
      */
     public function removeNameserver(Nameserver $nameserver)
     {
-        $arrayKey =  array_search($nameserver, $this->nameservers);
+        $arrayKey = array_search($nameserver, $this->nameservers);
         unset($this->nameservers[$arrayKey]);
-    }
-    /**
-     * Set the identifier of the sponsoring client.
-     *
-     * @param string $clientID
-     */
-    public function setClientID($clientID)
-    {
-        $this->clientID = (string) $clientID;
     }
 
     /**
      * Get the identifier of the sponsoring client.
-     *
-     * @return string
      */
-    public function getClientID()
+    public function getClientID(): string
     {
         return $this->clientID;
     }
 
     /**
-     * Set the identifier of the client that created the domain object.
-     *
-     * @param string $creatorID
+     * Set the identifier of the sponsoring client.
      */
-    public function setCreatorID($creatorID)
+    public function setClientID(string $clientID)
     {
-        $this->creatorID = (string) $creatorID;
+        $this->clientID = $clientID;
     }
 
     /**
      * Get the identifier of the client that created the domain object.
-     *
-     * @return string
      */
-    public function getCreatorID()
+    public function getCreatorID(): string
     {
         return $this->creatorID;
     }
+
     /**
-     * Set $this->created
-     *
-     * @param DateTime $created
+     * Set the identifier of the client that created the domain object.
      */
+    public function setCreatorID(string $creatorID)
+    {
+        $this->creatorID = $creatorID;
+    }
+
+    public function getCreated(): DateTime
+    {
+        return $this->created;
+    }
+
     public function setCreated(DateTime $created)
     {
         $this->created = $created;
     }
 
-    /**
-     * Get $this->created
-     *
-     * @return DateTime
-     */
-    public function getCreated()
+    public function getExpired(): DateTime
     {
-        return $this->created;
+        return $this->expired;
     }
 
-    /**
-     * Set $this->expired
-     *
-     * @param DateTime $expired
-     */
     public function setExpired(DateTime $expired)
     {
         $this->expired = $expired;
     }
 
-    /**
-     * Get $this->expired
-     *
-     * @return DateTime
-     */
-    public function getExpired()
-    {
-        return $this->expired;
-    }
-
-    /**
-     * Set $this->upID
-     *
-     * @param string $upID
-     */
-    public function setUpID($upID)
-    {
-        $this->upID = (string) $upID;
-    }
-
-    /**
-     * Get $this->upID
-     *
-     * @return string
-     */
-    public function getUpID()
+    public function getUpID(): ?string
     {
         return $this->upID;
     }
 
-    /**
-     * Set $this->upDate
-     *
-     * @param DateTime $upDate
-     */
-    public function setUpDate(DateTime $upDate)
+    public function setUpID(string $upID)
     {
-        $this->upDate = $upDate->format(DateTime::ATOM);
+        $this->upID = $upID;
     }
 
-    /**
-     * Get $this->upDate
-     *
-     * @return DateTime
-     */
     public function getUpDate()
     {
-        return DateTime::createFromFormat(DateTime::ATOM, $this->upDate);
+        return DateTime::createFromFormat(DateTimeInterface::ATOM, $this->upDate);
     }
 
-    /**
-     * Set $this->firstBill
-     *
-     * @param string $firstBill
-     */
-    public function setFirstBill($firstBill)
+    public function setUpDate(DateTime $upDate)
     {
-        $this->firstBill = (string) $firstBill;
+        $this->upDate = $upDate->format(DateTimeInterface::ATOM);
     }
 
-    /**
-     * Get $this->firstBill
-     *
-     * @return string
-     */
-    public function getFirstBill()
+    public function getFirstBill(): string
     {
         return $this->firstBill;
     }
 
-    /**
-     * Set $this->recurBill
-     *
-     * @param string $recurBill
-     */
-    public function setRecurBill($recurBill)
+    public function setFirstBill(string $firstBill)
     {
-        $this->recurBill = (string) $recurBill;
+        if (in_array($firstBill, self::BILLS)) {
+            $options = implode(', ', self::BILLS);
+            $message = sprintf("Invalid first bill %s, must one of %s", $firstBill, $options);
+            throw new InvalidArgumentException($message);
+        }
+        $this->firstBill = $firstBill;
     }
 
-    /**
-     * Get $this->recurBill
-     *
-     * @return string
-     */
-    public function getRecurBill()
+    public function getRecurBill(): string
     {
         return $this->recurBill;
     }
 
-    /**
-     * Set $this->autoBill
-     * @todo the "settype" of autoBill
-     * @param settype $autoBill
-     */
-    public function setAutoBill($autoBill)
+    public function setRecurBill(string $recurBill)
     {
-        $this->autoBill = (string) $autoBill;
+        if (in_array($recurBill, self::BILLS)) {
+            $options = implode(', ', self::BILLS);
+            $message = sprintf("Invalid recurring bill %s, must one of %s", $recurBill, $options);
+            throw new InvalidArgumentException($message);
+        }
+        $this->recurBill = $recurBill;
     }
 
-    /**
-     * Get $this->autoBill
-     * @todo the "gettype" of autoBill
-     * @return gettype
-     */
-    public function getAutoBill()
+    public function getAutoBill(): int
     {
         return $this->autoBill;
     }
 
-    /**
-     * Set $this->nextBill
-     *
-     * @param settype $nextBill
-     */
-    public function setNextBill($nextBill)
+    public function setAutoBill(int $autoBill)
     {
-        $this->nextBill = (string) $nextBill;
+        $this->autoBill = $autoBill;
     }
 
-    /**
-     * Get $this->nextBill
-     *
-     * @return gettype
-     */
-    public function getNextBill()
+    public function getNextBill(): int
     {
         return $this->nextBill;
     }
 
-    /**
-     * Set $this->regStatus
-     * @param string $regStatus
-     */
-    public function setRegStatus($regStatus)
+    public function setNextBill(int $nextBill)
     {
-        $this->regStatus = (string) $regStatus;
+        $this->nextBill = $nextBill;
     }
 
-    /**
-     * Get $this->regStatus;
-     *
-     * @return type
-     */
-    public function getRegStatus()
+    public function getRegStatus(): string
     {
         return $this->regStatus;
     }
 
-    /**
-     * Set $this->notes
-     *
-     * @param settype $notes
-     */
-    public function setNotes($notes)
+    public function setRegStatus(string $regStatus)
     {
-        $this->notes = $notes;
+        $this->regStatus = $regStatus;
     }
 
-    /**
-     * Get $this->notes
-     *
-     * @return string
-     */
-    public function getNotes()
+    public function getNotes(): string
     {
         return $this->notes;
     }
 
-    /**
-     * Get $this->password
-     *
-     * @return string
-     */
-    public function getPassword()
+    public function setNotes(string $notes)
+    {
+        $this->notes = $notes;
+    }
+
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    /**
-     * Set $this->password
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
-        $this->password = (string) $password;
+        $this->password = $password;
     }
 
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function getPeriod(): int
+    {
+        return $this->period;
+    }
+
+    /**
+     * Set the value of period
+     */
+    public function setPeriod(int $period): Domain
+    {
+        if ($period < self::REGISTRATION_PERIOD) {
+            $message = sprintf("Invalid period %d, must be greater than %d", $period, self::REGISTRATION_PERIOD);
+            throw new InvalidArgumentException($message);
+        }
+        $this->period = $period;
+
+        return $this;
     }
 }
