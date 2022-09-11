@@ -274,4 +274,20 @@ class Nameserver
     {
         return $this->getHostName();
     }
+
+    public function __toArray(): array
+    {
+        return [
+            'hostName' => $this->getHostName(),
+            'status' => $this->getStatus(),
+            'clientId' => $this->getClientID(),
+            'creatorID' => $this->getCreatorID(),
+            'created' => $this->getCreated(),
+            'upID' => $this->getUpID(),
+            'upDate' => $this->getUpDate(),
+            'ipv4' => $this->getIpv4(),
+            'ipv6' => $this->getIpv6(),
+            'id' => $this->getId(),
+        ];
+    }
 }
