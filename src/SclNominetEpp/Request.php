@@ -108,7 +108,7 @@ class Request implements RequestInterface
         $action  = $command->addChild($this->action);
 
         $this->addContent($action);
-        $command->addChild('clTRID', 'ABC-12345');
+        // $command->addChild('clTRID', 'ABC-12345'); // @todo restore later
 
         $this->output = $this->xml->asXML();
 
