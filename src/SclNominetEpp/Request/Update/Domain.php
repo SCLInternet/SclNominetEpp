@@ -38,7 +38,7 @@ class Domain extends Request
     private $password;
 
     /** @var array */
-    private $notes;
+    private $notes = [];
 
     /**
      * The number of days before expiry you wish to automatically renew a domain name.
