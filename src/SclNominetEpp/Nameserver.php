@@ -84,7 +84,7 @@ class Nameserver
 
     public function setHostName(string $hostName)
     {
-        if (empty($nameserver)) {
+        if (empty($hostName)) {
             throw new InvalidArgumentException('HostName parameter is empty');
         }
         $this->hostName = $hostName;
