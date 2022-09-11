@@ -331,64 +331,10 @@ class Nominet extends AbstractRequestResponse
     public function updateDomain(Domain $domain): ResponseInterface
     {
         $this->loginCheck();
-        $request = new Request\Update\Domain($domain->getName());
-        $request->setDomain($domain);
 
         $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
-        if (!$currentDomain instanceof Domain) {
-            throw new DomainException("The domain requested for updating is unregistered.");
-        }
-        $currentNameservers = $currentDomain->getNameservers();
-        $currentContacts = $currentDomain->getContacts();
-        $newNameservers = $domain->getNameservers();
-        $newContacts = $domain->getContacts();
-
-        $addContacts = array_uintersect(
-            $newContacts,
-            $currentContacts,
-            [DomainCompareHelper::class, 'compare']
-        );
-        $removeContacts = array_uintersect(
-            $currentContacts,
-            $newContacts,
-            [DomainCompareHelper::class, 'compare']
-        );
-        $addNameservers = array_uintersect(
-            $newNameservers,
-            $currentNameservers,
-            [DomainCompareHelper::class, 'compare']
-        );
-        $removeNameservers = array_uintersect(
-            $currentNameservers,
-            $newNameservers,
-            [DomainCompareHelper::class, 'compare']
-        );
-
-        if (!empty($addNameservers)) {
-            foreach ($addNameservers as $nameserver) {
-                $request->add(new Update\Field\DomainNameserver($nameserver->getHostName()));
-            }
-        }
-
-        if (!empty($addContacts)) {
-            foreach ($addContacts as $type => $contact) {
-                $request->add(new Update\Field\DomainContact($contact->getId(), $type));
-            }
-        }
-
-        //$request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
-
-        if (!empty($removeNameservers)) {
-            foreach ($removeNameservers as $nameserver) {
-                $request->remove(new Update\Field\DomainNameserver($nameserver->getHostName()));
-            }
-        }
-
-        if (!empty($removeContacts)) {
-            foreach ($removeContacts as $type => $contact) {
-                $request->remove(new Update\Field\DomainContact($contact->getId(), $type));
-            }
-        }
+        $update = new Request\Update();
+        $request = $update($domain, $currentDomain);
 
         return $this->processRequest($request);
     }
