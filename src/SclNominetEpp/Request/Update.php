@@ -29,17 +29,13 @@ class Update
         $this->currentDomain = $currentDomain;
         $this->request = new Update\Domain($domain->getName());
         $this->request->setDomain($domain);
-
-        $this->handleNameservers();
-
-        $this->handleContacts();
-
-        $this->handleExtra();
-
+        $this->nameservers();
+        $this->contacts();
+        $this->extra();
         return $this->request;
     }
 
-    protected function handleNameservers(): void
+    protected function nameservers(): void
     {
         $currentNameservers = $this->currentDomain->getNameservers();
         $newNameservers = $this->domain->getNameservers();
@@ -72,7 +68,7 @@ class Update
         }
     }
 
-    protected function handleContacts(): void
+    protected function contacts(): void
     {
         $currentContacts = $this->currentDomain->getContacts();
         $newContacts = $this->domain->getContacts();
@@ -101,7 +97,7 @@ class Update
         }
     }
 
-    protected function handleExtra(): void
+    protected function extra(): void
     {
         if ($this->domain->getRegistrant() !== null &&
             $this->domain->getRegistrant() != $this->currentDomain->getRegistrant()) {

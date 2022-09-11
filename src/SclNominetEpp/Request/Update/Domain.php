@@ -2,7 +2,6 @@
 
 namespace SclNominetEpp\Request\Update;
 
-use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
