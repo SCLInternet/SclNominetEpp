@@ -2,9 +2,9 @@
 
 namespace SclNominetEpp\Request\Update;
 
+use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Request;
-use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
 use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
 use SimpleXMLElement;
@@ -31,7 +31,7 @@ class Domain extends Request
     /** @var array An array of elements that will be removed during the update command. */
     private $remove = [];
 
-    /** @var ?ContactObject */
+    /** @var ?string */
     private $registrant;
 
     /** @var ?string */
@@ -101,33 +101,48 @@ class Domain extends Request
             self::XSI_NAMESPACE,
         );
 
-        $addBlock = $update->addChild('add', '', $domainNS);
+        if ($this->add) {
+            $addBlock = $update->addChild('add', '', $domainNS);
 
-        foreach ($this->add as $field) {
-            $field->fieldXml($addBlock);
+            foreach ($this->add as $field) {
+                $field->fieldXml($addBlock);
+            }
         }
 
-        $remBlock = $update->addChild('rem', '', $domainNS);
-        foreach ($this->remove as $field) {
-            $field->fieldXml($remBlock);
+        if ($this->remove) {
+            $remBlock = $update->addChild('rem', '', $domainNS);
+
+            foreach ($this->remove as $field) {
+                $field->fieldXml($remBlock);
+            }
         }
 
-        $change = $update->addChild('chg');
-        $domainRegistrant = new Request\Update\Field\DomainRegistrant($this->registrant, $this->password);
-        $domainRegistrant->fieldXml($change);
+        if ($this->registrant || $this->password) {
+            $change = $update->addChild('chg');
+            $domainRegistrant = new Request\Update\Field\DomainRegistrant($this->registrant, $this->password);
+            $domainRegistrant->fieldXml($change);
+        }
 
-        $extensionXML = $this->xml->command->addChild('extension');
-        $extension = $extensionXML->addChild('domain-ext:update', '', $extensionNS);
-        $extension->addAttribute(
-            'xsi:schemaLocation',
-            $extensionXSI,
-            self::XSI_NAMESPACE,
-        );
+        if ($this->autoBill !== null ||
+            $this->nextBill !== null ||
+            $this->notes !== []) {
+            $extensionXML = $this->xml->command->addChild('extension');
+            $extension = $extensionXML->addChild('domain-ext:update', '', $extensionNS);
+            $extension->addAttribute(
+                'xsi:schemaLocation',
+                $extensionXSI,
+                self::XSI_NAMESPACE,
+            );
 
-        $extension->addChild('auto-bill', $this->autoBill);
-        $extension->addChild('next-bill', $this->nextBill);
-        foreach ($this->notes as $note) {
-            $extension->addChild('notes', $note);
+            if ($this->autoBill !== null) {
+                $extension->addChild('auto-bill', $this->autoBill);
+            }
+            if ($this->nextBill !== null) {
+                $extension->addChild('next-bill', $this->nextBill);
+            }
+            foreach ($this->notes as $note) {
+                $extension->addChild('notes', $note);
+            }
         }
     }
 
@@ -136,12 +151,12 @@ class Domain extends Request
         $this->domain = $domain;
     }
 
-    public function changeRegistrant(ContactObject $contact)
+    public function changeRegistrant(?string $registrant)
     {
-        $this->registrant = $contact;
+        $this->registrant = $registrant;
     }
 
-    public function setAutoBill(int $autoBill): void
+    public function setAutoBill(?int $autoBill): void
     {
         $this->autoBill = $autoBill;
     }
@@ -159,11 +174,21 @@ class Domain extends Request
         $this->notes[] = $note;
     }
 
-    /**
-     * @param int $nextBill
-     */
-    public function setNextBill(int $nextBill): void
+    public function setNextBill(?int $nextBill): void
     {
         $this->nextBill = $nextBill;
+    }
+
+    public function changePassword(?string $password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @param ?string[] $notes
+     */
+    public function setNotes(?array $notes)
+    {
+        $this->notes = $notes;
     }
 }

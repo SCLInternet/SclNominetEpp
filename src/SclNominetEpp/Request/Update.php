@@ -2,20 +2,17 @@
 
 namespace SclNominetEpp\Request;
 
-use DomainException;
 use SclNominetEpp\Domain;
+use SclNominetEpp\Nominet;
 use SclNominetEpp\Request\Update\Helper\DomainCompareHelper;
 
 class Update
 {
-    public function __invoke($domain, $currentDomain): Update\Domain
+    public function __invoke(Domain $domain, Domain $currentDomain): Update\Domain
     {
         $request = new Update\Domain($domain->getName());
         $request->setDomain($domain);
 
-        if (!$currentDomain instanceof Domain) {
-            throw new DomainException("The domain requested for updating is unregistered.");
-        }
         $currentNameservers = $currentDomain->getNameservers();
         $currentContacts = $currentDomain->getContacts();
         $newNameservers = $domain->getNameservers();
@@ -54,8 +51,6 @@ class Update
             }
         }
 
-        //$request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
-
         if (!empty($removeNameservers)) {
             foreach ($removeNameservers as $nameserver) {
                 $request->remove(new Update\Field\DomainNameserver($nameserver->getHostName()));
@@ -67,6 +62,31 @@ class Update
                 $request->remove(new Update\Field\DomainContact($contact->getId(), $type));
             }
         }
+
+        if (empty($domain->getNameservers())) {
+            $request->add(new Update\Field\Status('Payment overdue.', Nominet::STATUS_CLIENT_HOLD));
+        }
+
+        if ($domain->getRegistrant() != $currentDomain->getRegistrant()) {
+            $request->changeRegistrant($domain->getRegistrant());
+        }
+
+        if ($domain->getPassword() != $currentDomain->getPassword()) {
+            $request->changePassword($domain->getPassword());
+        }
+
+        if ($domain->getAutoBill() != $currentDomain->getAutoBill()) {
+            $request->setAutoBill($domain->getAutoBill());
+        }
+
+        if ($domain->getNextBill() != $currentDomain->getNextBill()) {
+            $request->setNextBill($domain->getNextBill());
+        }
+
+        if ($domain->getNotes() != $currentDomain->getNotes()) {
+            $request->setNotes($domain->getNotes());
+        }
+
         return $request;
     }
 }

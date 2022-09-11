@@ -9,20 +9,19 @@ use SimpleXMLElement;
  */
 class DomainRegistrant implements UpdateFieldInterface
 {
-    /** @var Contact */
-    private $contact;
+    private $registrant;
     private $passwd;
 
-    public function __construct($contact, $passwd)
+    public function __construct(?string $registrant, ?string $passwd)
     {
-        $this->contact = $contact;
+        $this->registrant = $registrant;
         $this->passwd  = $passwd;
     }
 
     public function fieldXml(SimpleXMLElement $xml, string $namespace = null)
     {
-        if ($this->contact) {
-            $xml->addChild('registrant', $this->contact->getId(), $namespace);
+        if ($this->registrant) {
+            $xml->addChild('registrant', $this->registrant, $namespace);
         }
         if ($this->passwd) {
             $authInfo = $xml->addChild('authInfo');

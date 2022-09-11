@@ -148,7 +148,7 @@ class Domain
     /**
      * Miscellaneous information relating to the domain name.
      *
-     * @var string
+     * @var ?string[]
      */
     private $notes;
 
@@ -315,7 +315,7 @@ class Domain
         $this->recurBill = $recurBill;
     }
 
-    public function getAutoBill(): int
+    public function getAutoBill(): ?int
     {
         return $this->autoBill;
     }
@@ -329,7 +329,7 @@ class Domain
         $this->autoBill = (int) $autoBill;
     }
 
-    public function getNextBill(): int
+    public function getNextBill(): ?int
     {
         return $this->nextBill;
     }
@@ -353,17 +353,20 @@ class Domain
         $this->regStatus = $regStatus;
     }
 
-    public function getNotes(): string
+    /**
+     * @return ?string[]
+     */
+    public function getNotes(): ?array
     {
         return $this->notes;
     }
 
-    public function setNotes(string $notes)
+    public function setNotes(array $notes)
     {
         $this->notes = $notes;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }

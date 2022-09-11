@@ -13,7 +13,6 @@ use DomainException;
 use Exception;
 use SclNominetEpp\Exception\LoginRequiredException;
 use SclNominetEpp\Request\Update;
-use SclNominetEpp\Request\Update\Helper\DomainCompareHelper;
 use SclNominetEpp\Request\Update\Unrenew;
 use SclNominetEpp\Response\ListDomains;
 use SclRequestResponse\ResponseInterface;
@@ -333,6 +332,7 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
 
         $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
+
         $update = new Request\Update();
         $request = $update($domain, $currentDomain);
 
@@ -393,13 +393,9 @@ class Nominet extends AbstractRequestResponse
      * The EPP <info> command is used to retrieve information associated with
      * an object.
      *
-     * @param string $domainName
-     * @param boolean $recursive If false only the domain info is fetch, if
-     *     true the attached accounts and host info should be returned also.
-     * @return object
      * @throws LoginRequiredException
      */
-    public function domainInfo(string $domainName, $recursive = false)
+    public function domainInfo(string $domainName): Domain
     {
         $this->loginCheck();
 
@@ -412,7 +408,11 @@ class Nominet extends AbstractRequestResponse
         if (!$response->success()) {
             throw new DomainException($response->message(), $response->code());
         }
-        return $response->getDomain();
+        $domain = $response->getDomain();
+        if (!$domain instanceof Domain) {
+            throw new DomainException('The domain requested is unregistered');
+        }
+        return $domain;
     }
 
     /**

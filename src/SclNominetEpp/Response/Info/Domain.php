@@ -14,13 +14,12 @@ use SclNominetEpp\Nameserver;
  */
 class Domain extends AbstractInfo
 {
-
     const TYPE = 'domain';
     const VALUE_NAME = 'name';
 
-    /**
-     * Constructor
-     */
+    /** @var ?DomainObject */
+    protected $object;
+
     public function __construct()
     {
         parent::__construct(
@@ -30,7 +29,7 @@ class Domain extends AbstractInfo
         );
     }
 
-    public function getDomain()
+    public function getDomain(): ?DomainObject
     {
         return $this->object;
     }
