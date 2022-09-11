@@ -103,17 +103,13 @@ class Domain extends Request
 
         $addBlock = $update->addChild('add', '', $domainNS);
 
-        $nameservers = $addBlock->addChild('ns', '', $domainNS);
         foreach ($this->add as $field) {
-            $xml = $field instanceof Request\Update\Field\DomainNameserver ? $nameservers : $addBlock;
-            $field->fieldXml($xml);
+            $field->fieldXml($addBlock);
         }
 
         $remBlock = $update->addChild('rem', '', $domainNS);
-        $nameservers = $remBlock->addChild('ns', '', $domainNS);
         foreach ($this->remove as $field) {
-            $xml = $field instanceof Request\Update\Field\DomainNameserver ? $nameservers : $addBlock;
-            $field->fieldXml($xml);
+            $field->fieldXml($remBlock);
         }
 
         $change = $update->addChild('chg');
