@@ -119,9 +119,6 @@ class Contact extends \SclContact\Contact
      */
     private $type;
 
-    /**
-     *
-     */
     private $clientID;
 
     /**
@@ -287,23 +284,18 @@ class Contact extends \SclContact\Contact
         return $this->type;
     }
 
-    /**
-     * Set $this->clientID
-     *
-     * @param string $clientID
-     */
-    public function setClientID($clientID)
+    public function setClientID(string $clientID)
     {
-        $this->clientID = (string) $clientID;
+        $this->clientID = $clientID;
     }
 
-    /**
-     * Get $this->clientID
-     *
-     * @return gettype
-     */
-    public function getClientID()
+    public function getClientID(): string
     {
         return $this->clientID;
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->getName();
     }
 }

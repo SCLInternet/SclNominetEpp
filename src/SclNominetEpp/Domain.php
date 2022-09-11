@@ -37,7 +37,7 @@ class Domain
     /**
      * All the contacts of the registered domain.
      *
-     * @var array
+     * @var Contact[]
      */
     private $contacts = array();
 
@@ -177,6 +177,9 @@ class Domain
         $this->contacts[] = $contact;
     }
 
+    /**
+     * @return Contact[]
+     */
     public function getContacts(): array
     {
         return $this->contacts;
@@ -420,5 +423,29 @@ class Domain
             $message = sprintf("Invalid bill '%s', must one of '%s'", $bill, $options);
             throw new InvalidArgumentException($message);
         }
+    }
+
+    public function __toArray(): array
+    {
+        $data = [];
+        $data['name'] = $this->getName();
+        $data['period'] = $this->getPeriod();
+        $data['registrant'] = $this->getRegistrant();
+        $data['contacts'] = $this->getContacts();
+        $data['nameservers'] = $this->getNameservers();
+        $data['clientID'] = $this->getClientID();
+        $data['creatorID'] = $this->getCreatorID();
+        $data['created'] = $this->getCreated();
+        $data['expired'] = $this->getExpired();
+        $data['upID'] = $this->getUpID();
+        $data['upDate'] = $this->getUpDate();
+        $data['firstBill'] = $this->getFirstBill();
+        $data['recurBill'] = $this->getRecurBill();
+        $data['autoBill'] = $this->getAutoBill();
+        $data['nextBill'] = $this->getNextBill();
+        $data['regStatus'] = $this->getRegStatus();
+        $data['notes'] = $this->getNotes();
+        $data['password'] = $this->getPassword();
+        return $data;
     }
 }
