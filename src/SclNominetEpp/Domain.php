@@ -214,7 +214,7 @@ class Domain
     }
 
     /**
-     * Remove $nameserver from the array of namservers if it already exists.
+     * Remove $nameserver from the array of nameservers if it already exists.
      *
      * @param Nameserver $nameserver
      */
