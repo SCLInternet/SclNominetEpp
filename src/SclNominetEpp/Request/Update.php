@@ -31,7 +31,7 @@ class Update
         $this->request->setDomain($domain);
         $this->nameservers();
         $this->contacts();
-        $this->extra();
+        $this->extension();
         return $this->request;
     }
 
@@ -40,16 +40,8 @@ class Update
         $currentNameservers = $this->currentDomain->getNameservers();
         $newNameservers = $this->domain->getNameservers();
 
-        $addNameservers = array_uintersect(
-            $newNameservers,
-            $currentNameservers,
-            [DomainCompareHelper::class, 'compare']
-        );
-        $removeNameservers = array_uintersect(
-            $currentNameservers,
-            $newNameservers,
-            [DomainCompareHelper::class, 'compare']
-        );
+        $addNameservers = $this->getIntersect($newNameservers, $currentNameservers);
+        $removeNameservers = $this->getIntersect($currentNameservers, $newNameservers);
 
         if (!empty($addNameservers)) {
             foreach ($addNameservers as $nameserver) {
@@ -73,16 +65,8 @@ class Update
         $currentContacts = $this->currentDomain->getContacts();
         $newContacts = $this->domain->getContacts();
 
-        $addContacts = array_uintersect(
-            $newContacts,
-            $currentContacts,
-            [DomainCompareHelper::class, 'compare']
-        );
-        $removeContacts = array_uintersect(
-            $currentContacts,
-            $newContacts,
-            [DomainCompareHelper::class, 'compare']
-        );
+        $addContacts = $this->getIntersect($newContacts, $currentContacts);
+        $removeContacts = $this->getIntersect($currentContacts, $newContacts);
 
         if (!empty($addContacts)) {
             foreach ($addContacts as $type => $contact) {
@@ -97,7 +81,7 @@ class Update
         }
     }
 
-    protected function extra(): void
+    protected function extension(): void
     {
         if ($this->domain->getRegistrant() !== null &&
             $this->domain->getRegistrant() != $this->currentDomain->getRegistrant()) {
@@ -123,5 +107,14 @@ class Update
             $this->domain->getNotes() != $this->currentDomain->getNotes()) {
             $this->request->setNotes($this->domain->getNotes());
         }
+    }
+
+    protected function getIntersect(array $current, array $new): array
+    {
+        return array_uintersect(
+            $current,
+            $new,
+            [DomainCompareHelper::class, 'compare']
+        );
     }
 }
