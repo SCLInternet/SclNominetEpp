@@ -17,7 +17,9 @@ class DomainNameserver implements UpdateFieldInterface
 
     public function fieldXml(SimpleXMLElement $xml, string $namespace = null)
     {
-        $nameservers = $xml->addChild('ns', '', $namespace);
-        $nameservers->addChild('hostObj', $this->nameserver, $namespace);
+        if ($this->nameserver) {
+            $nameservers = $xml->addChild('ns', '', $namespace);
+            $nameservers->addChild('hostObj', $this->nameserver, $namespace);
+        }
     }
 }
