@@ -44,9 +44,9 @@ class Domain
     /**
      * All the nameservers of the registered domain.
      *
-     * @var array
+     * @var Nameserver[]
      */
-    private $nameservers = array();
+    private $nameservers = [];
 
     /**
      * The identifier of the sponsoring client.
@@ -203,6 +203,7 @@ class Domain
 
     /**
      * Get the array of nameservers
+     * @return Nameserver[]
      */
     public function getNameservers(): array
     {
@@ -210,7 +211,7 @@ class Domain
     }
 
     /**
-     * Remove $namserver from the array of namservers if it already exists.
+     * Remove $nameserver from the array of namservers if it already exists.
      *
      * @param Nameserver $nameserver
      */

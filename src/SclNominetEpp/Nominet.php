@@ -13,6 +13,7 @@ use DomainException;
 use Exception;
 use SclNominetEpp\Exception\LoginRequiredException;
 use SclNominetEpp\Request\Update;
+use SclNominetEpp\Request\Update\Helper\DomainCompareHelper;
 use SclNominetEpp\Request\Update\Unrenew;
 use SclNominetEpp\Response\ListDomains;
 use SclRequestResponse\ResponseInterface;
@@ -325,9 +326,9 @@ class Nominet extends AbstractRequestResponse
 
     /**
      * The <update> operation allows the attributes of an object to be updated.
-     * @param Domain $domain The Domain to be updated.
+     * @throws LoginRequiredException
      */
-    public function updateDomain(Domain $domain)
+    public function updateDomain(Domain $domain): ResponseInterface
     {
         $this->loginCheck();
         $request = new Request\Update\Domain($domain->getName());
@@ -338,29 +339,29 @@ class Nominet extends AbstractRequestResponse
             throw new DomainException("The domain requested for updating is unregistered.");
         }
         $currentNameservers = $currentDomain->getNameservers();
-        $currentContacts    = $currentDomain->getContacts();
-        $newNameservers     = $domain->getNameservers();
-        $newContacts        = $domain->getContacts();
+        $currentContacts = $currentDomain->getContacts();
+        $newNameservers = $domain->getNameservers();
+        $newContacts = $domain->getContacts();
 
-        $addContacts       = array_uintersect(
+        $addContacts = array_uintersect(
             $newContacts,
             $currentContacts,
-            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+            [DomainCompareHelper::class, 'compare']
         );
-        $removeContacts    = array_uintersect(
+        $removeContacts = array_uintersect(
             $currentContacts,
             $newContacts,
-            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+            [DomainCompareHelper::class, 'compare']
         );
-        $addNameservers    = array_uintersect(
+        $addNameservers = array_uintersect(
             $newNameservers,
             $currentNameservers,
-            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+            [DomainCompareHelper::class, 'compare']
         );
         $removeNameservers = array_uintersect(
             $currentNameservers,
             $newNameservers,
-            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
+            [DomainCompareHelper::class, 'compare']
         );
 
         if (!empty($addNameservers)) {
@@ -375,7 +376,7 @@ class Nominet extends AbstractRequestResponse
             }
         }
 
-        $request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
+        //$request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
 
         if (!empty($removeNameservers)) {
             foreach ($removeNameservers as $nameserver) {
@@ -389,12 +390,7 @@ class Nominet extends AbstractRequestResponse
             }
         }
 
-        //$request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
-        //$request->remove(new Update\Field\DomainContact('mak32', 'tech'));
-
-        $response = $this->processRequest($request);
-
-        return $response;
+        return $this->processRequest($request);
     }
 
     /**

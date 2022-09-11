@@ -2,6 +2,7 @@
 namespace SclNominetEpp;
 
 use DateTime;
+use InvalidArgumentException;
 
 /**
  * A nameserver record.
@@ -23,7 +24,7 @@ class Nameserver
      *
      * @var array|string
      */
-    private $status = array();
+    private $status = [];
 
     /**
      * The identifier of the sponsoring client.
@@ -42,7 +43,7 @@ class Nameserver
     /**
      * The date and time of host-object creation.
      *
-     * @var string
+     * @var DateTime
      */
     private $created;
 
@@ -81,22 +82,15 @@ class Nameserver
      */
     private $id;
 
-    /**
-     * Set $this->hostName
-     *
-     * @param string $hostName
-     */
-    public function setHostName($hostName)
+    public function setHostName(string $hostName)
     {
-        $this->hostName = (string) $hostName;
+        if (empty($nameserver)) {
+            throw new InvalidArgumentException('HostName parameter is empty');
+        }
+        $this->hostName = $hostName;
     }
 
-    /**
-     * Get $this->hostName
-     *
-     * @return string
-     */
-    public function getHostName()
+    public function getHostName(): string
     {
         return $this->hostName;
     }
@@ -131,12 +125,7 @@ class Nameserver
         $this->created = $created;
     }
 
-    /**
-     * Get $this->created
-     *
-     * @return DateTime
-     */
-    public function getCreated()
+    public function getCreated(): DateTime
     {
         return $this->created;
     }

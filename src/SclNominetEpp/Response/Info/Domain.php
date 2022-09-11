@@ -41,7 +41,7 @@ class Domain extends AbstractInfo
         $nschildren = $infData->ns->hostObj;
         foreach ($nschildren as $nschild) {
             $nameserver = new Nameserver();
-            $nameserver->setHostName($nschild);
+            $nameserver->setHostName((string)$nschild);
             $this->object->addNameserver($nameserver);
         }
 

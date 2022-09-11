@@ -1,6 +1,7 @@
 <?php
 namespace SclNominetEpp\Request\Update\Field;
 
+use InvalidArgumentException;
 use SimpleXMLElement;
 
 /**
@@ -10,16 +11,17 @@ class DomainNameserver implements UpdateFieldInterface
 {
     private $nameserver;
 
-    public function __construct($nameserver)
+    public function __construct(string $nameserver)
     {
+        if (empty($nameserver)) {
+            throw new InvalidArgumentException('Nameserver parameter is empty');
+        }
         $this->nameserver = $nameserver;
     }
 
     public function fieldXml(SimpleXMLElement $xml, string $namespace = null)
     {
-        if ($this->nameserver) {
-            $nameservers = $xml->addChild('ns', '', $namespace);
-            $nameservers->addChild('hostObj', $this->nameserver, $namespace);
-        }
+        $nameservers = $xml->addChild('ns', '', $namespace);
+        $nameservers->addChild('hostObj', $this->nameserver, $namespace);
     }
 }
