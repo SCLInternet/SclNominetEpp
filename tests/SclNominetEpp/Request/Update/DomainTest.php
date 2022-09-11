@@ -18,9 +18,7 @@ class DomainTest extends TestCase
         $request->add(new DomainNameserver('ns0.epp-example4.co.uk'));
         $request->remove(new DomainNameserver('ns0.epp-example1.co.uk'));
         $request->remove(new DomainNameserver('ns0.epp-example2.co.uk'));
-        $contact = new \SclNominetEpp\Contact();
-        $contact->setId(5689658965);
-        $request->changeRegistrant($contact);
+        $request->changeRegistrant('5689658965');
         $request->add(new Status('Payment Overdue', Nominet::STATUS_CLIENT_HOLD));
         $request->setAutoBill(143);
         $request->setNextBill(10);
