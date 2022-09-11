@@ -39,7 +39,7 @@ class Domain
      *
      * @var Contact[]
      */
-    private $contacts = array();
+    private $contacts = [];
 
     /**
      * All the nameservers of the registered domain.
