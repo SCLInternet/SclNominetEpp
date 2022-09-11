@@ -15,8 +15,6 @@ use SclNominetEpp\Exception\LoginRequiredException;
 use SclNominetEpp\Request\Update;
 use SclNominetEpp\Request\Update\Unrenew;
 use SclNominetEpp\Response\ListDomains;
-use SclRequestResponse\AbstractRequestResponse;
-use SclRequestResponse\RequestInterface;
 use SclRequestResponse\ResponseInterface;
 
 /**
@@ -66,11 +64,6 @@ class Nominet extends AbstractRequestResponse
      * @var boolean
      */
     private $loggedIn = false;
-
-    /**
-     * @var RequestInterface
-     */
-    private $request;
 
     /**
      * Disconnect cleanly if we are still logged in.
@@ -685,16 +678,5 @@ class Nominet extends AbstractRequestResponse
     public function resellerUpdate()
     {
         $this->loginCheck();
-    }
-
-    public function processRequest(RequestInterface $request)
-    {
-        $this->request = $request;
-        return parent::processRequest($request);
-    }
-
-    public function getRequest(): RequestInterface
-    {
-        return $this->request;
     }
 }
