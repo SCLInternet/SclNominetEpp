@@ -11,20 +11,16 @@ namespace SclNominetEpp;
 use DateTime;
 use DomainException;
 use Exception;
-use SclRequestResponse\AbstractRequestResponse;
-
 use SclNominetEpp\Exception\LoginRequiredException;
-use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update;
-use SclNominetEpp\Response;
+use SclNominetEpp\Request\Update\Unrenew;
 use SclNominetEpp\Response\ListDomains;
+use SclRequestResponse\AbstractRequestResponse;
+use SclRequestResponse\RequestInterface;
+use SclRequestResponse\ResponseInterface;
 
 /**
- * This class exposes all the actions of the Nominet EPP system in a nice PHP
- * class.
- *
- * @author Tom Oram <tom@scl.co.uk>
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
+ * This class exposes all the actions of the Nominet EPP system in a nice PHP class.
  */
 class Nominet extends AbstractRequestResponse
 {
@@ -70,6 +66,11 @@ class Nominet extends AbstractRequestResponse
      * @var boolean
      */
     private $loggedIn = false;
+
+    /**
+     * @var RequestInterface
+     */
+    private $request;
 
     /**
      * Disconnect cleanly if we are still logged in.
@@ -187,8 +188,10 @@ class Nominet extends AbstractRequestResponse
      * successful.
      *
      * @param string|array $contactIds
+     * @return ResponseInterface
+     * @throws LoginRequiredException
      */
-    public function checkContact($contactIds)
+    public function checkContact($contactIds): ResponseInterface
     {
         $this->loginCheck();
 
@@ -196,9 +199,7 @@ class Nominet extends AbstractRequestResponse
 
         $request->setValues($contactIds);
 
-        $response = $this->processRequest($request);
-
-        return $response;
+        return $this->processRequest($request);
     }
 
     /**
@@ -320,12 +321,13 @@ class Nominet extends AbstractRequestResponse
      * The <unrenew> operation is used to reverse a renewal request made for a
      * domain name. The renew command only applies to domain names. It has no
      * meaning for other object types.
+     * @throws LoginRequiredException
      */
     public function unrenew()
     {
         $this->loginCheck();
 
-        $request = new Request\Unrenew();
+        $request = new Unrenew();
     }
 
     /**
@@ -406,11 +408,11 @@ class Nominet extends AbstractRequestResponse
      * The <update> operation allows the attributes of an object to be updated.
      * @param Contact $contact The contact to be updated.
      */
-    public function updateContact(Contact $contact)
+    public function updateContact(Contact $contact): ResponseInterface
     {
         $this->loginCheck();
 
-        $request = new Request\Update\Contact();
+        $request = new Request\Update\Contact($contact);
 
         $request->add(new Update\Field\Status('', self::STATUS_CLIENT_DELETE_PROHIBITED));
 
@@ -422,17 +424,15 @@ class Nominet extends AbstractRequestResponse
     /**
      * The <update> operation allows the attributes of an object to be updated.
      */
-    public function updateContactID()
+    public function updateContactID($value): ResponseInterface
     {
         $this->loginCheck();
 
-        $request = new Request\Update\ContactID();
+        $request = new Request\Update\ContactID($value);
 
         $request->add(new Update\Field\Status('', self::STATUS_CLIENT_HOLD));
 
-        $response = $this->processRequest($request);
-
-        return $response;
+        return $this->processRequest($request);
     }
 
     /**
@@ -597,7 +597,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\Update\Fork\Fork();
+        $request = new Update\Fork();
 
         $request->setValue($hostName);
 
@@ -637,7 +637,7 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\Update\Lock\Lock($objectName, $type);
+        $request = new Update\Lock($objectName, $type);
 
         $response = $this->processRequest($request);
 
@@ -685,5 +685,16 @@ class Nominet extends AbstractRequestResponse
     public function resellerUpdate()
     {
         $this->loginCheck();
+    }
+
+    public function processRequest(RequestInterface $request)
+    {
+        $this->request = $request;
+        return parent::processRequest($request);
+    }
+
+    public function getRequest(): RequestInterface
+    {
+        return $this->request;
     }
 }

@@ -4,6 +4,7 @@ namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
+use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Response\Update\Contact as UpdateContactResponse;
 
 /**
@@ -19,13 +20,14 @@ class Contact extends Request
 
     const VALUE_NAME = 'id';
 
+    /** @var ContactObject|null */
     protected $contact = null;
     protected $value;
 
-    private $add = array();
-    private $remove = array();
+    private $add = [];
+    private $remove = [];
 
-    public function __construct(Contact $contact)
+    public function __construct(ContactObject $contact)
     {
         parent::__construct('update', new UpdateContactResponse());
         $this->contact = $contact;

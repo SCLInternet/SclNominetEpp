@@ -38,6 +38,11 @@ class Host extends AbstractInfo
         $this->nameserver = $nameserver;
     }
 
+    public function lookup(string $hostName)
+    {
+        // @todo
+    }
+
     protected function getName()
     {
         return $this->object->getHostName();

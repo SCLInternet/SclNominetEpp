@@ -1,9 +1,9 @@
 <?php
 
-namespace SclNominetEpp\Response\Update\Handshake;
+namespace SclNominetEpp\Response\Update;
 
-use SclNominetEpp\Response;
 use SclNominetEpp\Handshake as HandshakeObject;
+use SclNominetEpp\Response;
 use SimpleXMLElement;
 
 /**
@@ -52,7 +52,7 @@ class Handshake extends Response
         $domainListData = $handshakeData->domainListData;
         $registrant     = $handshakeData->registrant;
         $attributeArray = $domainListData->attributes();
-        $this->handshake->setNumberOfDomains($attributeArray['noDomains']);
+        $this->handshake->setNumberOfDomains((int) $attributeArray['noDomains']);
 
         if ($this->xmlValid($domainListData)) {
             foreach ($domainListData as $domain) {

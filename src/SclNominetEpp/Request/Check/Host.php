@@ -34,4 +34,9 @@ class Host extends AbstractCheck
             new CheckHostResponse()
         );
     }
+
+    public function setValues(array $hosts)
+    {
+        // @todo
+    }
 }

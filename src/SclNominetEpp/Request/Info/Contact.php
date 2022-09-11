@@ -45,6 +45,11 @@ class Contact extends AbstractInfo
         $this->object = $object;
     }
 
+    public function lookup(string $contactID)
+    {
+        // @todo
+    }
+
     protected function getName()
     {
         return $this->object->getId();

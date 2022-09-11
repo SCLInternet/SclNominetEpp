@@ -5,10 +5,10 @@
  * @author Tom Oram <tom@scl.co.uk>
  */
 
-namespace SclNominetEpp\Request\Update\Fork;
+namespace SclNominetEpp\Request\Update;
 
-use SclNominetEpp\Response\Update\Fork as ForkResponse;
 use SclNominetEpp\Request;
+use SclNominetEpp\Response\Update\Fork as ForkResponse;
 
 /**
  * This class build the XML for a Nominet EPP fork command.
@@ -30,6 +30,9 @@ class Fork extends Request
      * @var string
      */
     protected $expDate;
+    private $newContactId;
+    private $contactId;
+    private $domainNames;
 
     /**
      * Tells the parent class what the action of this request is.
@@ -39,7 +42,7 @@ class Fork extends Request
         parent::__construct('update', new ForkResponse());
     }
 
-    public function setDomain($domain, $expDate)
+    public function setDomain($domain, $expDate): Fork
     {
         $this->newContactId = $domain;
         $this->expDate = $expDate;
@@ -47,10 +50,11 @@ class Fork extends Request
         return $this;
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
-     */
+    public function setValue($hostName)
+    {
+        // @todo
+    }
+    
     protected function addContent(\SimpleXMLElement $xml)
     {
         $forkNS  = 'http://www.nominet.org.uk/epp/xml/std-fork-1.0';
@@ -59,8 +63,8 @@ class Fork extends Request
         $fork = $xml->addChild('f:fork', '', $forkNS);
         $fork->addAttribute('xsi:schemaLocation', $forkXSI, $forkNS);
         $fork->addChild('contactId', $this->contactId);
-        $fork->addChild('newContactId', $this->newContactID);
-        foreach ($domainNames as $name) {
+        $fork->addChild('newContactId', $this->newContactId);
+        foreach ($this->domainNames as $name) {
             $fork->addChild('domainName', $name);
         }
     }

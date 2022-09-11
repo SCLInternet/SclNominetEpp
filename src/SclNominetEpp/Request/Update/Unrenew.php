@@ -1,28 +1,16 @@
 <?php
-namespace SclNominetEpp\Request\Update\Unrenew;
+namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Request;
-use SclNominetEpp\Response\Update\Unrenew\Unrenew as UnrenewResponse;
+use SclNominetEpp\Response\Update\Unrenew as UnrenewResponse;
 
-/**
- *
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
- */
-
-/**
- *
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
- */
 class Unrenew extends Request
 {
-    //put your code here
     const UNRENEW_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/std-unrenew-1.0';
 
     protected $domainNames;
 
-    public function __construct($value)
+    public function __construct()
     {
         parent::__construct('update', new UnrenewResponse());
     }
