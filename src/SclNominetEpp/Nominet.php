@@ -327,11 +327,11 @@ class Nominet extends AbstractRequestResponse
      * The <update> operation allows the attributes of an object to be updated.
      * @throws LoginRequiredException
      */
-    public function updateDomain(Domain $domain): ResponseInterface
+    public function updateDomain(Domain $domain, Domain $currentDomain = null): ResponseInterface
     {
         $this->loginCheck();
 
-        $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
+        $currentDomain = $currentDomain ?: $this->domainInfo($domain->getName());
 
         $update = new Request\Update();
         $request = $update($domain, $currentDomain);
