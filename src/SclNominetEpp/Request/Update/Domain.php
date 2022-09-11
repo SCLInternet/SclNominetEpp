@@ -25,10 +25,10 @@ class Domain extends Request
     /** @var string Identifying value */
     protected $value;
 
-    /** @var array An array of elements that will be added during the update command. */
+    /** @var UpdateFieldInterface[] An array of elements that will be added during the update command. */
     private $add = [];
 
-    /** @var array An array of elements that will be removed during the update command. */
+    /** @var UpdateFieldInterface[] An array of elements that will be removed during the update command. */
     private $remove = [];
 
     /** @var ?string */
