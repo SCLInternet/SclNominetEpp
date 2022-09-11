@@ -67,23 +67,28 @@ class Update
             $request->add(new Update\Field\Status('Payment overdue.', Nominet::STATUS_CLIENT_HOLD));
         }
 
-        if ($domain->getRegistrant() != $currentDomain->getRegistrant()) {
+        if ($domain->getRegistrant() !== null &&
+            $domain->getRegistrant() != $currentDomain->getRegistrant()) {
             $request->changeRegistrant($domain->getRegistrant());
         }
 
-        if ($domain->getPassword() != $currentDomain->getPassword()) {
+        if ($domain->getPassword() !== null &&
+            $domain->getPassword() != $currentDomain->getPassword()) {
             $request->changePassword($domain->getPassword());
         }
 
-        if ($domain->getAutoBill() != $currentDomain->getAutoBill()) {
+        if ($domain->getAutoBill() !== null &&
+            $domain->getAutoBill() != $currentDomain->getAutoBill()) {
             $request->setAutoBill($domain->getAutoBill());
         }
 
-        if ($domain->getNextBill() != $currentDomain->getNextBill()) {
+        if ($domain->getNextBill() !== null &&
+            $domain->getNextBill() != $currentDomain->getNextBill()) {
             $request->setNextBill($domain->getNextBill());
         }
 
-        if ($domain->getNotes() != $currentDomain->getNotes()) {
+        if ($domain->getNotes() !== null &&
+            $domain->getNotes() != $currentDomain->getNotes()) {
             $request->setNotes($domain->getNotes());
         }
 
