@@ -1,10 +1,10 @@
 <?php
 namespace SclNominetEpp\Request\Update\Field;
 
+use SimpleXMLElement;
+
 /**
  * UpdateDomain "add" and "remove" both use "status" as a field
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Status implements UpdateFieldInterface
 {
@@ -17,9 +17,10 @@ class Status implements UpdateFieldInterface
         $this->status  = $status;
     }
 
-    public function fieldXml(\SimpleXMLElement $xml, $namespace)
+    public function fieldXml(SimpleXMLElement $xml, string $namespace = null)
     {
         $status = $xml->addChild('status', $this->message, $namespace);
         $status->addAttribute('s', $this->status);
+        $status->addAttribute('lang', 'en');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 namespace SclNominetEpp\Request\Update\Field;
 
+use SimpleXMLElement;
+
 /**
  * UpdateDomain "add" and "remove" both use "status" as a field
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class DomainNameserver implements UpdateFieldInterface
 {
@@ -15,9 +15,8 @@ class DomainNameserver implements UpdateFieldInterface
         $this->nameserver = $nameserver;
     }
 
-    public function fieldXml(\SimpleXMLElement $xml, $namespace)
+    public function fieldXml(SimpleXMLElement $xml, string $namespace = null)
     {
-        $nameserver = $xml->addChild('ns', '', $namespace);
-        $nameserver->addChild('hostObj', $this->nameserver);
+        $xml->addChild('hostObj', $this->nameserver, $namespace);
     }
 }

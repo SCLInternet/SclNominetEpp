@@ -2,48 +2,30 @@
 namespace SclNominetEpp\Request\Update;
 
 use PHPUnit\Framework\TestCase;
-use SclNominetEpp\Nameserver;
-use SclNominetEpp\Domain;
+use SclNominetEpp\Nominet;
 use SclNominetEpp\Request\Update\Domain as UpdateDomain;
-use DateTime;
+use SclNominetEpp\Request\Update\Field\DomainNameserver;
+use SclNominetEpp\Request\Update\Field\Status;
 
 class DomainTest extends TestCase
 {
     public function testUpdateDomain()
     {
-        $domainName = 'xepp-example2.co.uk';
-        $domain = new Domain();
-        $domain->setName($domainName);
-        $domain->setRegistrant('559D2DD4B2862E89');
-        $domain->setClientID('SCL');
-        $domain->setCreatorID('psamathe@nominet');
-        $domain->setCreated(new DateTime('2013-01-31T00:11:05'));
-        $domain->setExpired(new DateTime('2015-01-31T00:11:05'));
-        $domain->setUpID('');
-        $domain->setUpDate(new DateTime(''));
-        $domain->setFirstBill(Domain::BILL_REGISTRAR);
-        $domain->setRecurBill(Domain::BILL_REGISTRAR);
-        $domain->setAutoBill(0);
-        $domain->setNextBill(0);
-        $domain->setRegStatus('Registered until expiry date.');
-        $nameserver = new Nameserver();
-        $nameserver->setHostName('ns0.epp-example3.co.uk.');
-        $domain->addNameserver($nameserver);
-        $nameserver = new Nameserver();
-        $nameserver->setHostName('ns0.epp-example4.co.uk.');
-        $domain->addNameserver($nameserver);
+        $domainName = 'epp-example2.co.uk';
 
-        $techy = new \SclNominetEpp\Contact();
-        $techy->setId('techy1');
-        $techy->setType('tech');
-        $domain->addContact($techy);
-        $admin = new \SclNominetEpp\Contact();
-        $admin->setId('admin1');
-        $admin->settype('admin');
-        $domain->addContact($admin);
-
-        $request = new UpdateDomain($domain);
-        $request->setDomain($domain);
+        $request = new UpdateDomain($domainName);
+        $request->add(new DomainNameserver('ns0.epp-example3.co.uk'));
+        $request->add(new DomainNameserver('ns0.epp-example4.co.uk'));
+        $request->remove(new DomainNameserver('ns0.epp-example1.co.uk'));
+        $request->remove(new DomainNameserver('ns0.epp-example2.co.uk'));
+        $contact = new \SclNominetEpp\Contact();
+        $contact->setId(5689658965);
+        $request->changeRegistrant($contact);
+        $request->add(new Status('Payment Overdue', Nominet::STATUS_CLIENT_HOLD));
+        $request->setAutoBill(143);
+        $request->setNextBill(10);
+        $request->addNote('notes');
+        $request->addNote('notes2');
 
         $filename = __DIR__ . '/' . pathinfo(__FILE__, PATHINFO_FILENAME) . '.xml';
         $xml = file_get_contents($filename);

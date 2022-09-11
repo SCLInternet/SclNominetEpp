@@ -74,10 +74,6 @@ class Request implements RequestInterface
 
     /**
      * FormatXml makes the XML readable.
-     *
-     *
-     * @param SimpleXMLElement $xml
-     * @return string
      */
     protected function formatXml($xml)
     {
@@ -85,7 +81,6 @@ class Request implements RequestInterface
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
         $dom->loadXML($xml);
-
         return $dom->saveXML();
     }
 
@@ -110,10 +105,10 @@ class Request implements RequestInterface
 
         $command = $this->xml->addChild('command');
 
-        // TODO Does this need to be split for namespaces?
         $action  = $command->addChild($this->action);
 
         $this->addContent($action);
+        $command->addChild('clTRID', 'ABC-12345');
 
         $this->output = $this->xml->asXML();
 

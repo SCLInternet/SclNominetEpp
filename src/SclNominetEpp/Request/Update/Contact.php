@@ -2,9 +2,9 @@
 
 namespace SclNominetEpp\Request\Update;
 
-use SclNominetEpp\Response\Update\Contact as UpdateContactResponse;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
+use SclNominetEpp\Response\Update\Contact as UpdateContactResponse;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.
@@ -80,15 +80,15 @@ class Contact extends Request
         }
 
         $change = $update->addChild('chg');
-            $postalInfo = $change->addChild('postalInfo');
-            $postalInfo->addAttribute('type', $type);
-                $postalInfo->addChild('name');
-                $addr = $postalInfo->addChild('addr');
-                    $addr->addChild('street');
-                    $addr->addChild('city');
-                    $addr->addChild('sp');
-                    $addr->addChild('pc');
-                    $addr->addChild('cc');
+        $postalInfo = $change->addChild('postalInfo');
+        //$postalInfo->addAttribute('type', $type);
+        $postalInfo->addChild('name');
+        $addr = $postalInfo->addChild('addr');
+        $addr->addChild('street');
+        $addr->addChild('city');
+        $addr->addChild('sp');
+        $addr->addChild('pc');
+        $addr->addChild('cc');
         $extensionXML = $this->xml->command->addChild('extension');
         $extension = $extensionXML->addChild('contact-nom-ext:update', '', $extensionNS);
         $extension->addAttribute('xsi:schemaLocation', $extensionXSI);
