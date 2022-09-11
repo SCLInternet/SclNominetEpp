@@ -4,7 +4,6 @@ namespace SclNominetEpp\Request\Update;
 use PHPUnit\Framework\TestCase;
 use SclNominetEpp\Nameserver;
 use SclNominetEpp\Domain;
-use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update\Domain as UpdateDomain;
 use DateTime;
 
@@ -12,7 +11,7 @@ class DomainTest extends TestCase
 {
     public function testUpdateDomain()
     {
-        $domainName = 'epp-example2.co.uk';
+        $domainName = 'xepp-example2.co.uk';
         $domain = new Domain();
         $domain->setName($domainName);
         $domain->setRegistrant('559D2DD4B2862E89');
@@ -44,6 +43,7 @@ class DomainTest extends TestCase
         $domain->addContact($admin);
 
         $request = new UpdateDomain($domain);
+        $request->setDomain($domain);
 
         $filename = __DIR__ . '/' . pathinfo(__FILE__, PATHINFO_FILENAME) . '.xml';
         $xml = file_get_contents($filename);

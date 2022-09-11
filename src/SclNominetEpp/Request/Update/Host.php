@@ -52,13 +52,13 @@ class Host extends Request
         $this->remove[] = $field;
     }
 
-    public function addContent(\SimpleXMLElement $updateXML)
+    public function addContent(\SimpleXMLElement $action)
     {
         $hostNS  = self::UPDATE_NAMESPACE;
 
         $hostXSI = $hostNS . ' ' . 'host-1.0.xsd';
 
-        $update = $updateXML->addChild('host:update', '', $hostNS);
+        $update = $action->addChild('host:update', '', $hostNS);
         $update->addAttribute('xsi:schemaLocation', $hostXSI);
         $update->addChild(self::VALUE_NAME, $this->value, $hostNS);
 
@@ -70,7 +70,7 @@ class Host extends Request
         }
 
         if (!empty($this->remove)) {
-            $remBlock = $updateXML->addChild('rem', '', $hostNS);
+            $remBlock = $action->addChild('rem', '', $hostNS);
             foreach ($this->remove as $field) {
                 $field->fieldXml($remBlock, $hostNS);
             }

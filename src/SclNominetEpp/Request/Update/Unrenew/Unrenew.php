@@ -27,13 +27,13 @@ class Unrenew extends Request
         parent::__construct('update', new UnrenewResponse());
     }
 
-    public function addContent(\SimpleXMLElement $updateXML)
+    public function addContent(\SimpleXMLElement $action)
     {
         $unrenewNS  = self::UNRENEW_NAMESPACE;
 
         $unrenewXSI = $unrenewNS . ' ' . 'std-unrenew-1.0.xsd';
 
-        $update = $updateXML->addChild('u:unrenew', '', $unrenewNS);
+        $update = $action->addChild('u:unrenew', '', $unrenewNS);
         $update->addAttribute('xsi:schemaLocation', $unrenewXSI);
         if (!empty($this->domainNames)) {
             foreach ($this->domainNames as $domainName) {

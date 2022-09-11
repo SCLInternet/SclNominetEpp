@@ -3,14 +3,13 @@
 namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Domain as DomainObject;
-use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
+use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP domain:update command.
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Domain extends Request
 {
@@ -19,48 +18,27 @@ class Domain extends Request
     const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.2';
     const VALUE_NAME = 'name';
 
-    /**
-     *
-     * @var DomainObject
-     */
+    /** @var DomainObject */
     protected $domain = null;
 
-    /**
-     * Identifying value
-     * @var string
-     */
+    /** @var string Identifying value */
     protected $value;
 
-    /**
-     * An array of elements that will be added during the update command.
-     *
-     * @var array
-     */
-    private $add = array();
+    /** @var array An array of elements that will be added during the update command. */
+    private $add = [];
 
-    /**
-     * An array of elements that will be removed during the update command.
-     *
-     * @var array
-     */
-    private $remove = array();
+    /** @var array An array of elements that will be removed during the update command. */
+    private $remove = [];
 
-    /**
-     * Constructor
-     *
-     * @param string $value
-     */
-    public function __construct($value)
+    public function __construct(string $value)
     {
         parent::__construct('update', new UpdateDomainResponse());
         $this->value = $value;
     }
 
     /**
-     * The <b>add()</b> function assigns a Field object as an element of the add array
+     * The add() function assigns a Field object as an element of the add array
      * for including specific fields in the update request "domain:add" tag.
-     *
-     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
      */
     public function add(UpdateFieldInterface $field)
     {
@@ -68,31 +46,23 @@ class Domain extends Request
     }
 
     /**
-     * /**
-     * The <b>remove()</b> function assigns a Field object as an element of the remove array
+     * The remove() function assigns a Field object as an element of the remove array
      * for including specific fields in the update request "domain:remove" tag.
-     *
-     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
      */
     public function remove(UpdateFieldInterface $field)
     {
         $this->remove[] = $field;
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @param \SimpleXMLElement $updateXML
-     */
-    public function addContent(\SimpleXMLElement $updateXML)
+    public function addContent(SimpleXMLElement $action)
     {
-        $domainNS    = self::UPDATE_NAMESPACE;
+        $domainNS = self::UPDATE_NAMESPACE;
         $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
 
-        $domainXSI    =    $domainNS . ' ' . 'domain-1.0.xsd';
+        $domainXSI = $domainNS . ' ' . 'domain-1.0.xsd';
         $extensionXSI = $extensionNS . ' ' . 'domain-nom-ext-1.2.xsd';
 
-        $update = $updateXML->addChild('domain:update', '', $domainNS);
+        $update = $action->addChild('domain:update', '', $domainNS);
         $update->addChild(self::VALUE_NAME, $this->value, $domainNS);
 
         $addBlock = $update->addChild('add', '', $domainNS);
@@ -108,9 +78,9 @@ class Domain extends Request
         }
 
         $change = $update->addChild('chg');
-            $change->addChild('registrant');
-            $authInfo = $change->addChild('authInfo');
-                $authInfo->addChild('pw');
+        $change->addChild('registrant');
+        $authInfo = $change->addChild('authInfo');
+        $authInfo->addChild('pw');
 
         $extensionXML = $this->xml->command->addChild('extension');
         $extension = $extensionXML->addChild('domain-nom-ext:update', '', $extensionNS);
@@ -121,12 +91,7 @@ class Domain extends Request
         //@todo implement all variables, also, fix the extension data.
     }
 
-    /**
-     * Setter
-     *
-     * @param DomainObject $domain
-     */
-    public function setDomain($domain)
+    public function setDomain(DomainObject $domain)
     {
         $this->domain = $domain;
     }

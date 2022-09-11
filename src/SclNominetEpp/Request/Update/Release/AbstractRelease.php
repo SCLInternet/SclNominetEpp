@@ -90,15 +90,15 @@ abstract class AbstractRelease extends Request
     /**
      * Add content to the request form.
      *
-     * @param \SimpleXMLElement $updateXML
+     * @param \SimpleXMLElement $action
      */
-    public function addContent(\SimpleXMLElement $updateXML)
+    public function addContent(\SimpleXMLElement $action)
     {
         $releaseNS  = $this->updateNamespace;
 
         $releaseXSI = $releaseNS . ' ' . 'release-1.0.xsd';
 
-        $update = $updateXML->addChild('r:release', '', $releaseNS);
+        $update = $action->addChild('r:release', '', $releaseNS);
         $update->addAttribute('xsi:schemaLocation', $releaseXSI);
         $update->addChild($this->valueName, $this->value, $releaseNS);
         $update->addChild('registrarTag', $this->registrarTag);

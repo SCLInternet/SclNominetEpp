@@ -52,13 +52,13 @@ class ContactID extends Request
         $this->remove[] = $field;
     }
 
-    public function addContent(SimpleXMLElement $updateXML)
+    public function addContent(SimpleXMLElement $action)
     {
         $contactNS   = self::UPDATE_NAMESPACE;
 
         $contactXSI   =   $contactNS . ' ' . 'contact-id-1.0.xsd';
 
-        $update = $updateXML->addChild('contact-id:update', '', $contactNS);
+        $update = $action->addChild('contact-id:update', '', $contactNS);
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
         $update->addChild(self::VALUE_NAME, $this->contactID, self::UPDATE_NAMESPACE);
         $change = $update->addChild('chg');

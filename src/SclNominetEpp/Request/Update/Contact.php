@@ -54,7 +54,7 @@ class Contact extends Request
         $this->remove[] = $field;
     }
 
-    public function addContent(\SimpleXMLElement $updateXML)
+    public function addContent(\SimpleXMLElement $action)
     {
         $contactNS   = self::UPDATE_NAMESPACE;
         $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
@@ -62,18 +62,18 @@ class Contact extends Request
         $contactXSI   =   $contactNS . ' ' . 'contact-1.0.xsd';
         $extensionXSI = $extensionNS . ' ' . 'contact-nom-ext-1.1.xsd';
 
-        $update = $updateXML->addChild('contact:update', '', $contactNS);
+        $update = $action->addChild('contact:update', '', $contactNS);
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
         $update->addChild(self::VALUE_NAME, $this->contact, $contactNS);
 
 
-        $addBlock = $updateXML->addChild('add', '', $contactNS);
+        $addBlock = $action->addChild('add', '', $contactNS);
 
         foreach ($this->add as $field) {
             $field->fieldXml($addBlock, $contactNS);
         }
 
-        $remBlock = $updateXML->addChild('rem', '', $contactNS);
+        $remBlock = $action->addChild('rem', '', $contactNS);
 
         foreach ($this->remove as $field) {
             $field->fieldXml($remBlock, $contactNS);
