@@ -102,17 +102,32 @@ class Domain extends Request
 
         if ($this->add) {
             $addBlock = $update->addChild('add', '', $domainNS);
-
+            $addNameServers = null;
             foreach ($this->add as $field) {
-                $field->fieldXml($addBlock);
+                if ($field instanceof Request\Update\Field\DomainNameserver) {
+                    if ($addNameServers === null) {
+                        $addNameServers = $addBlock->addChild('ns', '');
+                    }
+                    $field->fieldXml($addNameServers);
+                } else {
+                    $field->fieldXml($addBlock);
+                }
             }
         }
 
         if ($this->remove) {
             $remBlock = $update->addChild('rem', '', $domainNS);
 
+            $remNameServers = null;
             foreach ($this->remove as $field) {
-                $field->fieldXml($remBlock);
+                if ($field instanceof Request\Update\Field\DomainNameserver) {
+                    if ($remNameServers === null) {
+                        $remNameServers = $remBlock->addChild('ns', '');
+                    }
+                    $field->fieldXml($remNameServers);
+                } else {
+                    $field->fieldXml($remBlock);
+                }
             }
         }
 
