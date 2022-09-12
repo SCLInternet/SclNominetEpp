@@ -1,34 +1,23 @@
 <?php
+
 namespace SclNominetEpp\Response\Create;
 
 use DateTime;
-
+use PHPUnit\Framework\TestCase;
+use SclNominetEpp\Nameserver;
+use SclNominetEpp\Response;
 use SclNominetEpp\Response\Create\Host as CreateHost;
-
 
 /**
  * host:create response test
  */
-class HostTest extends \PHPUnit\Framework\TestCase
+class HostTest extends TestCase
 {
     /**
      * @var Response
      */
     protected $response;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp(): void
-    {
-        $this->response = new CreateHost();
-    }
-
-    /**
-     *
-     *
-     */
     public function testProcessData()
     {
         $xml = <<<EOX
@@ -41,7 +30,7 @@ class HostTest extends \PHPUnit\Framework\TestCase
     <resData>
       <host:creData
        xmlns:host="urn:ietf:params:xml:ns:host-1.0">
-        <host:name>ns1.caliban-scl.sch.uk.</host:name>
+        <host:name>ns1.caliban-scl.sch.uk</host:name>
         <host:crDate>2013-01-31T00:11:05</host:crDate>
       </host:creData>
     </resData>
@@ -54,8 +43,8 @@ class HostTest extends \PHPUnit\Framework\TestCase
 
 EOX;
 
-        $expected = new \SclNominetEpp\Nameserver();
-        $expected->setHostName('ns1.caliban-scl.sch.uk.');
+        $expected = new Nameserver();
+        $expected->setHostName('ns1.caliban-scl.sch.uk');
         $expected->setCreated(new DateTime('2013-01-31T00:11:05'));
 
         $this->response->init($xml);
@@ -63,6 +52,14 @@ EOX;
         $host = $this->response->getObject();
 
         $this->assertEquals($expected, $host);
+    }
 
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp(): void
+    {
+        $this->response = new CreateHost();
     }
 }

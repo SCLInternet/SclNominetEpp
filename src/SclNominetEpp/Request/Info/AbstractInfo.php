@@ -59,11 +59,11 @@ abstract class AbstractInfo extends Request
     /**
      * {@inheritDoc}
      *
-     * @param \SimpleXMLElement $xml
+     * @param \SimpleXMLElement $action
      */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(\SimpleXMLElement $action)
     {
-        $info = $xml->addChild("{$this->type}:info", '', $this->infoNamespace);
+        $info = $action->addChild("{$this->type}:info", '', $this->infoNamespace);
 
         $info->addChild($this->valueName, $this->getName(), $this->infoNamespace);
     }

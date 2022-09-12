@@ -98,23 +98,23 @@ class Login extends Request
     /**
      * {@inheritDoc}
      *
-     * @param SimpleXMLElement $xml
+     * @param SimpleXMLElement $action
      */
-    protected function addContent(SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $action)
     {
-        $xml->addChild('clID', $this->tag);
-        $xml->addChild('pw', $this->password);
+        $action->addChild('clID', $this->tag);
+        $action->addChild('pw', $this->password);
 
         if (null !== $this->newPassword) {
-            $xml->addChild('newPw', $this->newPassword);
+            $action->addChild('newPw', $this->newPassword);
         }
 
-        $options = $xml->addChild('options');
+        $options = $action->addChild('options');
 
         $options->addChild('version', '1.0');
         $options->addChild('lang', 'en');
 
-        $svcs = $xml->addChild('svcs');
+        $svcs = $action->addChild('svcs');
 
         $this->addObjUri($svcs, 'urn:ietf:params:xml:ns:domain-1.0');
         $this->addObjUri($svcs, 'urn:ietf:params:xml:ns:contact-1.0');

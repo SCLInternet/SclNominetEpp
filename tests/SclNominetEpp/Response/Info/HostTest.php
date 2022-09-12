@@ -46,7 +46,7 @@ class HostTest extends TestCase
       <host:infData
         xmlns:host="urn:ietf:params:xml:ns:host-1.0"
         xsi:schemaLocation="urn:ietf:params:xml:ns:host-1.0 host-1.0.xsd">
-        <host:name>ns1.caliban-scl.sch.uk.</host:name>
+        <host:name>ns1.caliban-scl.sch.uk</host:name>
         <host:roid>739787E8A10BF2CA11882CE974FD775E-UK</host:roid>
         <host:status s="ok"/>
         <host:status s="linked"/>
@@ -66,7 +66,7 @@ class HostTest extends TestCase
 EOX;
 
         $expected = new Nameserver();
-        $expected->setHostName('ns1.caliban-scl.sch.uk.');
+        $expected->setHostName('ns1.caliban-scl.sch.uk');
         $expected->addStatus('ok');
         $expected->addStatus('linked');
         $expected->setIpv4('1.2.3.4');

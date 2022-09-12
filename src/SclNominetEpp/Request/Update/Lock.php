@@ -79,7 +79,7 @@ class Lock extends Request
         }
     }
 
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(\SimpleXMLElement $action)
     {
         $lockNS  = 'http://www.nominet.org.uk/epp/xml/std-locks-1.0';
         $lockXSI = $lockNS . ' std-locks-1.0.xsd';
@@ -87,7 +87,7 @@ class Lock extends Request
         //$domainNS  = 'urn:ietf:params:xml:ns:domain-1.0';
         //$domainXSI = 'urn:ietf:params:xml:ns:domain-1.0 domain-1.0.xsd';
 
-        $lock = $xml->addChild('l:lock', '', $lockNS);
+        $lock = $action->addChild('l:lock', '', $lockNS);
         $lock->addAttribute('xsi:schemaLocation', $lockXSI, $lockNS);
         $lock->addAttribute('object', $this->object);   //Can be contact or domain
         $lock->addAttribute('type', $this->type); //Can be opt-out or investigate

@@ -30,15 +30,15 @@ class Domain extends Request
     /**
      * {@inheritDoc}
      *
-     * @param SimpleXMLElement $deleteXML
+     * @param SimpleXMLElement $deleteAction
      */
-    public function addContent(SimpleXMLElement $deleteXML)
+    public function addContent(SimpleXMLElement $deleteAction)
     {
         $deleteNS  = 'urn:ietf:params:xml:ns:domain-1.0';
 
         $deleteXSI = $deleteNS . ' ' . "domain-1.0.xsd";
 
-        $delete = $deleteXML->addChild("domain:delete", '', $deleteNS);
+        $delete = $deleteAction->addChild("domain:delete", '', $deleteNS);
         $delete->addAttribute('xsi:schemaLocation', $deleteXSI);
         $delete->addChild('name', $this->getName(), $deleteNS);
     }

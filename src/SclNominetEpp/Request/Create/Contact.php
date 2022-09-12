@@ -2,16 +2,14 @@
 
 namespace SclNominetEpp\Request\Create;
 
+use InvalidArgumentException;
 use SclContact\AddressInterface;
 use SimpleXMLElement;
 use SclNominetEpp\Contact as ContactObject;
 use SclNominetEpp\Response\Create\Contact as CreateContactResponse;
-use Exception;
 
 /**
  * This class build the XML for a Nominet EPP contact:create command.
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Contact extends AbstractCreate
 {
@@ -22,9 +20,6 @@ class Contact extends AbstractCreate
     const DUMMY_PASSWORD = 'qwerty';
     const POSTAL_INFO_TYPE = 'loc';
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
         parent::__construct(
@@ -72,13 +67,13 @@ class Contact extends AbstractCreate
     /**
      * An Exception is thrown if the object is not of type \SclNominetEpp\Contact
      *
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public function objectValidate($contact)
+    public function objectValidate($contact): bool
     {
         if (!$contact instanceof ContactObject) {
             $exception = sprintf('A valid contact object was not passed to CreateContact, Ln:%d', __LINE__);
-            throw new Exception($exception);
+            throw new InvalidArgumentException($exception);
         }
         return true;
     }
@@ -94,7 +89,7 @@ class Contact extends AbstractCreate
     }
 
 
-    protected function getName()
+    protected function getName(): string
     {
         return $this->object->getId();
     }

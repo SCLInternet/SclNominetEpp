@@ -49,7 +49,7 @@ class DomainTest extends \PHPUnit\Framework\TestCase
         <domain:roid>117523-UK</domain:roid>
         <domain:registrant>559D2DD4B2862E89</domain:registrant>
         <domain:ns>
-          <domain:hostObj>ns1.caliban-scl.sch.uk.</domain:hostObj>
+          <domain:hostObj>ns1.caliban-scl.sch.uk</domain:hostObj>
         </domain:ns>
         <domain:clID>SCL</domain:clID>
         <domain:crID>psamathe@nominet</domain:crID>
@@ -95,7 +95,7 @@ EOX;
         $expected->setNextBill(0);
         $expected->setRegStatus('Registered until expiry date.');
         $nameserver = new Nameserver();
-        $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
+        $nameserver->setHostName('ns1.caliban-scl.sch.uk');
         $expected->addNameserver($nameserver);
         $this->response->init($xml);
         $domain = $this->response->getDomain();

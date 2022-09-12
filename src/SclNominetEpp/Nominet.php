@@ -528,7 +528,7 @@ class Nominet extends AbstractRequestResponse
      * The <fork> command allows a number of domain names on a registrant contact
      * to be moved to a copy of that contact.
      */
-    public function fork($hostName)
+    public function fork(string $hostName)
     {
         $this->loginCheck();
 

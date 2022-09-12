@@ -123,16 +123,16 @@ class Renew extends Request
 
     /**
      * (non-PHPdoc)
-     * @param SimpleXMLElement $xml
+     * @param SimpleXMLElement $action
      * @see Request.AbstractRequest::addContent()
      *
      */
-    protected function addContent(SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $action)
     {
         $domainNS = 'urn:ietf:params:xml:ns:domain-1.0';
         $domainXSI = $domainNS . ' domain-1.0.xsd';
 
-        $domainRenew = $xml->addChild('domain:renew', '', $domainNS);
+        $domainRenew = $action->addChild('domain:renew', '', $domainNS);
         $domainRenew->addAttribute('xsi:schemaLocation', $domainXSI, self::XSI_NAMESPACE);
         $domainRenew->addChild('name', $this->domain);
         $domainRenew->addChild('curExpDate', $this->getCurrentExpiryDate());

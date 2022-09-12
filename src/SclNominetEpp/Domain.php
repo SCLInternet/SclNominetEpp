@@ -101,7 +101,7 @@ class Domain
      * This field can be cleared by setting the default value of 0.
      * Auto-bill cannot be set if next-bill, recur-bill or renew-not-required are set.
      */
-    private int $autoBill;
+    private ?int $autoBill = null;
 
     /**
      * The number of days before expiry you wish to automatically renew a domain name.
@@ -110,7 +110,7 @@ class Domain
      * This field can be cleared by setting the default value of 0.
      * Next-bill cannot be set if auto-bill, recur-bill or renew-not-required are set.
      */
-    private int $nextBill;
+    private ?int $nextBill = null;
 
     /**
      * Domain's current registration status
@@ -122,12 +122,12 @@ class Domain
      *
      * @var ?string[]
      */
-    private ?array $notes;
+    private ?array $notes = null;
 
     /**
      * Password
      */
-    private string $password;
+    private ?string $password;
 
     /**
      * Set add $contact to array of contacts
@@ -416,5 +416,25 @@ class Domain
     public function setPassword(string $password)
     {
         $this->password = $password;
+    }
+
+    public function hasPassword(): bool
+    {
+        return isset($this->password);
+    }
+
+    public function hasAutoBill(): bool
+    {
+        return isset($this->autoBill);
+    }
+
+    public function hasNextBill(): bool
+    {
+        return isset($this->nextBill);
+    }
+
+    public function hasNotes(): bool
+    {
+        return isset($this->notes);
     }
 }

@@ -7,24 +7,20 @@
 
 namespace SclNominetEpp\Request;
 
-use SclNominetEpp\Response\ListDomains as ListDomainsResponse;
-
 use SclNominetEpp\Request;
+use SclNominetEpp\Response\ListDomains as ListDomainsResponse;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP list command.
- *
- * @author Tom Oram <tom@scl.co.uk>
  */
 class ListDomains extends Request
 {
 
     /**
      * The month of the list element (also contains the year).
-     *
-     * @var int
      */
-    protected $month;
+    protected int $month;
 
     /**
      * Tells the parent class what the action of this request is.
@@ -34,25 +30,21 @@ class ListDomains extends Request
         parent::__construct('info', new ListDomainsResponse());
     }
 
-    public function setDate($month, $year)
+    public function setDate($month, $year): ListDomains
     {
         $this->month = $year . '-' . $month;
 
         return $this;
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
-     */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $action)
     {
 
-        $lNS     = 'http://www.nominet.org.uk/epp/xml/std-list-1.0';
+        $lNS = 'http://www.nominet.org.uk/epp/xml/std-list-1.0';
 
         $listXSI = $lNS . ' std-list-1.0.xsd';
 
-        $domainList = $xml->addChild('l:list', '', $lNS);
+        $domainList = $action->addChild('l:list', '', $lNS);
 
         $domainList->addAttribute('xsi:schemaLocation', $listXSI, self::XSI_NAMESPACE);
 

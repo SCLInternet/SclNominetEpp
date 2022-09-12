@@ -88,22 +88,22 @@ class Update
             $this->request->changeRegistrant($this->domain->getRegistrant());
         }
 
-        if ($this->domain->getPassword() !== null &&
+        if ($this->domain->hasPassword() &&
             $this->domain->getPassword() != $this->currentDomain->getPassword()) {
             $this->request->changePassword($this->domain->getPassword());
         }
 
-        if ($this->domain->getAutoBill() !== null &&
+        if ($this->domain->hasAutoBill() &&
             $this->domain->getAutoBill() != $this->currentDomain->getAutoBill()) {
             $this->request->setAutoBill($this->domain->getAutoBill());
         }
 
-        if ($this->domain->getNextBill() !== null &&
+        if ($this->domain->hasNextBill() &&
             $this->domain->getNextBill() != $this->currentDomain->getNextBill()) {
             $this->request->setNextBill($this->domain->getNextBill());
         }
 
-        if ($this->domain->getNotes() !== null &&
+        if ($this->domain->hasNotes() &&
             $this->domain->getNotes() != $this->currentDomain->getNotes()) {
             $this->request->setNotes($this->domain->getNotes());
         }

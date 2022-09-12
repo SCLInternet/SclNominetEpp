@@ -52,11 +52,11 @@ class Domain extends AbstractInfo
     /**
      * Add content to the request form.
      *
-     * @param SimpleXMLElement $xml
+     * @param SimpleXMLElement $action
      */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(\SimpleXMLElement $action)
     {
-        $info = $xml->addChild("{$this->type}:info", '', $this->infoNamespace);
+        $info = $action->addChild("{$this->type}:info", '', $this->infoNamespace);
 
         $name = $info->addChild($this->valueName, $this->getName(), $this->infoNamespace);
         $name->addAttribute('hosts', 'all');

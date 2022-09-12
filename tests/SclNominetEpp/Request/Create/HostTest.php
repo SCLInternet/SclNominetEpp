@@ -1,6 +1,7 @@
 <?php
 namespace SclNominetEpp\Request\Create;
 
+use PHPUnit\Framework\TestCase;
 use SclNominetEpp\Nameserver;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Create\Host as CreateHost;
@@ -8,7 +9,7 @@ use SclNominetEpp\Request\Create\Host as CreateHost;
 /**
  * host:create test
  */
-class HostTest extends \PHPUnit\Framework\TestCase
+class HostTest extends TestCase
 {
     /**
      * @var Request
@@ -32,7 +33,7 @@ class HostTest extends \PHPUnit\Framework\TestCase
   <command>
     <create>
       <host:create xmlns:host="urn:ietf:params:xml:ns:host-1.0">
-        <host:name>ns1.example.com.</host:name>
+        <host:name>ns1.example.com</host:name>
         <host:addr ip="v4">192.0.2.2</host:addr>
         <host:addr ip="v6">1080:0:0:0:8:800:200C:417A</host:addr>
       </host:create>
@@ -43,7 +44,7 @@ class HostTest extends \PHPUnit\Framework\TestCase
 EOX;
 
         $host = new Nameserver();
-        $host->setHostName('ns1.example.com.');
+        $host->setHostName('ns1.example.com');
         $host->setIpv4('192.0.2.2');
         $host->setIpv6('1080:0:0:0:8:800:200C:417A');
         $this->request->setNameserver($host);

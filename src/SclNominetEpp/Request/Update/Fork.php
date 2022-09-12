@@ -1,38 +1,28 @@
 <?php
-/**
- * Contains the nominet Renew request class definition.
- *
- * @author Tom Oram <tom@scl.co.uk>
- */
 
 namespace SclNominetEpp\Request\Update;
 
 use SclNominetEpp\Request;
 use SclNominetEpp\Response\Update\Fork as ForkResponse;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP fork command.
- *
- * @author Tom Oram <tom@scl.co.uk>
  */
 class Fork extends Request
 {
     /**
      * The domain name.
-     *
-     * @var string
      */
-    protected $domain;
+    protected string $domain;
 
     /**
      * The expiry date.
-     *
-     * @var string
      */
-    protected $expDate;
-    private $newContactId;
-    private $contactId;
-    private $domainNames;
+    protected string $expDate;
+    private string $newContactId;
+    private string $contactId;
+    private array $domainNames;
 
     /**
      * Tells the parent class what the action of this request is.
@@ -50,17 +40,32 @@ class Fork extends Request
         return $this;
     }
 
-    public function setValue($hostName)
+    public function setValue(string $hostName)
     {
-        // @todo
+        $this->domainNames[] = $hostName;
     }
-    
-    protected function addContent(\SimpleXMLElement $xml)
+
+    public function setContactId(string $contactId): void
+    {
+        $this->contactId = $contactId;
+    }
+
+    public function getDomainNames(): array
+    {
+        return $this->domainNames;
+    }
+
+    public function setDomainNames(array $domainNames): void
+    {
+        $this->domainNames = $domainNames;
+    }
+
+    protected function addContent(SimpleXMLElement $action)
     {
         $forkNS  = 'http://www.nominet.org.uk/epp/xml/std-fork-1.0';
         $forkXSI = $forkNS . ' std-fork-1.0.xsd';
 
-        $fork = $xml->addChild('f:fork', '', $forkNS);
+        $fork = $action->addChild('f:fork', '', $forkNS);
         $fork->addAttribute('xsi:schemaLocation', $forkXSI, $forkNS);
         $fork->addChild('contactId', $this->contactId);
         $fork->addChild('newContactId', $this->newContactId);

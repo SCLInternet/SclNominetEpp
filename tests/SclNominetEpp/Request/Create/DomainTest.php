@@ -44,7 +44,7 @@ class DomainTest extends TestCase
         $domain->setNextBill(0);
         $domain->setRegStatus('Registered until expiry date.');
         $nameserver = new Nameserver();
-        $nameserver->setHostName('ns1.caliban-scl.sch.uk.');
+        $nameserver->setHostName('ns1.caliban-scl.sch.uk');
         $domain->addNameserver($nameserver);
 
         $techy = new \SclNominetEpp\Contact();
