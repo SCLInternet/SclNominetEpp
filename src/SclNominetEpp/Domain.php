@@ -30,7 +30,7 @@ class Domain
     /**
      * The Person, Company or Entity who owns or holds a domain name.
      *
-     * @var string
+     * @var ?string
      */
     private $registrant;
 
@@ -159,12 +159,12 @@ class Domain
      */
     private $password;
 
-    public function getRegistrant(): string
+    public function getRegistrant(): ?string
     {
         return $this->registrant;
     }
 
-    public function setRegistrant(string $registrant)
+    public function setRegistrant(?string $registrant)
     {
         $this->registrant = $registrant;
     }
