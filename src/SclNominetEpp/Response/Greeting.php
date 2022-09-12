@@ -4,6 +4,7 @@ namespace SclNominetEpp\Response;
 
 use DateTime;
 use SclNominetEpp\Response;
+use SclRequestResponse\ResponseInterface;
 use SimpleXMLElement;
 use SclNominetEpp\Greeting as GreetingObject;
 
@@ -15,12 +16,9 @@ class Greeting extends Response
     protected $greetingObject;
 
     /**
-     * Read the data from an array into this object.
-     * Greeting doesn't use the "<response>" tag
-     * so "init()" needs to be overwritten to avoid redundant validation
      * @throws \Exception
      */
-    public function init(string $data): self
+    public function init($data)
     {
         $data = new SimpleXMLElement($data);
 

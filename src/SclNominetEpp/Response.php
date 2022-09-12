@@ -107,11 +107,10 @@ class Response implements ResponseInterface
     protected SimpleXMLElement $data;
 
     /**
-     * Read the data from an array into this object.
      * @throws InvalidResponsePacketException
      * @throws \Exception
      */
-    public function init(string $data): ResponseInterface
+    public function init($data)
     {
         $data = new SimpleXMLElement($data);
 
