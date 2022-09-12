@@ -54,7 +54,7 @@ class Host extends AbstractCreate
      *
      * @throws InvalidArgumentException
      */
-    public function objectValidate($object)
+    public function objectValidate($object): bool
     {
         if (!$object instanceof Nameserver) {
             $exception = sprintf('A valid Nameserver object was not passed to \Request\CreateHost, Ln:%d', __LINE__);

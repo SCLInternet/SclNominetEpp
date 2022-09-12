@@ -63,7 +63,7 @@ abstract class AbstractCreate extends Request
      * Validates whether the object is of the correct class.
      * @throws InvalidArgumentException
      */
-    abstract protected function objectValidate(object $object): bool;
+    abstract protected function objectValidate($object): bool;
 
     /**
      * This allows subclasses to add their own specific content

@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request\Create;
 
+use InvalidArgumentException;
 use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Response\Create\Domain as CreateDomainResponse;
 use SimpleXMLElement;
@@ -82,16 +83,13 @@ class Domain extends AbstractCreate
 
     /**
      * An Exception is thrown if the object is not of type \SclNominetEpp\Domain
-     *
-     * @param \SclNominetEpp\Domain $object
-     * @return boolean
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public function objectValidate($object)
+    public function objectValidate($object): bool
     {
         if (!$object instanceof DomainObject) {
             $exception = sprintf('A valid Domain object was not passed to Request\Create\Domain, Ln:%d', __LINE__);
-            throw new Exception($exception);
+            throw new InvalidArgumentException($exception);
         }
         return true;
     }
