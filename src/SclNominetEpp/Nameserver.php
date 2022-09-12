@@ -69,15 +69,6 @@ class Nameserver
         if (filter_var($hostName, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) === false) {
             throw new InvalidArgumentException(sprintf('HostName parameter "%s" is invalid', $hostName));
         }
-
-        /**
-         * "A <domain:hostObj> element contains the fully qualified name of a known name server host object."
-         * @see https://www.rfc-editor.org/rfc/rfc5731#section-1.1
-         */
-        if ($hostName !== rtrim($hostName, '.')) {
-            $message = sprintf('HostName parameter "%s" is not the fully qualified name', $hostName);
-            throw new InvalidArgumentException($message);
-        }
         $this->hostName = $hostName;
     }
 
