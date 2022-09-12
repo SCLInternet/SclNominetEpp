@@ -2,17 +2,15 @@
 
 namespace SclNominetEpp\Response;
 
-use SclRequestResponse\ResponseInterface;
-use SimpleXMLElement;
 use DateTime;
+use SclNominetEpp\Response;
+use SimpleXMLElement;
 use SclNominetEpp\Greeting as GreetingObject;
 
 /**
  * This class interprets XML for a Nominet EPP list command response.
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
-class Greeting implements ResponseInterface
+class Greeting extends Response
 {
     protected $greetingObject;
 
@@ -20,16 +18,11 @@ class Greeting implements ResponseInterface
      * Read the data from an array into this object.
      * Greeting doesn't use the "<response>" tag
      * so "init()" needs to be overwritten to avoid redundant validation
-     *
-     * @param string $xml
-     *
-     * @return Response
-     *
      * @throws \Exception
      */
-    public function init($xml)
+    public function init(string $data): self
     {
-        $data = new SimpleXMLElement($xml);
+        $data = new SimpleXMLElement($data);
 
         // TODO verify all these element exist
 
@@ -39,19 +32,11 @@ class Greeting implements ResponseInterface
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @param SimpleXMLElement $xml
-     * @return void
-     */
     protected function processData(SimpleXMLElement $xml)
     {
         if (!$this->xmlValid($xml)) {
             return;
         }
-        //var_dump($xml);
-
         $this->greetingObject = new GreetingObject();
         $ns = $xml->getNamespaces(true);
         $this->greetingObject->setServerId($xml->greeting->svID);
@@ -90,35 +75,5 @@ class Greeting implements ResponseInterface
         }
 
         $this->greetingObject->setRetention($statement->retention->getName());
-    }
-
-    /**
-     *
-     * @param SimpleXMLElement $xml
-     * @return boolean
-     */
-    public function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
-    }
-
-    public function code()
-    {
-        return SclNominetEpp\Response::SUCCESS_STANDARD;
-    }
-
-    public function data()
-    {
-        return null;
-    }
-
-    public function message()
-    {
-        return '';
-    }
-
-    public function success()
-    {
-        return true;
     }
 }

@@ -9,8 +9,6 @@ use SclNominetEpp\Nameserver;
 
 /**
  * This class interprets XML for a Nominet EPP domain:info command response.
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Domain extends AbstractInfo
 {

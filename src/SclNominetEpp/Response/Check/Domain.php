@@ -4,8 +4,6 @@ namespace SclNominetEpp\Response\Check;
 
 /**
  * This class interprets XML for a Nominet EPP domain:check command response.
- *
- * @author tom
  */
 class Domain extends AbstractCheck
 {

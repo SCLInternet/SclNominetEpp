@@ -9,8 +9,6 @@ use SimpleXMLElement;
 
 /**
  * This class handles the essentials of all command responses
- *
- * @author Tom Oram <tom@scl.co.uk>
  */
 class Response implements ResponseInterface
 {
@@ -116,44 +114,41 @@ class Response implements ResponseInterface
 
     /**
      * Any extra response data.
-     * @todo WHAT THE FRAK ARE YOU ON ABOUT TOM?
      * @var SimpleXMLElement
      */
     protected $data;
 
     /**
      * Custom processing of the XML response.
-     *
-     * @param SimpleXMLElement $xml
-     * @return void
      */
     protected function processData(SimpleXMLElement $xml)
     {
-        // Nothing to see here
+        if (!$this->success()) {
+            return;
+        }
+        if (!$this->xmlValid($xml->response->resData)) {
+            return;
+        }
+        return;
     }
 
     /**
      * Read the data from an array into this object.
-     *
-     * @param string $xml
-     *
-     * @return Response
      * @throws InvalidResponsePacketException
+     * @throws \Exception
      */
-    public function init($xml)
+    public function init(string $data): ResponseInterface
     {
-        $data = new SimpleXMLElement($xml);
+        $data = new SimpleXMLElement($data);
 
         if (!isset($data->response)) {
             throw new InvalidResponsePacketException('XML is not a response packet.');
         }
 
-        // TODO verify all these element exist
-
         $this->code    = (int) $data->response->result->attributes()->code;
         $this->message = (string) $data->response->result->msg;
 
-        $this->data = array();
+        $this->data = [];
 
         if (!$this->isErrorCode($this->code) && !$this->isSuccessCode($this->code)) {
             throw RuntimeException::unexpectedResultCode($this->code, $this->message);
@@ -161,7 +156,6 @@ class Response implements ResponseInterface
 
         $this->processData($data);
 
-        // TODO save transactions
         return $this;
     }
 
@@ -174,40 +168,32 @@ class Response implements ResponseInterface
      *
      * 1yzz    Positive completion reply.
      * 2yzz    Negative completion reply.
-     *
-     * @return bool
      */
-    public function success()
+    public function success(): bool
     {
         return $this->isSuccessCode($this->code);
     }
 
     /**
      * Get the response code
-     *
-     * @return int
      */
-    public function code()
+    public function code(): int
     {
         return $this->code;
     }
 
     /**
      * Get the response message
-     *
-     * @return string
      */
-    public function message()
+    public function message(): string
     {
         return $this->message;
     }
 
     /**
      * Get any extra response data
-     *
-     * @return SimpleXMLElement
      */
-    public function data()
+    public function data(): SimpleXMLElement
     {
         return $this->data;
     }
@@ -223,14 +209,13 @@ class Response implements ResponseInterface
         return in_array($code, self::$errorCodes);
     }
 
-    /**
-     * Check if the given code is an success code.
-     *
-     * @param  int $code
-     * @return bool
-     */
-    protected function isSuccessCode($code)
+    protected function isSuccessCode(int $code): bool
     {
         return in_array($code, self::$successCodes);
+    }
+
+    public function xmlValid(SimpleXMLElement $xml): bool
+    {
+        return $xml->valid();
     }
 }

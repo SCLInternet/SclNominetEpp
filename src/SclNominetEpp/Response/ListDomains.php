@@ -43,16 +43,6 @@ class ListDomains extends Response
 
     /**
      *
-     * @param \SimpleXMLElement $xml
-     * @return boolean
-     */
-    public function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
-    }
-
-    /**
-     *
      * @return array
      */
     public function getDomains()

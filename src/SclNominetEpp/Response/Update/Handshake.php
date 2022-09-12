@@ -64,12 +64,6 @@ class Handshake extends Response
         }
     }
 
-
-    public function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
-    }
-
     public function getHandshake()
     {
         return $this->handshake;

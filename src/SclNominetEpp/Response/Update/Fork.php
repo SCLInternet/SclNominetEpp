@@ -30,7 +30,9 @@ class Fork extends Response
         if (!$this->success()) {
             return;
         }
-
+        if (!$this->xmlValid($xml->response->resData)) {
+            return;
+        }
         $ns = $xml->getNamespaces(true);
 
         $contactDetails = $xml->response->resData->children($ns['contact'])->creData;

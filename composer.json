@@ -8,16 +8,21 @@
         {
             "name": "Tom Oram",
             "email": "tom@x2k.co.uk",
-            "homepage": "http://github.com/tomphp"
+            "homepage": "https://github.com/tomphp"
         },
         {
             "name": "Merlyn Cooper",
             "email": "merlyn.cooper@hotmail.co.uk",
-            "homepage": "http://github.com/Merlyn-Cooper"
+            "homepage": "https://github.com/Merlyn-Cooper"
+        },
+        {
+            "name": "James Wade",
+            "email": "jpswade@gmail.com",
+            "homepage": "https://github.com/jpswade"
         }
     ],
     "require": {
-        "php": ">=7.3",
+        "php": ">=7.4",
         "sclinternet/scl-contact": "dev-master",
         "sclinternet/scl-socket": "dev-master",
         "sclinternet/scl-request-response": "dev-master",

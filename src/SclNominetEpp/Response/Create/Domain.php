@@ -9,8 +9,6 @@ use SimpleXMLElement;
 /**
  * This class gives AbstractCreate information to interpret XML
  * for a Nominet EPP host:create command response.
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Domain extends AbstractCreate
 {

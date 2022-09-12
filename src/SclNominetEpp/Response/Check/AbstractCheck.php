@@ -75,18 +75,6 @@ abstract class AbstractCheck extends Response
             $this->values[(string) $value->$valueName] = $available;
         }
     }
-        /**
-     * Assuming $xml is invalid,
-     * this function returns "true" to affirm that the xml is invalid,
-     * otherwise "false".
-     *
-     * @param SimpleXMLElement $xml
-     * @return boolean
-     */
-    protected function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
-    }
 
     /**
      * Get $this->values

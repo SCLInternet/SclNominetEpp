@@ -57,19 +57,6 @@ abstract class AbstractCreate extends Response
     }
 
     /**
-     * Assuming $xml is valid,
-     * this function returns "true" to affirm that the xml is valid,
-     * otherwise "false".
-     *
-     * @param SimpleXMLElement $xml
-     * @return boolean
-     */
-    protected function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
-    }
-
-    /**
      * Set $this->valueName
      *
      * @param string $valueName

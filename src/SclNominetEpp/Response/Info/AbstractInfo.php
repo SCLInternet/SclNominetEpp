@@ -65,19 +65,6 @@ abstract class AbstractInfo extends Response
     }
 
     /**
-     * Assuming $xml is invalid,
-     * this function returns "true" to affirm that the xml is invalid,
-     * otherwise "false".
-     *
-     * @param SimpleXMLElement $xml
-     * @return boolean
-     */
-    protected function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
-    }
-
-    /**
      * Allows the child classes to include specific data that could not be abstracted.
      *
      * @param SimpleXMLElement $infData

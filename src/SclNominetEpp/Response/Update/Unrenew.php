@@ -20,6 +20,8 @@ class Unrenew extends Response
         if (!$this->success()) {
             return;
         }
-        // @todo
+        if (!$this->xmlValid($xml->response->resData)) {
+            return;
+        }
     }
 }
