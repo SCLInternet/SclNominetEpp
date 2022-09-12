@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp;
 
+use DOMDocument;
 use SclNominetEpp\Exception\RuntimeException;
 use SclRequestResponse\Exception\InvalidResponsePacketException;
 use SclRequestResponse\ResponseInterface;
@@ -147,13 +148,7 @@ class Response implements ResponseInterface
      */
     protected function processData(SimpleXMLElement $xml)
     {
-        if (!$this->success()) {
-            return;
-        }
-        if (!$this->xmlValid($xml->response->resData)) {
-            return;
-        }
-        return;
+        // Do nothing.
     }
 
     /**
@@ -173,7 +168,12 @@ class Response implements ResponseInterface
 
     public function xmlValid(SimpleXMLElement $xml): bool
     {
-        return $xml->valid();
+        if (empty($xml->response->resData)) {
+            return false;
+        }
+        $dom = new DOMDocument();
+        $domDocument = $dom->loadXML($xml->asXML());
+        return (bool)$domDocument;
     }
 
     /**

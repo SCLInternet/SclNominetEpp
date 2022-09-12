@@ -1,17 +1,16 @@
 <?php
 namespace SclNominetEpp\Response;
 
+use PHPUnit\Framework\TestCase;
 use SclNominetEpp\Response;
+use SimpleXMLElement;
 
 /**
  * response epp command test.
  */
-class ResponseTest extends \PHPUnit\Framework\TestCase
+class ResponseTest extends TestCase
 {
-    /**
-     * @var Response
-     */
-    protected $request;
+    protected Response $request;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -29,7 +28,7 @@ class ResponseTest extends \PHPUnit\Framework\TestCase
         $this->request->init($xml);
         $this->assertEquals(1000, $this->request->code());
         $this->assertEquals("Command completed successfully", $this->request->message());
-        $this->assertEquals([], $this->request->data());
+        $this->assertInstanceOf(SimpleXMLElement::class, $this->request->data());
         $this->assertEquals(true, $this->request->success());
     }
 }

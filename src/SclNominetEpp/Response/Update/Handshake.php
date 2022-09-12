@@ -39,7 +39,7 @@ class Handshake extends Response
         if (!$this->success()) {
             return;
         }
-        if (!$this->xmlValid($xml->response->resData)) {
+        if (!$this->xmlValid($xml)) {
             return;
         }
 
