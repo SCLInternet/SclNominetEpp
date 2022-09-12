@@ -7,8 +7,6 @@ use SimpleXMLElement;
 
 /**
  * This class interprets XML for a Nominet EPP host:info command response.
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Host extends AbstractInfo
 {
@@ -24,15 +22,10 @@ class Host extends AbstractInfo
         );
     }
 
-    /**
-     *
-     * @param  SimpleXMLElement $infData
-     * @return string
-     */
     public function statusArrPopulate(SimpleXMLElement $infData)
     {
         if (null === $infData->status) {
-            return "no status";
+            return;
         }
         foreach ($infData->status as $s) {
             if (null !== $s->attributes()->s) {

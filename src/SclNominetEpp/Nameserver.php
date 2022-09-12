@@ -3,11 +3,12 @@
 namespace SclNominetEpp;
 
 use DateTime;
-use DateTimeInterface;
 use InvalidArgumentException;
 
 class Nameserver
 {
+    use Traits\UpDateTrait;
+
     /**
      * The nameserver host name
      */
@@ -38,11 +39,6 @@ class Nameserver
      * that last updated the host object.
      */
     private string $upID = '';
-
-    /**
-     * The date and time of the most recent host-object modification.
-     */
-    private string $upDate;
 
     private ?string $ipv4 = null;
 
@@ -150,22 +146,6 @@ class Nameserver
     public function setUpID(string $upID)
     {
         $this->upID = $upID;
-    }
-
-    /**
-     * Get the date the domain name was last changed.
-     */
-    public function getUpDate(): DateTime
-    {
-        return DateTime::createFromFormat(DateTimeInterface::ATOM, $this->upDate);
-    }
-
-    /**
-     * Set the date the domain name was last changed.
-     */
-    public function setUpDate(DateTime $upDate)
-    {
-        $this->upDate = $upDate->format(DateTimeInterface::ATOM);
     }
 
     public function getIpv4(): ?string

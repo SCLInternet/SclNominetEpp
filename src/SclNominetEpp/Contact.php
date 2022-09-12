@@ -2,12 +2,15 @@
 namespace SclNominetEpp;
 
 use DateTime;
+use SclNominetEpp\Traits\UpDateTrait;
 
 /**
  * A contact record
  */
 class Contact extends \SclContact\Contact
 {
+    use UpDateTrait;
+
     //TYPE
     const TYPE_UK_LTD                   = 'LTD';
     const TYPE_UK_PLC                   = 'PLC';
@@ -91,12 +94,6 @@ class Contact extends \SclContact\Contact
      * @var DateTime
      */
     private $created;
-    /**
-     * The date and time of the most recent contact-object modification.
-     *
-     * @var DateTime
-     */
-    private $upDate;
 
     /**
      * Trading name of the organisation
@@ -199,26 +196,6 @@ class Contact extends \SclContact\Contact
     public function getCreated()
     {
         return $this->created;
-    }
-
-    /**
-     * Set $this->upDate
-     *
-     * @param DateTime $upDate
-     */
-    public function setUpDate($upDate)
-    {
-        $this->upDate = $upDate;
-    }
-
-    /**
-     * Get $this->upDate
-     *
-     * @return DateTime
-     */
-    public function getUpDate()
-    {
-        return $this->upDate;
     }
 
     /**

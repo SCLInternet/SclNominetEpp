@@ -15,9 +15,6 @@ class Domain extends AbstractInfo
     const TYPE = 'domain';
     const VALUE_NAME = 'name';
 
-    /** @var ?DomainObject */
-    protected $object;
-
     public function __construct()
     {
         parent::__construct(

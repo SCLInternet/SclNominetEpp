@@ -3,11 +3,13 @@
 namespace SclNominetEpp;
 
 use DateTime;
-use DateTimeInterface;
 use InvalidArgumentException;
+use SclNominetEpp\Traits\UpDateTrait;
 
 class Domain
 {
+    use UpDateTrait;
+
     const BILL_REGISTRAR = 'th';
     const BILL_CUSTOMER = 'bc';
     const BILLS = [self::BILL_REGISTRAR, self::BILL_CUSTOMER];
@@ -72,13 +74,6 @@ class Domain
      * (could be a name and email address or the value submitted from the <clTRID> element if created by EPP)
      */
     private ?string $upID = null;
-
-    /**
-     *
-     * The date and time of the most recent domain-object modification, formatted as: YYYYMMDD.
-     * This variable MUST be null if the domain object has never been modified.
-     */
-    private ?DateTime $upDate = null;
 
     /**
      * If first-bill is not set or set to "th", the registration
@@ -311,16 +306,6 @@ class Domain
     public function setUpID(string $upID)
     {
         $this->upID = $upID;
-    }
-
-    public function getUpDate()
-    {
-        return DateTime::createFromFormat(DateTimeInterface::ATOM, $this->upDate);
-    }
-
-    public function setUpDate(DateTime $upDate)
-    {
-        $this->upDate = $upDate;
     }
 
     public function getFirstBill(): string

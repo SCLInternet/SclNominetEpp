@@ -25,10 +25,6 @@ class DomainTest extends \PHPUnit\Framework\TestCase
         $this->response = new DomainInfo();
     }
 
-    /**
-     *
-     *
-     */
     public function testProcessData()
     {
 
@@ -88,7 +84,7 @@ EOX;
         $expected->setCreated(new DateTime('2013-01-31T00:11:05'));
         $expected->setExpired(new DateTime('2015-01-31T00:11:05'));
         $expected->setUpID('');
-        $expected->setUpDate(new DateTime(''));
+        $expected->setUpDate(null);
         $expected->setFirstBill('th');
         $expected->setRecurBill('th');
         $expected->setAutoBill('');

@@ -37,7 +37,7 @@ class DomainTest extends TestCase
         $domain->setCreated(new DateTime('2013-01-31T00:11:05'));
         $domain->setExpired(new DateTime('2015-01-31T00:11:05'));
         $domain->setUpID('');
-        $domain->setUpDate(new DateTime(''));
+        $domain->setUpDate(null);
         $domain->setFirstBill(Domain::BILL_REGISTRAR);
         $domain->setRecurBill(Domain::BILL_REGISTRAR);
         $domain->setAutoBill(0);

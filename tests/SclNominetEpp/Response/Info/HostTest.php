@@ -73,7 +73,7 @@ EOX;
         $expected->setClientID('UNKNOWN');
         $expected->setCreatorID('NOMINET');
         $expected->setCreated(new DateTime('2013-01-31T00:11:05'));
-        $expected->setUpDate(new DateTime(''));
+        $expected->setUpDate(null);
         $expected->setId('739787E8A10BF2CA11882CE974FD775E-UK');
 
         $this->response->init($xml);
