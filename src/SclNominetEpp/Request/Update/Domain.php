@@ -32,10 +32,10 @@ class Domain extends Request
     private array $remove = [];
 
     /** @var ?string */
-    private ?string $registrant;
+    private ?string $registrant = null;
 
     /** @var ?string */
-    private ?string $password;
+    private ?string $password = null;
 
     /** @var array */
     private array $notes = [];
@@ -172,9 +172,6 @@ class Domain extends Request
         $this->autoBill = $autoBill;
     }
 
-    /**
-     * @param string|null $password
-     */
     public function setPassword(?string $password): void
     {
         $this->password = $password;
