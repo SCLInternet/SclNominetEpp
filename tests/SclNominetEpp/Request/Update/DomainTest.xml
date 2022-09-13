@@ -23,7 +23,7 @@
       </domain:update>
     </update>
     <extension>
-      <domain-ext:update xmlns:domain-ext="http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.1" xsi:schemaLocation="http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.1 domain-nom-ext-1.1.xsd">
+      <domain-ext:update xmlns:domain-ext="http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.2" xsi:schemaLocation="http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.2 domain-nom-ext-1.2.xsd">
         <domain-ext:auto-bill>143</domain-ext:auto-bill>
         <domain-ext:next-bill>10</domain-ext:next-bill>
         <domain-ext:notes>notes</domain-ext:notes>

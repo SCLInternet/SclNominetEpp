@@ -15,39 +15,38 @@ class Domain extends Request
 {
     const TYPE = 'domain'; //For possible Abstracting later
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:domain-1.0';
-    const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.1';
+    const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.2';
     const VALUE_NAME = 'name';
+    const UPDATE_EXTENSION_NAMESPACE_XSD = 'domain-nom-ext-1.2.xsd';
+    const UPDATE_NAMESPACE_XSD = 'domain-1.0.xsd';
 
-    /** @var DomainObject */
-    protected $domain = null;
+    protected ?DomainObject $domain = null;
 
     /** @var string Identifying value */
-    protected $value;
+    protected string $value;
 
     /** @var UpdateFieldInterface[] An array of elements that will be added during the update command. */
-    private $add = [];
+    private array $add = [];
 
     /** @var UpdateFieldInterface[] An array of elements that will be removed during the update command. */
-    private $remove = [];
+    private array $remove = [];
 
     /** @var ?string */
-    private $registrant;
+    private ?string $registrant;
 
     /** @var ?string */
-    private $password;
+    private ?string $password;
 
     /** @var array */
-    private $notes = [];
+    private array $notes = [];
 
     /**
      * The number of days before expiry you wish to automatically renew a domain name.
      * Values between 1-182.
      * This field can be cleared by setting the default value of 0.
      * Auto-bill cannot be set if next-bill, recur-bill or renew-not-required are set.
-     *
-     * @var int
      */
-    private $autoBill;
+    private ?int $autoBill;
 
     /**
      * The number of days before expiry you wish to automatically renew a domain name.
@@ -55,10 +54,8 @@ class Domain extends Request
      * Values between 1 and 182, indicating how many days before expiry you wish to renew the domain name.
      * This field can be cleared by setting the default value of 0.
      * Next-bill cannot be set if auto-bill, recur-bill or renew-not-required are set.
-     *
-     * @var int
      */
-    private $nextBill;
+    private ?int $nextBill;
 
     public function __construct(string $value)
     {
@@ -89,8 +86,8 @@ class Domain extends Request
         $domainNS = self::UPDATE_NAMESPACE;
         $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
 
-        $domainXSI = $domainNS . ' ' . 'domain-1.0.xsd';
-        $extensionXSI = $extensionNS . ' ' . 'domain-nom-ext-1.1.xsd';
+        $domainXSI = $domainNS . ' ' . self::UPDATE_NAMESPACE_XSD;
+        $extensionXSI = $extensionNS . ' ' . self::UPDATE_EXTENSION_NAMESPACE_XSD;
 
         $update = $action->addChild('domain:update', '', $domainNS);
         $update->addChild(self::VALUE_NAME, $this->value, $domainNS);
