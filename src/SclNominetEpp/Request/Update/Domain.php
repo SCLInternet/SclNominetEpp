@@ -46,7 +46,7 @@ class Domain extends Request
      * This field can be cleared by setting the default value of 0.
      * Auto-bill cannot be set if next-bill, recur-bill or renew-not-required are set.
      */
-    private ?int $autoBill;
+    private ?int $autoBill = null;
 
     /**
      * The number of days before expiry you wish to automatically renew a domain name.
@@ -55,7 +55,7 @@ class Domain extends Request
      * This field can be cleared by setting the default value of 0.
      * Next-bill cannot be set if auto-bill, recur-bill or renew-not-required are set.
      */
-    private ?int $nextBill;
+    private ?int $nextBill = null;
 
     public function __construct(string $value)
     {
