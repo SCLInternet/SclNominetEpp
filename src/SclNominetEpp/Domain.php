@@ -28,7 +28,7 @@ class Domain
     /**
      * The Person, Company or Entity who owns or holds a domain name.
      */
-    private ?string $registrant;
+    private ?string $registrant = null;
 
     /**
      * All the contacts of the registered domain.
