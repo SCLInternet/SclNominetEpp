@@ -29,7 +29,6 @@ class ErrorTest extends TestCase
         $this->assertEquals(Response::ERROR_COMMAND_SYNTAX, $this->request->code());
         $this->assertEquals('Command syntax error', $this->request->message());
         $this->assertInstanceOf(SimpleXMLElement::class, $this->request->data());
-        var_dump($this->request->data());
         $this->assertEquals(false, $this->request->success());
     }
 }
