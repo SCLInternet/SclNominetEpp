@@ -17,10 +17,7 @@ trait UpDateTrait
      */
     public function getUpDate(): ?DateTime
     {
-        if ($this->upDate === null) {
-            return null;
-        }
-        return DateTime::createFromFormat(DateTimeInterface::ATOM, $this->upDate);
+        return $this->upDate;
     }
 
     /**
