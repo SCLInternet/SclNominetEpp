@@ -44,7 +44,7 @@ class Nameserver
 
     private ?string $ipv6 = null;
 
-    private string $id;
+    private ?string $id = null;
 
     public function addStatus(string $status)
     {
@@ -165,7 +165,7 @@ class Nameserver
         $this->ipv6 = $ipv6;
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
