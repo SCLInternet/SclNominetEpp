@@ -1,26 +1,31 @@
 <?php
 namespace SclNominetEpp\Request\Update\Field;
 
+use SclNominetEpp\Contact;
+use SimpleXMLElement;
+
 /**
  * UpdateDomain "add" and "remove" both use "status" as a field
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class DomainRegistrant implements UpdateFieldInterface
 {
-    private $contact;
+    private $registrant;
     private $passwd;
 
-    public function __construct($contact, $passwd)
+    public function __construct(?string $registrant, ?string $passwd)
     {
-        $this->contact = $contact;
+        $this->registrant = $registrant;
         $this->passwd  = $passwd;
     }
 
-    public function fieldXml(\SimpleXMLElement $xml, $namespace)
+    public function fieldXml(SimpleXMLElement $xml, string $namespace = null)
     {
-        $xml->addChild('registrant', $this->contact, $namespace);
-        $authInfo   = $xml->addChild('authInfo');
-        $authInfo->addAttribute('pw', $this->passwd);
+        if ($this->registrant) {
+            $xml->addChild('registrant', $this->registrant, $namespace);
+        }
+        if ($this->passwd) {
+            $authInfo = $xml->addChild('authInfo');
+            $authInfo->addAttribute('pw', $this->passwd);
+        }
     }
 }

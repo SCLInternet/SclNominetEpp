@@ -3,8 +3,6 @@ namespace SclNominetEpp\Request\Update\Field;
 
 /**
  * UpdateDomain "add" and "remove" both use "status" as a field
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class HostAddress implements UpdateFieldInterface
 {
@@ -17,7 +15,7 @@ class HostAddress implements UpdateFieldInterface
         $this->version  = $version;
     }
 
-    public function fieldXml(\SimpleXMLElement $xml, $namespace)
+    public function fieldXml(\SimpleXMLElement $xml, string $namespace = null)
     {
         $address = $xml->addChild('addr', $this->address, $namespace);
         $address->addAttribute('ip', $this->version);

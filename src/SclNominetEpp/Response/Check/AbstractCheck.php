@@ -61,7 +61,7 @@ abstract class AbstractCheck extends Response
         if (!$this->success()) {
             return;
         }
-        if (!$this->xmlValid($xml->response->resData)) {
+        if (!$this->xmlValid($xml)) {
             return;
         }
 
@@ -74,18 +74,6 @@ abstract class AbstractCheck extends Response
             $available = (boolean) (string) $value->$valueName->attributes()->avail;
             $this->values[(string) $value->$valueName] = $available;
         }
-    }
-        /**
-     * Assuming $xml is invalid,
-     * this function returns "true" to affirm that the xml is invalid,
-     * otherwise "false".
-     *
-     * @param SimpleXMLElement $xml
-     * @return boolean
-     */
-    protected function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
     }
 
     /**

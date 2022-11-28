@@ -1,30 +1,20 @@
 <?php
-/**
- * Contains the nominet AbstractCheck request class definition.
- *
- * @author Tom Oram <tom@scl.co.uk>
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
- */
 
 namespace SclNominetEpp\Request\Check;
 
 use SclNominetEpp\Request;
 use SclNominetEpp\Response;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP check command.
- *
- * @author Tom Oram <tom@scl.co.uk>
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 abstract class AbstractCheck extends Request
 {
     /**
      * The type of check this is.
-     *
-     * @var string
      */
-    private $type;
+    private string $type;
 
     /**
      * The namespace for the Nominet EPP check request.
@@ -68,9 +58,8 @@ abstract class AbstractCheck extends Request
      * The values to lookup.
      *
      * @param  array|string $values
-     * @return Check
      */
-    public function lookup($values)
+    public function lookup($values): AbstractCheck
     {
         if (is_array($values)) {
             $this->values = $values;
@@ -81,13 +70,9 @@ abstract class AbstractCheck extends Request
         return $this;
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see SclNominetEpp\Request.AbstractRequest::addContent()
-     */
-    protected function addContent(\SimpleXMLElement $xml)
+    protected function addContent(SimpleXMLElement $action)
     {
-        $check = $xml->addChild("{$this->type}:check", '', $this->checkNamespace);
+        $check = $action->addChild("{$this->type}:check", '', $this->checkNamespace);
 
         foreach ($this->values as $value) {
             $check->addChild($this->valueName, $value, $this->checkNamespace);

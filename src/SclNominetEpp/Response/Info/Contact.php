@@ -22,9 +22,6 @@ class Contact extends AbstractInfo
     const TYPE = 'contact';
     const VALUE_NAME = 'id';
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
         parent::__construct(
@@ -34,10 +31,6 @@ class Contact extends AbstractInfo
         );
     }
 
-    /**
-     *
-     * @param \SclNominetEpp\Response\Info\SimpleXMLElement $infData
-     */
     public function addInfData(SimpleXMLElement $infData)
     {
         $postalInfo = $infData->postalInfo;
@@ -109,10 +102,6 @@ class Contact extends AbstractInfo
         $this->object->setId((string)$id);
     }
 
-    /**
-     *
-     * @return type
-     */
     public function getContact()
     {
         return $this->object;

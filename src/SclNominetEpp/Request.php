@@ -6,52 +6,38 @@ use DOMDocument;
 use SclRequestResponse\RequestInterface;
 use SclRequestResponse\ResponseInterface;
 use SimpleXMLElement;
-use SclNominetEpp\Response;
 
 /**
  * This class handles the essentials of all command requests
- *
- * @author Tom Oram <tom@scl.co.uk>
  */
 class Request implements RequestInterface
 {
     const XSI_NAMESPACE = 'http://www.w3.org/2001/XMLSchema-instance';
 
     /**
-     * The PHP XMLWriter object which will be used to build the XML.
-     *
-     * @var XMLWriter
+     * The PHP xml object which will be used to build the XML.
      */
-    protected $xml;
+    protected SimpleXMLElement $xml;
 
     /**
      * The XML output.
-     *
-     * @var string
      */
-    protected $output = null;
+    protected ?string $output = null;
 
     /**
      * The action this request will perform
-     *
-     * @var string
      */
-    protected $action;
+    protected string $action;
 
     /**
      * The type of response this request will return.
-     *
-     * @var ResponseInterface
      */
-    protected $response;
+    protected ?ResponseInterface $response = null;
 
     /**
      * Prepares the common XML wrapper for all requests.
-     *
-     * @param string            $action
-     * @param ResponseInterface $response
      */
-    public function __construct($action, $response = null)
+    public function __construct(string $action, ?ResponseInterface $response = null)
     {
         $this->action = $action;
 
@@ -62,13 +48,10 @@ class Request implements RequestInterface
         }
 
         $this->xml = new SimpleXMLElement('<epp />');
-
     }
 
     /**
      * This method should be over to provide the content of the request.
-     *
-     * @param SimpleXMLElement $action
      */
     protected function addContent(SimpleXMLElement $action)
     {
@@ -77,10 +60,6 @@ class Request implements RequestInterface
 
     /**
      * FormatXml makes the XML readable.
-     *
-     *
-     * @param SimpleXMLElement $xml
-     * @return string
      */
     protected function formatXml($xml)
     {
@@ -88,18 +67,15 @@ class Request implements RequestInterface
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
         $dom->loadXML($xml);
-
         return $dom->saveXML();
     }
 
     /**
      * Returns the XML of the request.
-     *
-     * @return string
      */
-    public function getPacket()
+    public function getPacket(): ?string
     {
-        if (null !== $this->output) {
+        if ($this->output !== null) {
             return $this->output;
         }
 
@@ -113,10 +89,10 @@ class Request implements RequestInterface
 
         $command = $this->xml->addChild('command');
 
-        // TODO Does this need to be split for namespaces?
         $action  = $command->addChild($this->action);
 
         $this->addContent($action);
+        // $command->addChild('clTRID', 'ABC-12345'); // @todo restore later
 
         $this->output = $this->xml->asXML();
 
@@ -133,10 +109,8 @@ class Request implements RequestInterface
 
     /**
      * Return the response.
-     *
-     * @return ResponseInterface
      */
-    public function getResponse()
+    public function getResponse(): ?ResponseInterface
     {
         return $this->response;
     }

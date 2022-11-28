@@ -1,265 +1,177 @@
 <?php
+
 namespace SclNominetEpp;
 
 use DateTime;
+use InvalidArgumentException;
 
-/**
- * A nameserver record.
- *
- * @author Tom Oram <tom@scl.co.uk
- * @todo Add format checking for IPv4 and IPv6
- */
 class Nameserver
 {
+    use Traits\UpDateTrait;
+
     /**
      * The nameserver host name
-     *
-     * @var string
      */
-    private $hostName;
+    private string $hostName;
 
     /**
      * Array of status of a Nameserver
-     *
-     * @var array|string
      */
-    private $status = array();
+    private array $status = [];
 
     /**
      * The identifier of the sponsoring client.
-     *
-     * @var string
      */
-    private $clientID;
+    private string $clientID;
 
     /**
      * The identifier of the client that created the host object
-     *
-     * @var string
      */
-    private $creatorID;
+    private string $creatorID;
 
     /**
      * The date and time of host-object creation.
-     *
-     * @var string
      */
-    private $created;
+    private DateTime $created;
 
     /**
      * The identifier of the client
      * that last updated the host object.
-     *
-     * @var string
      */
-    private $upID = "";
+    private string $upID = '';
 
-    /**
-     * The date and time of the most recent
-     * host-object modification
-     *
-     * @var string
-     */
-    private $upDate;
+    private ?string $ipv4 = null;
 
-    /**
-     * The v4 IP address
-     *
-     * @var string
-     */
-    private $ipv4 = null;
+    private ?string $ipv6 = null;
 
-    /**
-     * The v6 IP address
-     *
-     * @var string
-     */
-    private $ipv6 = null;
+    private ?string $id = null;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
+    public function addStatus(string $status)
     {
+        $this->status[] = $status;
     }
 
-    /**
-     * Set $this->hostName
-     *
-     * @param string $hostName
-     */
-    public function setHostName($hostName)
+    public function __toString(): string
     {
-        $this->hostName = (string) $hostName;
+        return $this->getHostName();
     }
 
-    /**
-     * Get $this->hostName
-     *
-     * @return string
-     */
-    public function getHostName()
+    public function getHostName(): string
     {
         return $this->hostName;
     }
 
-    /**
-     * Set $this->status
-     *
-     * @param string $status
-     */
-    public function addStatus($status)
+    public function setHostName(string $hostName)
     {
-        $this->status[] = (string) $status;
+        if (empty($hostName)) {
+            throw new InvalidArgumentException('HostName parameter is empty');
+        }
+        if (filter_var($hostName, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) === false) {
+            throw new InvalidArgumentException(sprintf('HostName parameter "%s" is invalid', $hostName));
+        }
+        $this->hostName = $hostName;
     }
 
-    /**
-     * Get $this->status
-     *
-     * @return string
-     */
-    public function getStatus()
+    public function __toArray(): array
+    {
+        return [
+            'hostName' => $this->getHostName(),
+            'status' => $this->getStatus(),
+            'clientId' => $this->getClientID(),
+            'creatorID' => $this->getCreatorID(),
+            'created' => $this->getCreated(),
+            'upID' => $this->getUpID(),
+            'upDate' => $this->getUpDate(),
+            'ipv4' => $this->getIpv4(),
+            'ipv6' => $this->getIpv6(),
+            'id' => $this->getId(),
+        ];
+    }
+
+    public function getStatus(): array
     {
         return $this->status;
     }
 
-    /**
-     * Set $this->created
-     *
-     * @param DateTime $created
-     */
+    public function getClientID(): string
+    {
+        return $this->clientID;
+    }
+
+    public function setClientID(string $clientID)
+    {
+        $this->clientID = $clientID;
+    }
+
+    public function getCreatorID(): string
+    {
+        return $this->creatorID;
+    }
+
+    public function setCreatorID(string $creatorID)
+    {
+        $this->creatorID = $creatorID;
+    }
+
+    public function getCreated(): DateTime
+    {
+        return $this->created;
+    }
+
     public function setCreated(DateTime $created)
     {
         $this->created = $created;
     }
 
     /**
-     * Get $this->created
-     *
-     * @return DateTime
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Set $this->creatorID
-     *
-     * @param string $creatorID
-     */
-    public function setCreatorID($creatorID)
-    {
-        $this->creatorID = (string) $creatorID;
-    }
-
-    /**
-     * Get $this->creatorID
-     *
-     * @return string
-     */
-    public function getCreatorID()
-    {
-        return $this->creatorID;
-    }
-
-    /**
-     * Set $this->clientID
-     *
-     * @param string $clientID
-     */
-    public function setClientID($clientID)
-    {
-        $this->clientID = (string) $clientID;
-    }
-
-    /**
-     * Get $this->clientID
-     *
-     * @return string
-     */
-    public function getClientID()
-    {
-        return $this->clientID;
-    }
-
-    /**
-     * Set the ID of the user that last changed the domain name.
-     *
-     * @param string $upID
-     */
-    public function setUpID($upID)
-    {
-        $this->upID = (string) $upID;
-    }
-
-    /**
      * Get the ID of the user that last changed the domain name.
-     *
-     * @return string
      */
-    public function getUpID()
+    public function getUpID(): string
     {
         return $this->upID;
     }
 
     /**
-     * Set the date the domain name was last changed.
-     *
-     * @param DateTime $upDate
+     * Set the ID of the user that last changed the domain name.
      */
-    public function setUpDate(DateTime $upDate)
+    public function setUpID(string $upID)
     {
-        $this->upDate = $upDate;
+        $this->upID = $upID;
     }
 
-    /**
-     * Get the date the domain name was last changed.
-     *
-     * @return DateTime
-     */
-    public function getUpDate()
-    {
-        return $this->upDate;
-    }
-
-    /**
-     * Set $this->ipv4
-     *
-     * @param string $ipv4
-     */
-    public function setIpv4($ipv4)
-    {
-        $this->ipv4 = (string) $ipv4;
-    }
-
-    /**
-     * Get $this->ipv4
-     *
-     * @return string
-     */
-    public function getIpv4()
+    public function getIpv4(): ?string
     {
         return $this->ipv4;
     }
 
-    /**
-     * Set $this->ipv6
-     *
-     * @param string $ipv6
-     */
-    public function setIpv6($ipv6)
+    public function setIpv4(string $ipv4)
     {
-        $this->ipv6 = (string) $ipv6;
+        if (filter_var($ipv4, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) === false) {
+            throw new InvalidArgumentException('Ipv4 parameter is invalid');
+        }
+        $this->ipv4 = $ipv4;
     }
 
-    /**
-     * Get $this->ipv6
-     *
-     * @return string
-     */
-    public function getIpv6()
+    public function getIpv6(): string
     {
         return $this->ipv6;
+    }
+
+    public function setIpv6(string $ipv6)
+    {
+        if (filter_var($ipv6, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === false) {
+            throw new InvalidArgumentException('Ipv4 parameter is invalid');
+        }
+        $this->ipv6 = $ipv6;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    public function setId(string $id)
+    {
+        $this->id = $id;
     }
 }

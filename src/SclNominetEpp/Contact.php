@@ -1,14 +1,17 @@
 <?php
 namespace SclNominetEpp;
 
+use DateTime;
+use SclNominetEpp\Traits\UpDateTrait;
+
 /**
  * A contact record
- *
- * @author Tom Oram <tom@scl.co.uk>
  */
 class Contact extends \SclContact\Contact
 {
-        //TYPE
+    use UpDateTrait;
+
+    //TYPE
     const TYPE_UK_LTD                   = 'LTD';
     const TYPE_UK_PLC                   = 'PLC';
     const TYPE_UK_PARTNERSHIP           = 'PTNR';
@@ -91,12 +94,6 @@ class Contact extends \SclContact\Contact
      * @var DateTime
      */
     private $created;
-    /**
-     * The date and time of the most recent contact-object modification.
-     *
-     * @var DateTime
-     */
-    private $upDate;
 
     /**
      * Trading name of the organisation
@@ -119,27 +116,16 @@ class Contact extends \SclContact\Contact
      */
     private $type;
 
-    /**
-     *
-     */
     private $clientID;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-
-    }
 
     /**
      * Set $id
      *
      * @param string $id
      */
-    public function setId($id)
+    public function setId(string $id)
     {
-        $this->id = (string) $id;
+        $this->id = $id;
     }
 
     /**
@@ -205,31 +191,11 @@ class Contact extends \SclContact\Contact
     /**
      * Get $this->created
      *
-     * @return DateType
+     * @return DateTime
      */
     public function getCreated()
     {
         return $this->created;
-    }
-
-    /**
-     * Set $this->upDate
-     *
-     * @param DateTime $upDate
-     */
-    public function setUpDate($upDate)
-    {
-        $this->upDate = $upDate;
-    }
-
-    /**
-     * Get $this->upDate
-     *
-     * @return DateTime
-     */
-    public function getUpDate()
-    {
-        return $this->upDate;
     }
 
     /**
@@ -257,10 +223,10 @@ class Contact extends \SclContact\Contact
      *
      * @param string $companyType
      */
-    public function setCompanyType($companyType)
+    public function setCompanyType(string $companyType)
     {
         if (!in_array($companyType, self::$companyTypes)) {
-            throw new \Exception("Invald organisation type: $companyType");
+            throw new \InvalidArgumentException("Invalid organisation type: $companyType");
         }
         $this->companyType = (string) $companyType;
     }
@@ -295,23 +261,18 @@ class Contact extends \SclContact\Contact
         return $this->type;
     }
 
-    /**
-     * Set $this->clientID
-     *
-     * @param string $clientID
-     */
-    public function setClientID($clientID)
+    public function setClientID(string $clientID)
     {
-        $this->clientID = (string) $clientID;
+        $this->clientID = $clientID;
     }
 
-    /**
-     * Get $this->clientID
-     *
-     * @return gettype
-     */
-    public function getClientID()
+    public function getClientID(): string
     {
         return $this->clientID;
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->getName();
     }
 }

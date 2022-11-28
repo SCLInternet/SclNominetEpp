@@ -8,29 +8,36 @@
         {
             "name": "Tom Oram",
             "email": "tom@x2k.co.uk",
-            "homepage": "http://github.com/tomphp"
+            "homepage": "https://github.com/tomphp"
         },
         {
             "name": "Merlyn Cooper",
             "email": "merlyn.cooper@hotmail.co.uk",
-            "homepage": "http://github.com/Merlyn-Cooper"
+            "homepage": "https://github.com/Merlyn-Cooper"
+        },
+        {
+            "name": "James Wade",
+            "email": "jpswade@gmail.com",
+            "homepage": "https://github.com/jpswade"
         }
     ],
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=7.4",
         "sclinternet/scl-contact": "dev-master",
         "sclinternet/scl-socket": "dev-master",
-        "sclinternet/scl-request-response": "dev-master"
+        "sclinternet/scl-request-response": "dev-master",
+        "ext-simplexml": "*",
+        "ext-xmlwriter": "*",
+        "ext-dom": "*"
     },
     "autoload": {
-        "psr-0": {
-            "SclNominetEpp\\": "src/"
+        "psr-4": {
+            "SclNominetEpp\\": "src/SclNominetEpp/"
         }
     },
     "require-dev": {
-        "phpunit/phpunit" : "3.7.*",
-        "squizlabs/php_codesniffer" : "1.*",
-        "phpmd/phpmd" : "1.4.0",
-        "satooshi/php-coveralls": "dev-master"
+        "phpunit/phpunit" : "8.*",
+        "squizlabs/php_codesniffer" : "3.*",
+        "phpmd/phpmd" : "2.*"
     }
 }

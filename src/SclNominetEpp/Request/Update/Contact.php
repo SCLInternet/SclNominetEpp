@@ -2,9 +2,10 @@
 
 namespace SclNominetEpp\Request\Update;
 
-use SclNominetEpp\Response\Update\Contact as UpdateContactResponse;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
+use SclNominetEpp\Contact as ContactObject;
+use SclNominetEpp\Response\Update\Contact as UpdateContactResponse;
 
 /**
  * This class build the XML for a Nominet EPP contact:update command.
@@ -19,13 +20,14 @@ class Contact extends Request
 
     const VALUE_NAME = 'id';
 
+    /** @var ContactObject|null */
     protected $contact = null;
     protected $value;
 
-    private $add = array();
-    private $remove = array();
+    private $add = [];
+    private $remove = [];
 
-    public function __construct(Contact $contact)
+    public function __construct(ContactObject $contact)
     {
         parent::__construct('update', new UpdateContactResponse());
         $this->contact = $contact;
@@ -54,7 +56,7 @@ class Contact extends Request
         $this->remove[] = $field;
     }
 
-    public function addContent(\SimpleXMLElement $updateXML)
+    public function addContent(\SimpleXMLElement $action)
     {
         $contactNS   = self::UPDATE_NAMESPACE;
         $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
@@ -62,33 +64,33 @@ class Contact extends Request
         $contactXSI   =   $contactNS . ' ' . 'contact-1.0.xsd';
         $extensionXSI = $extensionNS . ' ' . 'contact-nom-ext-1.1.xsd';
 
-        $update = $updateXML->addChild('contact:update', '', $contactNS);
+        $update = $action->addChild('contact:update', '', $contactNS);
         $update->addAttribute('xsi:schemaLocation', $contactXSI);
         $update->addChild(self::VALUE_NAME, $this->contact, $contactNS);
 
 
-        $addBlock = $updateXML->addChild('add', '', $contactNS);
+        $addBlock = $action->addChild('add', '', $contactNS);
 
         foreach ($this->add as $field) {
             $field->fieldXml($addBlock, $contactNS);
         }
 
-        $remBlock = $updateXML->addChild('rem', '', $contactNS);
+        $remBlock = $action->addChild('rem', '', $contactNS);
 
         foreach ($this->remove as $field) {
             $field->fieldXml($remBlock, $contactNS);
         }
 
         $change = $update->addChild('chg');
-            $postalInfo = $change->addChild('postalInfo');
-            $postalInfo->addAttribute('type', $type);
-                $postalInfo->addChild('name');
-                $addr = $postalInfo->addChild('addr');
-                    $addr->addChild('street');
-                    $addr->addChild('city');
-                    $addr->addChild('sp');
-                    $addr->addChild('pc');
-                    $addr->addChild('cc');
+        $postalInfo = $change->addChild('postalInfo');
+        //$postalInfo->addAttribute('type', $type);
+        $postalInfo->addChild('name');
+        $addr = $postalInfo->addChild('addr');
+        $addr->addChild('street');
+        $addr->addChild('city');
+        $addr->addChild('sp');
+        $addr->addChild('pc');
+        $addr->addChild('cc');
         $extensionXML = $this->xml->command->addChild('extension');
         $extension = $extensionXML->addChild('contact-nom-ext:update', '', $extensionNS);
         $extension->addAttribute('xsi:schemaLocation', $extensionXSI);
@@ -98,7 +100,6 @@ class Contact extends Request
         $extension->addChild('co-no');
         $extension->addChild('opt-out');
         //@todo implement all variables, also, fix the extension data.
-
     }
 
     public function setContact($contact)

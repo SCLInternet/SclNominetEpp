@@ -3,132 +3,100 @@
 namespace SclNominetEpp;
 
 use DateTime;
+use InvalidArgumentException;
+use SclNominetEpp\Traits\UpDateTrait;
 
-/**
- * A domain record
- *
- * @author Tom Oram <tom@scl.co.uk>
- */
 class Domain
 {
-        //BILLS
-    const BILL_REGISTRAR = 'th';
+    use UpDateTrait;
 
-    const BILL_CUSTOMER  = 'bc';
+    const BILL_REGISTRAR = 'th';
+    const BILL_CUSTOMER = 'bc';
+    const BILLS = [self::BILL_REGISTRAR, self::BILL_CUSTOMER];
+    const REGISTRATION_PERIOD = 2;
 
     /**
      * Domain name
-     *
-     * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * Registration Period
-     *
-     * @var int
      */
-    private $period = 2;
+    private int $period = self::REGISTRATION_PERIOD;
 
     /**
      * The Person, Company or Entity who owns or holds a domain name.
-     *
-     * @var string
      */
-    private $registrant;
+    private ?string $registrant = null;
 
     /**
      * All the contacts of the registered domain.
      *
-     * @var array
+     * @var Contact[]
      */
-    private $contacts = array();
+    private array $contacts = [];
 
     /**
      * All the nameservers of the registered domain.
      *
-     * @var array
+     * @var Nameserver[]
      */
-    private $nameservers = array();
+    private array $nameservers = [];
 
     /**
      * The identifier of the sponsoring client.
      * Specified in the Nominet EPP as "clID"
-     *
-     * @var string
      */
-    private $clientID;
+    private string $clientID;
 
     /**
      * The identifier of the client that created the domain object.
      * Specified in the Nominet EPP as "crID"
-     *
-     * @var string
      */
-    private $creatorID;
+    private string $creatorID;
 
     /**
      * The date and time of domain object creation.
      * Specified in the Nominet EPP as "crDate"
-     *
-     * @var DateTime
      */
-    private $created;
+    private DateTime $created;
 
     /**
      * The date and time identifying the end of the domain object's registration period.
      * Specified in the Nominet EPP as "exDate"
-     *
-     * @var DateTime
      */
-    private $expired;
+    private DateTime $expired;
 
     /**
      * The identifier of the client that last updated the domain object.
      * This variable MUST be null if the domain has never been modified.
      * (could be a name and email address or the value submitted from the <clTRID> element if created by EPP)
-     *
-     * @var string
      */
-    private $upID = null;
-
-    /**
-     *
-     * The date and time of the most recent domain-object modification, formatted as: YYYYMMDD.
-     * This variable MUST be null if the domain object has never been modified.
-     *
-     * @var DateTime
-     */
-    private $upDate = null;
+    private ?string $upID = null;
 
     /**
      * If first-bill is not set or set to "th", the registration
      * invoice will be sent to the registrar,
      * setting this to "bc" will instead invoice the customer at the non-member registration rate.
-     *
-     * @var string
      */
-    private $firstBill = self::BILL_REGISTRAR;
+    private string $firstBill = self::BILL_REGISTRAR;
 
     /**
      * If recur-bill is not set or set to "th" invoices for renewals
      * will be sent to the registrar,
      * setting this to "bc" will instead invoice the customer at the non-member renewal rate
      * (the auto-bill and next-bill fields will also be cleared).
-     *
-     * @var string
      */
-    private $recurBill = self::BILL_REGISTRAR;
+    private string $recurBill = self::BILL_REGISTRAR;
 
     /**
      * The number of days before expiry you wish to automatically renew a domain name.
      * Values between 1-182.
      * This field can be cleared by setting the default value of 0.
      * Auto-bill cannot be set if next-bill, recur-bill or renew-not-required are set.
-     *
-     * @var int
      */
-    private $autoBill;
+    private ?int $autoBill = null;
 
     /**
      * The number of days before expiry you wish to automatically renew a domain name.
@@ -136,92 +104,28 @@ class Domain
      * Values between 1 and 182, indicating how many days before expiry you wish to renew the domain name.
      * This field can be cleared by setting the default value of 0.
      * Next-bill cannot be set if auto-bill, recur-bill or renew-not-required are set.
-     *
-     * @var int
      */
-    private $nextBill;
+    private ?int $nextBill = null;
 
     /**
      * Domain's current registration status
-     *
-     * @var string
      */
-    private $regStatus;
+    private string $regStatus;
 
     /**
      * Miscellaneous information relating to the domain name.
      *
-     * @var string
+     * @var ?string[]
      */
-    private $notes;
+    private ?array $notes = null;
 
     /**
      * Password
-     *
-     * @var string
      */
-    private $password;
-
-    /**
-     * Set the value of period
-     *
-     * @param  integer $period Must be 2
-     * @return Domain
-     */
-    public function setPeriod($period)
-    {
-        if (2 !== $period) {
-            throw new \Exception("Invalid period $period.");
-        }
-        $this->period = $period;
-
-        return $this;
-    }
-
-    /**
-     * Set $this->name
-     *
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = (string) $name;
-    }
-
-    /**
-     * Get $this->name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set $this->registrant
-     *
-     * @param string $registrant
-     */
-    public function setRegistrant($registrant)
-    {
-        $this->registrant = (string) $registrant;
-    }
-
-    /**
-     * Get $this->registrant
-     *
-     * @return string
-     */
-    public function getRegistrant()
-    {
-        return $this->registrant;
-    }
+    private ?string $password;
 
     /**
      * Set add $contact to array of contacts
-     *
-     * @param \SclNominetEpp\Contact $contact
      */
     public function addContact(Contact $contact)
     {
@@ -229,30 +133,16 @@ class Domain
     }
 
     /**
-     * Get $this->contacts
-     *
-     * @return array
-     */
-    public function getContacts()
-    {
-        return $this->contacts;
-    }
-
-    /**
      * Remove $contact from the array of contacts if it already exists.
-     *
-     * @param \SclNominetEpp\Contact $contact
      */
     public function removeContact(Contact $contact)
     {
-        $arrayKey =  array_search($contact, $this->contacts);
+        $arrayKey = array_search($contact, $this->contacts);
         unset($this->contacts[$arrayKey]);
     }
 
     /**
      * Add $nameserver to the array of nameservers
-     *
-     * @param Nameserver $nameserver
      */
     public function addNameserver(Nameserver $nameserver)
     {
@@ -260,285 +150,276 @@ class Domain
     }
 
     /**
-     * Get the array of nameservers
-     *
-     * @return array
-     */
-    public function getNameservers()
-    {
-        return $this->nameservers;
-    }
-
-    /**
-     * Remove $namserver from the array of namservers if it already exists.
-     *
-     * @param \SclNominetEpp\Nameserver $nameserver
+     * Remove $nameserver from the array of nameservers if it already exists.
      */
     public function removeNameserver(Nameserver $nameserver)
     {
-        $arrayKey =  array_search($nameserver, $this->nameservers);
+        $arrayKey = array_search($nameserver, $this->nameservers);
         unset($this->nameservers[$arrayKey]);
-    }
-    /**
-     * Set the identifier of the sponsoring client.
-     *
-     * @param string $clientID
-     */
-    public function setClientID($clientID)
-    {
-        $this->clientID = (string) $clientID;
-    }
-
-    /**
-     * Get the identifier of the sponsoring client.
-     *
-     * @return string
-     */
-    public function getClientID()
-    {
-        return $this->clientID;
-    }
-
-    /**
-     * Set the identifier of the client that created the domain object.
-     *
-     * @param string $creatorID
-     */
-    public function setCreatorID($creatorID)
-    {
-        $this->creatorID = (string) $creatorID;
-    }
-
-    /**
-     * Get the identifier of the client that created the domain object.
-     *
-     * @return string
-     */
-    public function getCreatorID()
-    {
-        return $this->creatorID;
-    }
-    /**
-     * Set $this->created
-     *
-     * @param DateTime $created
-     */
-    public function setCreated(DateTime $created)
-    {
-        $this->created = $created;
-    }
-
-    /**
-     * Get $this->created
-     *
-     * @return DateTime
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * Set $this->expired
-     *
-     * @param DateTime $expired
-     */
-    public function setExpired(DateTime $expired)
-    {
-        $this->expired = $expired;
-    }
-
-    /**
-     * Get $this->expired
-     *
-     * @return DateTime
-     */
-    public function getExpired()
-    {
-        return $this->expired;
-    }
-
-    /**
-     * Set $this->upID
-     *
-     * @param string $upID
-     */
-    public function setUpID($upID)
-    {
-        $this->upID = (string) $upID;
-    }
-
-    /**
-     * Get $this->upID
-     *
-     * @return string
-     */
-    public function getUpID()
-    {
-        return $this->upID;
-    }
-
-    /**
-     * Set $this->upDate
-     *
-     * @param DateTime $upDate
-     */
-    public function setUpDate(DateTime $upDate)
-    {
-        $this->upDate = $upDate;
-    }
-
-    /**
-     * Get $this->upDate
-     *
-     * @return DateTime
-     */
-    public function getUpDate()
-    {
-        return $this->upDate;
-    }
-
-    /**
-     * Set $this->firstBill
-     *
-     * @param string $firstBill
-     */
-    public function setFirstBill($firstBill)
-    {
-        $this->firstBill = (string) $firstBill;
-    }
-
-    /**
-     * Get $this->firstBill
-     *
-     * @return string
-     */
-    public function getFirstBill()
-    {
-        return $this->firstBill;
-    }
-
-    /**
-     * Set $this->recurBill
-     *
-     * @param string $recurBill
-     */
-    public function setRecurBill($recurBill)
-    {
-        $this->recurBill = (string) $recurBill;
-    }
-
-    /**
-     * Get $this->recurBill
-     *
-     * @return string
-     */
-    public function getRecurBill()
-    {
-        return $this->recurBill;
-    }
-
-    /**
-     * Set $this->autoBill
-     * @todo the "settype" of autoBill
-     * @param settype $autoBill
-     */
-    public function setAutoBill($autoBill)
-    {
-        $this->autoBill = (string) $autoBill;
-    }
-
-    /**
-     * Get $this->autoBill
-     * @todo the "gettype" of autoBill
-     * @return gettype
-     */
-    public function getAutoBill()
-    {
-        return $this->autoBill;
-    }
-
-    /**
-     * Set $this->nextBill
-     *
-     * @param settype $nextBill
-     */
-    public function setNextBill($nextBill)
-    {
-        $this->nextBill = (string) $nextBill;
-    }
-
-    /**
-     * Get $this->nextBill
-     *
-     * @return gettype
-     */
-    public function getNextBill()
-    {
-        return $this->nextBill;
-    }
-
-    /**
-     * Set $this->regStatus
-     * @param string $regStatus
-     */
-    public function setRegStatus($regStatus)
-    {
-        $this->regStatus = (string) $regStatus;
-    }
-
-    /**
-     * Get $this->regStatus;
-     *
-     * @return type
-     */
-    public function getRegStatus()
-    {
-        return $this->regStatus;
-    }
-
-    /**
-     * Set $this->notes
-     *
-     * @param settype $notes
-     */
-    public function setNotes($notes)
-    {
-        $this->notes = $notes;
-    }
-
-    /**
-     * Get $this->notes
-     *
-     * @return string
-     */
-    public function getNotes()
-    {
-        return $this->notes;
-    }
-
-    /**
-     * Get $this->password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set $this->password
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = (string) $password;
     }
 
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name)
+    {
+        if (filter_var($name, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) === false) {
+            throw new InvalidArgumentException(sprintf('Name parameter "%s" is invalid', $name));
+        }
+        $this->name = $name;
+    }
+
+    public function __toArray(): array
+    {
+        $data = [];
+        $data['name'] = $this->getName();
+        $data['period'] = $this->getPeriod();
+        $data['registrant'] = $this->getRegistrant();
+        $data['contacts'] = $this->getContacts();
+        $data['nameservers'] = $this->getNameservers();
+        $data['clientID'] = $this->getClientID();
+        $data['creatorID'] = $this->getCreatorID();
+        $data['created'] = $this->getCreated();
+        $data['expired'] = $this->getExpired();
+        $data['upID'] = $this->getUpID();
+        $data['upDate'] = $this->getUpDate();
+        $data['firstBill'] = $this->getFirstBill();
+        $data['recurBill'] = $this->getRecurBill();
+        $data['autoBill'] = $this->getAutoBill();
+        $data['nextBill'] = $this->getNextBill();
+        $data['regStatus'] = $this->getRegStatus();
+        $data['notes'] = $this->getNotes();
+        $data['password'] = $this->getPassword();
+        return $data;
+    }
+
+    public function getPeriod(): int
+    {
+        return $this->period;
+    }
+
+    /**
+     * Set the value of period
+     */
+    public function setPeriod(int $period): Domain
+    {
+        if ($period < self::REGISTRATION_PERIOD) {
+            $message = sprintf("Invalid period %d, must be greater than %d", $period, self::REGISTRATION_PERIOD);
+            throw new InvalidArgumentException($message);
+        }
+        $this->period = $period;
+
+        return $this;
+    }
+
+    public function getRegistrant(): ?string
+    {
+        return $this->registrant;
+    }
+
+    public function setRegistrant(?string $registrant)
+    {
+        $this->registrant = $registrant;
+    }
+
+    /**
+     * @return Contact[]
+     */
+    public function getContacts(): array
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * Get the array of nameservers
+     * @return Nameserver[]
+     */
+    public function getNameservers(): array
+    {
+        return $this->nameservers;
+    }
+
+    /**
+     * Get the identifier of the sponsoring client.
+     */
+    public function getClientID(): string
+    {
+        return $this->clientID;
+    }
+
+    /**
+     * Set the identifier of the sponsoring client.
+     */
+    public function setClientID(string $clientID)
+    {
+        $this->clientID = $clientID;
+    }
+
+    /**
+     * Get the identifier of the client that created the domain object.
+     */
+    public function getCreatorID(): string
+    {
+        return $this->creatorID;
+    }
+
+    /**
+     * Set the identifier of the client that created the domain object.
+     */
+    public function setCreatorID(string $creatorID)
+    {
+        $this->creatorID = $creatorID;
+    }
+
+    public function getCreated(): DateTime
+    {
+        return $this->created;
+    }
+
+    public function setCreated(DateTime $created)
+    {
+        $this->created = $created;
+    }
+
+    public function getExpired(): DateTime
+    {
+        return $this->expired;
+    }
+
+    public function setExpired(DateTime $expired)
+    {
+        $this->expired = $expired;
+    }
+
+    public function getUpID(): ?string
+    {
+        return $this->upID;
+    }
+
+    public function setUpID(string $upID)
+    {
+        $this->upID = $upID;
+    }
+
+    public function getFirstBill(): string
+    {
+        return $this->firstBill;
+    }
+
+    public function setFirstBill(string $firstBill)
+    {
+        $this->checkBill($firstBill);
+        $this->firstBill = $firstBill;
+    }
+
+    protected function checkBill(string $bill): void
+    {
+        if ($bill === '') {
+            return;
+        }
+        if (in_array($bill, self::BILLS) === false) {
+            $options = implode(', ', self::BILLS);
+            $message = sprintf("Invalid bill '%s', must one of '%s'", $bill, $options);
+            throw new InvalidArgumentException($message);
+        }
+    }
+
+    public function getRecurBill(): string
+    {
+        return $this->recurBill;
+    }
+
+    public function setRecurBill(string $recurBill)
+    {
+        $this->checkBill($recurBill);
+        $this->recurBill = $recurBill;
+    }
+
+    public function getAutoBill(): ?int
+    {
+        return $this->autoBill;
+    }
+
+    /**
+     * @param int|object $autoBill
+     * @return void
+     */
+    public function setAutoBill($autoBill)
+    {
+        $this->autoBill = (int)$autoBill;
+    }
+
+    public function getNextBill(): ?int
+    {
+        return $this->nextBill;
+    }
+
+    /**
+     * @param int|object $nextBill
+     * @return void
+     */
+    public function setNextBill($nextBill)
+    {
+        $this->nextBill = (int)$nextBill;
+    }
+
+    public function getRegStatus(): string
+    {
+        return $this->regStatus;
+    }
+
+    public function setRegStatus(string $regStatus)
+    {
+        $this->regStatus = $regStatus;
+    }
+
+    /**
+     * @return ?string[]
+     */
+    public function getNotes(): ?array
+    {
+        return $this->notes;
+    }
+
+    public function setNotes(array $notes)
+    {
+        $this->notes = $notes;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
+    }
+
+    public function hasPassword(): bool
+    {
+        return isset($this->password);
+    }
+
+    public function hasAutoBill(): bool
+    {
+        return isset($this->autoBill);
+    }
+
+    public function hasNextBill(): bool
+    {
+        return isset($this->nextBill);
+    }
+
+    public function hasNotes(): bool
+    {
+        return isset($this->notes);
     }
 }

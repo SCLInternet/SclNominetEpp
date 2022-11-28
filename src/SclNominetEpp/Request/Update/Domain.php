@@ -2,14 +2,14 @@
 
 namespace SclNominetEpp\Request\Update;
 
-use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
+use SclNominetEpp\Domain as DomainObject;
 use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update\Field\UpdateFieldInterface;
+use SclNominetEpp\Response\Update\Domain as UpdateDomainResponse;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP domain:update command.
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Domain extends Request
 {
@@ -17,49 +17,55 @@ class Domain extends Request
     const UPDATE_NAMESPACE = 'urn:ietf:params:xml:ns:domain-1.0';
     const UPDATE_EXTENSION_NAMESPACE = 'http://www.nominet.org.uk/epp/xml/domain-nom-ext-1.2';
     const VALUE_NAME = 'name';
+    const UPDATE_EXTENSION_NAMESPACE_XSD = 'domain-nom-ext-1.2.xsd';
+    const UPDATE_NAMESPACE_XSD = 'domain-1.0.xsd';
+
+    protected ?DomainObject $domain = null;
+
+    /** @var string Identifying value */
+    protected string $value;
+
+    /** @var UpdateFieldInterface[] An array of elements that will be added during the update command. */
+    private array $add = [];
+
+    /** @var UpdateFieldInterface[] An array of elements that will be removed during the update command. */
+    private array $remove = [];
+
+    /** @var ?string */
+    private ?string $registrant = null;
+
+    /** @var ?string */
+    private ?string $password = null;
+
+    /** @var array */
+    private array $notes = [];
 
     /**
-     *
-     * @var type
+     * The number of days before expiry you wish to automatically renew a domain name.
+     * Values between 1-182.
+     * This field can be cleared by setting the default value of 0.
+     * Auto-bill cannot be set if next-bill, recur-bill or renew-not-required are set.
      */
-    protected $domain = null;
+    private ?int $autoBill = null;
 
     /**
-     * Identifying value
-     * @var type
+     * The number of days before expiry you wish to automatically renew a domain name.
+     * The next-bill field will reset to 0 after a single registration period.
+     * Values between 1 and 182, indicating how many days before expiry you wish to renew the domain name.
+     * This field can be cleared by setting the default value of 0.
+     * Next-bill cannot be set if auto-bill, recur-bill or renew-not-required are set.
      */
-    protected $value;
+    private ?int $nextBill = null;
 
-    /**
-     * An array of elements that will be added during the update command.
-     *
-     * @var array
-     */
-    private $add = array();
-
-    /**
-     * An array of elements that will be removed during the update command.
-     *
-     * @var array
-     */
-    private $remove = array();
-
-    /**
-     * Constructor
-     *
-     * @param string $value
-     */
-    public function __construct($value)
+    public function __construct(string $value)
     {
         parent::__construct('update', new UpdateDomainResponse());
         $this->value = $value;
     }
 
     /**
-     * The <b>add()</b> function assigns a Field object as an element of the add array
+     * The add() function assigns a Field object as an element of the add array
      * for including specific fields in the update request "domain:add" tag.
-     *
-     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
      */
     public function add(UpdateFieldInterface $field)
     {
@@ -67,69 +73,130 @@ class Domain extends Request
     }
 
     /**
-     * /**
-     * The <b>remove()</b> function assigns a Field object as an element of the remove array
+     * The remove() function assigns a Field object as an element of the remove array
      * for including specific fields in the update request "domain:remove" tag.
-     *
-     * @param \SclNominetEpp\Request\Update\Field\UpdateFieldInterface $field
      */
     public function remove(UpdateFieldInterface $field)
     {
         $this->remove[] = $field;
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @param \SimpleXMLElement $updateXML
-     */
-    public function addContent(\SimpleXMLElement $updateXML)
+    public function addContent(SimpleXMLElement $action)
     {
-        $domainNS    = self::UPDATE_NAMESPACE;
+        $domainNS = self::UPDATE_NAMESPACE;
         $extensionNS = self::UPDATE_EXTENSION_NAMESPACE;
 
-        $domainXSI    =    $domainNS . ' ' . 'domain-1.0.xsd';
-        $extensionXSI = $extensionNS . ' ' . 'domain-nom-ext-1.2.xsd';
+        $domainXSI = $domainNS . ' ' . self::UPDATE_NAMESPACE_XSD;
+        $extensionXSI = $extensionNS . ' ' . self::UPDATE_EXTENSION_NAMESPACE_XSD;
 
-        $update = $updateXML->addChild('domain:update', '', $domainNS);
-        $update->addAttribute('schemaLocation', $domainXSI, 'xsi');
+        $update = $action->addChild('domain:update', '', $domainNS);
         $update->addChild(self::VALUE_NAME, $this->value, $domainNS);
+        $update->addAttribute(
+            'xsi:schemaLocation',
+            $domainXSI,
+            self::XSI_NAMESPACE,
+        );
 
-        $addBlock = $update->addChild('add', '', $domainNS);
-
-        foreach ($this->add as $field) {
-            $field->fieldXml($addBlock, $domainNS);
+        if ($this->add) {
+            $addBlock = $update->addChild('add', '', $domainNS);
+            $addNameServers = null;
+            foreach ($this->add as $field) {
+                if ($field instanceof Request\Update\Field\DomainNameserver) {
+                    if ($addNameServers === null) {
+                        $addNameServers = $addBlock->addChild('ns', '');
+                    }
+                    $field->fieldXml($addNameServers);
+                } else {
+                    $field->fieldXml($addBlock);
+                }
+            }
         }
 
-        $remBlock = $update->addChild('rem', '', $domainNS);
+        if ($this->remove) {
+            $remBlock = $update->addChild('rem', '', $domainNS);
 
-        foreach ($this->remove as $field) {
-            $field->fieldXml($remBlock, $domainNS);
+            $remNameServers = null;
+            foreach ($this->remove as $field) {
+                if ($field instanceof Request\Update\Field\DomainNameserver) {
+                    if ($remNameServers === null) {
+                        $remNameServers = $remBlock->addChild('ns', '');
+                    }
+                    $field->fieldXml($remNameServers);
+                } else {
+                    $field->fieldXml($remBlock);
+                }
+            }
         }
 
-        $change = $update->addChild('chg');
-            $change->addChild('registrant');
-            $authInfo = $change->addChild('authInfo');
-                $authInfo->addChild('pw');
+        if ($this->registrant || $this->password) {
+            $change = $update->addChild('chg');
+            $domainRegistrant = new Request\Update\Field\DomainRegistrant($this->registrant, $this->password);
+            $domainRegistrant->fieldXml($change);
+        }
 
-        $extensionXML = $this->xml->command->addChild('extension');
-        $extension = $extensionXML->addChild('domain-nom-ext:update', '', $extensionNS);
-        $extension->addAttribute('schemaLocation', $extensionXSI, 'xsi');
+        if ($this->autoBill !== null ||
+            $this->nextBill !== null ||
+            $this->notes !== []) {
+            $extensionXML = $this->xml->command->addChild('extension');
+            $extension = $extensionXML->addChild('domain-ext:update', '', $extensionNS);
+            $extension->addAttribute(
+                'xsi:schemaLocation',
+                $extensionXSI,
+                self::XSI_NAMESPACE,
+            );
 
-        $extension->addChild('auto-bill');
-        $extension->addChild('next-bill');
-        $extension->addChild('notes');
-        //@todo implement all variables, also, fix the extension data.
+            if ($this->autoBill !== null) {
+                $extension->addChild('auto-bill', $this->autoBill);
+            }
+            if ($this->nextBill !== null) {
+                $extension->addChild('next-bill', $this->nextBill);
+            }
+            foreach ($this->notes as $note) {
+                $extension->addChild('notes', $note);
+            }
+        }
+    }
 
+    public function setDomain(DomainObject $domain)
+    {
+        $this->domain = $domain;
+    }
+
+    public function changeRegistrant(?string $registrant)
+    {
+        $this->registrant = $registrant;
+    }
+
+    public function setAutoBill(?int $autoBill): void
+    {
+        $this->autoBill = $autoBill;
+    }
+
+    public function setPassword(?string $password): void
+    {
+        $this->password = $password;
+    }
+
+    public function addNote(string $note): void
+    {
+        $this->notes[] = $note;
+    }
+
+    public function setNextBill(?int $nextBill): void
+    {
+        $this->nextBill = $nextBill;
+    }
+
+    public function changePassword(?string $password)
+    {
+        $this->password = $password;
     }
 
     /**
-     * Setter
-     *
-     * @param type $domain
+     * @param ?string[] $notes
      */
-    public function setDomain($domain)
+    public function setNotes(?array $notes)
     {
-        $this->domain = $domain;
+        $this->notes = $notes;
     }
 }

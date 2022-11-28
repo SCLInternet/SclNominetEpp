@@ -2,6 +2,7 @@
 
 namespace SclNominetEpp\Request\Info;
 
+use SclNominetEpp\Nameserver;
 use SclNominetEpp\Response\Info\Host as HostInfoResponse;
 
 /**
@@ -35,6 +36,11 @@ class Host extends AbstractInfo
     public function setNameserver(Nameserver $nameserver)
     {
         $this->nameserver = $nameserver;
+    }
+
+    public function lookup(string $hostName)
+    {
+        // @todo
     }
 
     protected function getName()

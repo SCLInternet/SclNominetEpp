@@ -8,20 +8,17 @@
 
 namespace SclNominetEpp;
 
-use SclRequestResponse\AbstractRequestResponse;
-
+use DateTime;
+use DomainException;
+use Exception;
 use SclNominetEpp\Exception\LoginRequiredException;
-use SclNominetEpp\Request;
 use SclNominetEpp\Request\Update;
-use SclNominetEpp\Response;
+use SclNominetEpp\Request\Update\Unrenew;
 use SclNominetEpp\Response\ListDomains;
+use SclRequestResponse\ResponseInterface;
 
 /**
- * This class exposes all the actions of the Nominet EPP system in a nice PHP
- * class.
- *
- * @author Tom Oram <tom@scl.co.uk>
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
+ * This class exposes all the actions of the Nominet EPP system in a nice PHP class.
  */
 class Nominet extends AbstractRequestResponse
 {
@@ -160,6 +157,8 @@ class Nominet extends AbstractRequestResponse
      * successful.
      *
      * @param string|array $domains
+     * @return array
+     * @throws LoginRequiredException
      */
     public function checkDomain($domains)
     {
@@ -182,8 +181,10 @@ class Nominet extends AbstractRequestResponse
      * successful.
      *
      * @param string|array $contactIds
+     * @return ResponseInterface
+     * @throws LoginRequiredException
      */
-    public function checkContact($contactIds)
+    public function checkContact($contactIds): ResponseInterface
     {
         $this->loginCheck();
 
@@ -191,9 +192,7 @@ class Nominet extends AbstractRequestResponse
 
         $request->setValues($contactIds);
 
-        $response = $this->processRequest($request);
-
-        return $response;
+        return $this->processRequest($request);
     }
 
     /**
@@ -222,7 +221,7 @@ class Nominet extends AbstractRequestResponse
      * The <create> command allows you to create a contact
      * account.
      *
-     * @param \SclNominetEpp\Contact $contact
+     * @param Contact $contact
      */
     public function createContact(Contact $contact)
     {
@@ -240,7 +239,7 @@ class Nominet extends AbstractRequestResponse
      * The <create> command allows you to register a domain name or to create an
      * account or nameserver object to link to domain names.
      *
-     * @param \SclNominetEpp\Domain $domain
+     * @param Domain $domain
      */
     public function createDomain(Domain $domain)
     {
@@ -257,7 +256,7 @@ class Nominet extends AbstractRequestResponse
     /**
      * The <create> command allows you to create a nameserver object to link to domain names.
      *
-     * @param \SclNominetEpp\Nameserver $host
+     * @param Nameserver $host
      */
     public function createHost(Nameserver $host)
     {
@@ -276,7 +275,7 @@ class Nominet extends AbstractRequestResponse
      * Further details of this are available in RFC 5731 The delete command may
      * not be used to delete nameservers and accounts.
      *
-     * @param \SclNominetEpp\Domain|string $domain
+     * @param Domain|string $domain
      * @return boolean|mixed
      */
     public function deleteDomain(Domain $domain)
@@ -297,7 +296,7 @@ class Nominet extends AbstractRequestResponse
      * other object types.
      *
      * @param string $domain The domain to be renewed
-     * @param \DateTime|NULL $expDate The new expiry data or NULL
+     * @param DateTime|NULL $expDate The new expiry data or NULL
      */
     public function renew($domain, $expDate)
     {
@@ -315,97 +314,40 @@ class Nominet extends AbstractRequestResponse
      * The <unrenew> operation is used to reverse a renewal request made for a
      * domain name. The renew command only applies to domain names. It has no
      * meaning for other object types.
+     * @throws LoginRequiredException
      */
     public function unrenew()
     {
         $this->loginCheck();
 
-        $request = new Request\Unrenew();
+        $request = new Unrenew();
     }
 
     /**
      * The <update> operation allows the attributes of an object to be updated.
-     * @param Domain $domain The Domain to be updated.
+     * @throws LoginRequiredException
      */
-    public function updateDomain(Domain $domain)
+    public function updateDomain(Domain $domain, Domain $currentDomain = null): ResponseInterface
     {
         $this->loginCheck();
-        $request = new Request\Update\Domain($domain->getName());
-        $request->setDomain($domain);
 
-        $currentDomain = $this->domainInfo($domain->getName()); //used to input data into the system.
-        if (!$currentDomain instanceof Domain) {
-            throw new \Exception("The domain requested for updating is unregistered.");
-        }
-        $currentNameservers = $currentDomain->getNameservers();
-        $currentContacts    = $currentDomain->getContacts();
-        $newNameservers     = $domain->getNameservers();
-        $newContacts        = $domain->getContacts();
+        $currentDomain = $currentDomain ?: $this->domainInfo($domain->getName());
 
-        $addContacts       = array_uintersect(
-            $newContacts,
-            $currentContacts,
-            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
-        );
-        $removeContacts    = array_uintersect(
-            $currentContacts,
-            $newContacts,
-            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
-        );
-        $addNameservers    = array_uintersect(
-            $newNameservers,
-            $currentNameservers,
-            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
-        );
-        $removeNameservers = array_uintersect(
-            $currentNameservers,
-            $newNameservers,
-            array('\SclNominetEpp\Request\Update\Helper\DomainCompareHelper', 'compare')
-        );
+        $update = new Request\Update();
+        $request = $update($domain, $currentDomain);
 
-        if (!empty($addNameservers)) {
-            foreach ($addNameservers as $nameserver) {
-                $request->add(new Update\Field\DomainNameserver($nameserver->getHostName()));
-            }
-        }
-
-        if (!empty($addContacts)) {
-            foreach ($addContacts as $type => $contact) {
-                $request->add(new Update\Field\DomainContact($contact->getId(), $type));
-            }
-        }
-
-        $request->add(new Update\Field\Status('Payment Overdue', self::STATUS_CLIENT_HOLD));
-
-        if (!empty($removeNameservers)) {
-            foreach ($removeNameservers as $nameserver) {
-                $request->remove(new Update\Field\DomainNameserver($nameserver->getHostName()));
-            }
-        }
-
-        if (!empty($removeContacts)) {
-            foreach ($removeContacts as $type => $contact) {
-                $request->remove(new Update\Field\DomainContact($contact->getId(), $type));
-            }
-        }
-
-        //$request->remove(new Update\Field\DomainNameserver('ns1.example.com'));
-        //$request->remove(new Update\Field\DomainContact('mak32', 'tech'));
-
-        $response = $this->processRequest($request);
-
-        return $response;
+        return $this->processRequest($request);
     }
 
     /**
      * The <update> operation allows the attributes of an object to be updated.
      * @param Contact $contact The contact to be updated.
      */
-    public function updateContact(Contact $contact)
+    public function updateContact(Contact $contact): ResponseInterface
     {
         $this->loginCheck();
 
-        $request = new Request\Update\Contact();
+        $request = new Request\Update\Contact($contact);
 
         $request->add(new Update\Field\Status('', self::STATUS_CLIENT_DELETE_PROHIBITED));
 
@@ -417,17 +359,15 @@ class Nominet extends AbstractRequestResponse
     /**
      * The <update> operation allows the attributes of an object to be updated.
      */
-    public function updateContactID()
+    public function updateContactID($value): ResponseInterface
     {
         $this->loginCheck();
 
-        $request = new Request\Update\ContactID();
+        $request = new Request\Update\ContactID($value);
 
         $request->add(new Update\Field\Status('', self::STATUS_CLIENT_HOLD));
 
-        $response = $this->processRequest($request);
-
-        return $response;
+        return $this->processRequest($request);
     }
 
     /**
@@ -453,12 +393,9 @@ class Nominet extends AbstractRequestResponse
      * The EPP <info> command is used to retrieve information associated with
      * an object.
      *
-     * @param string  $domainName
-     * @param boolean $recursive  If false only the domain info is fetch, if
-     *     true the attached accounts and host info should be returned also.
-     * @return Domain
+     * @throws LoginRequiredException
      */
-    public function domainInfo($domainName, $recursive = false)
+    public function domainInfo(string $domainName): Domain
     {
         $this->loginCheck();
 
@@ -466,11 +403,15 @@ class Nominet extends AbstractRequestResponse
 
         $request->lookup($domainName);
 
+        /** @var Response\Info\Domain $response */
         $response = $this->processRequest($request);
         if (!$response->success()) {
-            return false;
+            throw new DomainException($response->message(), $response->code());
         }
         $domain = $response->getDomain();
+        if (!$domain instanceof Domain) {
+            throw new DomainException('The domain requested is unregistered');
+        }
         return $domain;
     }
 
@@ -478,8 +419,9 @@ class Nominet extends AbstractRequestResponse
      * The EPP <info> command is used to retrieve information associated with
      * an object. ($contactID is the $registrant from domainInfo)
      *
-     * @param  string  $contactID
+     * @param string $contactID
      * @return boolean
+     * @throws LoginRequiredException
      */
     public function contactInfo($contactID)
     {
@@ -586,11 +528,11 @@ class Nominet extends AbstractRequestResponse
      * The <fork> command allows a number of domain names on a registrant contact
      * to be moved to a copy of that contact.
      */
-    public function fork($hostName)
+    public function fork(string $hostName)
     {
         $this->loginCheck();
 
-        $request = new Request\Update\Fork\Fork();
+        $request = new Update\Fork();
 
         $request->setValue($hostName);
 
@@ -611,7 +553,7 @@ class Nominet extends AbstractRequestResponse
         $this->loginCheck();
 
         if (!in_array($type, array(ListDomains::LIST_MONTH, ListDomains::LIST_EXPIRY))) {
-            throw new \Exception("Invalid type $type.");
+            throw new Exception("Invalid type $type.");
         }
 
         $request = new Request\ListDomains();
@@ -630,9 +572,9 @@ class Nominet extends AbstractRequestResponse
     {
         $this->loginCheck();
 
-        $request = new Request\Update\Lock\Lock($objectName, $type);
+        $request = new Update\Lock($objectName, $type);
 
-        $reponse = $this->processRequest($request);
+        $response = $this->processRequest($request);
 
         return $response;
     }

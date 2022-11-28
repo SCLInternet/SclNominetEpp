@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+    <response>
+        <result code="2001">
+            <msg>Command syntax error</msg>
+            <extValue>
+                <value>
+                    <clTRID/>
+                </value>
+                <reason>V221 Cannot use different versions of XML schema 'domain-nom-ext-'</reason>
+            </extValue>
+        </result>
+        <trID>
+            <svTRID>15485056911</svTRID>
+        </trID>
+    </response>
+</epp>

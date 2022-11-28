@@ -28,7 +28,7 @@ class ListDomains extends Response
         if (!$this->success()) {
             return;
         }
-        if (!$this->xmlValid($xml->response->resData)) {
+        if (!$this->xmlValid($xml)) {
             return;
         }
 
@@ -39,16 +39,6 @@ class ListDomains extends Response
         foreach ($domains->domainName as $domain) {
             $this->domains[] = (string) $domain;
         }
-    }
-
-    /**
-     *
-     * @param \SimpleXMLElement $xml
-     * @return boolean
-     */
-    public function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
     }
 
     /**

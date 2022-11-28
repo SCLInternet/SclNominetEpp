@@ -3,6 +3,8 @@
 namespace SclNominetEpp\Request\Info;
 
 use SclNominetEpp\Response\Info\Domain as DomainInfoResponse;
+use SclNominetEpp\Domain as DomainObject;
+use SimpleXMLElement;
 
 /**
  * This class build the XML for a Nominet EPP domain:info command.
@@ -14,6 +16,13 @@ class Domain extends AbstractInfo
     const TYPE = 'domain';
     const INFO_NAMESPACE = "urn:ietf:params:xml:ns:domain-1.0";
     const VALUE_NAME = "name";
+
+    /**
+     * The object.
+     *
+     * @var DomainObject
+     */
+    protected $object = null;
 
     /**
      * Constructor
@@ -29,24 +38,34 @@ class Domain extends AbstractInfo
     }
 
     /**
-     * addContent
-     * @todo give this a description
-     * @todo Unabstract this specifically for domainInfo.
-     *
-     * @param SimpleXMLElement $xml
+     * @param string $domainName
+     * @return Domain
      */
-    protected function addContent(\SimpleXMLElement $xml)
+    public function lookup($domainName)
     {
-        $info = $xml->addChild("{$this->type}:info", '', $this->infoNamespace);
+        $domain = new DomainObject();
+        $domain->setName($domainName);
+        $this->setDomain($domain);
+        return $this;
+    }
 
-        $name = $info->addChild($this->valueName, $this->value, $this->infoNamespace);
+    /**
+     * Add content to the request form.
+     *
+     * @param SimpleXMLElement $action
+     */
+    protected function addContent(\SimpleXMLElement $action)
+    {
+        $info = $action->addChild("{$this->type}:info", '', $this->infoNamespace);
+
+        $name = $info->addChild($this->valueName, $this->getName(), $this->infoNamespace);
         $name->addAttribute('hosts', 'all');
     }
 
     /**
      * Set Domain.
      *
-     * @param \SclNominetEpp\Domain $object
+     * @param DomainObject $object
      */
     public function setDomain(DomainObject $object)
     {

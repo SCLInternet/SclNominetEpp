@@ -2,10 +2,11 @@
 
 namespace SclNominetEpp\Response\Poll;
 
-use SclNominetEpp\Response;
-use SclNominetEpp\Poll as PollObject;
-use SimpleXMLElement;
+use DateTime;
 use Exception;
+use SclNominetEpp\Poll as PollObject;
+use SclNominetEpp\Response;
+use SimpleXMLElement;
 
 /**
  * This class interprets XML for a Nominet EPP poll command response.
@@ -35,12 +36,12 @@ class Poll extends Response
     public function processData(SimpleXMLElement $xml)
     {
         $messageQueue = $xml->response->msgQ;
-        $this->poll->count = (int) $messageQueue->attributes()->count;
-        $this->poll->id    = (string) $messageQueue->attributes()->id;
+        $this->poll->setCount((int)$messageQueue->attributes()->count);
+        $this->poll->setId((string)$messageQueue->attributes()->id);
 
         if (self::SUCCESS_MESSAGE_RETRIEVED === $this->code()) {
-            $this->poll->queueDate = new DateTime((string)$messageQueue->qDate);
-            $this->poll->message   = (string)$messageQueue->msg;
+            $this->poll->setQueueDate(new DateTime((string)$messageQueue->qDate));
+            $this->poll->setMessage((string)$messageQueue->msg);
         }
     }
 }

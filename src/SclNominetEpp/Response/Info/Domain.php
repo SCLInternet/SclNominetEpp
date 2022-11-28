@@ -9,18 +9,12 @@ use SclNominetEpp\Nameserver;
 
 /**
  * This class interprets XML for a Nominet EPP domain:info command response.
- *
- * @author Merlyn Cooper <merlyn.cooper@hotmail.co.uk>
  */
 class Domain extends AbstractInfo
 {
-
     const TYPE = 'domain';
     const VALUE_NAME = 'name';
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
         parent::__construct(
@@ -30,7 +24,7 @@ class Domain extends AbstractInfo
         );
     }
 
-    public function getDomain()
+    public function getDomain(): ?DomainObject
     {
         return $this->object;
     }
@@ -41,7 +35,7 @@ class Domain extends AbstractInfo
         $nschildren = $infData->ns->hostObj;
         foreach ($nschildren as $nschild) {
             $nameserver = new Nameserver();
-            $nameserver->setHostName($nschild);
+            $nameserver->setHostName((string)$nschild);
             $this->object->addNameserver($nameserver);
         }
 

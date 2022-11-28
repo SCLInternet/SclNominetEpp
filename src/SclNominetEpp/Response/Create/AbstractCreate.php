@@ -42,7 +42,7 @@ abstract class AbstractCreate extends Response
         if (!$this->success()) {
             return;
         }
-        if (!$this->xmlValid($xml->response->resData)) {
+        if (!$this->xmlValid($xml)) {
             return;
         }
 
@@ -54,19 +54,6 @@ abstract class AbstractCreate extends Response
         $this->setIdentifier($creData->$valueName);
         $this->object->setCreated(new DateTime($creData->crDate));
         $this->addSpecificData($creData);
-    }
-
-    /**
-     * Assuming $xml is valid,
-     * this function returns "true" to affirm that the xml is valid,
-     * otherwise "false".
-     *
-     * @param SimpleXMLElement $xml
-     * @return boolean
-     */
-    protected function xmlValid(SimpleXMLElement $xml)
-    {
-        return isset($xml);
     }
 
     /**
